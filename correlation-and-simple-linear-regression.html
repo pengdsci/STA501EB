@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Topic 10 Correlation and Simple Linear Regression | STA501 E-Pack: Applied Statistical Methods</title>
+  <meta name="description" content="The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Topic 10 Correlation and Simple Linear Regression | STA501 E-Pack: Applied Statistical Methods" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Topic 10 Correlation and Simple Linear Regression | STA501 E-Pack: Applied Statistical Methods" />
+  
+  <meta name="twitter:description" content="The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Cheng Peng" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="analysis-of-variance-anova.html"/>
+<link rel="next" href="multiple-linear-regression.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<center><li><a href="./"><font color = "darkred"><b>STA 501 E-Pack: Applied Statistical Methods</b></font></a><br><font color = "navy">Cheng Peng</font></li></center>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html"><i class="fa fa-check"></i><b>2</b> R, RStudio and RMarkdown</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#r"><i class="fa fa-check"></i><b>2.1</b> R</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#order-of-operations"><i class="fa fa-check"></i><b>2.1.1</b> Order of Operations</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#basic-r-objects"><i class="fa fa-check"></i><b>2.1.2</b> Basic R Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio"><i class="fa fa-check"></i><b>2.2</b> RStudio</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio-gui"><i class="fa fa-check"></i><b>2.2.1</b> RStudio GUI</a></li>
+<li class="chapter" data-level="2.2.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#console"><i class="fa fa-check"></i><b>2.2.2</b> Console</a></li>
+<li class="chapter" data-level="2.2.3" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#source-editor"><i class="fa fa-check"></i><b>2.2.3</b> Source Editor</a></li>
+<li class="chapter" data-level="2.2.4" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#environment-window"><i class="fa fa-check"></i><b>2.2.4</b> Environment Window</a></li>
+<li class="chapter" data-level="2.2.5" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#system-and-graphic-files"><i class="fa fa-check"></i><b>2.2.5</b> System and Graphic files</a></li>
+<li class="chapter" data-level="2.2.6" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio-offers-numerous-helpful-features"><i class="fa fa-check"></i><b>2.2.6</b> RStudio offers numerous helpful features:</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rmarkdown"><i class="fa fa-check"></i><b>2.3</b> RMarkdown</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#code-chunk"><i class="fa fa-check"></i><b>2.3.1</b> Code Chunk</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#graphics-generated-from-r-code-chunks"><i class="fa fa-check"></i><b>2.3.2</b> Graphics Generated from R Code Chunks</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html"><i class="fa fa-check"></i><b>3</b> Data Collection and Data Loading</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#sampling-plans"><i class="fa fa-check"></i><b>3.1</b> Sampling Plans</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#simple-random-sampling-srs"><i class="fa fa-check"></i><b>3.1.1</b> Simple Random Sampling (SRS)</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#systematic-sampling"><i class="fa fa-check"></i><b>3.1.2</b> Systematic sampling</a></li>
+<li class="chapter" data-level="3.1.3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#stratified-sampling"><i class="fa fa-check"></i><b>3.1.3</b> Stratified sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#study-designs"><i class="fa fa-check"></i><b>3.2</b> Study Designs</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#observational-studies"><i class="fa fa-check"></i><b>3.2.1</b> Observational Studies</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#experimental-designs"><i class="fa fa-check"></i><b>3.2.2</b> Experimental Designs</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#loading-data-to-r-from-external-data-files"><i class="fa fa-check"></i><b>3.3</b> Loading Data to R from External Data Files</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#text-file-aka.-delimited-text-file"><i class="fa fa-check"></i><b>3.3.1</b> Text File ( aka. Delimited Text File)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#data-frame-and-list"><i class="fa fa-check"></i><b>3.4</b> Data Frame and List</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#data-frame-1"><i class="fa fa-check"></i><b>3.4.1</b> Data Frame</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>4</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#data-types"><i class="fa fa-check"></i><b>4.1</b> Data Types</a></li>
+<li class="chapter" data-level="4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#tabular-and-graphic-summary"><i class="fa fa-check"></i><b>4.2</b> Tabular and Graphic Summary</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#categorical-data"><i class="fa fa-check"></i><b>4.2.1</b> Categorical Data</a></li>
+<li class="chapter" data-level="4.2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#numerical-data"><i class="fa fa-check"></i><b>4.2.2</b> Numerical Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#numerical-summary-of-numerical-data"><i class="fa fa-check"></i><b>4.3</b> Numerical Summary of Numerical Data</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#central-tendency"><i class="fa fa-check"></i><b>4.3.1</b> Central Tendency</a></li>
+<li class="chapter" data-level="4.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variations"><i class="fa fa-check"></i><b>4.3.2</b> Variations</a></li>
+<li class="chapter" data-level="4.3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#location"><i class="fa fa-check"></i><b>4.3.3</b> Location</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#assignment---descriptive-statistics"><i class="fa fa-check"></i><b>4.4</b> Assignment - Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summarizing-categorical-data"><i class="fa fa-check"></i><b>4.4.1</b> Summarizing Categorical Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html"><i class="fa fa-check"></i><b>5</b> Concepts of Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-random-variables"><i class="fa fa-check"></i><b>5.1</b> Concepts of random variables</a></li>
+<li class="chapter" data-level="5.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#types-of-random-variables"><i class="fa fa-check"></i><b>5.2</b> Types of random variables</a></li>
+<li class="chapter" data-level="5.3" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-probability-distributions-1"><i class="fa fa-check"></i><b>5.3</b> Concepts of probability distributions</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-probability"><i class="fa fa-check"></i><b>5.3.1</b> Concepts of probability</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#probability-distribution-of-random-variables"><i class="fa fa-check"></i><b>5.4</b> Probability distribution of random variables</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#discrete-probability-distribution"><i class="fa fa-check"></i><b>5.4.1</b> Discrete probability distribution</a></li>
+<li class="chapter" data-level="5.4.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#continuous-probability-distribution"><i class="fa fa-check"></i><b>5.4.2</b> Continuous probability distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#special-continuous-distributions"><i class="fa fa-check"></i><b>5.5</b> Special Continuous Distributions</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#normal-distribution"><i class="fa fa-check"></i><b>5.5.1</b> Normal Distribution</a></li>
+<li class="chapter" data-level="5.5.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#t-distribution"><i class="fa fa-check"></i><b>5.5.2</b> t distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#summary"><i class="fa fa-check"></i><b>5.6</b> Summary</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#numerical-examples-based-on-normal-and-t-distributions"><i class="fa fa-check"></i><b>5.6.1</b> Numerical Examples Based on Normal and t Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#assignment---probability-distributions"><i class="fa fa-check"></i><b>5.7</b> Assignment - Probability Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>6</b> Sampling Distributions</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#concepts-of-the-sampling-distribution"><i class="fa fa-check"></i><b>6.1</b> Concepts of the sampling distribution</a></li>
+<li class="chapter" data-level="6.2" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sampling-distribution-of-sampling-means"><i class="fa fa-check"></i><b>6.2</b> Sampling Distribution of Sampling Means</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#working-data-set-plant-diversity"><i class="fa fa-check"></i><b>6.2.1</b> Working Data Set: Plant Diversity</a></li>
+<li class="chapter" data-level="6.2.2" data-path="sampling-distributions.html"><a href="sampling-distributions.html#normal-population-with-given-mean-mu-and-variance-sigma2"><i class="fa fa-check"></i><b>6.2.2</b> Normal Population with given mean (<span class="math inline">\(\mu\)</span>) and Variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+<li class="chapter" data-level="6.2.3" data-path="sampling-distributions.html"><a href="sampling-distributions.html#normal-population-with-a-given-mean-mu-and-an-unknown-variance-sigma2"><i class="fa fa-check"></i><b>6.2.3</b> Normal Population with a given mean (<span class="math inline">\(\mu\)</span>) and an <strong>Unknown</strong> Variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+<li class="chapter" data-level="6.2.4" data-path="sampling-distributions.html"><a href="sampling-distributions.html#unspecified-population-with-a-given-mean-muand-an-unspecifed-variance-sigma2"><i class="fa fa-check"></i><b>6.2.4</b> Unspecified Population with a given mean (<span class="math inline">\(\mu\)</span>)and an unspecifed variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sampling-distribution-of-sample-proportions"><i class="fa fa-check"></i><b>6.3</b> Sampling distribution of sample proportions</a></li>
+<li class="chapter" data-level="6.4" data-path="sampling-distributions.html"><a href="sampling-distributions.html#summary-1"><i class="fa fa-check"></i><b>6.4</b> Summary</a></li>
+<li class="chapter" data-level="6.5" data-path="sampling-distributions.html"><a href="sampling-distributions.html#assignment---sampling-distributions"><i class="fa fa-check"></i><b>6.5</b> Assignment - Sampling Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>7</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#some-terms"><i class="fa fa-check"></i><b>7.1</b> Some Terms</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#what-are-the-issues-of-a-point-estimate"><i class="fa fa-check"></i><b>7.1.1</b> What are the issues of a point estimate?</a></li>
+<li class="chapter" data-level="7.1.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#how-about-multiple-samples"><i class="fa fa-check"></i><b>7.1.2</b> How About Multiple Samples?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#how-to-find-the-confidence-intervals-for-means-and-proportions"><i class="fa fa-check"></i><b>7.2</b> How to find the Confidence Intervals for Means and Proportions?</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#framework-of-confidence-interval"><i class="fa fa-check"></i><b>7.2.1</b> Framework Of Confidence Interval</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-population-mean"><i class="fa fa-check"></i><b>7.3</b> Confidence Interval of Population Mean</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#normal-population-with-known-variance."><i class="fa fa-check"></i><b>7.3.1</b> Normal Population with Known Variance.</a></li>
+<li class="chapter" data-level="7.3.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#normal-population-with-unknown-variance"><i class="fa fa-check"></i><b>7.3.2</b> Normal Population with Unknown Variance</a></li>
+<li class="chapter" data-level="7.3.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#unspecified-population-with-unknown-variance-but-with-large-sample-sizes"><i class="fa fa-check"></i><b>7.3.3</b> Unspecified Population with Unknown Variance but with Large Sample Sizes</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-proportion"><i class="fa fa-check"></i><b>7.4</b> Confidence Interval of Proportion</a></li>
+<li class="chapter" data-level="7.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#two-sample-problems---comparing-two-population-means"><i class="fa fa-check"></i><b>7.5</b> Two Sample Problems - Comparing Two Population Means</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-the-difference-of-two-unspecified-populations-means"><i class="fa fa-check"></i><b>7.5.1</b> Confidence Interval of the Difference of Two Unspecified Populations Means</a></li>
+<li class="chapter" data-level="7.5.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-the-difference-of-two-normal-populations-means"><i class="fa fa-check"></i><b>7.5.2</b> Confidence Interval of the Difference of Two Normal Populations Means</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="confidence-intervals.html"><a href="confidence-intervals.html#assignment---confidence-intervals"><i class="fa fa-check"></i><b>7.6</b> Assignment - Confidence Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html"><i class="fa fa-check"></i><b>8</b> Testing Statistical Hypothesis</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#formulation-of-statistical-hypothesis-testing"><i class="fa fa-check"></i><b>8.1</b> Formulation of Statistical Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#null-and-alternative-hypotheses"><i class="fa fa-check"></i><b>8.1.1</b> Null and Alternative Hypotheses</a></li>
+<li class="chapter" data-level="8.1.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#relationship-between-the-claim-and-the-statistical-hypotheses"><i class="fa fa-check"></i><b>8.1.2</b> Relationship between the claim and the statistical hypotheses</a></li>
+<li class="chapter" data-level="8.1.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#test-statistics---statistical-evidence"><i class="fa fa-check"></i><b>8.1.3</b> Test Statistics - Statistical Evidence</a></li>
+<li class="chapter" data-level="8.1.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#types-of-test-and-rejection-region"><i class="fa fa-check"></i><b>8.1.4</b> Types of Test and Rejection Region</a></li>
+<li class="chapter" data-level="8.1.5" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#statistical-decision-rule-p-value"><i class="fa fa-check"></i><b>8.1.5</b> Statistical Decision Rule: p-value</a></li>
+<li class="chapter" data-level="8.1.6" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#summary-of-the-test-hypothesis-procedure"><i class="fa fa-check"></i><b>8.1.6</b> Summary of the Test Hypothesis Procedure</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-studies"><i class="fa fa-check"></i><b>8.2</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-i-normal-population-with-a-known-variance."><i class="fa fa-check"></i><b>8.2.1</b> Case I: normal population with a known variance.</a></li>
+<li class="chapter" data-level="8.2.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-ii-normal-population-with-an-unknown-variance"><i class="fa fa-check"></i><b>8.2.2</b> Case II: Normal population with an unknown variance</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#unspecified-population-with-an-unknown-variance---clt"><i class="fa fa-check"></i><b>8.3</b> Unspecified population with an unknown variance - CLT</a></li>
+<li class="chapter" data-level="8.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#testing-population-proportion"><i class="fa fa-check"></i><b>8.4</b> Testing Population Proportion</a></li>
+<li class="chapter" data-level="8.5" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#testing-the-difference-between-two-population-means"><i class="fa fa-check"></i><b>8.5</b> Testing the difference between two population means</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#both-populations-are-unspecified-and-sample-sizes-are-large."><i class="fa fa-check"></i><b>8.5.1</b> Both populations are unspecified and sample sizes are large.</a></li>
+<li class="chapter" data-level="8.5.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#both-populations-are-normal-with-unknown-but-equal-variances"><i class="fa fa-check"></i><b>8.5.2</b> Both populations are normal with unknown but equal variances</a></li>
+<li class="chapter" data-level="8.5.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#paired-t-test"><i class="fa fa-check"></i><b>8.5.3</b> Paired t-test</a></li>
+<li class="chapter" data-level="8.5.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#concluding-remarks"><i class="fa fa-check"></i><b>8.5.4</b> Concluding Remarks</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#practice-problems"><i class="fa fa-check"></i><b>8.6</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>9</b> Analysis of Variance (ANOVA)</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#the-question-of-one-way-anova"><i class="fa fa-check"></i><b>9.1</b> The Question of One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#what-is-anova"><i class="fa fa-check"></i><b>9.1.1</b> What is ANOVA</a></li>
+<li class="chapter" data-level="9.1.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#assumptions-of-anova"><i class="fa fa-check"></i><b>9.1.2</b> Assumptions of ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#steps-of-anova"><i class="fa fa-check"></i><b>9.2</b> Steps of ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#anova-tables"><i class="fa fa-check"></i><b>9.2.1</b> ANOVA Tables</a></li>
+<li class="chapter" data-level="9.2.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#post-hoc-pairwise-comparison"><i class="fa fa-check"></i><b>9.2.2</b> Post hoc Pairwise Comparison</a></li>
+<li class="chapter" data-level="9.2.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#how-to-summarize-anova-results"><i class="fa fa-check"></i><b>9.2.3</b> How to Summarize ANOVA Results</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#welchs-anova"><i class="fa fa-check"></i><b>9.3</b> Welch’s ANOVA</a></li>
+<li class="chapter" data-level="9.4" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#case-study-mussel-length-example---solution"><i class="fa fa-check"></i><b>9.4</b> Case Study: Mussel Length Example - Solution</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#creating-an-anova-table"><i class="fa fa-check"></i><b>9.4.1</b> Creating An ANOVA Table</a></li>
+<li class="chapter" data-level="9.4.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#diagnostic-analysis"><i class="fa fa-check"></i><b>9.4.2</b> Diagnostic Analysis</a></li>
+<li class="chapter" data-level="9.4.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#welch-anova"><i class="fa fa-check"></i><b>9.4.3</b> Welch ANOVA</a></li>
+<li class="chapter" data-level="9.4.4" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#post-hoc-multiple-comparisons"><i class="fa fa-check"></i><b>9.4.4</b> Post-hoc Multiple Comparisons</a></li>
+<li class="chapter" data-level="9.4.5" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#visual-comparison---boxplots"><i class="fa fa-check"></i><b>9.4.5</b> Visual Comparison - Boxplots</a></li>
+<li class="chapter" data-level="9.4.6" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#anova-reporting"><i class="fa fa-check"></i><b>9.4.6</b> ANOVA Reporting</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#practice-problems-1"><i class="fa fa-check"></i><b>9.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html"><i class="fa fa-check"></i><b>10</b> Correlation and Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#the-question-and-the-data"><i class="fa fa-check"></i><b>10.1</b> The question and the data</a></li>
+<li class="chapter" data-level="10.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#visual-inspection-for-association"><i class="fa fa-check"></i><b>10.2</b> Visual Inspection for Association</a></li>
+<li class="chapter" data-level="10.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#coefficient-of-correlation"><i class="fa fa-check"></i><b>10.3</b> Coefficient of Correlation</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#definition-of-pearson-correlation-coefficient"><i class="fa fa-check"></i><b>10.3.1</b> Definition of Pearson correlation coefficient</a></li>
+<li class="chapter" data-level="10.3.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#interpretation-of-correlation-coefficient"><i class="fa fa-check"></i><b>10.3.2</b> Interpretation of correlation coefficient</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#least-square-regression-structure-diagnostics-and-applications"><i class="fa fa-check"></i><b>10.4</b> Least square regression: structure, diagnostics, and applications</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#definitions"><i class="fa fa-check"></i><b>10.4.1</b> Definitions</a></li>
+<li class="chapter" data-level="10.4.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#assumptions-of-least-square-regression"><i class="fa fa-check"></i><b>10.4.2</b> Assumptions of Least Square Regression</a></li>
+<li class="chapter" data-level="10.4.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-building-and-diagnostics"><i class="fa fa-check"></i><b>10.4.3</b> Model Building and Diagnostics</a></li>
+<li class="chapter" data-level="10.4.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#residual-diagnostics-and-remedies"><i class="fa fa-check"></i><b>10.4.4</b> Residual Diagnostics and Remedies</a></li>
+<li class="chapter" data-level="10.4.5" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#final-model-with-applications"><i class="fa fa-check"></i><b>10.4.5</b> Final Model with Applications</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#case-study-amyotrophic-lateral-sclerosis-analysis-revisited"><i class="fa fa-check"></i><b>10.5</b> Case Study: Amyotrophic lateral sclerosis analysis revisited</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#objectives"><i class="fa fa-check"></i><b>10.5.1</b> Objectives</a></li>
+<li class="chapter" data-level="10.5.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-fitting"><i class="fa fa-check"></i><b>10.5.2</b> Model Fitting</a></li>
+<li class="chapter" data-level="10.5.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#box-cox-transformation"><i class="fa fa-check"></i><b>10.5.3</b> Box-Cox Transformation</a></li>
+<li class="chapter" data-level="10.5.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-applications"><i class="fa fa-check"></i><b>10.5.4</b> Model Applications</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>11</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-practical-question"><i class="fa fa-check"></i><b>11.1</b> The Practical Question</a></li>
+<li class="chapter" data-level="11.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-process-of-building-a-multiple-linear-regression-model"><i class="fa fa-check"></i><b>11.2</b> The Process of Building A Multiple Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#assumptions-of-mlr"><i class="fa fa-check"></i><b>11.2.1</b> Assumptions of MLR</a></li>
+<li class="chapter" data-level="11.2.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-structure-of-mlr"><i class="fa fa-check"></i><b>11.2.2</b> The Structure of MLR</a></li>
+<li class="chapter" data-level="11.2.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#more-on-model-specifications"><i class="fa fa-check"></i><b>11.2.3</b> More on Model Specifications</a></li>
+<li class="chapter" data-level="11.2.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#estimation-of-regression-coefficients"><i class="fa fa-check"></i><b>11.2.4</b> Estimation of Regression Coefficients</a></li>
+<li class="chapter" data-level="11.2.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#model-diagnostics"><i class="fa fa-check"></i><b>11.2.5</b> Model Diagnostics</a></li>
+<li class="chapter" data-level="11.2.6" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#goodness-of-fit-and-variable-selection"><i class="fa fa-check"></i><b>11.2.6</b> Goodness-of-fit and Variable Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#case-study-1"><i class="fa fa-check"></i><b>11.3</b> Case Study 1</a></li>
+<li class="chapter" data-level="11.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#case-study-2"><i class="fa fa-check"></i><b>11.4</b> Case Study 2</a></li>
+<li class="chapter" data-level="11.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#practice-problems-2"><i class="fa fa-check"></i><b>11.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>12</b> Logistic Regression Models</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#motivational-example-and-practical-question"><i class="fa fa-check"></i><b>12.1</b> Motivational Example and Practical Question</a></li>
+<li class="chapter" data-level="12.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#logistic-regression-models-and-applications"><i class="fa fa-check"></i><b>12.2</b> Logistic Regression Models and Applications</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#the-structure-of-logistic-regression-model"><i class="fa fa-check"></i><b>12.2.1</b> The Structure of Logistic Regression Model</a></li>
+<li class="chapter" data-level="12.2.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#assumptions-and-diagnostics"><i class="fa fa-check"></i><b>12.2.2</b> Assumptions and Diagnostics</a></li>
+<li class="chapter" data-level="12.2.3" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#coefficient-estimation-and-interpretation"><i class="fa fa-check"></i><b>12.2.3</b> Coefficient Estimation and Interpretation</a></li>
+<li class="chapter" data-level="12.2.4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#use-of-glm-and-annotations"><i class="fa fa-check"></i><b>12.2.4</b> Use of <strong>glm()</strong> and Annotations</a></li>
+<li class="chapter" data-level="12.2.5" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#applications-of-logistic-regression-models"><i class="fa fa-check"></i><b>12.2.5</b> Applications of Logistic Regression Models</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#case-studies-1"><i class="fa fa-check"></i><b>12.3</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#the-simple-logistic-regression-model"><i class="fa fa-check"></i><b>12.3.1</b> The simple logistic regression model</a></li>
+<li class="chapter" data-level="12.3.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#multiple-logistic-regression-model"><i class="fa fa-check"></i><b>12.3.2</b> Multiple Logistic Regression Model</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#practice-problems-3"><i class="fa fa-check"></i><b>12.4</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html"><i class="fa fa-check"></i><b>13</b> Contingency Table Analysis</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#the-motivational-examples"><i class="fa fa-check"></i><b>13.1</b> The Motivational Examples</a></li>
+<li class="chapter" data-level="13.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#two-way-contingency-tables-and-analysis"><i class="fa fa-check"></i><b>13.2</b> Two-way Contingency Tables and Analysis</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#the-structure-of-two-way-contingency-table"><i class="fa fa-check"></i><b>13.2.1</b> The Structure of Two-way Contingency Table</a></li>
+<li class="chapter" data-level="13.2.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#pearson-chi2-test-of-independence"><i class="fa fa-check"></i><b>13.2.2</b> Pearson <span class="math inline">\(\chi^2\)</span> Test of Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#measures-of-association"><i class="fa fa-check"></i><b>13.3</b> Measures of Association</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#times2-table-under-different-study-designs"><i class="fa fa-check"></i><b>13.3.1</b> <span class="math inline">\(2\times2\)</span>-table Under Different Study Designs</a></li>
+<li class="chapter" data-level="13.3.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#measures-of-association-1"><i class="fa fa-check"></i><b>13.3.2</b> Measures of Association</a></li>
+<li class="chapter" data-level="13.3.3" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#validity-of-measures-of-association"><i class="fa fa-check"></i><b>13.3.3</b> Validity of Measures of Association</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-studies-2"><i class="fa fa-check"></i><b>13.4</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-study-1-1"><i class="fa fa-check"></i><b>13.4.1</b> Case Study 1</a></li>
+<li class="chapter" data-level="13.4.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-study-2-1"><i class="fa fa-check"></i><b>13.4.2</b> Case Study 2</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#practice-problems-4"><i class="fa fa-check"></i><b>13.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html"><i class="fa fa-check"></i><b>14</b> Analysis of Counts and Rates</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#motivational-examples"><i class="fa fa-check"></i><b>14.1</b> Motivational Examples</a></li>
+<li class="chapter" data-level="14.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#poisson-regression-for-counts-and-rates"><i class="fa fa-check"></i><b>14.2</b> Poisson Regression for Counts and Rates</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#structure-and-interpretations"><i class="fa fa-check"></i><b>14.2.1</b> Structure and Interpretations</a></li>
+<li class="chapter" data-level="14.2.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#assumptions-and-goodness-of-fit"><i class="fa fa-check"></i><b>14.2.2</b> Assumptions and Goodness-of-fit</a></li>
+<li class="chapter" data-level="14.2.3" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#dispersion-issue-and-remedies"><i class="fa fa-check"></i><b>14.2.3</b> Dispersion Issue and Remedies</a></li>
+<li class="chapter" data-level="14.2.4" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#data-structure-of-poisson-regression"><i class="fa fa-check"></i><b>14.2.4</b> Data Structure of Poisson Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#case-studies-3"><i class="fa fa-check"></i><b>14.3</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#harbor-seal-data"><i class="fa fa-check"></i><b>14.3.1</b> Harbor Seal Data</a></li>
+<li class="chapter" data-level="14.3.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#toxicity-study"><i class="fa fa-check"></i><b>14.3.2</b> Toxicity Study</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#concluding-remarks-1"><i class="fa fa-check"></i><b>14.4</b> Concluding Remarks</a></li>
+<li class="chapter" data-level="14.5" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#practice-problems-5"><i class="fa fa-check"></i><b>14.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html"><i class="fa fa-check"></i><b>15</b> Power Calculation and Sample Size Determination</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#two-sample-proportion-problems"><i class="fa fa-check"></i><b>15.1</b> Two-sample Proportion Problems</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#sample-size-estimations-for-two-proportions"><i class="fa fa-check"></i><b>15.1.1</b> Sample size estimations for <strong>two proportions</strong></a></li>
+<li class="chapter" data-level="15.1.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-for-two-proportions"><i class="fa fa-check"></i><b>15.1.2</b> Power analysis for <strong>two proportions</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#two-sample-mean-problems"><i class="fa fa-check"></i><b>15.2</b> Two-sample Mean Problems</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#sample-size-estimations-for-two-averages"><i class="fa fa-check"></i><b>15.2.1</b> Sample size estimations for <strong>two averages</strong></a></li>
+<li class="chapter" data-level="15.2.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-for-two-averages"><i class="fa fa-check"></i><b>15.2.2</b> Power analysis for two averages</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#paired-sample-problems"><i class="fa fa-check"></i><b>15.3</b> Paired-sample Problems</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#sample-size-estimation-for-paired-data-before-and-after"><i class="fa fa-check"></i><b>15.3.1</b> Sample size estimation for <strong>paired data (before and after)</strong></a></li>
+<li class="chapter" data-level="15.3.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-of-paired-samples-paired-t-test"><i class="fa fa-check"></i><b>15.3.2</b> Power analysis of <strong>paired samples (paired t-test)</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#unequal-sample-sizes-problems"><i class="fa fa-check"></i><b>15.4</b> Unequal Sample Sizes Problems</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-with-unequal-sample-sizes"><i class="fa fa-check"></i><b>15.4.1</b> Power analysis with <strong>unequal sample sizes</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#conclusions"><i class="fa fa-check"></i><b>15.5</b> Conclusions</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STA501 E-Pack: Applied Statistical Methods</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="correlation-and-simple-linear-regression" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Topic 10</span> Correlation and Simple Linear Regression<a href="correlation-and-simple-linear-regression.html#correlation-and-simple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In the previous module, we discussed the relationship between a continuous variable (the length of mussel shells) and a categorical variable (location, also called factor variable). If there is no association between the two variables, the means of all populations are equal. If there is an association between the continuous variable and the factor variable, then the means of the populations are not identical.</p>
+<p>The continuous variable is assumed to normal distribution. The continuous variable is also called the response variable (dependent variable) and the factor variable is called the predictor variable (or explanatory variable).</p>
+<p>A natural question is how to characterize the relationship between two continuous variables.</p>
+<div id="the-question-and-the-data" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> The question and the data<a href="correlation-and-simple-linear-regression.html#the-question-and-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Example</strong>: Amyotrophic lateral sclerosis (ALS) is characterized by a progressive decline of motor function. The degenerative process affects the respiratory system. To investigate the longitudinal impact of nocturnal noninvasive positive-pressure ventilation on patients with ALS. Prior to treatment, they measured the partial pressure of arterial oxygen (Pao2) and partial pressure of arterial carbon dioxide (Paco2) in patients with the disease. The results were as follows:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-137"></span>
+<img src="img09/w09-als.jpg" alt=" Length of clamshells" width="80%" />
+<p class="caption">
+Figure 10.1:  Length of clamshells
+</p>
+</div>
+<p>Source: M. Butz, K. H.Wollinsky, U.Widemuth-Catrinescu, A. Sperfeld, S. Winter, H. H. Mehrkens, A. C. Ludolph, and H. Schreiber, “Longitudinal Effects of Noninvasive Positive-Pressure Ventilation in Patients with Amyotrophic Lateral Sclerosis,” <em>American Journal of Medical Rehabilitation</em>, 82 (2003) 597–604.</p>
+<p>The layout of the data table is shown below. Each subject (patient ID) has one <strong>record</strong> with two pieces of information Paco2 and Pao2.</p>
+</div>
+<div id="visual-inspection-for-association" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Visual Inspection for Association<a href="correlation-and-simple-linear-regression.html#visual-inspection-for-association" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We define two vectors to store the sample values of the partial pressure of arterial oxygen (Pao2) and the partial pressure of arterial carbon dioxide (Paco2). Before conducting the analysis, we make a scatter plot to visualize the relationship between the two continuous variables.</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="correlation-and-simple-linear-regression.html#cb146-1" tabindex="-1"></a><span class="co"># define the data sets based on the given data table.</span></span>
+<span id="cb146-2"><a href="correlation-and-simple-linear-regression.html#cb146-2" tabindex="-1"></a>Paco2 <span class="ot">=</span><span class="fu">c</span>(<span class="fl">40.0</span>, <span class="fl">47.0</span>, <span class="fl">34.0</span>, <span class="fl">42.0</span>, <span class="fl">54.0</span>, <span class="fl">48.0</span>, <span class="fl">53.6</span>, <span class="fl">56.9</span>, <span class="fl">58.0</span>, <span class="fl">45.0</span>, <span class="fl">54.5</span>, <span class="fl">54.0</span>, </span>
+<span id="cb146-3"><a href="correlation-and-simple-linear-regression.html#cb146-3" tabindex="-1"></a>         <span class="fl">43.0</span>, <span class="fl">44.3</span>, <span class="fl">53.9</span>, <span class="fl">41.8</span>, <span class="fl">33.0</span>, <span class="fl">43.1</span>, <span class="fl">52.4</span>, <span class="fl">37.9</span>, <span class="fl">34.5</span>, <span class="fl">40.1</span>, <span class="fl">33.0</span>, <span class="fl">59.9</span>, </span>
+<span id="cb146-4"><a href="correlation-and-simple-linear-regression.html#cb146-4" tabindex="-1"></a>         <span class="fl">62.6</span>, <span class="fl">54.1</span>, <span class="fl">45.7</span>, <span class="fl">40.6</span>, <span class="fl">56.6</span>, <span class="fl">59.0</span>)</span>
+<span id="cb146-5"><a href="correlation-and-simple-linear-regression.html#cb146-5" tabindex="-1"></a>Pao2 <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">101.0</span>, <span class="fl">69.0</span>, <span class="fl">132.0</span>, <span class="fl">65.0</span>, <span class="fl">72.0</span>, <span class="fl">76.0</span>, <span class="fl">67.2</span>, <span class="fl">70.9</span>, <span class="fl">73.0</span>, <span class="fl">66.0</span>, <span class="fl">80.0</span>, </span>
+<span id="cb146-6"><a href="correlation-and-simple-linear-regression.html#cb146-6" tabindex="-1"></a>         <span class="fl">72.0</span>, <span class="fl">105.0</span>, <span class="fl">113.0</span>, <span class="fl">69.2</span>, <span class="fl">66.7</span>, <span class="fl">67.0</span>, <span class="fl">77.5</span>, <span class="fl">65.1</span>, <span class="fl">71.0</span>, <span class="fl">86.5</span>, <span class="fl">74.7</span>, </span>
+<span id="cb146-7"><a href="correlation-and-simple-linear-regression.html#cb146-7" tabindex="-1"></a>         <span class="fl">94.0</span>, <span class="fl">60.4</span>, <span class="fl">52.5</span>, <span class="fl">76.9</span>, <span class="fl">65.3</span>, <span class="fl">80.3</span>, <span class="fl">53.2</span>, <span class="fl">71.9</span>)</span>
+<span id="cb146-8"><a href="correlation-and-simple-linear-regression.html#cb146-8" tabindex="-1"></a><span class="do">## scatter plot</span></span>
+<span id="cb146-9"><a href="correlation-and-simple-linear-regression.html#cb146-9" tabindex="-1"></a><span class="fu">plot</span>(Paco2, Pao2, </span>
+<span id="cb146-10"><a href="correlation-and-simple-linear-regression.html#cb146-10" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb146-11"><a href="correlation-and-simple-linear-regression.html#cb146-11" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;navy&quot;</span>,</span>
+<span id="cb146-12"><a href="correlation-and-simple-linear-regression.html#cb146-12" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Relationship between Paco2 and Pao2&quot;</span>,</span>
+<span id="cb146-13"><a href="correlation-and-simple-linear-regression.html#cb146-13" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Paco2&quot;</span>,</span>
+<span id="cb146-14"><a href="correlation-and-simple-linear-regression.html#cb146-14" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Pao2&quot;</span></span>
+<span id="cb146-15"><a href="correlation-and-simple-linear-regression.html#cb146-15" tabindex="-1"></a>)</span>
+<span id="cb146-16"><a href="correlation-and-simple-linear-regression.html#cb146-16" tabindex="-1"></a><span class="do">## The following two lines are not required when you make this scatter plot</span></span>
+<span id="cb146-17"><a href="correlation-and-simple-linear-regression.html#cb146-17" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">30</span>, <span class="dv">65</span>, <span class="dv">55</span>, <span class="dv">50</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;darkred&quot;</span>)</span>
+<span id="cb146-18"><a href="correlation-and-simple-linear-regression.html#cb146-18" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">33</span>, <span class="dv">140</span>, <span class="dv">70</span>, <span class="dv">60</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb146-19"><a href="correlation-and-simple-linear-regression.html#cb146-19" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(Pao2 <span class="sc">~</span> Paco2), <span class="at">col =</span> <span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
+<p><img src="STA501EB_files/figure-html/unnamed-chunk-138-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>We can see from the above scatter plot that there is a negative association between Paco2 and Pao2 since Pao2 decreases as Paco2 increases. We can also see that <strong>the variance</strong> of Pao2 is also decreasing as Paco2 increases.</p>
+<p>How to quantify the above association?</p>
+</div>
+<div id="coefficient-of-correlation" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Coefficient of Correlation<a href="correlation-and-simple-linear-regression.html#coefficient-of-correlation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The strength of linear correlation can be measured by the linear correlation coefficient. We will introduce one such measure - the Pearson correlation coefficient.</p>
+<div id="definition-of-pearson-correlation-coefficient" class="section level3 hasAnchor" number="10.3.1">
+<h3><span class="header-section-number">10.3.1</span> Definition of Pearson correlation coefficient<a href="correlation-and-simple-linear-regression.html#definition-of-pearson-correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>One well-known quantity for measuring the <strong>linear association</strong> between two numerical variables is the Pearson correlation coefficient. The sample Pearson correlation coefficient is defined as</p>
+<p><span class="math display">\[
+r=\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2}\sqrt{\sum_{i=1}^n(y_i-\bar{y})^2}}
+\]</span></p>
+</div>
+<div id="interpretation-of-correlation-coefficient" class="section level3 hasAnchor" number="10.3.2">
+<h3><span class="header-section-number">10.3.2</span> Interpretation of correlation coefficient<a href="correlation-and-simple-linear-regression.html#interpretation-of-correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The interpretation of the Pearson correlation coefficient is customarily given in the following</p>
+<ul>
+<li><p>if <span class="math inline">\(r &gt; 0\)</span>, then <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are positively correlated; if <span class="math inline">\(r &lt; 0\)</span>, then <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are negatively correlated;</p></li>
+<li><p>if <span class="math inline">\(r = 0\)</span>, there is <strong>no</strong> linear correlation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p></li>
+<li><p>if <span class="math inline">\(|r| &lt; 0.3\)</span>, there is a <strong>weak</strong> linear correlation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p></li>
+<li><p>if <span class="math inline">\(0.3&lt; |r| &lt; 0.7\)</span>, there is a <strong>moderate</strong> linear correlation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p></li>
+<li><p>if <span class="math inline">\(0.7 &lt; |r| &lt; 1.0\)</span>, there is a <strong>strong</strong> linear correlation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p></li>
+<li><p>if <span class="math inline">\(r = 1\)</span>, there is a <strong>perfect</strong> linear correlation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p></li>
+</ul>
+<p>In R, we use the command <strong>cor()</strong> to calculate the above Pearson correlation coefficient.</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="correlation-and-simple-linear-regression.html#cb147-1" tabindex="-1"></a>Pearson.correlation <span class="ot">=</span> <span class="fu">cbind</span>(<span class="at">r=</span><span class="fu">cor</span>(Paco2, Pao2))</span>
+<span id="cb147-2"><a href="correlation-and-simple-linear-regression.html#cb147-2" tabindex="-1"></a><span class="fu">kable</span>(Pearson.correlation, <span class="at">caption =</span> <span class="st">&quot;Pearson correlation coefficient&quot;</span>,</span>
+<span id="cb147-3"><a href="correlation-and-simple-linear-regression.html#cb147-3" tabindex="-1"></a>      <span class="at">align=</span><span class="st">&quot;c&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-139">Table 10.1: </span>Pearson correlation coefficient</caption>
+<thead>
+<tr class="header">
+<th align="center">r</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">-0.5307874</td>
+</tr>
+</tbody>
+</table>
+<p>Therefore, there is a weak negative linear correlation between the partial pressure of arterial oxygen (Pao2) and the partial pressure of arterial carbon dioxide (Paco2).</p>
+</div>
+</div>
+<div id="least-square-regression-structure-diagnostics-and-applications" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> Least square regression: structure, diagnostics, and applications<a href="correlation-and-simple-linear-regression.html#least-square-regression-structure-diagnostics-and-applications" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For illustration purposes, we make the following plot based on an artificial data set to introduce several important concepts of the least square regression model.</p>
+<p><img src="STA501EB_files/figure-html/unnamed-chunk-140-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div id="definitions" class="section level3 hasAnchor" number="10.4.1">
+<h3><span class="header-section-number">10.4.1</span> Definitions<a href="correlation-and-simple-linear-regression.html#definitions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The following concepts are annotated in the above figure.</p>
+<ul>
+<li><p>The variable associated with the vertical variable is called the <strong>response</strong> variable. The *response** variable is always placed on the left-hand side of the model formula.</p></li>
+<li><p>The variable that impacts the value of the response variable is called the explanatory variable (also called predictor, independent variables).</p></li>
+<li><p>The points in the figure plotted based on the data set are called observed data points.</p></li>
+<li><p>The line in the figure is called the <strong>fitted regression line</strong>.</p></li>
+<li><p>The points on the fitted regression line are called <strong>fitted data points</strong>.</p></li>
+<li><p>The difference between coordinates observed and fitted points is called ** the residual** of the observed data point. The residual is, in fact, called the fitted error. It reflects the goodness of the fitted regression line. <span class="math inline">\(e_i\)</span> <span class="math inline">\((i = 1 ,2 ,\cdots, n)\)</span> are the estimated residual errors.</p></li>
+<li><p>The <strong>best</strong> regression line is obtained by minimizing the sum of the squared errors, <span class="math inline">\(e_1^2 +e_2^2+\cdots + e_2^2\)</span>. This is the reason why we call the <strong>best</strong> regression line the <strong>least square regression line</strong> .</p></li>
+<li><p>The intercept and slope completely determine a straight line. The intercept and slope of the <strong>least square</strong> regression line are obtained by minimizing the sum of the squared residual errors.</p></li>
+<li><p>The statistical term <em>linear model</em> is the equation of the fitted regression line.</p></li>
+<li><p>There are two possible applications of a linear regression model.</p>
+<ul>
+<li><p><strong>Association analysis</strong> - basic describes how the change of explanatory variable impacts the value of the response variable.</p></li>
+<li><p><strong>Prediction analysis</strong> - predict the values of the response variable based on the corresponding <strong>new values</strong> of the explanatory variable.</p></li>
+</ul></li>
+</ul>
+<p>In this module, we only discuss the least square regression with ONE explanatory variable. In the next module, we will generalize this model to multiple explanatory variables.</p>
+</div>
+<div id="assumptions-of-least-square-regression" class="section level3 hasAnchor" number="10.4.2">
+<h3><span class="header-section-number">10.4.2</span> Assumptions of Least Square Regression<a href="correlation-and-simple-linear-regression.html#assumptions-of-least-square-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The assumptions of the least square linear regression are identical to the ones of the ANOVA.</p>
+<ul>
+<li><p>The response variable is a <strong>normal random variable</strong>. Its mean is dependent on the <strong>non-random</strong> explanatory variable.</p></li>
+<li><p>The variance of the response variable is constant (i.e., its variance is NOT dependent on the <strong>non-random</strong> explanatory variable).</p></li>
+<li><p>The relationship between the response and explanatory variables is assumed to be correctly specified.</p></li>
+</ul>
+</div>
+<div id="model-building-and-diagnostics" class="section level3 hasAnchor" number="10.4.3">
+<h3><span class="header-section-number">10.4.3</span> Model Building and Diagnostics<a href="correlation-and-simple-linear-regression.html#model-building-and-diagnostics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We will use <strong>lm()</strong> and the artificial data used in the above plot to find the least square estimate of <strong>parameters</strong>: intercept and slope.</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="correlation-and-simple-linear-regression.html#cb148-1" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">176</span>, <span class="dv">154</span>, <span class="dv">138</span>, <span class="dv">132</span>, <span class="dv">176</span>, <span class="dv">181</span>, <span class="dv">150</span>)</span>
+<span id="cb148-2"><a href="correlation-and-simple-linear-regression.html#cb148-2" tabindex="-1"></a>bodymass <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">82</span>, <span class="dv">49</span>, <span class="dv">53</span>, <span class="dv">47</span>, <span class="dv">69</span>, <span class="dv">77</span>, <span class="dv">62</span>)</span>
+<span id="cb148-3"><a href="correlation-and-simple-linear-regression.html#cb148-3" tabindex="-1"></a>ls.reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(height <span class="sc">~</span> bodymass)</span>
+<span id="cb148-4"><a href="correlation-and-simple-linear-regression.html#cb148-4" tabindex="-1"></a>parameter.estimates <span class="ot">&lt;-</span> ls.reg<span class="sc">$</span>coef</span>
+<span id="cb148-5"><a href="correlation-and-simple-linear-regression.html#cb148-5" tabindex="-1"></a><span class="fu">kable</span>(parameter.estimates, </span>
+<span id="cb148-6"><a href="correlation-and-simple-linear-regression.html#cb148-6" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">&quot;Least square estimate of the intercept and slope&quot;</span>, </span>
+<span id="cb148-7"><a href="correlation-and-simple-linear-regression.html#cb148-7" tabindex="-1"></a>      <span class="at">align=</span><span class="st">&#39;c&#39;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-141">Table 10.2: </span>Least square estimate of the intercept and slope</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="center">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="center">78.627588</td>
+</tr>
+<tr class="even">
+<td align="left">bodymass</td>
+<td align="center">1.267897</td>
+</tr>
+</tbody>
+</table>
+<p>The least-square estimated intercept and slope are approximately equal to 78.63 and 1.27. Therefore, the fitted least square regression line is <span class="math inline">\(\widehat{height}_i = 78.63 + 1.27\times bodymass_i\)</span>. The residual error <span class="math inline">\(e_i=height_i - \widehat{height}_i\)</span>, for <span class="math inline">\(i=1, 2, \cdots, n.\)</span></p>
+<p>Since the explanatory variable is implicitly assumed to be a non-random variable, we can see the relationship between the response variable and the residual in the following general representation.</p>
+<p><span class="math display">\[
+response.variable = \alpha + \beta \times predictor.variable + \epsilon
+\]</span></p>
+<p>The assumption that the response variable is normal with a constant variance is equivalent to that <span class="math inline">\(\epsilon\)</span> is a normal random variable with mean 0 and constant variance <span class="math inline">\(\sigma_0^2\)</span>.</p>
+<p>The residual <span class="math inline">\(\epsilon\)</span> is estimated by the errors <span class="math inline">\(e_i\)</span>. Therefore, we can look at the distribution of <span class="math inline">\(\{e_1, e_2, \cdots, e_n\}\)</span> to see potential violations of the model assumptions.</p>
+</div>
+<div id="residual-diagnostics-and-remedies" class="section level3 hasAnchor" number="10.4.4">
+<h3><span class="header-section-number">10.4.4</span> Residual Diagnostics and Remedies<a href="correlation-and-simple-linear-regression.html#residual-diagnostics-and-remedies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We make four default residual plots from R function <strong>lm()</strong> in R.</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="correlation-and-simple-linear-regression.html#cb149-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))  <span class="co"># par =&gt; graphic parameter</span></span>
+<span id="cb149-2"><a href="correlation-and-simple-linear-regression.html#cb149-2" tabindex="-1"></a>                     <span class="co"># mfrow =&gt; splits the graphic page into panels</span></span>
+<span id="cb149-3"><a href="correlation-and-simple-linear-regression.html#cb149-3" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb149-4"><a href="correlation-and-simple-linear-regression.html#cb149-4" tabindex="-1"></a><span class="fu">plot</span>(ls.reg<span class="sc">$</span>fitted.values, ls.reg<span class="sc">$</span>residuals,    </span>
+<span id="cb149-5"><a href="correlation-and-simple-linear-regression.html#cb149-5" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Residuals vs Fitted&quot;</span>,       <span class="co"># title of the plot</span></span>
+<span id="cb149-6"><a href="correlation-and-simple-linear-regression.html#cb149-6" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Fitted Values&quot;</span>,           <span class="co"># label of X-axis </span></span>
+<span id="cb149-7"><a href="correlation-and-simple-linear-regression.html#cb149-7" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Residuals&quot;</span>                <span class="co"># label of y-axis</span></span>
+<span id="cb149-8"><a href="correlation-and-simple-linear-regression.html#cb149-8" tabindex="-1"></a>     )</span>
+<span id="cb149-9"><a href="correlation-and-simple-linear-regression.html#cb149-9" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;darkred&quot;</span>)</span>
+<span id="cb149-10"><a href="correlation-and-simple-linear-regression.html#cb149-10" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb149-11"><a href="correlation-and-simple-linear-regression.html#cb149-11" tabindex="-1"></a><span class="fu">qqnorm</span>(ls.reg<span class="sc">$</span>fitted.values, <span class="at">main =</span> <span class="st">&quot;Normal Q-Q&quot;</span>)</span>
+<span id="cb149-12"><a href="correlation-and-simple-linear-regression.html#cb149-12" tabindex="-1"></a><span class="fu">qqline</span>(ls.reg<span class="sc">$</span>fitted.values, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;darkred&quot;</span>)</span></code></pre></div>
+<p><img src="STA501EB_files/figure-html/unnamed-chunk-142-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>We can see that there seems to be a minor violation of the assumption of constant variance from the residual plot in the top left figure. In statistics, we have a transformation to stabilize the variable. We will introduce the well-known Box-Cox transformation in this module. It is a generic transformation and was designed to identify the optimal power transformation to stabilize the variance and maintain the normality. Sometimes it works really well but not always. It is always worth a try in case we observe the pattern of non-constant variance.</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="correlation-and-simple-linear-regression.html#cb150-1" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb150-2"><a href="correlation-and-simple-linear-regression.html#cb150-2" tabindex="-1"></a><span class="fu">boxcox</span>(height <span class="sc">~</span> bodymass, </span>
+<span id="cb150-3"><a href="correlation-and-simple-linear-regression.html#cb150-3" tabindex="-1"></a>       <span class="at">lambda =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">12</span>, <span class="at">length =</span> <span class="dv">100</span>), </span>
+<span id="cb150-4"><a href="correlation-and-simple-linear-regression.html#cb150-4" tabindex="-1"></a>       <span class="at">xlab=</span><span class="st">&quot;lambda&quot;</span>)</span>
+<span id="cb150-5"><a href="correlation-and-simple-linear-regression.html#cb150-5" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb150-6"><a href="correlation-and-simple-linear-regression.html#cb150-6" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main =</span> <span class="st">&quot;Box-Cox Transformation: 95% CI of lambda&quot;</span>,</span>
+<span id="cb150-7"><a href="correlation-and-simple-linear-regression.html#cb150-7" tabindex="-1"></a>      <span class="at">col.main =</span> <span class="st">&quot;navy&quot;</span>, <span class="at">cex.main =</span> <span class="fl">0.9</span>)</span></code></pre></div>
+<p><img src="STA501EB_files/figure-html/unnamed-chunk-143-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>The above plot shows the 95% confidence interval of the power (<span class="math inline">\(\lambda\)</span>) on the potential power transformation of the response variable <span class="math inline">\(height\)</span>.</p>
+<p>In practice, we choose the <strong>most convenient</strong> number in the interval as the power to transform the response variable. Since 1 is in the interval, it is necessary to perform a power transformation. We can also choose the logarithmic transformation of height since <span class="math inline">\(\lambda = 0\)</span> is also in the interval.</p>
+<p><strong>Note</strong>: A special power transformation is the logarithmic transformation of the response if we choose <span class="math inline">\(\lambda = 0\)</span>.</p>
+</div>
+<div id="final-model-with-applications" class="section level3 hasAnchor" number="10.4.5">
+<h3><span class="header-section-number">10.4.5</span> Final Model with Applications<a href="correlation-and-simple-linear-regression.html#final-model-with-applications" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Once the final model is identified, we can use it in two different ways: association and prediction.</p>
+<p>In the <strong>association analysis</strong>, we interpret the regression coefficient associated with the significant explanatory variable.</p>
+<p>In this toy example, the summarized statistics are extracted and summarized in the following</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="correlation-and-simple-linear-regression.html#cb151-1" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">summary</span>(ls.reg)<span class="sc">$</span>coef, <span class="at">caption =</span> <span class="st">&quot;Summary of regression model&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-144">Table 10.3: </span>Summary of regression model</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Estimate</th>
+<th align="right">Std. Error</th>
+<th align="right">t value</th>
+<th align="right">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">78.627588</td>
+<td align="right">18.7505570</td>
+<td align="right">4.193347</td>
+<td align="right">0.0085442</td>
+</tr>
+<tr class="even">
+<td align="left">bodymass</td>
+<td align="right">1.267897</td>
+<td align="right">0.2929519</td>
+<td align="right">4.328005</td>
+<td align="right">0.0075135</td>
+</tr>
+</tbody>
+</table>
+<p>The p-value of testing the null hypothesis that the slope parameter is zero is 0.0075. We reject the null hypothesis <span class="math inline">\(H_0: slope = 0\)</span>. This implies that <strong>bodymass</strong> impacts <strong>height</strong>. To be more specific, as the value of <strong>bodymass</strong> increases by one unit, the response variable <strong>height</strong> will increase by 1.27 cm.</p>
+<p>In the <strong>prediction analysis</strong>, we can predict the <strong>height</strong> with any given new <strong>bodymass</strong> that is not in the data set. For example, assume <strong>bodymass = 75</strong>, we can then use the R function <strong>predict()</strong> to predict the <strong>height</strong>.</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="correlation-and-simple-linear-regression.html#cb152-1" tabindex="-1"></a>pred.height <span class="ot">=</span> <span class="fu">predict</span>(ls.reg, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">bodymass=</span><span class="dv">75</span>), </span>
+<span id="cb152-2"><a href="correlation-and-simple-linear-regression.html#cb152-2" tabindex="-1"></a>                      <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>, <span class="at">level=</span><span class="fl">0.05</span>)</span>
+<span id="cb152-3"><a href="correlation-and-simple-linear-regression.html#cb152-3" tabindex="-1"></a><span class="fu">kable</span>(pred.height, <span class="at">caption=</span><span class="st">&quot;The predicted height with body mass: 75&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-145">Table 10.4: </span>The predicted height with body mass: 75</caption>
+<thead>
+<tr class="header">
+<th align="right">fit</th>
+<th align="right">lwr</th>
+<th align="right">upr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">173.7199</td>
+<td align="right">172.9821</td>
+<td align="right">174.4577</td>
+</tr>
+</tbody>
+</table>
+<p>For a given person with a body mass of 75 units, the predicted height of that person is 173.7cm with a 95% predictive interval [173.0, 174.5].</p>
+<p><strong>In summary</strong>: It is dependent on the objectives of your data analysis,</p>
+<ul>
+<li><p>if the objective is association analysis, the summary will focus on the interpretation of the regression coefficient with a p-value &lt; 0.05.</p></li>
+<li><p>if the objective is prediction, the summary will focus on the predicted value and its predictive interval.</p></li>
+<li><p>if the objectives are both association analysis and prediction, then summarize both results as shown above.</p></li>
+</ul>
+</div>
+</div>
+<div id="case-study-amyotrophic-lateral-sclerosis-analysis-revisited" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">10.5</span> Case Study: Amyotrophic lateral sclerosis analysis revisited<a href="correlation-and-simple-linear-regression.html#case-study-amyotrophic-lateral-sclerosis-analysis-revisited" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We only perform the least square regression analysis about the relationship between the partial
+pressure of arterial oxygen (Pao2) and partial pressure of arterial carbon dioxide (Paco2) in patients with the disease.</p>
+<p>The scatter plot of Paco2 versus Pao2 in section 1 indicates a negative association between them. Next, we assume the linear relationship between Paco2 and Pao2 and build the least square regression in the following steps.</p>
+<div id="objectives" class="section level3 hasAnchor" number="10.5.1">
+<h3><span class="header-section-number">10.5.1</span> Objectives<a href="correlation-and-simple-linear-regression.html#objectives" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The objective of this analysis is to build a linear regression model and then use this model to</p>
+<ul>
+<li><p>assess how Pao2 impacts Paco2.</p></li>
+<li><p>predict the value of Paco2 for given Pao2</p></li>
+</ul>
+</div>
+<div id="model-fitting" class="section level3 hasAnchor" number="10.5.2">
+<h3><span class="header-section-number">10.5.2</span> Model Fitting<a href="correlation-and-simple-linear-regression.html#model-fitting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We fit a least square regression to the data first. Based on the objective of the analysis, Paco2 will be the response variable and Pao2 will be the explanatory variable. We first fit the following model</p>
+<p><span class="math display">\[
+Paco2 = \alpha + \beta \times Pao2 + \epsilon
+\]</span>
+<span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, and <span class="math inline">\(\epsilon\)</span> are called intercept, slope, and residuals, respectively. Then carry out the diagnostics of the above model and find the potential remedy.</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="correlation-and-simple-linear-regression.html#cb153-1" tabindex="-1"></a>Paco2 <span class="ot">=</span><span class="fu">c</span>(<span class="fl">40.0</span>, <span class="fl">47.0</span>, <span class="fl">34.0</span>, <span class="fl">42.0</span>, <span class="fl">54.0</span>, <span class="fl">48.0</span>, <span class="fl">53.6</span>, <span class="fl">56.9</span>, <span class="fl">58.0</span>, <span class="fl">45.0</span>, <span class="fl">54.5</span>, <span class="fl">54.0</span>, </span>
+<span id="cb153-2"><a href="correlation-and-simple-linear-regression.html#cb153-2" tabindex="-1"></a>         <span class="fl">43.0</span>, <span class="fl">44.3</span>, <span class="fl">53.9</span>, <span class="fl">41.8</span>, <span class="fl">33.0</span>, <span class="fl">43.1</span>, <span class="fl">52.4</span>, <span class="fl">37.9</span>, <span class="fl">34.5</span>, <span class="fl">40.1</span>, <span class="fl">33.0</span>, <span class="fl">59.9</span>, </span>
+<span id="cb153-3"><a href="correlation-and-simple-linear-regression.html#cb153-3" tabindex="-1"></a>         <span class="fl">62.6</span>, <span class="fl">54.1</span>, <span class="fl">45.7</span>, <span class="fl">40.6</span>, <span class="fl">56.6</span>, <span class="fl">59.0</span>)</span>
+<span id="cb153-4"><a href="correlation-and-simple-linear-regression.html#cb153-4" tabindex="-1"></a>Pao2 <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">101.0</span>, <span class="fl">69.0</span>, <span class="fl">132.0</span>, <span class="fl">65.0</span>, <span class="fl">72.0</span>, <span class="fl">76.0</span>, <span class="fl">67.2</span>, <span class="fl">70.9</span>, <span class="fl">73.0</span>, <span class="fl">66.0</span>, <span class="fl">80.0</span>, <span class="fl">72.0</span>,</span>
+<span id="cb153-5"><a href="correlation-and-simple-linear-regression.html#cb153-5" tabindex="-1"></a>         <span class="fl">105.0</span>, <span class="fl">113.0</span>, <span class="fl">69.2</span>, <span class="fl">66.7</span>, <span class="fl">67.0</span>, <span class="fl">77.5</span>, <span class="fl">65.1</span>, <span class="fl">71.0</span>, <span class="fl">86.5</span>, <span class="fl">74.7</span>, <span class="fl">94.0</span>, <span class="fl">60.4</span>,</span>
+<span id="cb153-6"><a href="correlation-and-simple-linear-regression.html#cb153-6" tabindex="-1"></a>         <span class="fl">52.5</span>, <span class="fl">76.9</span>, <span class="fl">65.3</span>, <span class="fl">80.3</span>, <span class="fl">53.2</span>, <span class="fl">71.9</span>)</span>
+<span id="cb153-7"><a href="correlation-and-simple-linear-regression.html#cb153-7" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb153-8"><a href="correlation-and-simple-linear-regression.html#cb153-8" tabindex="-1"></a>ls.reg0 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Paco2 <span class="sc">~</span> Pao2)   <span class="co"># fitting a least square regression</span></span>
+<span id="cb153-9"><a href="correlation-and-simple-linear-regression.html#cb153-9" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))   <span class="co"># split the graphic page into 4 panels</span></span>
+<span id="cb153-10"><a href="correlation-and-simple-linear-regression.html#cb153-10" tabindex="-1"></a><span class="fu">plot</span>(ls.reg0)</span></code></pre></div>
+<p><img src="STA501EB_files/figure-html/unnamed-chunk-146-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>The residual diagnostic plots show that there are violations of the model assumptions. The Q-Q plot does not support the normality assumption of the residuals. The top-left residual plot does not support the constant variance assumption since the variance of the residual increases as the fitted value increases.</p>
+<p>Next, we perform the Box-Cox transformation.</p>
+</div>
+<div id="box-cox-transformation" class="section level3 hasAnchor" number="10.5.3">
+<h3><span class="header-section-number">10.5.3</span> Box-Cox Transformation<a href="correlation-and-simple-linear-regression.html#box-cox-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the Box-cox transformation, the range of potential <span class="math inline">\(\lambda\)</span> is selected by trial and error so that the figure should contain the 95% confidence interval. We will use a function in the library <strong>{MASS}</strong>. If you don’t have the library on your computer, you need to install it and then load it to the workspace.</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="correlation-and-simple-linear-regression.html#cb154-1" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb154-2"><a href="correlation-and-simple-linear-regression.html#cb154-2" tabindex="-1"></a><span class="fu">boxcox</span>(Paco2 <span class="sc">~</span> Pao2, <span class="at">lambda =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">4</span>, <span class="at">length =</span> <span class="dv">10</span>), </span>
+<span id="cb154-3"><a href="correlation-and-simple-linear-regression.html#cb154-3" tabindex="-1"></a>       <span class="at">xlab=</span><span class="fu">expression</span>(<span class="fu">paste</span>(lambda)))</span>
+<span id="cb154-4"><a href="correlation-and-simple-linear-regression.html#cb154-4" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main =</span> <span class="st">&quot;Box-Cox Transformation: 95% CI of lambda&quot;</span>,</span>
+<span id="cb154-5"><a href="correlation-and-simple-linear-regression.html#cb154-5" tabindex="-1"></a>      <span class="at">col.main =</span> <span class="st">&quot;navy&quot;</span>, <span class="at">cex.main =</span> <span class="fl">0.9</span>)</span></code></pre></div>
+<p><img src="STA501EB_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
+<p>The above Box-Cox procedure indicates that the power transformation will not improve the residual plots. I will not try other transformations in this course and simply use the above model as the final working model for prediction and perform association analysis.</p>
+</div>
+<div id="model-applications" class="section level3 hasAnchor" number="10.5.4">
+<h3><span class="header-section-number">10.5.4</span> Model Applications<a href="correlation-and-simple-linear-regression.html#model-applications" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Recall that we will use the final working model to assess the association between the Paco2 and Pao2 and predict the value of Paco2 with the new Pao2 as well.</p>
+<p>We first present summary statistics of the least square regression model in the following table.</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="correlation-and-simple-linear-regression.html#cb155-1" tabindex="-1"></a>ls.reg.final <span class="ot">&lt;-</span><span class="fu">lm</span>(Paco2 <span class="sc">~</span> Pao2)</span>
+<span id="cb155-2"><a href="correlation-and-simple-linear-regression.html#cb155-2" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">summary</span>(ls.reg.final)<span class="sc">$</span>coef, </span>
+<span id="cb155-3"><a href="correlation-and-simple-linear-regression.html#cb155-3" tabindex="-1"></a>      <span class="at">caption =</span><span class="st">&quot;Summary of the final least square regression model&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-148">Table 10.5: </span>Summary of the final least square regression model</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Estimate</th>
+<th align="right">Std. Error</th>
+<th align="right">t value</th>
+<th align="right">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">67.9716010</td>
+<td align="right">6.3535426</td>
+<td align="right">10.698221</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">Pao2</td>
+<td align="right">-0.2687739</td>
+<td align="right">0.0811017</td>
+<td align="right">-3.314037</td>
+<td align="right">0.0025473</td>
+</tr>
+</tbody>
+</table>
+<p>We can see that Pao2 significantly impacts Paco2 with a p-value = 0.0025. To be more specific, as Pao2 increases by a unit, the Paco2 <strong>decreases</strong> by about 0.27. The negative sign of the estimated slope indicates the negative linear association between Paco2 and Pao2.</p>
+<p>Now, let’s assume that there are two new patients who Pao2 levels 63 and 75, respectively. Note that these two Pao2 are <strong>within the range of Pao2</strong>.</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="correlation-and-simple-linear-regression.html#cb156-1" tabindex="-1"></a><span class="fu">library</span>(pander)</span>
+<span id="cb156-2"><a href="correlation-and-simple-linear-regression.html#cb156-2" tabindex="-1"></a><span class="do">## put the new observations in the form of the data frame.</span></span>
+<span id="cb156-3"><a href="correlation-and-simple-linear-regression.html#cb156-3" tabindex="-1"></a>new.pao2 <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Pao2 =</span> <span class="fu">c</span>(<span class="dv">63</span>,<span class="dv">75</span>))</span>
+<span id="cb156-4"><a href="correlation-and-simple-linear-regression.html#cb156-4" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb156-5"><a href="correlation-and-simple-linear-regression.html#cb156-5" tabindex="-1"></a>pred.new <span class="ot">=</span> <span class="fu">predict</span>(ls.reg.final, <span class="at">newdata =</span> new.pao2, </span>
+<span id="cb156-6"><a href="correlation-and-simple-linear-regression.html#cb156-6" tabindex="-1"></a>                   <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>,</span>
+<span id="cb156-7"><a href="correlation-and-simple-linear-regression.html#cb156-7" tabindex="-1"></a>                   <span class="at">level =</span> <span class="fl">0.05</span>)</span>
+<span id="cb156-8"><a href="correlation-and-simple-linear-regression.html#cb156-8" tabindex="-1"></a>pred.new.cbind <span class="ot">=</span> <span class="fu">cbind</span>(<span class="at">Pao2.new=</span><span class="fu">c</span>(<span class="dv">63</span>,<span class="dv">75</span>), pred.new)</span>
+<span id="cb156-9"><a href="correlation-and-simple-linear-regression.html#cb156-9" tabindex="-1"></a><span class="fu">pander</span>(pred.new.cbind, <span class="at">caption =</span> <span class="st">&quot;95% predictive intervals of Paco2&quot;</span>)</span></code></pre></div>
+<table style="width:49%;">
+<caption>95% predictive intervals of Paco2</caption>
+<colgroup>
+<col width="15%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Pao2.new</th>
+<th align="center">fit</th>
+<th align="center">lwr</th>
+<th align="center">upr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">63</td>
+<td align="center">51.04</td>
+<td align="center">50.55</td>
+<td align="center">51.53</td>
+</tr>
+<tr class="even">
+<td align="center">75</td>
+<td align="center">47.81</td>
+<td align="center">47.33</td>
+<td align="center">48.3</td>
+</tr>
+</tbody>
+</table>
+<p>The above predictive table indicates that the predicted value of Paco2 with Pao2 = 63 is about 51.04 with a 95% predictive interval [50.55, 51.23]. The predicted Paco2 is 47.81 with a 95% predictive interval [47.23, 48.30] for Pao2 = 73.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="analysis-of-variance-anova.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="multiple-linear-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/pengdsci/STA501EB/edit/master/10-CorrelationSLR.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["STA501EB.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

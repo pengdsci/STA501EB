@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Topic 4 Descriptive Statistics | STA501 E-Pack: Applied Statistical Methods</title>
+  <meta name="description" content="The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Topic 4 Descriptive Statistics | STA501 E-Pack: Applied Statistical Methods" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Topic 4 Descriptive Statistics | STA501 E-Pack: Applied Statistical Methods" />
+  
+  <meta name="twitter:description" content="The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Cheng Peng" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-collection-and-data-loading.html"/>
+<link rel="next" href="concepts-of-probability-distributions.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<center><li><a href="./"><font color = "darkred"><b>STA 501 E-Pack: Applied Statistical Methods</b></font></a><br><font color = "navy">Cheng Peng</font></li></center>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html"><i class="fa fa-check"></i><b>2</b> R, RStudio and RMarkdown</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#r"><i class="fa fa-check"></i><b>2.1</b> R</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#order-of-operations"><i class="fa fa-check"></i><b>2.1.1</b> Order of Operations</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#basic-r-objects"><i class="fa fa-check"></i><b>2.1.2</b> Basic R Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio"><i class="fa fa-check"></i><b>2.2</b> RStudio</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio-gui"><i class="fa fa-check"></i><b>2.2.1</b> RStudio GUI</a></li>
+<li class="chapter" data-level="2.2.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#console"><i class="fa fa-check"></i><b>2.2.2</b> Console</a></li>
+<li class="chapter" data-level="2.2.3" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#source-editor"><i class="fa fa-check"></i><b>2.2.3</b> Source Editor</a></li>
+<li class="chapter" data-level="2.2.4" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#environment-window"><i class="fa fa-check"></i><b>2.2.4</b> Environment Window</a></li>
+<li class="chapter" data-level="2.2.5" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#system-and-graphic-files"><i class="fa fa-check"></i><b>2.2.5</b> System and Graphic files</a></li>
+<li class="chapter" data-level="2.2.6" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio-offers-numerous-helpful-features"><i class="fa fa-check"></i><b>2.2.6</b> RStudio offers numerous helpful features:</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rmarkdown"><i class="fa fa-check"></i><b>2.3</b> RMarkdown</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#code-chunk"><i class="fa fa-check"></i><b>2.3.1</b> Code Chunk</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#graphics-generated-from-r-code-chunks"><i class="fa fa-check"></i><b>2.3.2</b> Graphics Generated from R Code Chunks</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html"><i class="fa fa-check"></i><b>3</b> Data Collection and Data Loading</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#sampling-plans"><i class="fa fa-check"></i><b>3.1</b> Sampling Plans</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#simple-random-sampling-srs"><i class="fa fa-check"></i><b>3.1.1</b> Simple Random Sampling (SRS)</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#systematic-sampling"><i class="fa fa-check"></i><b>3.1.2</b> Systematic sampling</a></li>
+<li class="chapter" data-level="3.1.3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#stratified-sampling"><i class="fa fa-check"></i><b>3.1.3</b> Stratified sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#study-designs"><i class="fa fa-check"></i><b>3.2</b> Study Designs</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#observational-studies"><i class="fa fa-check"></i><b>3.2.1</b> Observational Studies</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#experimental-designs"><i class="fa fa-check"></i><b>3.2.2</b> Experimental Designs</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#loading-data-to-r-from-external-data-files"><i class="fa fa-check"></i><b>3.3</b> Loading Data to R from External Data Files</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#text-file-aka.-delimited-text-file"><i class="fa fa-check"></i><b>3.3.1</b> Text File ( aka. Delimited Text File)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#data-frame-and-list"><i class="fa fa-check"></i><b>3.4</b> Data Frame and List</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#data-frame-1"><i class="fa fa-check"></i><b>3.4.1</b> Data Frame</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>4</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#data-types"><i class="fa fa-check"></i><b>4.1</b> Data Types</a></li>
+<li class="chapter" data-level="4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#tabular-and-graphic-summary"><i class="fa fa-check"></i><b>4.2</b> Tabular and Graphic Summary</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#categorical-data"><i class="fa fa-check"></i><b>4.2.1</b> Categorical Data</a></li>
+<li class="chapter" data-level="4.2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#numerical-data"><i class="fa fa-check"></i><b>4.2.2</b> Numerical Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#numerical-summary-of-numerical-data"><i class="fa fa-check"></i><b>4.3</b> Numerical Summary of Numerical Data</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#central-tendency"><i class="fa fa-check"></i><b>4.3.1</b> Central Tendency</a></li>
+<li class="chapter" data-level="4.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variations"><i class="fa fa-check"></i><b>4.3.2</b> Variations</a></li>
+<li class="chapter" data-level="4.3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#location"><i class="fa fa-check"></i><b>4.3.3</b> Location</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#assignment---descriptive-statistics"><i class="fa fa-check"></i><b>4.4</b> Assignment - Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summarizing-categorical-data"><i class="fa fa-check"></i><b>4.4.1</b> Summarizing Categorical Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html"><i class="fa fa-check"></i><b>5</b> Concepts of Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-random-variables"><i class="fa fa-check"></i><b>5.1</b> Concepts of random variables</a></li>
+<li class="chapter" data-level="5.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#types-of-random-variables"><i class="fa fa-check"></i><b>5.2</b> Types of random variables</a></li>
+<li class="chapter" data-level="5.3" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-probability-distributions-1"><i class="fa fa-check"></i><b>5.3</b> Concepts of probability distributions</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-probability"><i class="fa fa-check"></i><b>5.3.1</b> Concepts of probability</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#probability-distribution-of-random-variables"><i class="fa fa-check"></i><b>5.4</b> Probability distribution of random variables</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#discrete-probability-distribution"><i class="fa fa-check"></i><b>5.4.1</b> Discrete probability distribution</a></li>
+<li class="chapter" data-level="5.4.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#continuous-probability-distribution"><i class="fa fa-check"></i><b>5.4.2</b> Continuous probability distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#special-continuous-distributions"><i class="fa fa-check"></i><b>5.5</b> Special Continuous Distributions</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#normal-distribution"><i class="fa fa-check"></i><b>5.5.1</b> Normal Distribution</a></li>
+<li class="chapter" data-level="5.5.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#t-distribution"><i class="fa fa-check"></i><b>5.5.2</b> t distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#summary"><i class="fa fa-check"></i><b>5.6</b> Summary</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#numerical-examples-based-on-normal-and-t-distributions"><i class="fa fa-check"></i><b>5.6.1</b> Numerical Examples Based on Normal and t Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#assignment---probability-distributions"><i class="fa fa-check"></i><b>5.7</b> Assignment - Probability Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>6</b> Sampling Distributions</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#concepts-of-the-sampling-distribution"><i class="fa fa-check"></i><b>6.1</b> Concepts of the sampling distribution</a></li>
+<li class="chapter" data-level="6.2" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sampling-distribution-of-sampling-means"><i class="fa fa-check"></i><b>6.2</b> Sampling Distribution of Sampling Means</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#working-data-set-plant-diversity"><i class="fa fa-check"></i><b>6.2.1</b> Working Data Set: Plant Diversity</a></li>
+<li class="chapter" data-level="6.2.2" data-path="sampling-distributions.html"><a href="sampling-distributions.html#normal-population-with-given-mean-mu-and-variance-sigma2"><i class="fa fa-check"></i><b>6.2.2</b> Normal Population with given mean (<span class="math inline">\(\mu\)</span>) and Variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+<li class="chapter" data-level="6.2.3" data-path="sampling-distributions.html"><a href="sampling-distributions.html#normal-population-with-a-given-mean-mu-and-an-unknown-variance-sigma2"><i class="fa fa-check"></i><b>6.2.3</b> Normal Population with a given mean (<span class="math inline">\(\mu\)</span>) and an <strong>Unknown</strong> Variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+<li class="chapter" data-level="6.2.4" data-path="sampling-distributions.html"><a href="sampling-distributions.html#unspecified-population-with-a-given-mean-muand-an-unspecifed-variance-sigma2"><i class="fa fa-check"></i><b>6.2.4</b> Unspecified Population with a given mean (<span class="math inline">\(\mu\)</span>)and an unspecifed variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sampling-distribution-of-sample-proportions"><i class="fa fa-check"></i><b>6.3</b> Sampling distribution of sample proportions</a></li>
+<li class="chapter" data-level="6.4" data-path="sampling-distributions.html"><a href="sampling-distributions.html#summary-1"><i class="fa fa-check"></i><b>6.4</b> Summary</a></li>
+<li class="chapter" data-level="6.5" data-path="sampling-distributions.html"><a href="sampling-distributions.html#assignment---sampling-distributions"><i class="fa fa-check"></i><b>6.5</b> Assignment - Sampling Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>7</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#some-terms"><i class="fa fa-check"></i><b>7.1</b> Some Terms</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#what-are-the-issues-of-a-point-estimate"><i class="fa fa-check"></i><b>7.1.1</b> What are the issues of a point estimate?</a></li>
+<li class="chapter" data-level="7.1.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#how-about-multiple-samples"><i class="fa fa-check"></i><b>7.1.2</b> How About Multiple Samples?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#how-to-find-the-confidence-intervals-for-means-and-proportions"><i class="fa fa-check"></i><b>7.2</b> How to find the Confidence Intervals for Means and Proportions?</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#framework-of-confidence-interval"><i class="fa fa-check"></i><b>7.2.1</b> Framework Of Confidence Interval</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-population-mean"><i class="fa fa-check"></i><b>7.3</b> Confidence Interval of Population Mean</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#normal-population-with-known-variance."><i class="fa fa-check"></i><b>7.3.1</b> Normal Population with Known Variance.</a></li>
+<li class="chapter" data-level="7.3.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#normal-population-with-unknown-variance"><i class="fa fa-check"></i><b>7.3.2</b> Normal Population with Unknown Variance</a></li>
+<li class="chapter" data-level="7.3.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#unspecified-population-with-unknown-variance-but-with-large-sample-sizes"><i class="fa fa-check"></i><b>7.3.3</b> Unspecified Population with Unknown Variance but with Large Sample Sizes</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-proportion"><i class="fa fa-check"></i><b>7.4</b> Confidence Interval of Proportion</a></li>
+<li class="chapter" data-level="7.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#two-sample-problems---comparing-two-population-means"><i class="fa fa-check"></i><b>7.5</b> Two Sample Problems - Comparing Two Population Means</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-the-difference-of-two-unspecified-populations-means"><i class="fa fa-check"></i><b>7.5.1</b> Confidence Interval of the Difference of Two Unspecified Populations Means</a></li>
+<li class="chapter" data-level="7.5.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-the-difference-of-two-normal-populations-means"><i class="fa fa-check"></i><b>7.5.2</b> Confidence Interval of the Difference of Two Normal Populations Means</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="confidence-intervals.html"><a href="confidence-intervals.html#assignment---confidence-intervals"><i class="fa fa-check"></i><b>7.6</b> Assignment - Confidence Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html"><i class="fa fa-check"></i><b>8</b> Testing Statistical Hypothesis</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#formulation-of-statistical-hypothesis-testing"><i class="fa fa-check"></i><b>8.1</b> Formulation of Statistical Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#null-and-alternative-hypotheses"><i class="fa fa-check"></i><b>8.1.1</b> Null and Alternative Hypotheses</a></li>
+<li class="chapter" data-level="8.1.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#relationship-between-the-claim-and-the-statistical-hypotheses"><i class="fa fa-check"></i><b>8.1.2</b> Relationship between the claim and the statistical hypotheses</a></li>
+<li class="chapter" data-level="8.1.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#test-statistics---statistical-evidence"><i class="fa fa-check"></i><b>8.1.3</b> Test Statistics - Statistical Evidence</a></li>
+<li class="chapter" data-level="8.1.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#types-of-test-and-rejection-region"><i class="fa fa-check"></i><b>8.1.4</b> Types of Test and Rejection Region</a></li>
+<li class="chapter" data-level="8.1.5" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#statistical-decision-rule-p-value"><i class="fa fa-check"></i><b>8.1.5</b> Statistical Decision Rule: p-value</a></li>
+<li class="chapter" data-level="8.1.6" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#summary-of-the-test-hypothesis-procedure"><i class="fa fa-check"></i><b>8.1.6</b> Summary of the Test Hypothesis Procedure</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-studies"><i class="fa fa-check"></i><b>8.2</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-i-normal-population-with-a-known-variance."><i class="fa fa-check"></i><b>8.2.1</b> Case I: normal population with a known variance.</a></li>
+<li class="chapter" data-level="8.2.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-ii-normal-population-with-an-unknown-variance"><i class="fa fa-check"></i><b>8.2.2</b> Case II: Normal population with an unknown variance</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#unspecified-population-with-an-unknown-variance---clt"><i class="fa fa-check"></i><b>8.3</b> Unspecified population with an unknown variance - CLT</a></li>
+<li class="chapter" data-level="8.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#testing-population-proportion"><i class="fa fa-check"></i><b>8.4</b> Testing Population Proportion</a></li>
+<li class="chapter" data-level="8.5" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#testing-the-difference-between-two-population-means"><i class="fa fa-check"></i><b>8.5</b> Testing the difference between two population means</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#both-populations-are-unspecified-and-sample-sizes-are-large."><i class="fa fa-check"></i><b>8.5.1</b> Both populations are unspecified and sample sizes are large.</a></li>
+<li class="chapter" data-level="8.5.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#both-populations-are-normal-with-unknown-but-equal-variances"><i class="fa fa-check"></i><b>8.5.2</b> Both populations are normal with unknown but equal variances</a></li>
+<li class="chapter" data-level="8.5.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#paired-t-test"><i class="fa fa-check"></i><b>8.5.3</b> Paired t-test</a></li>
+<li class="chapter" data-level="8.5.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#concluding-remarks"><i class="fa fa-check"></i><b>8.5.4</b> Concluding Remarks</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#practice-problems"><i class="fa fa-check"></i><b>8.6</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>9</b> Analysis of Variance (ANOVA)</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#the-question-of-one-way-anova"><i class="fa fa-check"></i><b>9.1</b> The Question of One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#what-is-anova"><i class="fa fa-check"></i><b>9.1.1</b> What is ANOVA</a></li>
+<li class="chapter" data-level="9.1.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#assumptions-of-anova"><i class="fa fa-check"></i><b>9.1.2</b> Assumptions of ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#steps-of-anova"><i class="fa fa-check"></i><b>9.2</b> Steps of ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#anova-tables"><i class="fa fa-check"></i><b>9.2.1</b> ANOVA Tables</a></li>
+<li class="chapter" data-level="9.2.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#post-hoc-pairwise-comparison"><i class="fa fa-check"></i><b>9.2.2</b> Post hoc Pairwise Comparison</a></li>
+<li class="chapter" data-level="9.2.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#how-to-summarize-anova-results"><i class="fa fa-check"></i><b>9.2.3</b> How to Summarize ANOVA Results</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#welchs-anova"><i class="fa fa-check"></i><b>9.3</b> Welch’s ANOVA</a></li>
+<li class="chapter" data-level="9.4" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#case-study-mussel-length-example---solution"><i class="fa fa-check"></i><b>9.4</b> Case Study: Mussel Length Example - Solution</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#creating-an-anova-table"><i class="fa fa-check"></i><b>9.4.1</b> Creating An ANOVA Table</a></li>
+<li class="chapter" data-level="9.4.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#diagnostic-analysis"><i class="fa fa-check"></i><b>9.4.2</b> Diagnostic Analysis</a></li>
+<li class="chapter" data-level="9.4.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#welch-anova"><i class="fa fa-check"></i><b>9.4.3</b> Welch ANOVA</a></li>
+<li class="chapter" data-level="9.4.4" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#post-hoc-multiple-comparisons"><i class="fa fa-check"></i><b>9.4.4</b> Post-hoc Multiple Comparisons</a></li>
+<li class="chapter" data-level="9.4.5" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#visual-comparison---boxplots"><i class="fa fa-check"></i><b>9.4.5</b> Visual Comparison - Boxplots</a></li>
+<li class="chapter" data-level="9.4.6" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#anova-reporting"><i class="fa fa-check"></i><b>9.4.6</b> ANOVA Reporting</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#practice-problems-1"><i class="fa fa-check"></i><b>9.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html"><i class="fa fa-check"></i><b>10</b> Correlation and Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#the-question-and-the-data"><i class="fa fa-check"></i><b>10.1</b> The question and the data</a></li>
+<li class="chapter" data-level="10.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#visual-inspection-for-association"><i class="fa fa-check"></i><b>10.2</b> Visual Inspection for Association</a></li>
+<li class="chapter" data-level="10.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#coefficient-of-correlation"><i class="fa fa-check"></i><b>10.3</b> Coefficient of Correlation</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#definition-of-pearson-correlation-coefficient"><i class="fa fa-check"></i><b>10.3.1</b> Definition of Pearson correlation coefficient</a></li>
+<li class="chapter" data-level="10.3.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#interpretation-of-correlation-coefficient"><i class="fa fa-check"></i><b>10.3.2</b> Interpretation of correlation coefficient</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#least-square-regression-structure-diagnostics-and-applications"><i class="fa fa-check"></i><b>10.4</b> Least square regression: structure, diagnostics, and applications</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#definitions"><i class="fa fa-check"></i><b>10.4.1</b> Definitions</a></li>
+<li class="chapter" data-level="10.4.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#assumptions-of-least-square-regression"><i class="fa fa-check"></i><b>10.4.2</b> Assumptions of Least Square Regression</a></li>
+<li class="chapter" data-level="10.4.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-building-and-diagnostics"><i class="fa fa-check"></i><b>10.4.3</b> Model Building and Diagnostics</a></li>
+<li class="chapter" data-level="10.4.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#residual-diagnostics-and-remedies"><i class="fa fa-check"></i><b>10.4.4</b> Residual Diagnostics and Remedies</a></li>
+<li class="chapter" data-level="10.4.5" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#final-model-with-applications"><i class="fa fa-check"></i><b>10.4.5</b> Final Model with Applications</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#case-study-amyotrophic-lateral-sclerosis-analysis-revisited"><i class="fa fa-check"></i><b>10.5</b> Case Study: Amyotrophic lateral sclerosis analysis revisited</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#objectives"><i class="fa fa-check"></i><b>10.5.1</b> Objectives</a></li>
+<li class="chapter" data-level="10.5.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-fitting"><i class="fa fa-check"></i><b>10.5.2</b> Model Fitting</a></li>
+<li class="chapter" data-level="10.5.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#box-cox-transformation"><i class="fa fa-check"></i><b>10.5.3</b> Box-Cox Transformation</a></li>
+<li class="chapter" data-level="10.5.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-applications"><i class="fa fa-check"></i><b>10.5.4</b> Model Applications</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>11</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-practical-question"><i class="fa fa-check"></i><b>11.1</b> The Practical Question</a></li>
+<li class="chapter" data-level="11.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-process-of-building-a-multiple-linear-regression-model"><i class="fa fa-check"></i><b>11.2</b> The Process of Building A Multiple Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#assumptions-of-mlr"><i class="fa fa-check"></i><b>11.2.1</b> Assumptions of MLR</a></li>
+<li class="chapter" data-level="11.2.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-structure-of-mlr"><i class="fa fa-check"></i><b>11.2.2</b> The Structure of MLR</a></li>
+<li class="chapter" data-level="11.2.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#more-on-model-specifications"><i class="fa fa-check"></i><b>11.2.3</b> More on Model Specifications</a></li>
+<li class="chapter" data-level="11.2.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#estimation-of-regression-coefficients"><i class="fa fa-check"></i><b>11.2.4</b> Estimation of Regression Coefficients</a></li>
+<li class="chapter" data-level="11.2.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#model-diagnostics"><i class="fa fa-check"></i><b>11.2.5</b> Model Diagnostics</a></li>
+<li class="chapter" data-level="11.2.6" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#goodness-of-fit-and-variable-selection"><i class="fa fa-check"></i><b>11.2.6</b> Goodness-of-fit and Variable Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#case-study-1"><i class="fa fa-check"></i><b>11.3</b> Case Study 1</a></li>
+<li class="chapter" data-level="11.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#case-study-2"><i class="fa fa-check"></i><b>11.4</b> Case Study 2</a></li>
+<li class="chapter" data-level="11.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#practice-problems-2"><i class="fa fa-check"></i><b>11.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>12</b> Logistic Regression Models</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#motivational-example-and-practical-question"><i class="fa fa-check"></i><b>12.1</b> Motivational Example and Practical Question</a></li>
+<li class="chapter" data-level="12.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#logistic-regression-models-and-applications"><i class="fa fa-check"></i><b>12.2</b> Logistic Regression Models and Applications</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#the-structure-of-logistic-regression-model"><i class="fa fa-check"></i><b>12.2.1</b> The Structure of Logistic Regression Model</a></li>
+<li class="chapter" data-level="12.2.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#assumptions-and-diagnostics"><i class="fa fa-check"></i><b>12.2.2</b> Assumptions and Diagnostics</a></li>
+<li class="chapter" data-level="12.2.3" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#coefficient-estimation-and-interpretation"><i class="fa fa-check"></i><b>12.2.3</b> Coefficient Estimation and Interpretation</a></li>
+<li class="chapter" data-level="12.2.4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#use-of-glm-and-annotations"><i class="fa fa-check"></i><b>12.2.4</b> Use of <strong>glm()</strong> and Annotations</a></li>
+<li class="chapter" data-level="12.2.5" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#applications-of-logistic-regression-models"><i class="fa fa-check"></i><b>12.2.5</b> Applications of Logistic Regression Models</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#case-studies-1"><i class="fa fa-check"></i><b>12.3</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#the-simple-logistic-regression-model"><i class="fa fa-check"></i><b>12.3.1</b> The simple logistic regression model</a></li>
+<li class="chapter" data-level="12.3.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#multiple-logistic-regression-model"><i class="fa fa-check"></i><b>12.3.2</b> Multiple Logistic Regression Model</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#practice-problems-3"><i class="fa fa-check"></i><b>12.4</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html"><i class="fa fa-check"></i><b>13</b> Contingency Table Analysis</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#the-motivational-examples"><i class="fa fa-check"></i><b>13.1</b> The Motivational Examples</a></li>
+<li class="chapter" data-level="13.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#two-way-contingency-tables-and-analysis"><i class="fa fa-check"></i><b>13.2</b> Two-way Contingency Tables and Analysis</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#the-structure-of-two-way-contingency-table"><i class="fa fa-check"></i><b>13.2.1</b> The Structure of Two-way Contingency Table</a></li>
+<li class="chapter" data-level="13.2.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#pearson-chi2-test-of-independence"><i class="fa fa-check"></i><b>13.2.2</b> Pearson <span class="math inline">\(\chi^2\)</span> Test of Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#measures-of-association"><i class="fa fa-check"></i><b>13.3</b> Measures of Association</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#times2-table-under-different-study-designs"><i class="fa fa-check"></i><b>13.3.1</b> <span class="math inline">\(2\times2\)</span>-table Under Different Study Designs</a></li>
+<li class="chapter" data-level="13.3.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#measures-of-association-1"><i class="fa fa-check"></i><b>13.3.2</b> Measures of Association</a></li>
+<li class="chapter" data-level="13.3.3" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#validity-of-measures-of-association"><i class="fa fa-check"></i><b>13.3.3</b> Validity of Measures of Association</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-studies-2"><i class="fa fa-check"></i><b>13.4</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-study-1-1"><i class="fa fa-check"></i><b>13.4.1</b> Case Study 1</a></li>
+<li class="chapter" data-level="13.4.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-study-2-1"><i class="fa fa-check"></i><b>13.4.2</b> Case Study 2</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#practice-problems-4"><i class="fa fa-check"></i><b>13.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html"><i class="fa fa-check"></i><b>14</b> Analysis of Counts and Rates</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#motivational-examples"><i class="fa fa-check"></i><b>14.1</b> Motivational Examples</a></li>
+<li class="chapter" data-level="14.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#poisson-regression-for-counts-and-rates"><i class="fa fa-check"></i><b>14.2</b> Poisson Regression for Counts and Rates</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#structure-and-interpretations"><i class="fa fa-check"></i><b>14.2.1</b> Structure and Interpretations</a></li>
+<li class="chapter" data-level="14.2.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#assumptions-and-goodness-of-fit"><i class="fa fa-check"></i><b>14.2.2</b> Assumptions and Goodness-of-fit</a></li>
+<li class="chapter" data-level="14.2.3" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#dispersion-issue-and-remedies"><i class="fa fa-check"></i><b>14.2.3</b> Dispersion Issue and Remedies</a></li>
+<li class="chapter" data-level="14.2.4" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#data-structure-of-poisson-regression"><i class="fa fa-check"></i><b>14.2.4</b> Data Structure of Poisson Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#case-studies-3"><i class="fa fa-check"></i><b>14.3</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#harbor-seal-data"><i class="fa fa-check"></i><b>14.3.1</b> Harbor Seal Data</a></li>
+<li class="chapter" data-level="14.3.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#toxicity-study"><i class="fa fa-check"></i><b>14.3.2</b> Toxicity Study</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#concluding-remarks-1"><i class="fa fa-check"></i><b>14.4</b> Concluding Remarks</a></li>
+<li class="chapter" data-level="14.5" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#practice-problems-5"><i class="fa fa-check"></i><b>14.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html"><i class="fa fa-check"></i><b>15</b> Power Calculation and Sample Size Determination</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#two-sample-proportion-problems"><i class="fa fa-check"></i><b>15.1</b> Two-sample Proportion Problems</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#sample-size-estimations-for-two-proportions"><i class="fa fa-check"></i><b>15.1.1</b> Sample size estimations for <strong>two proportions</strong></a></li>
+<li class="chapter" data-level="15.1.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-for-two-proportions"><i class="fa fa-check"></i><b>15.1.2</b> Power analysis for <strong>two proportions</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#two-sample-mean-problems"><i class="fa fa-check"></i><b>15.2</b> Two-sample Mean Problems</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#sample-size-estimations-for-two-averages"><i class="fa fa-check"></i><b>15.2.1</b> Sample size estimations for <strong>two averages</strong></a></li>
+<li class="chapter" data-level="15.2.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-for-two-averages"><i class="fa fa-check"></i><b>15.2.2</b> Power analysis for two averages</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#paired-sample-problems"><i class="fa fa-check"></i><b>15.3</b> Paired-sample Problems</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#sample-size-estimation-for-paired-data-before-and-after"><i class="fa fa-check"></i><b>15.3.1</b> Sample size estimation for <strong>paired data (before and after)</strong></a></li>
+<li class="chapter" data-level="15.3.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-of-paired-samples-paired-t-test"><i class="fa fa-check"></i><b>15.3.2</b> Power analysis of <strong>paired samples (paired t-test)</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#unequal-sample-sizes-problems"><i class="fa fa-check"></i><b>15.4</b> Unequal Sample Sizes Problems</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-with-unequal-sample-sizes"><i class="fa fa-check"></i><b>15.4.1</b> Power analysis with <strong>unequal sample sizes</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#conclusions"><i class="fa fa-check"></i><b>15.5</b> Conclusions</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STA501 E-Pack: Applied Statistical Methods</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="descriptive-statistics" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Topic 4</span> Descriptive Statistics<a href="descriptive-statistics.html#descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The note outlines the basic descriptive statistics.</p>
+<ul>
+<li>Data Types</li>
+<li>Tabular and graphic summary of data</li>
+<li>Numerical summary of data</li>
+</ul>
+<div id="data-types" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Data Types<a href="descriptive-statistics.html#data-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are different classifications of data types. We use the following simple one</p>
+<ul>
+<li><p><strong>Categorical Variables</strong> - The values of these types of variables do not have numerical meaning in the sense that one can not perform arithmetic operations with the values of these types of variables.</p>
+<ul>
+<li><p><em>Ordinal categorical variables</em> - the values have a natural order. For example, course letter grades: A, B, C, D, and F.</p></li>
+<li><p><em>Nominal categorical variables</em> - the values do not have a natural order. For example, majors in a college: Mathematics, finance, music, biology, etc.</p></li>
+</ul></li>
+<li><p><strong>Numerical Variables</strong> - As indicated in the name, the values of numerical variables are numbers.</p>
+<ul>
+<li><p><em>Discrete variables</em> - one can find two values of such variables such there are no meaningful values that fall between the two. For example, the number of children in a household: 1, 2, 3, 4, …. There is no such household that has 2.5 children.</p></li>
+<li><p><em>Continuous variables</em> - For any two distinct values of such variables, any value between the two is meaningful. For example, consider two arbitrarily selected human body temperatures (in Fahrenheit) 97.4 and 97.5, any number between 97.4 and 97.5 could be the temperature of someone in the population (although the person may not be part of the sample).</p></li>
+</ul></li>
+</ul>
+</div>
+<div id="tabular-and-graphic-summary" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Tabular and Graphic Summary<a href="descriptive-statistics.html#tabular-and-graphic-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Both tabular and graphic summaries are powerful and effective tools to <strong>visualize</strong> the (shape of the) distribution of the data.</p>
+<div id="categorical-data" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Categorical Data<a href="descriptive-statistics.html#categorical-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Example 1</strong>: [Status of Endangered Species]: The data was extracted from the U.S. Fish &amp; Wildlife Service ECOS Environmental Conservation Online System. The data can be found at the following
+<a href="https://raw.githubusercontent.com/pengdsci/STA501/main/Data/EndangeredSpecies.csv" class="uri">https://raw.githubusercontent.com/pengdsci/STA501/main/Data/EndangeredSpecies.csv</a></p>
+<p>We want to summarize the status of endangered species (one of the columns in the data set).</p>
+<div id="frequency-table" class="section level4 hasAnchor" number="4.2.1.1">
+<h4><span class="header-section-number">4.2.1.1</span> Frequency Table<a href="descriptive-statistics.html#frequency-table" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Since the values of categorical data sets are labels, constructing frequency tables of categorical data is straightforward.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="descriptive-statistics.html#cb38-1" tabindex="-1"></a>speURL <span class="ot">=</span> <span class="st">&quot;https://raw.githubusercontent.com/pengdsci/STA501/main/Data/EndangeredSpecies.csv&quot;</span></span>
+<span id="cb38-2"><a href="descriptive-statistics.html#cb38-2" tabindex="-1"></a>Species <span class="ot">=</span> <span class="fu">read.csv</span>(speURL, <span class="at">header =</span> <span class="cn">TRUE</span>)   <span class="co"># read the csv data from the URL </span></span>
+<span id="cb38-3"><a href="descriptive-statistics.html#cb38-3" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">t</span>(<span class="fu">head</span>(Species[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,])))     <span class="co"># list first 4 rows of the data</span></span></code></pre></div>
+<table>
+<colgroup>
+<col width="12%" />
+<col width="21%" />
+<col width="22%" />
+<col width="23%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">1</th>
+<th align="left">2</th>
+<th align="left">3</th>
+<th align="left">4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">scientificName</td>
+<td align="left">Acanthorutilus handlirschi</td>
+<td align="left">Accipiter fasciatus natalis</td>
+<td align="left">Accipiter francesii pusillus</td>
+<td align="left">Accipiter gentilis laingi</td>
+</tr>
+<tr class="even">
+<td align="left">commonName</td>
+<td align="left">Cicek (minnow)</td>
+<td align="left">Christmas Island goshawk</td>
+<td align="left">Anjouan Island sparrowhawk</td>
+<td align="left">Queen Charlotte goshawk</td>
+</tr>
+<tr class="odd">
+<td align="left">criticalHabitat</td>
+<td align="left">N/A</td>
+<td align="left">N/A</td>
+<td align="left">N/A</td>
+<td align="left">N/A</td>
+</tr>
+<tr class="even">
+<td align="left">speciesGroup</td>
+<td align="left">Fishes</td>
+<td align="left">Birds</td>
+<td align="left">Birds</td>
+<td align="left">Birds</td>
+</tr>
+<tr class="odd">
+<td align="left">Status</td>
+<td align="left">Endangered</td>
+<td align="left">Endangered</td>
+<td align="left">Endangered</td>
+<td align="left">Threatened</td>
+</tr>
+<tr class="even">
+<td align="left">specialRules</td>
+<td align="left">N/A</td>
+<td align="left">N/A</td>
+<td align="left">N/A</td>
+<td align="left">N/A</td>
+</tr>
+<tr class="odd">
+<td align="left">whereListed</td>
+<td align="left">Wherever found</td>
+<td align="left">Wherever found</td>
+<td align="left">Wherever found</td>
+<td align="left">British Columbia Canada</td>
+</tr>
+</tbody>
+</table>
+<p>Next, we create a frequency table to include all four types of frequencies.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="descriptive-statistics.html#cb39-1" tabindex="-1"></a>speciesGroup <span class="ot">=</span> Species<span class="sc">$</span>speciesGroup   <span class="co"># extract the column of endangered species</span></span>
+<span id="cb39-2"><a href="descriptive-statistics.html#cb39-2" tabindex="-1"></a>freq <span class="ot">=</span> <span class="fu">table</span>(speciesGroup)            <span class="co"># frequency count</span></span>
+<span id="cb39-3"><a href="descriptive-statistics.html#cb39-3" tabindex="-1"></a>rel.freq <span class="ot">=</span> freq<span class="sc">/</span><span class="fu">sum</span>(freq)             <span class="co"># relative frequency</span></span>
+<span id="cb39-4"><a href="descriptive-statistics.html#cb39-4" tabindex="-1"></a>cum.freq <span class="ot">=</span> <span class="fu">cumsum</span>(freq)               <span class="co"># cumulative frequency</span></span>
+<span id="cb39-5"><a href="descriptive-statistics.html#cb39-5" tabindex="-1"></a>cum.rel.freq <span class="ot">=</span> cum.freq<span class="sc">/</span><span class="fu">sum</span>(freq)     <span class="co"># cumulative relative frequency</span></span>
+<span id="cb39-6"><a href="descriptive-statistics.html#cb39-6" tabindex="-1"></a>freq.table <span class="ot">=</span> <span class="fu">cbind</span>(<span class="at">freq =</span>freq, </span>
+<span id="cb39-7"><a href="descriptive-statistics.html#cb39-7" tabindex="-1"></a>                   <span class="at">rel.freq =</span> rel.freq,</span>
+<span id="cb39-8"><a href="descriptive-statistics.html#cb39-8" tabindex="-1"></a>                   <span class="at">cum.freq =</span> cum.freq,</span>
+<span id="cb39-9"><a href="descriptive-statistics.html#cb39-9" tabindex="-1"></a>                   <span class="at">cum.rel.freq =</span> cum.rel.freq)    </span>
+<span id="cb39-10"><a href="descriptive-statistics.html#cb39-10" tabindex="-1"></a><span class="fu">kable</span>(freq.table)     <span class="co"># kable() makes a nice-looking table</span></span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">freq</th>
+<th align="right">rel.freq</th>
+<th align="right">cum.freq</th>
+<th align="right">cum.rel.freq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Amphibians</td>
+<td align="right">45</td>
+<td align="right">0.0307377</td>
+<td align="right">45</td>
+<td align="right">0.0307377</td>
+</tr>
+<tr class="even">
+<td align="left">Arachnids</td>
+<td align="right">17</td>
+<td align="right">0.0116120</td>
+<td align="right">62</td>
+<td align="right">0.0423497</td>
+</tr>
+<tr class="odd">
+<td align="left">Birds</td>
+<td align="right">342</td>
+<td align="right">0.2336066</td>
+<td align="right">404</td>
+<td align="right">0.2759563</td>
+</tr>
+<tr class="even">
+<td align="left">Clams</td>
+<td align="right">124</td>
+<td align="right">0.0846995</td>
+<td align="right">528</td>
+<td align="right">0.3606557</td>
+</tr>
+<tr class="odd">
+<td align="left">Corals</td>
+<td align="right">24</td>
+<td align="right">0.0163934</td>
+<td align="right">552</td>
+<td align="right">0.3770492</td>
+</tr>
+<tr class="even">
+<td align="left">Crustaceans</td>
+<td align="right">28</td>
+<td align="right">0.0191257</td>
+<td align="right">580</td>
+<td align="right">0.3961749</td>
+</tr>
+<tr class="odd">
+<td align="left">Fishes</td>
+<td align="right">208</td>
+<td align="right">0.1420765</td>
+<td align="right">788</td>
+<td align="right">0.5382514</td>
+</tr>
+<tr class="even">
+<td align="left">Insects</td>
+<td align="right">94</td>
+<td align="right">0.0642077</td>
+<td align="right">882</td>
+<td align="right">0.6024590</td>
+</tr>
+<tr class="odd">
+<td align="left">Mammals</td>
+<td align="right">381</td>
+<td align="right">0.2602459</td>
+<td align="right">1263</td>
+<td align="right">0.8627049</td>
+</tr>
+<tr class="even">
+<td align="left">Reptiles</td>
+<td align="right">146</td>
+<td align="right">0.0997268</td>
+<td align="right">1409</td>
+<td align="right">0.9624317</td>
+</tr>
+<tr class="odd">
+<td align="left">Snails</td>
+<td align="right">55</td>
+<td align="right">0.0375683</td>
+<td align="right">1464</td>
+<td align="right">1.0000000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="bar-chart-and-pie-chart" class="section level4 hasAnchor" number="4.2.1.2">
+<h4><span class="header-section-number">4.2.1.2</span> Bar Chart and Pie Chart<a href="descriptive-statistics.html#bar-chart-and-pie-chart" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We use R to create both charts based on the frequency table created in the previous sub-section in the following.</p>
+<p>We first draw a simple pie chart. You can add different colors and additional information to the chart. You can visit <a href="https://www.statmethods.net/graphs/pie.html" class="uri">https://www.statmethods.net/graphs/pie.html</a> for more examples.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="descriptive-statistics.html#cb40-1" tabindex="-1"></a>freq <span class="ot">=</span> <span class="fu">table</span>(speciesGroup)</span>
+<span id="cb40-2"><a href="descriptive-statistics.html#cb40-2" tabindex="-1"></a>group <span class="ot">=</span> <span class="fu">names</span>(freq)</span>
+<span id="cb40-3"><a href="descriptive-statistics.html#cb40-3" tabindex="-1"></a><span class="fu">pie</span>(freq, <span class="at">labels =</span> group, <span class="at">main=</span><span class="st">&quot;Pie Chart of Species Group&quot;</span>)</span></code></pre></div>
+<p><img src="STA501EB_files/figure-html/unnamed-chunk-32-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Since there are too many slices in the pie chart, it is not easy to add frequencies to the chart. This is not a good visualization. Next, we create a bar chart to represent the distribution of the same data set.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="descriptive-statistics.html#cb41-1" tabindex="-1"></a>freq <span class="ot">=</span> <span class="fu">table</span>(speciesGroup)</span>
+<span id="cb41-2"><a href="descriptive-statistics.html#cb41-2" tabindex="-1"></a>group <span class="ot">=</span> <span class="fu">names</span>(freq)         <span class="co"># categories</span></span>
+<span id="cb41-3"><a href="descriptive-statistics.html#cb41-3" tabindex="-1"></a><span class="fu">barplot</span>(freq,               <span class="co"># frequency table</span></span>
+<span id="cb41-4"><a href="descriptive-statistics.html#cb41-4" tabindex="-1"></a>        <span class="at">names.arg=</span>group,    <span class="co"># tick marks</span></span>
+<span id="cb41-5"><a href="descriptive-statistics.html#cb41-5" tabindex="-1"></a>        <span class="at">las=</span><span class="dv">3</span>,              <span class="co"># </span></span>
+<span id="cb41-6"><a href="descriptive-statistics.html#cb41-6" tabindex="-1"></a>        <span class="at">main=</span><span class="st">&quot;Distribution of Species Group&quot;</span> )</span></code></pre></div>
+<p><img src="STA501EB_files/figure-html/unnamed-chunk-33-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The above bar plot was created using the function in Base R. We can also use relevant functions in different R packages to make a bar chart that may contain additional information. For example, the R function <strong>BarChart()</strong> in library <strong>{lessR}</strong> generates bar charts with more information based on the original data values. This is different from <strong>barplot()</strong> which uses the frequency tables.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="descriptive-statistics.html#cb42-1" tabindex="-1"></a><span class="co"># library(lessR)        # placed at the beginning of the document</span></span>
+<span id="cb42-2"><a href="descriptive-statistics.html#cb42-2" tabindex="-1"></a><span class="fu">BarChart</span>(speciesGroup,  <span class="at">rotate_x=</span><span class="dv">45</span>)</span></code></pre></div>
+<p><img src="STA501EB_files/figure-html/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>There are more examples to use <strong>BarChart()</strong> in a nice blog <a href="https://cran.r-project.org/web/packages/lessR/vignettes/BarChart.html" class="uri">https://cran.r-project.org/web/packages/lessR/vignettes/BarChart.html</a>.</p>
+</div>
+</div>
+<div id="numerical-data" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Numerical Data<a href="descriptive-statistics.html#numerical-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To summarize numerical data sets, we use frequency tables and histograms to visualize the underlying distributions.</p>
+<p>We will use the following data set to illustrate the steps to construct frequency tables and histograms using R. The data set <a href="https://raw.githubusercontent.com/pengdsci/STA501/main/Data/diet.csv" class="uri">https://raw.githubusercontent.com/pengdsci/STA501/main/Data/diet.csv</a> was used to study the effect of three different diets on weight loss.</p>
+<div id="frequency-tables" class="section level4 hasAnchor" number="4.2.2.1">
+<h4><span class="header-section-number">4.2.2.1</span> Frequency Tables<a href="descriptive-statistics.html#frequency-tables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Unlike categorical data in which the data values are category labels, in numerical data, we need to group data values to create data groups and then construct the corresponding frequency table.</p>
+<p>Think about creating a <strong>data window</strong> by the maximum and minimum data values in the data set then cut the data window into several small data windows with equal width. The data values in each small data window form a data group. In the figure, we assume there is a data set with a minimum value of 21 and a maximum value of 74. We plan to split the data window [21, 74] into five small data windows <strong>with equal width</strong>. The cut-off points are [21.0, 31.6, 42.2, 52.8, 63.4, 74.0] (including minimum and maximum values). We can use the R command to find these cut-offs if we provide the minimum, maximum, and number of small windows to be used for creating the frequency tables and histogram.</p>
+<p><img src="STA501EB_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" />
+We can use the R function <strong>seq(min, max, length = number-of-windows + 1)</strong> to find cut-off points. For example, in the above figure, the following code yields the cut-off.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="descriptive-statistics.html#cb43-1" tabindex="-1"></a><span class="co"># round off the cut-offs to 1 decimal point</span></span>
+<span id="cb43-2"><a href="descriptive-statistics.html#cb43-2" tabindex="-1"></a>cutoff <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">seq</span>(<span class="dv">21</span>, <span class="dv">74</span>, <span class="at">length =</span><span class="dv">5</span><span class="sc">+</span><span class="dv">1</span>),<span class="dv">1</span>)</span>
+<span id="cb43-3"><a href="descriptive-statistics.html#cb43-3" tabindex="-1"></a><span class="co"># kable() produces a nice looking table in PDF </span></span>
+<span id="cb43-4"><a href="descriptive-statistics.html#cb43-4" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">data.frame</span>(cutoff), <span class="at">align =</span> <span class="st">&#39;l&#39;</span>)                         </span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">cutoff</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">21.0</td>
+</tr>
+<tr class="even">
+<td align="left">31.6</td>
+</tr>
+<tr class="odd">
+<td align="left">42.2</td>
+</tr>
+<tr class="even">
+<td align="left">52.8</td>
+</tr>
+<tr class="odd">
+<td align="left">63.4</td>
+</tr>
+<tr class="even">
+<td align="left">74.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example 2</strong>: [<strong>Effectiveness of Diets Data</strong>] We are interested in creating a histogram of the weights of all participants in the study before starting the three diets. We want to create a frequency table with 6 rows. That is, We will create 6 small data windows to define 6 groups. R function <strong>cut(x = data-set, breaks=cutoff-points)</strong> .</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="descriptive-statistics.html#cb44-1" tabindex="-1"></a>dietURL <span class="ot">=</span> <span class="st">&quot;https://raw.githubusercontent.com/pengdsci/STA501/main/Data/diet.csv&quot;</span></span>
+<span id="cb44-2"><a href="descriptive-statistics.html#cb44-2" tabindex="-1"></a>diet <span class="ot">=</span> <span class="fu">read.csv</span>(dietURL, <span class="at">header=</span><span class="cn">TRUE</span>)</span>
+<span id="cb44-3"><a href="descriptive-statistics.html#cb44-3" tabindex="-1"></a>pre.weight<span class="ot">=</span>diet<span class="sc">$</span>initial.weight   <span class="co"># extract pre.weight from the data set.</span></span>
+<span id="cb44-4"><a href="descriptive-statistics.html#cb44-4" tabindex="-1"></a><span class="do">### calculate the cut-offs that yield 6 small data windows with equal widths</span></span>
+<span id="cb44-5"><a href="descriptive-statistics.html#cb44-5" tabindex="-1"></a>cutoff.pt <span class="ot">=</span> <span class="fu">seq</span>(<span class="fu">min</span>(pre.weight), <span class="fu">max</span>(pre.weight), <span class="at">length =</span> <span class="dv">6</span><span class="sc">+</span><span class="dv">1</span>) </span>
+<span id="cb44-6"><a href="descriptive-statistics.html#cb44-6" tabindex="-1"></a>cutoff.pt <span class="ot">=</span> <span class="fu">round</span>(cutoff.pt, <span class="dv">1</span>)       <span class="co"># rounding off to keep 1 decimal place</span></span>
+<span id="cb44-7"><a href="descriptive-statistics.html#cb44-7" tabindex="-1"></a><span class="do">### use R function **cut()** to split the data window into 6 small data windows</span></span>
+<span id="cb44-8"><a href="descriptive-statistics.html#cb44-8" tabindex="-1"></a>data.group <span class="ot">=</span> <span class="fu">cut</span>(<span class="at">x =</span> pre.weight, <span class="at">breaks=</span>cutoff.pt, <span class="at">include.lowest =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb44-9"><a href="descriptive-statistics.html#cb44-9" tabindex="-1"></a><span class="do">## use R function **table** to get the frequency table</span></span>
+<span id="cb44-10"><a href="descriptive-statistics.html#cb44-10" tabindex="-1"></a>freq.count<span class="ot">=</span><span class="fu">table</span>(data.group)    <span class="co"># regular frequency counts</span></span>
+<span id="cb44-11"><a href="descriptive-statistics.html#cb44-11" tabindex="-1"></a><span class="fu">kable</span>(freq.count, <span class="at">align =</span> <span class="st">&#39;l&#39;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">data.group</th>
+<th align="left">Freq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">[58,63]</td>
+<td align="left">12</td>
+</tr>
+<tr class="even">
+<td align="left">(63,68]</td>
+<td align="left">14</td>
+</tr>
+<tr class="odd">
+<td align="left">(68,73]</td>
+<td align="left">17</td>
+</tr>
+<tr class="even">
+<td align="left">(73,78]</td>
+<td align="left">15</td>
+</tr>
+<tr class="odd">
+<td align="left">(78,83]</td>
+<td align="left">11</td>
+</tr>
+<tr class="even">
+<td align="left">(83,88]</td>
+<td align="left">7</td>
+</tr>
+</tbody>
+</table>
+<p>We can also use the same steps to find relative and cumulative frequencies.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="descriptive-statistics.html#cb45-1" tabindex="-1"></a>freq <span class="ot">=</span> <span class="fu">table</span>(data.group)              <span class="co"># frequency count</span></span>
+<span id="cb45-2"><a href="descriptive-statistics.html#cb45-2" tabindex="-1"></a>rel.freq <span class="ot">=</span> freq<span class="sc">/</span><span class="fu">sum</span>(freq)             <span class="co"># relative frequency</span></span>
+<span id="cb45-3"><a href="descriptive-statistics.html#cb45-3" tabindex="-1"></a>cum.freq <span class="ot">=</span> <span class="fu">cumsum</span>(freq)               <span class="co"># cumulative frequency</span></span>
+<span id="cb45-4"><a href="descriptive-statistics.html#cb45-4" tabindex="-1"></a>cum.rel.freq <span class="ot">=</span> cum.freq<span class="sc">/</span><span class="fu">sum</span>(freq)     <span class="co"># cumulative relative frequency</span></span>
+<span id="cb45-5"><a href="descriptive-statistics.html#cb45-5" tabindex="-1"></a>freq.table <span class="ot">=</span> <span class="fu">cbind</span>(<span class="at">freq =</span>freq, </span>
+<span id="cb45-6"><a href="descriptive-statistics.html#cb45-6" tabindex="-1"></a>                   <span class="at">rel.freq =</span> <span class="fu">round</span>(rel.freq,<span class="dv">3</span>),   <span class="co"># keep 3 decimal places</span></span>
+<span id="cb45-7"><a href="descriptive-statistics.html#cb45-7" tabindex="-1"></a>                   <span class="at">cum.freq =</span> cum.freq,</span>
+<span id="cb45-8"><a href="descriptive-statistics.html#cb45-8" tabindex="-1"></a>                   <span class="at">cum.rel.freq =</span> <span class="fu">round</span>(cum.rel.freq ,<span class="dv">3</span>)) <span class="co"># keep 3 decimal places</span></span>
+<span id="cb45-9"><a href="descriptive-statistics.html#cb45-9" tabindex="-1"></a><span class="fu">kable</span>(freq.table, <span class="at">align =</span> <span class="st">&#39;l&#39;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">freq</th>
+<th align="left">rel.freq</th>
+<th align="left">cum.freq</th>
+<th align="left">cum.rel.freq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">[58,63]</td>
+<td align="left">12</td>
+<td align="left">0.158</td>
+<td align="left">12</td>
+<td align="left">0.158</td>
+</tr>
+<tr class="even">
+<td align="left">(63,68]</td>
+<td align="left">14</td>
+<td align="left">0.184</td>
+<td align="left">26</td>
+<td align="left">0.342</td>
+</tr>
+<tr class="odd">
+<td align="left">(68,73]</td>
+<td align="left">17</td>
+<td align="left">0.224</td>
+<td align="left">43</td>
+<td align="left">0.566</td>
+</tr>
+<tr class="even">
+<td align="left">(73,78]</td>
+<td align="left">15</td>
+<td align="left">0.197</td>
+<td align="left">58</td>
+<td align="left">0.763</td>
+</tr>
+<tr class="odd">
+<td align="left">(78,83]</td>
+<td align="left">11</td>
+<td align="left">0.145</td>
+<td align="left">69</td>
+<td align="left">0.908</td>
+</tr>
+<tr class="even">
+<td align="left">(83,88]</td>
+<td align="left">7</td>
+<td align="left">0.092</td>
+<td align="left">76</td>
+<td align="left">1.000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="graphic-summary---histogram" class="section level4 hasAnchor" number="4.2.2.2">
+<h4><span class="header-section-number">4.2.2.2</span> Graphic Summary - Histogram<a href="descriptive-statistics.html#graphic-summary---histogram" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>As mentioned earlier, we use a histogram to visualize the distribution of the numerical data set. R function <strong>hist(x=data-set, breaks = cutoff)</strong>. We still use the same <strong>pre.weight</strong> and the same cut-off obtained in the previous subsections to construct the histogram.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="descriptive-statistics.html#cb46-1" tabindex="-1"></a><span class="fu">hist</span>(pre.weight, <span class="at">breaks =</span> cutoff.pt,</span>
+<span id="cb46-2"><a href="descriptive-statistics.html#cb46-2" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Histogram of Pre-Weight&quot;</span>)</span></code></pre></div>
+<p><img src="STA501EB_files/figure-html/unnamed-chunk-38-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We can see that the distribution of pre-weights is <strong>skewed to the right</strong> since the above histogram has a long right tail.</p>
+</div>
+</div>
+</div>
+<div id="numerical-summary-of-numerical-data" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Numerical Summary of Numerical Data<a href="descriptive-statistics.html#numerical-summary-of-numerical-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Three family measures are outlined in this section: central tendency, variation, and location. We will still use <strong>pre-weight</strong> as an example to show how to basic R functions to calculate these numerical measures.</p>
+<div id="central-tendency" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Central Tendency<a href="descriptive-statistics.html#central-tendency" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We will not list all relevant measures of centers. Three three R functions <strong>mean()</strong> and <strong>median()</strong> are used to calculate the mean and median of a given data set.</p>
+<p><strong>Mean</strong> - the average of the values in the data set.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="descriptive-statistics.html#cb47-1" tabindex="-1"></a>avg.pre.weight <span class="ot">=</span> <span class="fu">mean</span>(pre.weight)</span>
+<span id="cb47-2"><a href="descriptive-statistics.html#cb47-2" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">data.frame</span>(avg.pre.weight), <span class="at">align =</span> <span class="st">&#39;l&#39;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">avg.pre.weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">72.28947</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Median</strong> - a cut-off value that splits the data values into two parts (the cut-off in both parts) such that at least 50% of data values are <strong>greater than or equal to</strong> and at least 50% of data values are <strong>less than or equal to the</strong> cut-off value.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="descriptive-statistics.html#cb48-1" tabindex="-1"></a>middle.numer <span class="ot">=</span> <span class="fu">median</span>(pre.weight)</span>
+<span id="cb48-2"><a href="descriptive-statistics.html#cb48-2" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">data.frame</span>(middle.numer), <span class="at">align =</span> <span class="st">&#39;l&#39;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">middle.numer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">72</td>
+</tr>
+</tbody>
+</table>
+<p>The more general quantile function <strong>quantile()</strong> can also be used to find the median. In fact, <strong>quantile()</strong> can be any percentile. The 50th percentile is the median.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="descriptive-statistics.html#cb49-1" tabindex="-1"></a>quantile.mid.num <span class="ot">=</span> <span class="fu">quantile</span>(pre.weight, <span class="co"># data set name</span></span>
+<span id="cb49-2"><a href="descriptive-statistics.html#cb49-2" tabindex="-1"></a>                            <span class="fl">0.5</span>,        <span class="co"># percentile, 0.5 = 50%</span></span>
+<span id="cb49-3"><a href="descriptive-statistics.html#cb49-3" tabindex="-1"></a>                            <span class="at">type=</span><span class="dv">2</span>      <span class="co"># there are different interpolations. </span></span>
+<span id="cb49-4"><a href="descriptive-statistics.html#cb49-4" tabindex="-1"></a>                                        <span class="co"># We use type 2.</span></span>
+<span id="cb49-5"><a href="descriptive-statistics.html#cb49-5" tabindex="-1"></a>                            )</span>
+<span id="cb49-6"><a href="descriptive-statistics.html#cb49-6" tabindex="-1"></a>fifty.percentile<span class="ot">=</span> <span class="fu">data.frame</span>(quantile.mid.num)</span>
+<span id="cb49-7"><a href="descriptive-statistics.html#cb49-7" tabindex="-1"></a><span class="fu">kable</span>(fifty.percentile, <span class="at">align =</span> <span class="st">&#39;l&#39;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">quantile.mid.num</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">50%</td>
+<td align="left">72</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="variations" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Variations<a href="descriptive-statistics.html#variations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We use R functions and variable <strong>pre-weight</strong> to calculate variance, standard deviation, and inter-quartile range (IQR).</p>
+<ul>
+<li><strong>Variance</strong> - measure the spread of the data. R function <strong>var()</strong> calculates the sample variance.</li>
+</ul>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="descriptive-statistics.html#cb50-1" tabindex="-1"></a>sample.var <span class="ot">=</span> <span class="fu">var</span>(pre.weight)</span>
+<span id="cb50-2"><a href="descriptive-statistics.html#cb50-2" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">data.frame</span>(sample.var), <span class="at">align =</span> <span class="st">&#39;l&#39;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">sample.var</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">63.59509</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Standard Deviation</strong> - measures the spread of the data and is equal to the square root of the variance.</li>
+</ul>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="descriptive-statistics.html#cb51-1" tabindex="-1"></a>stdev <span class="ot">=</span> <span class="fu">sd</span>(pre.weight)</span>
+<span id="cb51-2"><a href="descriptive-statistics.html#cb51-2" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">data.frame</span>(stdev), <span class="at">align =</span> <span class="st">&#39;l&#39;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">stdev</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">7.974653</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Inter-quartile Range (IQR)</strong> - the range of the middle 50% data values. That is, we throw out the bottom and upper 25% of data values and use the difference between the maximum and the minimum values to define IQR. The idea is illustrated in the following figure [I exclude the code in the output file. You can find the RMD document].</li>
+</ul>
+<p><img src="STA501EB_files/figure-html/unnamed-chunk-44-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>where <strong>Q1</strong> and <strong>Q3</strong> are the first and third quartiles which can be found using <strong>quantile()</strong>. The inter-quartile range is defined to be <strong>IQR = Q3 - Q3</strong>. We still use the <strong>pre.weight</strong> to illustrate how to find the IQR with the following code.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="descriptive-statistics.html#cb52-1" tabindex="-1"></a>IQR <span class="ot">=</span> <span class="fu">quantile</span>(pre.weight, <span class="fl">0.75</span>, <span class="at">type =</span> <span class="dv">2</span>) <span class="sc">-</span> <span class="fu">quantile</span>(pre.weight, <span class="fl">0.25</span>, <span class="at">type =</span> <span class="dv">2</span>)</span>
+<span id="cb52-2"><a href="descriptive-statistics.html#cb52-2" tabindex="-1"></a>IQR <span class="ot">=</span> <span class="fu">as.vector</span>(IQR)</span>
+<span id="cb52-3"><a href="descriptive-statistics.html#cb52-3" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">data.frame</span>(IQR), <span class="at">align =</span> <span class="st">&#39;l&#39;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">IQR</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">12</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="location" class="section level3 hasAnchor" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Location<a href="descriptive-statistics.html#location" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="z-score-transforamtion" class="section level4 hasAnchor" number="4.3.3.1">
+<h4><span class="header-section-number">4.3.3.1</span> Z-score Transforamtion<a href="descriptive-statistics.html#z-score-transforamtion" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The z-score transformation converts any given numerical data set to a new standardized data set such the new data set has zero mean and unit standard deviation. Let’s denote the original data set to be <span class="math inline">\(X= \{x_1, x_2, \cdots, x_n\}\)</span>. let <span class="math inline">\(Z =\{z_1, z_2, \cdots, z_n \}\)</span> be the standardized data set. The formula that transforms X to Z is given by</p>
+<p><span class="math display">\[
+z_i = \frac{x_i-\bar{x}}{s}
+\]</span></p>
+<p>where <span class="math inline">\(\bar{x}\)</span> is the sample mean and <span class="math inline">\(s\)</span> is the standard deviation of <span class="math inline">\(X\)</span>.</p>
+<p>I use the toy data <span class="math inline">\(X = \{1,3,5,7,9 \}\)</span> as an example to perform the z-score transformation.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="descriptive-statistics.html#cb53-1" tabindex="-1"></a>X<span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>)     <span class="co"># type in data values</span></span>
+<span id="cb53-2"><a href="descriptive-statistics.html#cb53-2" tabindex="-1"></a>xbar <span class="ot">=</span> <span class="fu">mean</span>(X)          <span class="co"># sample mean</span></span>
+<span id="cb53-3"><a href="descriptive-statistics.html#cb53-3" tabindex="-1"></a>s <span class="ot">=</span> <span class="fu">sd</span>(X)               <span class="co"># sample standard deviation</span></span>
+<span id="cb53-4"><a href="descriptive-statistics.html#cb53-4" tabindex="-1"></a>Z<span class="ot">=</span>(X<span class="sc">-</span>xbar)<span class="sc">/</span>s            <span class="co"># z-score transformation</span></span>
+<span id="cb53-5"><a href="descriptive-statistics.html#cb53-5" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">data.frame</span>(Z), <span class="at">align =</span> <span class="st">&#39;l&#39;</span>, <span class="at">format =</span> <span class="st">&quot;pipe&quot;</span>)   <span class="co"># make a nice looking</span></span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Z</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">-1.2649111</td>
+</tr>
+<tr class="even">
+<td align="left">-0.6324555</td>
+</tr>
+<tr class="odd">
+<td align="left">0.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">0.6324555</td>
+</tr>
+<tr class="odd">
+<td align="left">1.2649111</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="quantile" class="section level4 hasAnchor" number="4.3.3.2">
+<h4><span class="header-section-number">4.3.3.2</span> Quantile<a href="descriptive-statistics.html#quantile" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A k-th quantile <strong>of a data set</strong> (also called sample k-th quantile) is defined as a cut-off value that splits the data into two parts such that <strong>at least</strong> <span class="math inline">\(100k\%\)</span> of data values are <strong>bigger than or equal to</strong> the cut-off and <strong>at least</strong> <span class="math inline">\(100(1-k)\%\)</span> data values are <strong>less than or equal to</strong> the cut-off value, where <span class="math inline">\(0 &lt; k &lt; 100\)</span>. Special quantiles are the quartile (quarter) and percentiles (hundredth).</p>
+<p>Please keep in mind that the calculation of quantile is based on the sorted data and involves interpolations. Several interpolations were implemented in R. There is a minor difference between these different interpolations. The simple interpolation that is commonly used is the <em>so-called</em> type 2 interpolation. The type 1 interpolation is the default type in <strong>quantile(dataset, k/100, type=2)</strong>.</p>
+<p><strong>Example</strong> [<strong>Pre-weight data</strong>] - We want to find 25% and 68% percentiles of pre-weights.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="descriptive-statistics.html#cb54-1" tabindex="-1"></a>q<span class="fl">.25</span> <span class="ot">=</span> <span class="fu">quantile</span>(pre.weight, <span class="fl">0.25</span>, <span class="at">type =</span> <span class="dv">2</span>)</span>
+<span id="cb54-2"><a href="descriptive-statistics.html#cb54-2" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">data.frame</span>(q<span class="fl">.25</span>), <span class="at">align =</span> <span class="st">&#39;l&#39;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">q.25</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">25%</td>
+<td align="left">66</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="descriptive-statistics.html#cb55-1" tabindex="-1"></a>q<span class="fl">.68</span> <span class="ot">=</span> <span class="fu">quantile</span>(pre.weight, <span class="fl">0.68</span>, <span class="at">type =</span> <span class="dv">2</span>)</span>
+<span id="cb55-2"><a href="descriptive-statistics.html#cb55-2" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">data.frame</span>(q<span class="fl">.68</span>), <span class="at">align =</span> <span class="st">&#39;l&#39;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">q.68</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">68%</td>
+<td align="left">77</td>
+</tr>
+</tbody>
+</table>
+<p>We can call <strong>quantile()</strong> to find the two quantiles simultaneously.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="descriptive-statistics.html#cb56-1" tabindex="-1"></a>q.<span class="fl">25.68</span> <span class="ot">=</span> <span class="fu">quantile</span>(pre.weight, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.68</span>), <span class="at">type =</span> <span class="dv">2</span>)</span>
+<span id="cb56-2"><a href="descriptive-statistics.html#cb56-2" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">data.frame</span>(q.<span class="fl">25.68</span>), <span class="at">align =</span> <span class="st">&#39;l&#39;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">q.25.68</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">25%</td>
+<td align="left">66</td>
+</tr>
+<tr class="even">
+<td align="left">68%</td>
+<td align="left">77</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="five-number-summary-and-box-plot" class="section level4 hasAnchor" number="4.3.3.3">
+<h4><span class="header-section-number">4.3.3.3</span> Five-number Summary and Box-plot<a href="descriptive-statistics.html#five-number-summary-and-box-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The five-number summary consists of 5 numbers: minimum (0%), 1st quartile (25%), 2nd quartile(50%, median), 3rd quartile (75%), and maximum (100%). R function <strong>fivenum()</strong> is dedicated to finding the five-number summary.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="descriptive-statistics.html#cb57-1" tabindex="-1"></a><span class="fu">fivenum</span>(pre.weight)</span></code></pre></div>
+<pre><code>## [1] 58 66 72 78 88</code></pre>
+<p>We can also use <strong>quantile()</strong> to find the five-number summary in the following.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="descriptive-statistics.html#cb59-1" tabindex="-1"></a><span class="fu">quantile</span>(pre.weight, <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="dv">1</span>), <span class="at">type =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>##   0%  25%  50%  75% 100% 
+##   58   66   72   78   88</code></pre>
+<p>A box plot is the graphic representation of the five-number summary.</p>
+<p><img src="img03/w03-boxplot_explanation.jpg" width="100%" style="display: block; margin: auto;" /></p>
+<p>R function <strong>boxplot()</strong> will make the box-plot. We only present a simple box plot in the following.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="descriptive-statistics.html#cb61-1" tabindex="-1"></a><span class="fu">boxplot</span>(pre.weight, <span class="at">horizontal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="STA501EB_files/figure-html/unnamed-chunk-53-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+</div>
+<div id="assignment---descriptive-statistics" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Assignment - Descriptive Statistics<a href="descriptive-statistics.html#assignment---descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <strong>Diabetes</strong> data set to be used in this assignment is taken from <a href="https://hbiostat.org/data/">Vanderbilt’s Biostatistics Datasets</a>.</p>
+<p>The following is the description from the web page:</p>
+<p>These data are courtesy of Dr. John Schorling, Department of Medicine, University of Virginia School of Medicine.
+The data consists of 19 variables on 403 subjects from 1046 subjects who were interviewed in a study to understand the prevalence of obesity, diabetes, and other cardiovascular risk factors in central Virginia for African Americans. According to Dr. John Hong, Diabetes Mellitus Type II (adult-onset diabetes) is associated most strongly with obesity. The waist/hip ratio may be a predictor of diabetes and heart disease. DM II is also associated with hypertension - they may both be part of “Syndrome X”. The 403 subjects were the ones who were actually screened for diabetes. Glycosolated hemoglobin &gt; 7.0 is usually taken as a positive diagnosis of diabetes. For more information about this study see</p>
+<p>Willems JP, Saunders JT, DE Hunt, JB Schorling: Prevalence of coronary heart disease risk factors among rural blacks: A community-based study. <em>Southern Medical Journal</em> 90:814-820; 1997</p>
+<p>Schorling JB, Roach J, Siegel M, Baturka N, Hunt DE, Guterbock TM, Stewart HL: A trial of church-based smoking cessation interventions for rural African Americans. <em>Preventive Medicine</em> 26:92-101; 1997.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="descriptive-statistics.html#cb62-1" tabindex="-1"></a>diaURL <span class="ot">=</span> <span class="st">&quot;https://raw.githubusercontent.com/pengdsci/STA501/main/Data/diabetes.csv&quot;</span></span>
+<span id="cb62-2"><a href="descriptive-statistics.html#cb62-2" tabindex="-1"></a>diabetes <span class="ot">=</span> <span class="fu">read.csv</span>(diaURL, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb62-3"><a href="descriptive-statistics.html#cb62-3" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">t</span>(<span class="fu">head</span>(diabetes)))</span></code></pre></div>
+<table style="width:100%;">
+<colgroup>
+<col width="11%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">1</th>
+<th align="left">2</th>
+<th align="left">3</th>
+<th align="left">4</th>
+<th align="left">5</th>
+<th align="left">6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">id</td>
+<td align="left">1000</td>
+<td align="left">1001</td>
+<td align="left">1002</td>
+<td align="left">1003</td>
+<td align="left">1005</td>
+<td align="left">1008</td>
+</tr>
+<tr class="even">
+<td align="left">chol</td>
+<td align="left">203</td>
+<td align="left">165</td>
+<td align="left">228</td>
+<td align="left">78</td>
+<td align="left">249</td>
+<td align="left">248</td>
+</tr>
+<tr class="odd">
+<td align="left">stab.glu</td>
+<td align="left">82</td>
+<td align="left">97</td>
+<td align="left">92</td>
+<td align="left">93</td>
+<td align="left">90</td>
+<td align="left">94</td>
+</tr>
+<tr class="even">
+<td align="left">hdl</td>
+<td align="left">56</td>
+<td align="left">24</td>
+<td align="left">37</td>
+<td align="left">12</td>
+<td align="left">28</td>
+<td align="left">69</td>
+</tr>
+<tr class="odd">
+<td align="left">ratio</td>
+<td align="left">3.6</td>
+<td align="left">6.9</td>
+<td align="left">6.2</td>
+<td align="left">6.5</td>
+<td align="left">8.9</td>
+<td align="left">3.6</td>
+</tr>
+<tr class="even">
+<td align="left">glyhb</td>
+<td align="left">4.31</td>
+<td align="left">4.44</td>
+<td align="left">4.64</td>
+<td align="left">4.63</td>
+<td align="left">7.72</td>
+<td align="left">4.81</td>
+</tr>
+<tr class="odd">
+<td align="left">location</td>
+<td align="left">Buckingham</td>
+<td align="left">Buckingham</td>
+<td align="left">Buckingham</td>
+<td align="left">Buckingham</td>
+<td align="left">Buckingham</td>
+<td align="left">Buckingham</td>
+</tr>
+<tr class="even">
+<td align="left">age</td>
+<td align="left">46</td>
+<td align="left">29</td>
+<td align="left">58</td>
+<td align="left">67</td>
+<td align="left">64</td>
+<td align="left">34</td>
+</tr>
+<tr class="odd">
+<td align="left">gender</td>
+<td align="left">female</td>
+<td align="left">female</td>
+<td align="left">female</td>
+<td align="left">male</td>
+<td align="left">male</td>
+<td align="left">male</td>
+</tr>
+<tr class="even">
+<td align="left">height</td>
+<td align="left">62</td>
+<td align="left">64</td>
+<td align="left">61</td>
+<td align="left">67</td>
+<td align="left">68</td>
+<td align="left">71</td>
+</tr>
+<tr class="odd">
+<td align="left">weight</td>
+<td align="left">121</td>
+<td align="left">218</td>
+<td align="left">256</td>
+<td align="left">119</td>
+<td align="left">183</td>
+<td align="left">190</td>
+</tr>
+<tr class="even">
+<td align="left">frame</td>
+<td align="left">medium</td>
+<td align="left">large</td>
+<td align="left">large</td>
+<td align="left">large</td>
+<td align="left">medium</td>
+<td align="left">large</td>
+</tr>
+<tr class="odd">
+<td align="left">bp.1s</td>
+<td align="left">118</td>
+<td align="left">112</td>
+<td align="left">190</td>
+<td align="left">110</td>
+<td align="left">138</td>
+<td align="left">132</td>
+</tr>
+<tr class="even">
+<td align="left">bp.1d</td>
+<td align="left">59</td>
+<td align="left">68</td>
+<td align="left">92</td>
+<td align="left">50</td>
+<td align="left">80</td>
+<td align="left">86</td>
+</tr>
+<tr class="odd">
+<td align="left">bp.2s</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">185</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">bp.2d</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">92</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">waist</td>
+<td align="left">29</td>
+<td align="left">46</td>
+<td align="left">49</td>
+<td align="left">33</td>
+<td align="left">44</td>
+<td align="left">36</td>
+</tr>
+<tr class="even">
+<td align="left">hip</td>
+<td align="left">38</td>
+<td align="left">48</td>
+<td align="left">57</td>
+<td align="left">38</td>
+<td align="left">41</td>
+<td align="left">42</td>
+</tr>
+<tr class="odd">
+<td align="left">time.ppn</td>
+<td align="left">720</td>
+<td align="left">360</td>
+<td align="left">180</td>
+<td align="left">480</td>
+<td align="left">300</td>
+<td align="left">195</td>
+</tr>
+</tbody>
+</table>
+<p>We can see from the first 6 observations that there are 15 numerical variables and 3 categorical variables. Variable <strong>bp.2s</strong> and <strong>bp.2d</strong> have missing values. To complete this week’s assignment, you need to choose one numerical variable and one categorical variable with NO missing values.</p>
+<p>The following code shows how to extract variables from the data frame. I will use the two variables with missing values as an example. You can modify the code to extract your variables for the assignment.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="descriptive-statistics.html#cb63-1" tabindex="-1"></a>bp<span class="fl">.2</span>s <span class="ot">&lt;-</span> diabetes<span class="sc">$</span>bp<span class="fl">.2</span>s</span>
+<span id="cb63-2"><a href="descriptive-statistics.html#cb63-2" tabindex="-1"></a>bp<span class="fl">.2</span>d <span class="ot">&lt;-</span> diabetes<span class="sc">$</span>bp<span class="fl">.2</span>d</span></code></pre></div>
+<div id="summarizing-categorical-data" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Summarizing Categorical Data<a href="descriptive-statistics.html#summarizing-categorical-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Use the categorical variable you selected to perform the following analysis</p>
+<ul>
+<li><strong>Construct a <font color = "red">relative frequency table</font></strong>. Write a few sentences to describe the distribution of the variable. Note that you are encouraged to construct a frequency table with all four types of frequencies as I did in the class note.</li>
+<li><strong>Construct a pie-chart</strong> to represent the distribution of the categorical variable.</li>
+</ul></li>
+<li><p>Using the numerical variable you chose from the diabetes data to answer the following questions.</p>
+<ul>
+<li><strong>Construct a <font color = "red">relative frequency table of the numerical variable</font></strong> with 10 categories. In other words, the frequency table should have 10 rows. You are encouraged to include all 4 frequencies in the table. Please provide a brief description of the relative frequencies.</li>
+<li><strong>Construct a histogram of the numerical variable</strong> with 10 vertical bars. In other words, the histogram is a geometric representation of the frequency table. Explain the distribution of the variable. Is it skewed to the left or the right?</li>
+<li><strong>Construct a box-plot</strong> and explain it. That is, can you tell whether the distribution is skewed to the right or the left?</li>
+</ul></li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-collection-and-data-loading.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="concepts-of-probability-distributions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/pengdsci/STA501EB/edit/master/03-DescriptiveStatistics.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["STA501EB.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

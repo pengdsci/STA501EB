@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Topic 9 Analysis of Variance (ANOVA) | STA501 E-Pack: Applied Statistical Methods</title>
+  <meta name="description" content="The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Topic 9 Analysis of Variance (ANOVA) | STA501 E-Pack: Applied Statistical Methods" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Topic 9 Analysis of Variance (ANOVA) | STA501 E-Pack: Applied Statistical Methods" />
+  
+  <meta name="twitter:description" content="The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Cheng Peng" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="testing-statistical-hypothesis.html"/>
+<link rel="next" href="correlation-and-simple-linear-regression.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<center><li><a href="./"><font color = "darkred"><b>STA 501 E-Pack: Applied Statistical Methods</b></font></a><br><font color = "navy">Cheng Peng</font></li></center>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html"><i class="fa fa-check"></i><b>2</b> R, RStudio and RMarkdown</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#r"><i class="fa fa-check"></i><b>2.1</b> R</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#order-of-operations"><i class="fa fa-check"></i><b>2.1.1</b> Order of Operations</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#basic-r-objects"><i class="fa fa-check"></i><b>2.1.2</b> Basic R Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio"><i class="fa fa-check"></i><b>2.2</b> RStudio</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio-gui"><i class="fa fa-check"></i><b>2.2.1</b> RStudio GUI</a></li>
+<li class="chapter" data-level="2.2.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#console"><i class="fa fa-check"></i><b>2.2.2</b> Console</a></li>
+<li class="chapter" data-level="2.2.3" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#source-editor"><i class="fa fa-check"></i><b>2.2.3</b> Source Editor</a></li>
+<li class="chapter" data-level="2.2.4" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#environment-window"><i class="fa fa-check"></i><b>2.2.4</b> Environment Window</a></li>
+<li class="chapter" data-level="2.2.5" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#system-and-graphic-files"><i class="fa fa-check"></i><b>2.2.5</b> System and Graphic files</a></li>
+<li class="chapter" data-level="2.2.6" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio-offers-numerous-helpful-features"><i class="fa fa-check"></i><b>2.2.6</b> RStudio offers numerous helpful features:</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rmarkdown"><i class="fa fa-check"></i><b>2.3</b> RMarkdown</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#code-chunk"><i class="fa fa-check"></i><b>2.3.1</b> Code Chunk</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#graphics-generated-from-r-code-chunks"><i class="fa fa-check"></i><b>2.3.2</b> Graphics Generated from R Code Chunks</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html"><i class="fa fa-check"></i><b>3</b> Data Collection and Data Loading</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#sampling-plans"><i class="fa fa-check"></i><b>3.1</b> Sampling Plans</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#simple-random-sampling-srs"><i class="fa fa-check"></i><b>3.1.1</b> Simple Random Sampling (SRS)</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#systematic-sampling"><i class="fa fa-check"></i><b>3.1.2</b> Systematic sampling</a></li>
+<li class="chapter" data-level="3.1.3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#stratified-sampling"><i class="fa fa-check"></i><b>3.1.3</b> Stratified sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#study-designs"><i class="fa fa-check"></i><b>3.2</b> Study Designs</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#observational-studies"><i class="fa fa-check"></i><b>3.2.1</b> Observational Studies</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#experimental-designs"><i class="fa fa-check"></i><b>3.2.2</b> Experimental Designs</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#loading-data-to-r-from-external-data-files"><i class="fa fa-check"></i><b>3.3</b> Loading Data to R from External Data Files</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#text-file-aka.-delimited-text-file"><i class="fa fa-check"></i><b>3.3.1</b> Text File ( aka. Delimited Text File)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#data-frame-and-list"><i class="fa fa-check"></i><b>3.4</b> Data Frame and List</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#data-frame-1"><i class="fa fa-check"></i><b>3.4.1</b> Data Frame</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>4</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#data-types"><i class="fa fa-check"></i><b>4.1</b> Data Types</a></li>
+<li class="chapter" data-level="4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#tabular-and-graphic-summary"><i class="fa fa-check"></i><b>4.2</b> Tabular and Graphic Summary</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#categorical-data"><i class="fa fa-check"></i><b>4.2.1</b> Categorical Data</a></li>
+<li class="chapter" data-level="4.2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#numerical-data"><i class="fa fa-check"></i><b>4.2.2</b> Numerical Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#numerical-summary-of-numerical-data"><i class="fa fa-check"></i><b>4.3</b> Numerical Summary of Numerical Data</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#central-tendency"><i class="fa fa-check"></i><b>4.3.1</b> Central Tendency</a></li>
+<li class="chapter" data-level="4.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variations"><i class="fa fa-check"></i><b>4.3.2</b> Variations</a></li>
+<li class="chapter" data-level="4.3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#location"><i class="fa fa-check"></i><b>4.3.3</b> Location</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#assignment---descriptive-statistics"><i class="fa fa-check"></i><b>4.4</b> Assignment - Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summarizing-categorical-data"><i class="fa fa-check"></i><b>4.4.1</b> Summarizing Categorical Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html"><i class="fa fa-check"></i><b>5</b> Concepts of Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-random-variables"><i class="fa fa-check"></i><b>5.1</b> Concepts of random variables</a></li>
+<li class="chapter" data-level="5.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#types-of-random-variables"><i class="fa fa-check"></i><b>5.2</b> Types of random variables</a></li>
+<li class="chapter" data-level="5.3" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-probability-distributions-1"><i class="fa fa-check"></i><b>5.3</b> Concepts of probability distributions</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-probability"><i class="fa fa-check"></i><b>5.3.1</b> Concepts of probability</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#probability-distribution-of-random-variables"><i class="fa fa-check"></i><b>5.4</b> Probability distribution of random variables</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#discrete-probability-distribution"><i class="fa fa-check"></i><b>5.4.1</b> Discrete probability distribution</a></li>
+<li class="chapter" data-level="5.4.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#continuous-probability-distribution"><i class="fa fa-check"></i><b>5.4.2</b> Continuous probability distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#special-continuous-distributions"><i class="fa fa-check"></i><b>5.5</b> Special Continuous Distributions</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#normal-distribution"><i class="fa fa-check"></i><b>5.5.1</b> Normal Distribution</a></li>
+<li class="chapter" data-level="5.5.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#t-distribution"><i class="fa fa-check"></i><b>5.5.2</b> t distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#summary"><i class="fa fa-check"></i><b>5.6</b> Summary</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#numerical-examples-based-on-normal-and-t-distributions"><i class="fa fa-check"></i><b>5.6.1</b> Numerical Examples Based on Normal and t Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#assignment---probability-distributions"><i class="fa fa-check"></i><b>5.7</b> Assignment - Probability Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>6</b> Sampling Distributions</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#concepts-of-the-sampling-distribution"><i class="fa fa-check"></i><b>6.1</b> Concepts of the sampling distribution</a></li>
+<li class="chapter" data-level="6.2" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sampling-distribution-of-sampling-means"><i class="fa fa-check"></i><b>6.2</b> Sampling Distribution of Sampling Means</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#working-data-set-plant-diversity"><i class="fa fa-check"></i><b>6.2.1</b> Working Data Set: Plant Diversity</a></li>
+<li class="chapter" data-level="6.2.2" data-path="sampling-distributions.html"><a href="sampling-distributions.html#normal-population-with-given-mean-mu-and-variance-sigma2"><i class="fa fa-check"></i><b>6.2.2</b> Normal Population with given mean (<span class="math inline">\(\mu\)</span>) and Variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+<li class="chapter" data-level="6.2.3" data-path="sampling-distributions.html"><a href="sampling-distributions.html#normal-population-with-a-given-mean-mu-and-an-unknown-variance-sigma2"><i class="fa fa-check"></i><b>6.2.3</b> Normal Population with a given mean (<span class="math inline">\(\mu\)</span>) and an <strong>Unknown</strong> Variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+<li class="chapter" data-level="6.2.4" data-path="sampling-distributions.html"><a href="sampling-distributions.html#unspecified-population-with-a-given-mean-muand-an-unspecifed-variance-sigma2"><i class="fa fa-check"></i><b>6.2.4</b> Unspecified Population with a given mean (<span class="math inline">\(\mu\)</span>)and an unspecifed variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sampling-distribution-of-sample-proportions"><i class="fa fa-check"></i><b>6.3</b> Sampling distribution of sample proportions</a></li>
+<li class="chapter" data-level="6.4" data-path="sampling-distributions.html"><a href="sampling-distributions.html#summary-1"><i class="fa fa-check"></i><b>6.4</b> Summary</a></li>
+<li class="chapter" data-level="6.5" data-path="sampling-distributions.html"><a href="sampling-distributions.html#assignment---sampling-distributions"><i class="fa fa-check"></i><b>6.5</b> Assignment - Sampling Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>7</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#some-terms"><i class="fa fa-check"></i><b>7.1</b> Some Terms</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#what-are-the-issues-of-a-point-estimate"><i class="fa fa-check"></i><b>7.1.1</b> What are the issues of a point estimate?</a></li>
+<li class="chapter" data-level="7.1.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#how-about-multiple-samples"><i class="fa fa-check"></i><b>7.1.2</b> How About Multiple Samples?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#how-to-find-the-confidence-intervals-for-means-and-proportions"><i class="fa fa-check"></i><b>7.2</b> How to find the Confidence Intervals for Means and Proportions?</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#framework-of-confidence-interval"><i class="fa fa-check"></i><b>7.2.1</b> Framework Of Confidence Interval</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-population-mean"><i class="fa fa-check"></i><b>7.3</b> Confidence Interval of Population Mean</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#normal-population-with-known-variance."><i class="fa fa-check"></i><b>7.3.1</b> Normal Population with Known Variance.</a></li>
+<li class="chapter" data-level="7.3.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#normal-population-with-unknown-variance"><i class="fa fa-check"></i><b>7.3.2</b> Normal Population with Unknown Variance</a></li>
+<li class="chapter" data-level="7.3.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#unspecified-population-with-unknown-variance-but-with-large-sample-sizes"><i class="fa fa-check"></i><b>7.3.3</b> Unspecified Population with Unknown Variance but with Large Sample Sizes</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-proportion"><i class="fa fa-check"></i><b>7.4</b> Confidence Interval of Proportion</a></li>
+<li class="chapter" data-level="7.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#two-sample-problems---comparing-two-population-means"><i class="fa fa-check"></i><b>7.5</b> Two Sample Problems - Comparing Two Population Means</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-the-difference-of-two-unspecified-populations-means"><i class="fa fa-check"></i><b>7.5.1</b> Confidence Interval of the Difference of Two Unspecified Populations Means</a></li>
+<li class="chapter" data-level="7.5.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-the-difference-of-two-normal-populations-means"><i class="fa fa-check"></i><b>7.5.2</b> Confidence Interval of the Difference of Two Normal Populations Means</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="confidence-intervals.html"><a href="confidence-intervals.html#assignment---confidence-intervals"><i class="fa fa-check"></i><b>7.6</b> Assignment - Confidence Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html"><i class="fa fa-check"></i><b>8</b> Testing Statistical Hypothesis</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#formulation-of-statistical-hypothesis-testing"><i class="fa fa-check"></i><b>8.1</b> Formulation of Statistical Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#null-and-alternative-hypotheses"><i class="fa fa-check"></i><b>8.1.1</b> Null and Alternative Hypotheses</a></li>
+<li class="chapter" data-level="8.1.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#relationship-between-the-claim-and-the-statistical-hypotheses"><i class="fa fa-check"></i><b>8.1.2</b> Relationship between the claim and the statistical hypotheses</a></li>
+<li class="chapter" data-level="8.1.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#test-statistics---statistical-evidence"><i class="fa fa-check"></i><b>8.1.3</b> Test Statistics - Statistical Evidence</a></li>
+<li class="chapter" data-level="8.1.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#types-of-test-and-rejection-region"><i class="fa fa-check"></i><b>8.1.4</b> Types of Test and Rejection Region</a></li>
+<li class="chapter" data-level="8.1.5" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#statistical-decision-rule-p-value"><i class="fa fa-check"></i><b>8.1.5</b> Statistical Decision Rule: p-value</a></li>
+<li class="chapter" data-level="8.1.6" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#summary-of-the-test-hypothesis-procedure"><i class="fa fa-check"></i><b>8.1.6</b> Summary of the Test Hypothesis Procedure</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-studies"><i class="fa fa-check"></i><b>8.2</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-i-normal-population-with-a-known-variance."><i class="fa fa-check"></i><b>8.2.1</b> Case I: normal population with a known variance.</a></li>
+<li class="chapter" data-level="8.2.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-ii-normal-population-with-an-unknown-variance"><i class="fa fa-check"></i><b>8.2.2</b> Case II: Normal population with an unknown variance</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#unspecified-population-with-an-unknown-variance---clt"><i class="fa fa-check"></i><b>8.3</b> Unspecified population with an unknown variance - CLT</a></li>
+<li class="chapter" data-level="8.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#testing-population-proportion"><i class="fa fa-check"></i><b>8.4</b> Testing Population Proportion</a></li>
+<li class="chapter" data-level="8.5" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#testing-the-difference-between-two-population-means"><i class="fa fa-check"></i><b>8.5</b> Testing the difference between two population means</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#both-populations-are-unspecified-and-sample-sizes-are-large."><i class="fa fa-check"></i><b>8.5.1</b> Both populations are unspecified and sample sizes are large.</a></li>
+<li class="chapter" data-level="8.5.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#both-populations-are-normal-with-unknown-but-equal-variances"><i class="fa fa-check"></i><b>8.5.2</b> Both populations are normal with unknown but equal variances</a></li>
+<li class="chapter" data-level="8.5.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#paired-t-test"><i class="fa fa-check"></i><b>8.5.3</b> Paired t-test</a></li>
+<li class="chapter" data-level="8.5.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#concluding-remarks"><i class="fa fa-check"></i><b>8.5.4</b> Concluding Remarks</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#practice-problems"><i class="fa fa-check"></i><b>8.6</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>9</b> Analysis of Variance (ANOVA)</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#the-question-of-one-way-anova"><i class="fa fa-check"></i><b>9.1</b> The Question of One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#what-is-anova"><i class="fa fa-check"></i><b>9.1.1</b> What is ANOVA</a></li>
+<li class="chapter" data-level="9.1.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#assumptions-of-anova"><i class="fa fa-check"></i><b>9.1.2</b> Assumptions of ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#steps-of-anova"><i class="fa fa-check"></i><b>9.2</b> Steps of ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#anova-tables"><i class="fa fa-check"></i><b>9.2.1</b> ANOVA Tables</a></li>
+<li class="chapter" data-level="9.2.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#post-hoc-pairwise-comparison"><i class="fa fa-check"></i><b>9.2.2</b> Post hoc Pairwise Comparison</a></li>
+<li class="chapter" data-level="9.2.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#how-to-summarize-anova-results"><i class="fa fa-check"></i><b>9.2.3</b> How to Summarize ANOVA Results</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#welchs-anova"><i class="fa fa-check"></i><b>9.3</b> Welch’s ANOVA</a></li>
+<li class="chapter" data-level="9.4" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#case-study-mussel-length-example---solution"><i class="fa fa-check"></i><b>9.4</b> Case Study: Mussel Length Example - Solution</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#creating-an-anova-table"><i class="fa fa-check"></i><b>9.4.1</b> Creating An ANOVA Table</a></li>
+<li class="chapter" data-level="9.4.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#diagnostic-analysis"><i class="fa fa-check"></i><b>9.4.2</b> Diagnostic Analysis</a></li>
+<li class="chapter" data-level="9.4.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#welch-anova"><i class="fa fa-check"></i><b>9.4.3</b> Welch ANOVA</a></li>
+<li class="chapter" data-level="9.4.4" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#post-hoc-multiple-comparisons"><i class="fa fa-check"></i><b>9.4.4</b> Post-hoc Multiple Comparisons</a></li>
+<li class="chapter" data-level="9.4.5" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#visual-comparison---boxplots"><i class="fa fa-check"></i><b>9.4.5</b> Visual Comparison - Boxplots</a></li>
+<li class="chapter" data-level="9.4.6" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#anova-reporting"><i class="fa fa-check"></i><b>9.4.6</b> ANOVA Reporting</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#practice-problems-1"><i class="fa fa-check"></i><b>9.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html"><i class="fa fa-check"></i><b>10</b> Correlation and Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#the-question-and-the-data"><i class="fa fa-check"></i><b>10.1</b> The question and the data</a></li>
+<li class="chapter" data-level="10.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#visual-inspection-for-association"><i class="fa fa-check"></i><b>10.2</b> Visual Inspection for Association</a></li>
+<li class="chapter" data-level="10.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#coefficient-of-correlation"><i class="fa fa-check"></i><b>10.3</b> Coefficient of Correlation</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#definition-of-pearson-correlation-coefficient"><i class="fa fa-check"></i><b>10.3.1</b> Definition of Pearson correlation coefficient</a></li>
+<li class="chapter" data-level="10.3.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#interpretation-of-correlation-coefficient"><i class="fa fa-check"></i><b>10.3.2</b> Interpretation of correlation coefficient</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#least-square-regression-structure-diagnostics-and-applications"><i class="fa fa-check"></i><b>10.4</b> Least square regression: structure, diagnostics, and applications</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#definitions"><i class="fa fa-check"></i><b>10.4.1</b> Definitions</a></li>
+<li class="chapter" data-level="10.4.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#assumptions-of-least-square-regression"><i class="fa fa-check"></i><b>10.4.2</b> Assumptions of Least Square Regression</a></li>
+<li class="chapter" data-level="10.4.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-building-and-diagnostics"><i class="fa fa-check"></i><b>10.4.3</b> Model Building and Diagnostics</a></li>
+<li class="chapter" data-level="10.4.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#residual-diagnostics-and-remedies"><i class="fa fa-check"></i><b>10.4.4</b> Residual Diagnostics and Remedies</a></li>
+<li class="chapter" data-level="10.4.5" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#final-model-with-applications"><i class="fa fa-check"></i><b>10.4.5</b> Final Model with Applications</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#case-study-amyotrophic-lateral-sclerosis-analysis-revisited"><i class="fa fa-check"></i><b>10.5</b> Case Study: Amyotrophic lateral sclerosis analysis revisited</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#objectives"><i class="fa fa-check"></i><b>10.5.1</b> Objectives</a></li>
+<li class="chapter" data-level="10.5.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-fitting"><i class="fa fa-check"></i><b>10.5.2</b> Model Fitting</a></li>
+<li class="chapter" data-level="10.5.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#box-cox-transformation"><i class="fa fa-check"></i><b>10.5.3</b> Box-Cox Transformation</a></li>
+<li class="chapter" data-level="10.5.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-applications"><i class="fa fa-check"></i><b>10.5.4</b> Model Applications</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>11</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-practical-question"><i class="fa fa-check"></i><b>11.1</b> The Practical Question</a></li>
+<li class="chapter" data-level="11.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-process-of-building-a-multiple-linear-regression-model"><i class="fa fa-check"></i><b>11.2</b> The Process of Building A Multiple Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#assumptions-of-mlr"><i class="fa fa-check"></i><b>11.2.1</b> Assumptions of MLR</a></li>
+<li class="chapter" data-level="11.2.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-structure-of-mlr"><i class="fa fa-check"></i><b>11.2.2</b> The Structure of MLR</a></li>
+<li class="chapter" data-level="11.2.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#more-on-model-specifications"><i class="fa fa-check"></i><b>11.2.3</b> More on Model Specifications</a></li>
+<li class="chapter" data-level="11.2.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#estimation-of-regression-coefficients"><i class="fa fa-check"></i><b>11.2.4</b> Estimation of Regression Coefficients</a></li>
+<li class="chapter" data-level="11.2.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#model-diagnostics"><i class="fa fa-check"></i><b>11.2.5</b> Model Diagnostics</a></li>
+<li class="chapter" data-level="11.2.6" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#goodness-of-fit-and-variable-selection"><i class="fa fa-check"></i><b>11.2.6</b> Goodness-of-fit and Variable Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#case-study-1"><i class="fa fa-check"></i><b>11.3</b> Case Study 1</a></li>
+<li class="chapter" data-level="11.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#case-study-2"><i class="fa fa-check"></i><b>11.4</b> Case Study 2</a></li>
+<li class="chapter" data-level="11.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#practice-problems-2"><i class="fa fa-check"></i><b>11.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>12</b> Logistic Regression Models</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#motivational-example-and-practical-question"><i class="fa fa-check"></i><b>12.1</b> Motivational Example and Practical Question</a></li>
+<li class="chapter" data-level="12.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#logistic-regression-models-and-applications"><i class="fa fa-check"></i><b>12.2</b> Logistic Regression Models and Applications</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#the-structure-of-logistic-regression-model"><i class="fa fa-check"></i><b>12.2.1</b> The Structure of Logistic Regression Model</a></li>
+<li class="chapter" data-level="12.2.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#assumptions-and-diagnostics"><i class="fa fa-check"></i><b>12.2.2</b> Assumptions and Diagnostics</a></li>
+<li class="chapter" data-level="12.2.3" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#coefficient-estimation-and-interpretation"><i class="fa fa-check"></i><b>12.2.3</b> Coefficient Estimation and Interpretation</a></li>
+<li class="chapter" data-level="12.2.4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#use-of-glm-and-annotations"><i class="fa fa-check"></i><b>12.2.4</b> Use of <strong>glm()</strong> and Annotations</a></li>
+<li class="chapter" data-level="12.2.5" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#applications-of-logistic-regression-models"><i class="fa fa-check"></i><b>12.2.5</b> Applications of Logistic Regression Models</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#case-studies-1"><i class="fa fa-check"></i><b>12.3</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#the-simple-logistic-regression-model"><i class="fa fa-check"></i><b>12.3.1</b> The simple logistic regression model</a></li>
+<li class="chapter" data-level="12.3.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#multiple-logistic-regression-model"><i class="fa fa-check"></i><b>12.3.2</b> Multiple Logistic Regression Model</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#practice-problems-3"><i class="fa fa-check"></i><b>12.4</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html"><i class="fa fa-check"></i><b>13</b> Contingency Table Analysis</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#the-motivational-examples"><i class="fa fa-check"></i><b>13.1</b> The Motivational Examples</a></li>
+<li class="chapter" data-level="13.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#two-way-contingency-tables-and-analysis"><i class="fa fa-check"></i><b>13.2</b> Two-way Contingency Tables and Analysis</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#the-structure-of-two-way-contingency-table"><i class="fa fa-check"></i><b>13.2.1</b> The Structure of Two-way Contingency Table</a></li>
+<li class="chapter" data-level="13.2.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#pearson-chi2-test-of-independence"><i class="fa fa-check"></i><b>13.2.2</b> Pearson <span class="math inline">\(\chi^2\)</span> Test of Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#measures-of-association"><i class="fa fa-check"></i><b>13.3</b> Measures of Association</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#times2-table-under-different-study-designs"><i class="fa fa-check"></i><b>13.3.1</b> <span class="math inline">\(2\times2\)</span>-table Under Different Study Designs</a></li>
+<li class="chapter" data-level="13.3.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#measures-of-association-1"><i class="fa fa-check"></i><b>13.3.2</b> Measures of Association</a></li>
+<li class="chapter" data-level="13.3.3" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#validity-of-measures-of-association"><i class="fa fa-check"></i><b>13.3.3</b> Validity of Measures of Association</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-studies-2"><i class="fa fa-check"></i><b>13.4</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-study-1-1"><i class="fa fa-check"></i><b>13.4.1</b> Case Study 1</a></li>
+<li class="chapter" data-level="13.4.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-study-2-1"><i class="fa fa-check"></i><b>13.4.2</b> Case Study 2</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#practice-problems-4"><i class="fa fa-check"></i><b>13.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html"><i class="fa fa-check"></i><b>14</b> Analysis of Counts and Rates</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#motivational-examples"><i class="fa fa-check"></i><b>14.1</b> Motivational Examples</a></li>
+<li class="chapter" data-level="14.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#poisson-regression-for-counts-and-rates"><i class="fa fa-check"></i><b>14.2</b> Poisson Regression for Counts and Rates</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#structure-and-interpretations"><i class="fa fa-check"></i><b>14.2.1</b> Structure and Interpretations</a></li>
+<li class="chapter" data-level="14.2.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#assumptions-and-goodness-of-fit"><i class="fa fa-check"></i><b>14.2.2</b> Assumptions and Goodness-of-fit</a></li>
+<li class="chapter" data-level="14.2.3" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#dispersion-issue-and-remedies"><i class="fa fa-check"></i><b>14.2.3</b> Dispersion Issue and Remedies</a></li>
+<li class="chapter" data-level="14.2.4" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#data-structure-of-poisson-regression"><i class="fa fa-check"></i><b>14.2.4</b> Data Structure of Poisson Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#case-studies-3"><i class="fa fa-check"></i><b>14.3</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#harbor-seal-data"><i class="fa fa-check"></i><b>14.3.1</b> Harbor Seal Data</a></li>
+<li class="chapter" data-level="14.3.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#toxicity-study"><i class="fa fa-check"></i><b>14.3.2</b> Toxicity Study</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#concluding-remarks-1"><i class="fa fa-check"></i><b>14.4</b> Concluding Remarks</a></li>
+<li class="chapter" data-level="14.5" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#practice-problems-5"><i class="fa fa-check"></i><b>14.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html"><i class="fa fa-check"></i><b>15</b> Power Calculation and Sample Size Determination</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#two-sample-proportion-problems"><i class="fa fa-check"></i><b>15.1</b> Two-sample Proportion Problems</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#sample-size-estimations-for-two-proportions"><i class="fa fa-check"></i><b>15.1.1</b> Sample size estimations for <strong>two proportions</strong></a></li>
+<li class="chapter" data-level="15.1.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-for-two-proportions"><i class="fa fa-check"></i><b>15.1.2</b> Power analysis for <strong>two proportions</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#two-sample-mean-problems"><i class="fa fa-check"></i><b>15.2</b> Two-sample Mean Problems</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#sample-size-estimations-for-two-averages"><i class="fa fa-check"></i><b>15.2.1</b> Sample size estimations for <strong>two averages</strong></a></li>
+<li class="chapter" data-level="15.2.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-for-two-averages"><i class="fa fa-check"></i><b>15.2.2</b> Power analysis for two averages</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#paired-sample-problems"><i class="fa fa-check"></i><b>15.3</b> Paired-sample Problems</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#sample-size-estimation-for-paired-data-before-and-after"><i class="fa fa-check"></i><b>15.3.1</b> Sample size estimation for <strong>paired data (before and after)</strong></a></li>
+<li class="chapter" data-level="15.3.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-of-paired-samples-paired-t-test"><i class="fa fa-check"></i><b>15.3.2</b> Power analysis of <strong>paired samples (paired t-test)</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#unequal-sample-sizes-problems"><i class="fa fa-check"></i><b>15.4</b> Unequal Sample Sizes Problems</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-with-unequal-sample-sizes"><i class="fa fa-check"></i><b>15.4.1</b> Power analysis with <strong>unequal sample sizes</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#conclusions"><i class="fa fa-check"></i><b>15.5</b> Conclusions</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STA501 E-Pack: Applied Statistical Methods</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="analysis-of-variance-anova" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Topic 9</span> Analysis of Variance (ANOVA)<a href="analysis-of-variance-anova.html#analysis-of-variance-anova" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In the previous module, we introduced the test on equality of two population variances. A natural question is how to compare three, four, and more population means.</p>
+<div id="the-question-of-one-way-anova" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> The Question of One-way ANOVA<a href="analysis-of-variance-anova.html#the-question-of-one-way-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-126"></span>
+<img src="img08/w08-mytilus_edulis.jpg" alt=" Mussule Mytilus trossulus" width="80%" />
+<p class="caption">
+Figure 9.1:  Mussule Mytilus trossulus
+</p>
+</div>
+<p>Consider here are some data on a shell measurement in the mussel Mytilus trossulus from five locations: Tillamook, Oregon; Newport, Oregon; Petersburg, Alaska; Magadan, Russia; and Tvarminne, Finland, taken from a much larger data set.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Tillamook</th>
+<th>Newport</th>
+<th>Petersburg</th>
+<th>Magadan</th>
+<th>Tvarminne</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(<span class="math inline">\(\mu_1\)</span>)</td>
+<td>(<span class="math inline">\(\mu_2\)</span>)</td>
+<td>(<span class="math inline">\(\mu_3\)</span>)</td>
+<td>(<span class="math inline">\(\mu_4\)</span>)</td>
+<td>(<span class="math inline">\(\mu_5\)</span>)</td>
+</tr>
+<tr class="even">
+<td>0.0571</td>
+<td>0.0873</td>
+<td>0.0974</td>
+<td>0.1033</td>
+<td>0.0703</td>
+</tr>
+<tr class="odd">
+<td>0.0813</td>
+<td>0.0662</td>
+<td>0.1352</td>
+<td>0.0915</td>
+<td>0.1026</td>
+</tr>
+<tr class="even">
+<td>0.0831</td>
+<td>0.0672</td>
+<td>0.0817</td>
+<td>0.0781</td>
+<td>0.0956</td>
+</tr>
+<tr class="odd">
+<td>0.0976</td>
+<td>0.0819</td>
+<td>0.1016</td>
+<td>0.0685</td>
+<td>0.0973</td>
+</tr>
+<tr class="even">
+<td>0.0817</td>
+<td>0.0749</td>
+<td>0.0968</td>
+<td>0.0677</td>
+<td>0.1039</td>
+</tr>
+<tr class="odd">
+<td>0.0859</td>
+<td>0.0649</td>
+<td>0.1064</td>
+<td>0.0697</td>
+<td>0.1045</td>
+</tr>
+<tr class="even">
+<td>0.0735</td>
+<td>0.0835</td>
+<td>0.105</td>
+<td>0.0764</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>0.0659</td>
+<td>0.0725</td>
+<td></td>
+<td>0.0689</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>0.0923</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>0.0836</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The statistical <strong>null hypothesis</strong> is that the mean lengths of mussel shell <em>are the same across the five locations</em>. That is, the null hypothesis has the following form.</p>
+<p><span class="math inline">\(H_0:\)</span> <span class="math inline">\(\mu_1 = \mu_2 = \mu_3 = \mu_4 = \mu5.\)</span></p>
+<p>The <strong>alternative hypothesis</strong> is that the mean lengths of the mussel shells of the five locations are <em>not all equal</em>.</p>
+<p><span class="math inline">\(H_a:\)</span> at least one of the means is different from the other.</p>
+<div id="what-is-anova" class="section level3 hasAnchor" number="9.1.1">
+<h3><span class="header-section-number">9.1.1</span> What is ANOVA<a href="analysis-of-variance-anova.html#what-is-anova" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>ANOVA is a statistical technique that assesses potential differences in a continuous dependent variable by a categorical variable having 2 or more categories. For example, an ANOVA can examine potential differences in the starting salaries of undergraduate students majoring in Biology, Mathematics, and Psychology. We have learned the two-sample t-test to compare the difference between the two population means. To compare three or more population means, we need a new procedure - analysis of variance (ANOVA).</p>
+<p>The use of ANOVA depends on the research designs (see the class note of week #2). One-way and k-way ANOVAs are commonly used in practice.</p>
+<ul>
+<li><p><strong>One-way ANOVA</strong> involves a single factor variable that has several categories. The one-way ANOVA addresses whether the means across categories are equal. If the means are not equal, the ANOVA does not tell which specific difference. Separate procedures are needed to perform pair-wise comparisons to detect the specific difference.</p></li>
+<li><p><strong>Two-way ANOVA</strong> involves two-factor variables. Each factor variable has several categories. The null hypotheses could be different from situation to situation. This is not the main to cover in this module. We will use multiple linear regression approaches to this problem.</p></li>
+</ul>
+</div>
+<div id="assumptions-of-anova" class="section level3 hasAnchor" number="9.1.2">
+<h3><span class="header-section-number">9.1.2</span> Assumptions of ANOVA<a href="analysis-of-variance-anova.html#assumptions-of-anova" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are two basic assumptions for the <strong>classical ANOVA</strong>.</p>
+<ul>
+<li><p>The response variable has a normal distribution with potentially different means at different factor levels.</p></li>
+<li><p>The variance of the response variable has constant variance (the variances of different categories are equal).</p></li>
+</ul>
+<p>The ANOVA procedures are sensitive to the normality assumption of the response variable. In practice, we need to perform diagnostic analysis and make sure the assumptions are satisfied. If the assumptions are violated, the resulting p-values might not be correct.</p>
+<p>If the constant variance assumption is not satisfied, the distribution of the variance ratio in the ANOVA table is NOT the specified F distribution. One way to handle multiple comparisons with this unequal variance data is the well-known Welch ANOVA. We will use it in the data analysis of the case study.</p>
+</div>
+</div>
+<div id="steps-of-anova" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Steps of ANOVA<a href="analysis-of-variance-anova.html#steps-of-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this section, we outline the steps for the analysis of variance.</p>
+<div id="anova-tables" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> ANOVA Tables<a href="analysis-of-variance-anova.html#anova-tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>All computer programs that perform ANOVA generate the following ANOVA table.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>SS</th>
+<th>DF</th>
+<th>MS</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Between</td>
+<td><span class="math inline">\(SS_B\)</span></td>
+<td><span class="math inline">\(K-1\)</span></td>
+<td><span class="math inline">\(MS_B = SS_B/(K-1)\)</span></td>
+<td><span class="math inline">\(F=MS_B/MSE_W\)</span></td>
+</tr>
+<tr class="even">
+<td>Within</td>
+<td><span class="math inline">\(SS_W\)</span></td>
+<td><span class="math inline">\(N-K\)</span></td>
+<td><span class="math inline">\(MS_W = SS_W/(N-K)\)</span></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td><span class="math inline">\(SS_T\)</span></td>
+<td><span class="math inline">\(N-1\)</span></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>I will use the mussel length data as an example to calculate the quantities in the above table.</p>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="18%" />
+<col width="24%" />
+<col width="18%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tillamook</th>
+<th>Newport</th>
+<th>Petersburg</th>
+<th>Magadan</th>
+<th>Tvarminne</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(<span class="math inline">\(\mu_1\)</span>)</td>
+<td>(<span class="math inline">\(\mu_2\)</span>)</td>
+<td>(<span class="math inline">\(\mu_3\)</span>)</td>
+<td>(<span class="math inline">\(\mu_4\)</span>)</td>
+<td>(<span class="math inline">\(\mu_5\)</span>)</td>
+</tr>
+<tr class="even">
+<td>0.0571</td>
+<td>0.0873</td>
+<td>0.0974</td>
+<td>0.1033</td>
+<td>0.0703</td>
+</tr>
+<tr class="odd">
+<td>0.0813</td>
+<td>0.0662</td>
+<td>0.1352</td>
+<td>0.0915</td>
+<td>0.1026</td>
+</tr>
+<tr class="even">
+<td>0.0831</td>
+<td>0.0672</td>
+<td>0.0817</td>
+<td>0.0781</td>
+<td>0.0956</td>
+</tr>
+<tr class="odd">
+<td>0.0976</td>
+<td>0.0819</td>
+<td>0.1016</td>
+<td>0.0685</td>
+<td>0.0973</td>
+</tr>
+<tr class="even">
+<td>0.0817</td>
+<td>0.0749</td>
+<td>0.0968</td>
+<td>0.0677</td>
+<td>0.1039</td>
+</tr>
+<tr class="odd">
+<td>0.0859</td>
+<td>0.0649</td>
+<td>0.1064</td>
+<td>0.0697</td>
+<td>0.1045</td>
+</tr>
+<tr class="even">
+<td>0.0735</td>
+<td>0.0835</td>
+<td>0.105</td>
+<td>0.0764</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>0.0659</td>
+<td>0.0725</td>
+<td></td>
+<td>0.0689</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>0.0923</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>0.0836</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(n_1, \bar{x}_1, s_1\)</span></td>
+<td><span class="math inline">\(n_2, \bar{x}_2, s_2\)</span></td>
+<td><span class="math inline">\(n_3, \bar{x}_3, s_3\)</span></td>
+<td><span class="math inline">\(n_4, \bar{x}_4, s_4\)</span></td>
+<td><span class="math inline">\(n_5, \bar{x}_5, s_5\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>In the last row of the table, we calculated the sample mean (<span class="math inline">\(\displaystyle\bar{x}_i\)</span>), sample standard deviation (<span class="math inline">\(\displaystyle s_i\)</span>), and sample size (<span class="math inline">\(\displaystyle n_i\)</span>) of each of the <span class="math inline">\(K=5\)</span> locations. Let <span class="math inline">\(\displaystyle \bar{x}\)</span> is the mean of the combined sample mean and <span class="math inline">\(N=n_1 + n_2 + n_3 + n_4 + n_5.\)</span></p>
+<ul>
+<li><p>The sum of squared deviations between groups.
+<span class="math display">\[\displaystyle SS_{B} = \sum n_i(\bar{x}_i-\bar{x})^2.\]</span></p></li>
+<li><p>The sum of squared deviation within groups
+<span class="math display">\[\displaystyle SS_{W} = \sum (n_i-1)s_i^2.\]</span></p></li>
+<li><p>The sum of the total error
+<span class="math display">\[\displaystyle SS_T = SS_B + SS_W.\]</span></p></li>
+</ul>
+<p><strong>Important Result</strong>: If the ANOVA assumptions are satisfied, <span class="math inline">\(F \approx F_{K-1, N-K}\)</span>.</p>
+<p>If the p-value of the <strong>F test</strong> is less than the given significance level, we reject the null hypothesis.</p>
+<p><span class="math inline">\(H_0:\)</span> <span class="math inline">\(\mu_1 = \mu_2 = \mu_3 = \mu_4 = \mu5.\)</span></p>
+<p>This implies that at least one of the means is different from the other.</p>
+</div>
+<div id="post-hoc-pairwise-comparison" class="section level3 hasAnchor" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> Post hoc Pairwise Comparison<a href="analysis-of-variance-anova.html#post-hoc-pairwise-comparison" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If the null hypothesis of the ANOVA is rejected, we need to perform a pairwise comparison the identify the significant difference between the means. There are different types of comparisons: pairwise comparison and various simultaneous comparison procedures are available in R.</p>
+</div>
+<div id="how-to-summarize-anova-results" class="section level3 hasAnchor" number="9.2.3">
+<h3><span class="header-section-number">9.2.3</span> How to Summarize ANOVA Results<a href="analysis-of-variance-anova.html#how-to-summarize-anova-results" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p><strong>Describe the test type you used and the purpose of the test</strong> - An ANOVA is appropriate for multiple test subjects. In the above example, the measurements of the same shell were taken from 5 locations.</p></li>
+<li><p><strong>Write whether or not a significant difference existed between the means of each test group</strong>. Write “There was” or “There was not a significant effect of the factor.”</p></li>
+<li><p><strong>Write the results of the F test</strong>. Write the F test, followed by a parenthesis, then the two sets of degrees of freedom values separated by a comma, followed by an equal sign and the F value. The statement is something like: “F (two sets of degrees of freedom) = F value, p = p-value.”</p></li>
+<li><p><strong>Write “Post hoc test comparison” if a significant result is present</strong>. Write the post hoc test you used.</p></li>
+<li><p><strong>Recap the results in an easy-to-understand sentence or two</strong>. We could write “A significant difference existed between locations.</p></li>
+</ul>
+</div>
+</div>
+<div id="welchs-anova" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Welch’s ANOVA<a href="analysis-of-variance-anova.html#welchs-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The classical ANOVA assumes that the population is normal and variance is constant (i.e., group variances are equal). This is the base to define the F test. If the assumptions are violated, the variance ratio (F test statistic) does not follow an F distribution.</p>
+<p>One method commonly used in practice is the Welch ANOVA in which the degrees of freedom are modified to approximate the F distribution. The “Games-Howell” test is commonly used for the post-hoc multiple comparisons for the Welch ANOVA. The Games-Howell post-hoc test is another nonparametric approach to compare combinations of groups or treatments.</p>
+<p>In R, <code>oneway.test()</code> in <strong>stats</strong> performs Welch ANOVA. It is routine to use both classical ANOVA and Welch’s ANOVA. If there are no violations of the model, both ANOVAs yield similar results. If the two results are different, Welch ANOVA is more appropriate. The classical ANOVA is easy to interpret and understandable. If there are no violations, we always report the classical ANOVA.</p>
+</div>
+<div id="case-study-mussel-length-example---solution" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Case Study: Mussel Length Example - Solution<a href="analysis-of-variance-anova.html#case-study-mussel-length-example---solution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We will use R to conduct ANOVA and post hoc comparison on the mussel length example.</p>
+<div id="creating-an-anova-table" class="section level3 hasAnchor" number="9.4.1">
+<h3><span class="header-section-number">9.4.1</span> Creating An ANOVA Table<a href="analysis-of-variance-anova.html#creating-an-anova-table" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Next, we create an R data set (data frame) based on the given data table using the following R code to perform the ANOVA procedure.</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="analysis-of-variance-anova.html#cb138-1" tabindex="-1"></a>x1 <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.0571</span>,<span class="fl">0.0813</span>, <span class="fl">0.0831</span>, <span class="fl">0.0976</span>, <span class="fl">0.0817</span>, <span class="fl">0.0859</span>, <span class="fl">0.0735</span>, <span class="fl">0.0659</span>, <span class="fl">0.0923</span>, <span class="fl">0.0836</span>) </span>
+<span id="cb138-2"><a href="analysis-of-variance-anova.html#cb138-2" tabindex="-1"></a>x2 <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.0873</span>,<span class="fl">0.0662</span>, <span class="fl">0.0672</span>, <span class="fl">0.0819</span>, <span class="fl">0.0749</span>, <span class="fl">0.0649</span>, <span class="fl">0.0835</span>, <span class="fl">0.0725</span>)</span>
+<span id="cb138-3"><a href="analysis-of-variance-anova.html#cb138-3" tabindex="-1"></a>x3 <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.0974</span>,<span class="fl">0.1352</span>, <span class="fl">0.0817</span>, <span class="fl">0.1016</span>, <span class="fl">0.0968</span>, <span class="fl">0.1064</span>, <span class="fl">0.1050</span>)</span>
+<span id="cb138-4"><a href="analysis-of-variance-anova.html#cb138-4" tabindex="-1"></a>x4 <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.1033</span>,<span class="fl">0.0915</span>, <span class="fl">0.0781</span>, <span class="fl">0.0685</span>, <span class="fl">0.0677</span>, <span class="fl">0.0697</span>, <span class="fl">0.0764</span>, <span class="fl">0.0689</span>)</span>
+<span id="cb138-5"><a href="analysis-of-variance-anova.html#cb138-5" tabindex="-1"></a>x5 <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.0703</span>,<span class="fl">0.1026</span>, <span class="fl">0.0956</span>, <span class="fl">0.0973</span>, <span class="fl">0.1039</span>, <span class="fl">0.1045</span>)</span>
+<span id="cb138-6"><a href="analysis-of-variance-anova.html#cb138-6" tabindex="-1"></a>mussel.len <span class="ot">=</span> <span class="fu">c</span>(x1, x2, x3, x4, x5)      <span class="co"># pool all sub-samples of lengths</span></span>
+<span id="cb138-7"><a href="analysis-of-variance-anova.html#cb138-7" tabindex="-1"></a>location <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Tillamook&quot;</span>, <span class="fu">length</span>(x1)), </span>
+<span id="cb138-8"><a href="analysis-of-variance-anova.html#cb138-8" tabindex="-1"></a>             <span class="fu">rep</span>(<span class="st">&quot;Newport&quot;</span>, <span class="fu">length</span>(x2)),</span>
+<span id="cb138-9"><a href="analysis-of-variance-anova.html#cb138-9" tabindex="-1"></a>             <span class="fu">rep</span>(<span class="st">&quot;Petersburg&quot;</span>, <span class="fu">length</span>(x3)),</span>
+<span id="cb138-10"><a href="analysis-of-variance-anova.html#cb138-10" tabindex="-1"></a>             <span class="fu">rep</span>(<span class="st">&quot;Magadan&quot;</span>, <span class="fu">length</span>(x4)),</span>
+<span id="cb138-11"><a href="analysis-of-variance-anova.html#cb138-11" tabindex="-1"></a>             <span class="fu">rep</span>(<span class="st">&quot;Tvarminne&quot;</span>, <span class="fu">length</span>(x5)))  <span class="co"># location vector matches the lengths</span></span>
+<span id="cb138-12"><a href="analysis-of-variance-anova.html#cb138-12" tabindex="-1"></a>data.matrix <span class="ot">=</span> <span class="fu">cbind</span>(<span class="at">len =</span> mussel.len, <span class="at">location =</span> location)   <span class="co"># data a data table</span></span>
+<span id="cb138-13"><a href="analysis-of-variance-anova.html#cb138-13" tabindex="-1"></a>musseldata <span class="ot">=</span> <span class="fu">as.data.frame</span>(data.matrix)        <span class="co"># data frame</span></span>
+<span id="cb138-14"><a href="analysis-of-variance-anova.html#cb138-14" tabindex="-1"></a>model01 <span class="ot">=</span> <span class="fu">lm</span>(len <span class="sc">~</span> location, <span class="at">data =</span> musseldata)  <span class="co"># a model for extracting ANOVA</span></span>
+<span id="cb138-15"><a href="analysis-of-variance-anova.html#cb138-15" tabindex="-1"></a>anova.model <span class="ot">=</span> <span class="fu">anova</span>(model01)   <span class="co"># creating the ANOVA table</span></span>
+<span id="cb138-16"><a href="analysis-of-variance-anova.html#cb138-16" tabindex="-1"></a><span class="fu">kable</span>(anova.model, <span class="at">caption =</span> <span class="st">&quot;Analysis of variance table&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-127">Table 9.1: </span>Analysis of variance table</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Df</th>
+<th align="right">Sum Sq</th>
+<th align="right">Mean Sq</th>
+<th align="right">F value</th>
+<th align="right">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">location</td>
+<td align="right">4</td>
+<td align="right">0.0045197</td>
+<td align="right">0.0011299</td>
+<td align="right">7.12102</td>
+<td align="right">0.0002812</td>
+</tr>
+<tr class="even">
+<td align="left">Residuals</td>
+<td align="right">34</td>
+<td align="right">0.0053949</td>
+<td align="right">0.0001587</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+<p>The ANOVA test indicates that not all means are equal (<span class="math inline">\(F(4,34) = 7.12, p = 0.00028\)</span>). The follow-up pair-wise comparisons of the group means are given in the next subsection.</p>
+</div>
+<div id="diagnostic-analysis" class="section level3 hasAnchor" number="9.4.2">
+<h3><span class="header-section-number">9.4.2</span> Diagnostic Analysis<a href="analysis-of-variance-anova.html#diagnostic-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Since the ANOVA is sensitive to the normality assumption of the population and the constant variance. We need to check whether there are violations of the assumption. The following diagnostic plots are used to check the appropriateness of the ANOVA test.</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="analysis-of-variance-anova.html#cb139-1" tabindex="-1"></a>aov.model <span class="ot">=</span> <span class="fu">aov</span>(len<span class="sc">~</span>location, <span class="at">data=</span>musseldata)</span>
+<span id="cb139-2"><a href="analysis-of-variance-anova.html#cb139-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>))</span>
+<span id="cb139-3"><a href="analysis-of-variance-anova.html#cb139-3" tabindex="-1"></a><span class="fu">plot</span>(aov.model)</span></code></pre></div>
+<p><img src="STA501EB_files/figure-html/unnamed-chunk-128-1.png" width="480" style="display: block; margin: auto;" />
+<strong>Constant variance</strong>: If all points on the top-left graph are evenly spread around the horizontal axis (the red curve overlaps with the horizontal axis), then the constant variance assumption is satisfied.</p>
+<p><strong>Normal population</strong>: If all points on the top right graph are all close to the off-diagonal line, then the normality assumption is satisfied.</p>
+<p>The above plot showed that there are no significant violations of the assumptions of the ANOVA test. Next, we perform pair-wise comparisons.</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="analysis-of-variance-anova.html#cb140-1" tabindex="-1"></a>welch <span class="ot">=</span> <span class="fu">oneway.test</span>(mussel.len <span class="sc">~</span> location)</span>
+<span id="cb140-2"><a href="analysis-of-variance-anova.html#cb140-2" tabindex="-1"></a>F.stats <span class="ot">=</span> <span class="fu">as.vector</span>(welch<span class="sc">$</span>statistic)</span>
+<span id="cb140-3"><a href="analysis-of-variance-anova.html#cb140-3" tabindex="-1"></a>num.df <span class="ot">=</span> <span class="fu">as.vector</span>(welch<span class="sc">$</span>parameter[<span class="dv">1</span>])</span>
+<span id="cb140-4"><a href="analysis-of-variance-anova.html#cb140-4" tabindex="-1"></a>denom.df <span class="ot">=</span> <span class="fu">as.vector</span>(welch<span class="sc">$</span>parameter[<span class="dv">2</span>])</span>
+<span id="cb140-5"><a href="analysis-of-variance-anova.html#cb140-5" tabindex="-1"></a>p.value <span class="ot">=</span> <span class="fu">as.vector</span>(welch<span class="sc">$</span>p.value)</span>
+<span id="cb140-6"><a href="analysis-of-variance-anova.html#cb140-6" tabindex="-1"></a>cap.text <span class="ot">=</span> welch<span class="sc">$</span>method</span>
+<span id="cb140-7"><a href="analysis-of-variance-anova.html#cb140-7" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">cbind</span>(<span class="at">F.stats =</span> F.stats, <span class="at">num.df =</span> num.df,</span>
+<span id="cb140-8"><a href="analysis-of-variance-anova.html#cb140-8" tabindex="-1"></a>            <span class="at">denom.df=</span>denom.df, <span class="at">p.value =</span> p.value), <span class="at">caption =</span> cap.text)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-129">Table 9.2: </span>One-way analysis of means (not assuming equal variances)</caption>
+<thead>
+<tr class="header">
+<th align="right">F.stats</th>
+<th align="right">num.df</th>
+<th align="right">denom.df</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">5.664479</td>
+<td align="right">4</td>
+<td align="right">15.69546</td>
+<td align="right">0.0050796</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="welch-anova" class="section level3 hasAnchor" number="9.4.3">
+<h3><span class="header-section-number">9.4.3</span> Welch ANOVA<a href="analysis-of-variance-anova.html#welch-anova" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Although no significant violations were observed in the above residual plots, we still perform the Welch ANOVA for illustrative purposes.</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="analysis-of-variance-anova.html#cb141-1" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;https://raw.githubusercontent.com/pengdsci/STA501/main/ref/anova-posthoc-test.txt&quot;</span>)</span>
+<span id="cb141-2"><a href="analysis-of-variance-anova.html#cb141-2" tabindex="-1"></a><span class="co"># posthoc.tgh &lt;- function(y, x, method=c(&quot;games-howell&quot;, &quot;tukey&quot;), digits=2)</span></span>
+<span id="cb141-3"><a href="analysis-of-variance-anova.html#cb141-3" tabindex="-1"></a>posthoc <span class="ot">=</span> <span class="fu">posthoc.tgh</span>(mussel.len, location, <span class="at">method=</span><span class="st">&quot;tukey&quot;</span>,<span class="at">digits=</span><span class="dv">2</span> )</span>
+<span id="cb141-4"><a href="analysis-of-variance-anova.html#cb141-4" tabindex="-1"></a>descriptives.stats <span class="ot">=</span> posthoc<span class="sc">$</span>intermediate<span class="sc">$</span>descriptives</span>
+<span id="cb141-5"><a href="analysis-of-variance-anova.html#cb141-5" tabindex="-1"></a><span class="fu">kable</span>(descriptives.stats, <span class="at">caption =</span> <span class="st">&quot;Descriptive statistics of sub-populations&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-130">Table 9.3: </span>Descriptive statistics of sub-populations</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">n</th>
+<th align="right">means</th>
+<th align="right">variances</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Magadan</td>
+<td align="right">8</td>
+<td align="right">0.0780125</td>
+<td align="right">0.0001676</td>
+</tr>
+<tr class="even">
+<td align="left">Newport</td>
+<td align="right">8</td>
+<td align="right">0.0748000</td>
+<td align="right">0.0000739</td>
+</tr>
+<tr class="odd">
+<td align="left">Petersburg</td>
+<td align="right">7</td>
+<td align="right">0.1034429</td>
+<td align="right">0.0002627</td>
+</tr>
+<tr class="even">
+<td align="left">Tillamook</td>
+<td align="right">10</td>
+<td align="right">0.0802000</td>
+<td align="right">0.0001431</td>
+</tr>
+<tr class="odd">
+<td align="left">Tvarminne</td>
+<td align="right">6</td>
+<td align="right">0.0957000</td>
+<td align="right">0.0001680</td>
+</tr>
+</tbody>
+</table>
+<p>We can see that both classical and Welch ANOVA yield the same result (both p-values are &lt; 0.01). Therefore, we report the results of classical ANOVA and Tukey’s HSD procedure.</p>
+</div>
+<div id="post-hoc-multiple-comparisons" class="section level3 hasAnchor" number="9.4.4">
+<h3><span class="header-section-number">9.4.4</span> Post-hoc Multiple Comparisons<a href="analysis-of-variance-anova.html#post-hoc-multiple-comparisons" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Since the null hypothesis was rejected, it is necessary to quantify the differences between groups in order to determine which groups significantly differ from each other.</p>
+<p>There are several multiple comparison tests with implementations in various R libraries. We will use Tukey’s Honest Significant Differences (HSD). The Tukey HSD procedure will run a pairwise comparison of all possible combinations of groups and test these pairs for significant differences between their means, all while adjusting the p-value. If the assumption of constant variance is violated, the Welch ANOVA will be carried out. The Games-Howell test will be used if the null hypothesis in the Welch ANOVA is rejected.</p>
+<p>The following R code performs the pair-wise comparisons between the group means.</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="analysis-of-variance-anova.html#cb142-1" tabindex="-1"></a>aov.model <span class="ot">=</span> <span class="fu">aov</span>(len<span class="sc">~</span>location, <span class="at">data=</span>musseldata)</span>
+<span id="cb142-2"><a href="analysis-of-variance-anova.html#cb142-2" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">TukeyHSD</span>(aov.model)<span class="sc">$</span>location, <span class="at">caption =</span> <span class="st">&quot;Tukey multiple comparisons of means&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-131">Table 9.4: </span>Tukey multiple comparisons of means</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">diff</th>
+<th align="right">lwr</th>
+<th align="right">upr</th>
+<th align="right">p adj</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Newport-Magadan</td>
+<td align="right">-0.0032125</td>
+<td align="right">-0.0213487</td>
+<td align="right">0.0149237</td>
+<td align="right">0.9857956</td>
+</tr>
+<tr class="even">
+<td align="left">Petersburg-Magadan</td>
+<td align="right">0.0254304</td>
+<td align="right">0.0066576</td>
+<td align="right">0.0442031</td>
+<td align="right">0.0036924</td>
+</tr>
+<tr class="odd">
+<td align="left">Tillamook-Magadan</td>
+<td align="right">0.0021875</td>
+<td align="right">-0.0150180</td>
+<td align="right">0.0193930</td>
+<td align="right">0.9959794</td>
+</tr>
+<tr class="even">
+<td align="left">Tvarminne-Magadan</td>
+<td align="right">0.0176875</td>
+<td align="right">-0.0019019</td>
+<td align="right">0.0372769</td>
+<td align="right">0.0928839</td>
+</tr>
+<tr class="odd">
+<td align="left">Petersburg-Newport</td>
+<td align="right">0.0286429</td>
+<td align="right">0.0098701</td>
+<td align="right">0.0474156</td>
+<td align="right">0.0009253</td>
+</tr>
+<tr class="even">
+<td align="left">Tillamook-Newport</td>
+<td align="right">0.0054000</td>
+<td align="right">-0.0118055</td>
+<td align="right">0.0226055</td>
+<td align="right">0.8934665</td>
+</tr>
+<tr class="odd">
+<td align="left">Tvarminne-Newport</td>
+<td align="right">0.0209000</td>
+<td align="right">0.0013106</td>
+<td align="right">0.0404894</td>
+<td align="right">0.0317354</td>
+</tr>
+<tr class="even">
+<td align="left">Tillamook-Petersburg</td>
+<td align="right">-0.0232429</td>
+<td align="right">-0.0411181</td>
+<td align="right">-0.0053676</td>
+<td align="right">0.0056547</td>
+</tr>
+<tr class="odd">
+<td align="left">Tvarminne-Petersburg</td>
+<td align="right">-0.0077429</td>
+<td align="right">-0.0279230</td>
+<td align="right">0.0124373</td>
+<td align="right">0.8028001</td>
+</tr>
+<tr class="even">
+<td align="left">Tvarminne-Tillamook</td>
+<td align="right">0.0155000</td>
+<td align="right">-0.0032310</td>
+<td align="right">0.0342310</td>
+<td align="right">0.1446987</td>
+</tr>
+</tbody>
+</table>
+<p>The multiple comparisons show that four differences are significant at level 0.05. These differences will be reported in the summary.</p>
+<p><strong>For illustrative purposes</strong>, we carry the Games-Howell test for multiple comparisons in the following.</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="analysis-of-variance-anova.html#cb143-1" tabindex="-1"></a>Games.howell <span class="ot">=</span> posthoc<span class="sc">$</span>output<span class="sc">$</span>games.howell</span>
+<span id="cb143-2"><a href="analysis-of-variance-anova.html#cb143-2" tabindex="-1"></a><span class="fu">kable</span>(Games.howell, <span class="at">caption=</span><span class="st">&quot;Games-Howell multiple comparisons&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-132">Table 9.5: </span>Games-Howell multiple comparisons</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">t</th>
+<th align="right">df</th>
+<th align="right">p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Magadan:Newport</td>
+<td align="right">0.5847249</td>
+<td align="right">12.169510</td>
+<td align="right">0.9748911</td>
+</tr>
+<tr class="even">
+<td align="left">Magadan:Petersburg</td>
+<td align="right">3.3254180</td>
+<td align="right">11.496217</td>
+<td align="right">0.0412241</td>
+</tr>
+<tr class="odd">
+<td align="left">Magadan:Tillamook</td>
+<td align="right">0.3684022</td>
+<td align="right">14.550533</td>
+<td align="right">0.9956174</td>
+</tr>
+<tr class="even">
+<td align="left">Magadan:Tvarminne</td>
+<td align="right">2.5281745</td>
+<td align="right">10.915427</td>
+<td align="right">0.1539440</td>
+</tr>
+<tr class="odd">
+<td align="left">Newport:Petersburg</td>
+<td align="right">4.1880670</td>
+<td align="right">8.857240</td>
+<td align="right">0.0156494</td>
+</tr>
+<tr class="even">
+<td align="left">Newport:Tillamook</td>
+<td align="right">1.1127299</td>
+<td align="right">15.868239</td>
+<td align="right">0.7976041</td>
+</tr>
+<tr class="odd">
+<td align="left">Newport:Tvarminne</td>
+<td align="right">3.4248678</td>
+<td align="right">8.205773</td>
+<td align="right">0.0506123</td>
+</tr>
+<tr class="even">
+<td align="left">Petersburg:Tillamook</td>
+<td align="right">3.2279514</td>
+<td align="right">10.436333</td>
+<td align="right">0.0530007</td>
+</tr>
+<tr class="odd">
+<td align="left">Petersburg:Tvarminne</td>
+<td align="right">0.9564490</td>
+<td align="right">10.967062</td>
+<td align="right">0.8686901</td>
+</tr>
+<tr class="even">
+<td align="left">Tillamook:Tvarminne</td>
+<td align="right">2.3828489</td>
+<td align="right">9.970454</td>
+<td align="right">0.1972836</td>
+</tr>
+</tbody>
+</table>
+<p>The results are slightly different from Tukey’s HSD test. Next, we present a visual presentation before summarizing the ANOVA result and post-hoc comparisons.</p>
+</div>
+<div id="visual-comparison---boxplots" class="section level3 hasAnchor" number="9.4.5">
+<h3><span class="header-section-number">9.4.5</span> Visual Comparison - Boxplots<a href="analysis-of-variance-anova.html#visual-comparison---boxplots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="analysis-of-variance-anova.html#cb144-1" tabindex="-1"></a><span class="co"># Box-plot of mussel length by locations</span></span>
+<span id="cb144-2"><a href="analysis-of-variance-anova.html#cb144-2" tabindex="-1"></a><span class="fu">boxplot</span>(mussel.len <span class="sc">~</span> location,         </span>
+<span id="cb144-3"><a href="analysis-of-variance-anova.html#cb144-3" tabindex="-1"></a>        <span class="at">main=</span><span class="st">&quot;Mussel Length Data&quot;</span>, <span class="co"># plot title</span></span>
+<span id="cb144-4"><a href="analysis-of-variance-anova.html#cb144-4" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">&quot;Mussel Length&quot;</span>,      <span class="co"># label of x-axis</span></span>
+<span id="cb144-5"><a href="analysis-of-variance-anova.html#cb144-5" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">&quot;Locations&quot;</span>,          <span class="co"># label y-axis</span></span>
+<span id="cb144-6"><a href="analysis-of-variance-anova.html#cb144-6" tabindex="-1"></a>        <span class="at">border =</span> <span class="st">&quot;navy&quot;</span>,           <span class="co"># border color box-plot</span></span>
+<span id="cb144-7"><a href="analysis-of-variance-anova.html#cb144-7" tabindex="-1"></a>        <span class="at">col=</span><span class="st">&quot;skyblue&quot;</span>)             <span class="co"># box color</span></span></code></pre></div>
+<p><img src="STA501EB_files/figure-html/unnamed-chunk-133-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The box plot also confirms that the group means are not identical.</p>
+</div>
+<div id="anova-reporting" class="section level3 hasAnchor" number="9.4.6">
+<h3><span class="header-section-number">9.4.6</span> ANOVA Reporting<a href="analysis-of-variance-anova.html#anova-reporting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We conducted a one-way ANOVA test on the equality of the mean lengths of mussel shells in the five locations and found a statistical significance with F(4, 34) = 7.12, p-value = 0.00028. This implies that the means at different locations are not identical.</p>
+<p>After we conducted pairwise comparisons of the means of the lengths of mussel shells across five locations using the HSD test, we found that, among the 10 pairwise comparisons, four of them are significant with an adjusted p-value less than 0.05: Petersburg - Magadan = 0.0254304 (p = 0.0037), Petersburg - Newport = 0.0286429 (p = 0.0009), Tvarminne - Newport = 0.0209 (p = 0.032), and Tillamook - Petersburg = -0.0232429 (p = 0.0057). The group box plot also showed the difference between the locations.</p>
+<p><br />
+</p>
+</div>
+</div>
+<div id="practice-problems-1" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Practice Problems<a href="analysis-of-variance-anova.html#practice-problems-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The effects of thermal pollution on Asiatic clams at three different geographical
+locations were analyzed by researchers. Sample data on clamshell length, width, and
+height are displayed in the following table.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-134"></span>
+<img src="img08/w08-clamshell-data-table.jpg" alt="Clam shell data table" width="80%" />
+<p class="caption">
+Figure 9.2: Clam shell data table
+</p>
+</div>
+<p>The objective is to determine if there is a significant difference in mean length, height, or width (measured in mm) of the clamshell at the three different locations by performing three analyses.</p>
+<p>To save you some time, I created three data sets for length, width, and height respectively in the following code chunk. <strong>You only choose ONE of the three sets</strong> to complete this week’s assignment.</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="analysis-of-variance-anova.html#cb145-1" tabindex="-1"></a><span class="co"># length</span></span>
+<span id="cb145-2"><a href="analysis-of-variance-anova.html#cb145-2" tabindex="-1"></a>Len.loc<span class="fl">.1</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">7.20</span>, <span class="fl">7.50</span>, <span class="fl">6.89</span>, <span class="fl">6.95</span>, <span class="fl">6.73</span>, <span class="fl">7.25</span>, <span class="fl">7.20</span>, <span class="fl">6.85</span>, <span class="fl">7.52</span>, <span class="fl">7.01</span>, <span class="fl">6.65</span>, </span>
+<span id="cb145-3"><a href="analysis-of-variance-anova.html#cb145-3" tabindex="-1"></a>              <span class="fl">7.55</span>, <span class="fl">7.14</span>, <span class="fl">7.45</span>, <span class="fl">7.24</span>, <span class="fl">7.75</span>, <span class="fl">6.85</span>, <span class="fl">6.50</span>, <span class="fl">6.64</span>, <span class="fl">7.19</span>, <span class="fl">7.15</span>, <span class="fl">7.21</span>, </span>
+<span id="cb145-4"><a href="analysis-of-variance-anova.html#cb145-4" tabindex="-1"></a>              <span class="fl">7.15</span>, <span class="fl">7.30</span>, <span class="fl">6.35</span>)</span>
+<span id="cb145-5"><a href="analysis-of-variance-anova.html#cb145-5" tabindex="-1"></a>Len.loc<span class="fl">.2</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">7.25</span>, <span class="fl">7.23</span>, <span class="fl">6.85</span>, <span class="fl">7.07</span>, <span class="fl">6.55</span>, <span class="fl">7.43</span>, <span class="fl">7.30</span>, <span class="fl">6.90</span>, <span class="fl">7.10</span>, <span class="fl">6.95</span>, <span class="fl">7.39</span>, </span>
+<span id="cb145-6"><a href="analysis-of-variance-anova.html#cb145-6" tabindex="-1"></a>              <span class="fl">6.54</span>, <span class="fl">6.39</span>, <span class="fl">6.08</span>, <span class="fl">6.30</span>, <span class="fl">6.35</span>, <span class="fl">7.34</span>, <span class="fl">6.70</span>, <span class="fl">7.08</span>, <span class="fl">7.09</span>, <span class="fl">7.40</span>, <span class="fl">6.00</span>, </span>
+<span id="cb145-7"><a href="analysis-of-variance-anova.html#cb145-7" tabindex="-1"></a>              <span class="fl">6.94</span>)</span>
+<span id="cb145-8"><a href="analysis-of-variance-anova.html#cb145-8" tabindex="-1"></a>Len.loc<span class="fl">.3</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">5.95</span>, <span class="fl">7.60</span>, <span class="fl">6.15</span>, <span class="fl">7.00</span>, <span class="fl">6.81</span>, <span class="fl">7.10</span>, <span class="fl">6.85</span>, <span class="fl">6.68</span>, <span class="fl">5.51</span>, <span class="fl">6.85</span>, <span class="fl">7.10</span>, </span>
+<span id="cb145-9"><a href="analysis-of-variance-anova.html#cb145-9" tabindex="-1"></a>              <span class="fl">6.81</span>, <span class="fl">7.30</span>, <span class="fl">7.05</span>, <span class="fl">6.75</span>, <span class="fl">6.75</span>, <span class="fl">7.35</span>, <span class="fl">6.22</span>, <span class="fl">6.80</span>, <span class="fl">6.29</span>, <span class="fl">7.55</span>, <span class="fl">7.45</span>, </span>
+<span id="cb145-10"><a href="analysis-of-variance-anova.html#cb145-10" tabindex="-1"></a>              <span class="fl">6.70</span>, <span class="fl">7.51</span>, <span class="fl">6.95</span>, <span class="fl">7.50</span>)</span>
+<span id="cb145-11"><a href="analysis-of-variance-anova.html#cb145-11" tabindex="-1"></a></span>
+<span id="cb145-12"><a href="analysis-of-variance-anova.html#cb145-12" tabindex="-1"></a><span class="co"># Width</span></span>
+<span id="cb145-13"><a href="analysis-of-variance-anova.html#cb145-13" tabindex="-1"></a>Width.loc<span class="fl">.1</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">6.10</span>, <span class="fl">5.90</span>, <span class="fl">5.45</span>, <span class="fl">5.76</span>, <span class="fl">5.36</span>, <span class="fl">5.84</span>, <span class="fl">5.83</span>, <span class="fl">5.75</span>, <span class="fl">6.27</span>, <span class="fl">5.65</span>, <span class="fl">5.55</span>, </span>
+<span id="cb145-14"><a href="analysis-of-variance-anova.html#cb145-14" tabindex="-1"></a>                <span class="fl">6.25</span>, <span class="fl">5.65</span>, <span class="fl">6.05</span>, <span class="fl">5.73</span>, <span class="fl">6.35</span>, <span class="fl">6.05</span>, <span class="fl">5.30</span>, <span class="fl">5.36</span>, <span class="fl">5.85</span>, <span class="fl">6.30</span>, <span class="fl">6.12</span>, </span>
+<span id="cb145-15"><a href="analysis-of-variance-anova.html#cb145-15" tabindex="-1"></a>                <span class="fl">6.20</span>, <span class="fl">6.15</span>,<span class="fl">5.25</span>)</span>
+<span id="cb145-16"><a href="analysis-of-variance-anova.html#cb145-16" tabindex="-1"></a>Width.loc<span class="fl">.2</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">6.25</span>, <span class="fl">5.99</span>, <span class="fl">5.61</span>, <span class="fl">5.91</span>, <span class="fl">5.30</span>, <span class="fl">6.10</span>, <span class="fl">5.95</span>, <span class="fl">5.80</span>, <span class="fl">5.81</span>, <span class="fl">5.65</span>, <span class="fl">6.04</span>, </span>
+<span id="cb145-17"><a href="analysis-of-variance-anova.html#cb145-17" tabindex="-1"></a>                <span class="fl">5.89</span>, <span class="fl">5.00</span>, <span class="fl">4.80</span>, <span class="fl">5.05</span>, <span class="fl">5.10</span>, <span class="fl">6.45</span>, <span class="fl">5.51</span>, <span class="fl">5.81</span>, <span class="fl">5.95</span>, <span class="fl">6.25</span>, <span class="fl">4.75</span>, </span>
+<span id="cb145-18"><a href="analysis-of-variance-anova.html#cb145-18" tabindex="-1"></a>                <span class="fl">5.63</span>)</span>
+<span id="cb145-19"><a href="analysis-of-variance-anova.html#cb145-19" tabindex="-1"></a>Width.loc<span class="fl">.3</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">4.75</span>, <span class="fl">6.45</span>, <span class="fl">5.05</span>, <span class="fl">5.80</span>, <span class="fl">5.61</span>, <span class="fl">5.75</span>, <span class="fl">5.55</span>, <span class="fl">5.50</span>, <span class="fl">4.52</span>, <span class="fl">5.53</span>, <span class="fl">5.80</span>, </span>
+<span id="cb145-20"><a href="analysis-of-variance-anova.html#cb145-20" tabindex="-1"></a>                <span class="fl">5.45</span>, <span class="fl">6.00</span>, <span class="fl">6.25</span>, <span class="fl">5.65</span>, <span class="fl">5.57</span>, <span class="fl">6.21</span>, <span class="fl">5.11</span>, <span class="fl">5.81</span>, <span class="fl">4.95</span>, <span class="fl">5.93</span>, <span class="fl">6.19</span>, </span>
+<span id="cb145-21"><a href="analysis-of-variance-anova.html#cb145-21" tabindex="-1"></a>                <span class="fl">5.55</span>, <span class="fl">6.20</span>, <span class="fl">5.69</span>, <span class="fl">6.20</span>)</span>
+<span id="cb145-22"><a href="analysis-of-variance-anova.html#cb145-22" tabindex="-1"></a></span>
+<span id="cb145-23"><a href="analysis-of-variance-anova.html#cb145-23" tabindex="-1"></a><span class="do">## Height</span></span>
+<span id="cb145-24"><a href="analysis-of-variance-anova.html#cb145-24" tabindex="-1"></a>Height.loc<span class="fl">.1</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">4.45</span>, <span class="fl">4.65</span>, <span class="fl">4.00</span>, <span class="fl">4.02</span>, <span class="fl">3.90</span>, <span class="fl">4.40</span>, <span class="fl">4.19</span>, <span class="fl">3.95</span>, <span class="fl">4.60</span>, <span class="fl">4.20</span>, <span class="fl">4.10</span>, </span>
+<span id="cb145-25"><a href="analysis-of-variance-anova.html#cb145-25" tabindex="-1"></a>                 <span class="fl">4.72</span>, <span class="fl">4.26</span>, <span class="fl">4.85</span>, <span class="fl">4.29</span>, <span class="fl">4.85</span>, <span class="fl">4.50</span>, <span class="fl">3.73</span>, <span class="fl">3.99</span>, <span class="fl">4.05</span>, <span class="fl">4.55</span>, <span class="fl">4.37</span>, </span>
+<span id="cb145-26"><a href="analysis-of-variance-anova.html#cb145-26" tabindex="-1"></a>                 <span class="fl">4.36</span>, <span class="fl">4.65</span>, <span class="fl">3.75</span>)</span>
+<span id="cb145-27"><a href="analysis-of-variance-anova.html#cb145-27" tabindex="-1"></a>Height.loc<span class="fl">.2</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">4.65</span>, <span class="fl">4.20</span>, <span class="fl">4.01</span>, <span class="fl">4.31</span>, <span class="fl">3.95</span>, <span class="fl">4.60</span>, <span class="fl">4.29</span>, <span class="fl">4.33</span>, <span class="fl">4.26</span>, <span class="fl">4.31</span>, <span class="fl">4.50</span>, </span>
+<span id="cb145-28"><a href="analysis-of-variance-anova.html#cb145-28" tabindex="-1"></a>                 <span class="fl">3.65</span>, <span class="fl">3.72</span>, <span class="fl">3.51</span>, <span class="fl">3.69</span>, <span class="fl">3.73</span>, <span class="fl">4.55</span>, <span class="fl">3.89</span>, <span class="fl">4.34</span>, <span class="fl">4.39</span>, <span class="fl">4.85</span>, <span class="fl">3.37</span>, </span>
+<span id="cb145-29"><a href="analysis-of-variance-anova.html#cb145-29" tabindex="-1"></a>                 <span class="fl">4.09</span>)</span>
+<span id="cb145-30"><a href="analysis-of-variance-anova.html#cb145-30" tabindex="-1"></a>Height.loc<span class="fl">.3</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">3.20</span>, <span class="fl">4.56</span>, <span class="fl">3.50</span>, <span class="fl">4.30</span>, <span class="fl">4.22</span>, <span class="fl">4.10</span>, <span class="fl">3.89</span>, <span class="fl">3.90</span>, <span class="fl">2.70</span>, <span class="fl">4.00</span>, <span class="fl">4.45</span>, </span>
+<span id="cb145-31"><a href="analysis-of-variance-anova.html#cb145-31" tabindex="-1"></a>                 <span class="fl">3.51</span>, <span class="fl">4.31</span>, <span class="fl">4.71</span>, <span class="fl">4.00</span>, <span class="fl">4.06</span>, <span class="fl">4.29</span>, <span class="fl">3.35</span>, <span class="fl">4.50</span>, <span class="fl">3.69</span>, <span class="fl">4.55</span>, <span class="fl">4.70</span>, </span>
+<span id="cb145-32"><a href="analysis-of-variance-anova.html#cb145-32" tabindex="-1"></a>                 <span class="fl">4.00</span>, <span class="fl">4.74</span>, <span class="fl">4.29</span>, <span class="fl">4.65</span>)</span></code></pre></div>
+<p>The following are the steps for completing the assignment:</p>
+<ol style="list-style-type: decimal">
+<li><p>Pick <strong>ONE</strong> of the three data sets (length, width, and height) from the above code chunk.</p></li>
+<li><p>Modify the code in 4.1 to create an R data set and perform the classical ANOVA analysis. Interpret the ANOVA results as I did in the class note.</p></li>
+<li><p>Perform a diagnostic analysis using the residual plot as shown in Section 4.2. Explain whether you observe any violations of the model assumptions.</p></li>
+<li><p>If the null hypothesis is rejected, carry out multiple comparisons between the three locations using either Tukey’s HSD or Games-Howell procedures.</p></li>
+<li><p>Report the ANOVA analysis results similar to what was reported in the note.</p></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="testing-statistical-hypothesis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="correlation-and-simple-linear-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/pengdsci/STA501EB/edit/master/09-ANOVA.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["STA501EB.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

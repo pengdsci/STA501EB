@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Topic 7 Confidence Intervals | STA501 E-Pack: Applied Statistical Methods</title>
+  <meta name="description" content="The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Topic 7 Confidence Intervals | STA501 E-Pack: Applied Statistical Methods" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Topic 7 Confidence Intervals | STA501 E-Pack: Applied Statistical Methods" />
+  
+  <meta name="twitter:description" content="The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Cheng Peng" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="sampling-distributions.html"/>
+<link rel="next" href="testing-statistical-hypothesis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<center><li><a href="./"><font color = "darkred"><b>STA 501 E-Pack: Applied Statistical Methods</b></font></a><br><font color = "navy">Cheng Peng</font></li></center>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html"><i class="fa fa-check"></i><b>2</b> R, RStudio and RMarkdown</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#r"><i class="fa fa-check"></i><b>2.1</b> R</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#order-of-operations"><i class="fa fa-check"></i><b>2.1.1</b> Order of Operations</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#basic-r-objects"><i class="fa fa-check"></i><b>2.1.2</b> Basic R Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio"><i class="fa fa-check"></i><b>2.2</b> RStudio</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio-gui"><i class="fa fa-check"></i><b>2.2.1</b> RStudio GUI</a></li>
+<li class="chapter" data-level="2.2.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#console"><i class="fa fa-check"></i><b>2.2.2</b> Console</a></li>
+<li class="chapter" data-level="2.2.3" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#source-editor"><i class="fa fa-check"></i><b>2.2.3</b> Source Editor</a></li>
+<li class="chapter" data-level="2.2.4" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#environment-window"><i class="fa fa-check"></i><b>2.2.4</b> Environment Window</a></li>
+<li class="chapter" data-level="2.2.5" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#system-and-graphic-files"><i class="fa fa-check"></i><b>2.2.5</b> System and Graphic files</a></li>
+<li class="chapter" data-level="2.2.6" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio-offers-numerous-helpful-features"><i class="fa fa-check"></i><b>2.2.6</b> RStudio offers numerous helpful features:</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rmarkdown"><i class="fa fa-check"></i><b>2.3</b> RMarkdown</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#code-chunk"><i class="fa fa-check"></i><b>2.3.1</b> Code Chunk</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#graphics-generated-from-r-code-chunks"><i class="fa fa-check"></i><b>2.3.2</b> Graphics Generated from R Code Chunks</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html"><i class="fa fa-check"></i><b>3</b> Data Collection and Data Loading</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#sampling-plans"><i class="fa fa-check"></i><b>3.1</b> Sampling Plans</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#simple-random-sampling-srs"><i class="fa fa-check"></i><b>3.1.1</b> Simple Random Sampling (SRS)</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#systematic-sampling"><i class="fa fa-check"></i><b>3.1.2</b> Systematic sampling</a></li>
+<li class="chapter" data-level="3.1.3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#stratified-sampling"><i class="fa fa-check"></i><b>3.1.3</b> Stratified sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#study-designs"><i class="fa fa-check"></i><b>3.2</b> Study Designs</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#observational-studies"><i class="fa fa-check"></i><b>3.2.1</b> Observational Studies</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#experimental-designs"><i class="fa fa-check"></i><b>3.2.2</b> Experimental Designs</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#loading-data-to-r-from-external-data-files"><i class="fa fa-check"></i><b>3.3</b> Loading Data to R from External Data Files</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#text-file-aka.-delimited-text-file"><i class="fa fa-check"></i><b>3.3.1</b> Text File ( aka. Delimited Text File)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#data-frame-and-list"><i class="fa fa-check"></i><b>3.4</b> Data Frame and List</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#data-frame-1"><i class="fa fa-check"></i><b>3.4.1</b> Data Frame</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>4</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#data-types"><i class="fa fa-check"></i><b>4.1</b> Data Types</a></li>
+<li class="chapter" data-level="4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#tabular-and-graphic-summary"><i class="fa fa-check"></i><b>4.2</b> Tabular and Graphic Summary</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#categorical-data"><i class="fa fa-check"></i><b>4.2.1</b> Categorical Data</a></li>
+<li class="chapter" data-level="4.2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#numerical-data"><i class="fa fa-check"></i><b>4.2.2</b> Numerical Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#numerical-summary-of-numerical-data"><i class="fa fa-check"></i><b>4.3</b> Numerical Summary of Numerical Data</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#central-tendency"><i class="fa fa-check"></i><b>4.3.1</b> Central Tendency</a></li>
+<li class="chapter" data-level="4.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variations"><i class="fa fa-check"></i><b>4.3.2</b> Variations</a></li>
+<li class="chapter" data-level="4.3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#location"><i class="fa fa-check"></i><b>4.3.3</b> Location</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#assignment---descriptive-statistics"><i class="fa fa-check"></i><b>4.4</b> Assignment - Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summarizing-categorical-data"><i class="fa fa-check"></i><b>4.4.1</b> Summarizing Categorical Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html"><i class="fa fa-check"></i><b>5</b> Concepts of Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-random-variables"><i class="fa fa-check"></i><b>5.1</b> Concepts of random variables</a></li>
+<li class="chapter" data-level="5.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#types-of-random-variables"><i class="fa fa-check"></i><b>5.2</b> Types of random variables</a></li>
+<li class="chapter" data-level="5.3" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-probability-distributions-1"><i class="fa fa-check"></i><b>5.3</b> Concepts of probability distributions</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-probability"><i class="fa fa-check"></i><b>5.3.1</b> Concepts of probability</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#probability-distribution-of-random-variables"><i class="fa fa-check"></i><b>5.4</b> Probability distribution of random variables</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#discrete-probability-distribution"><i class="fa fa-check"></i><b>5.4.1</b> Discrete probability distribution</a></li>
+<li class="chapter" data-level="5.4.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#continuous-probability-distribution"><i class="fa fa-check"></i><b>5.4.2</b> Continuous probability distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#special-continuous-distributions"><i class="fa fa-check"></i><b>5.5</b> Special Continuous Distributions</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#normal-distribution"><i class="fa fa-check"></i><b>5.5.1</b> Normal Distribution</a></li>
+<li class="chapter" data-level="5.5.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#t-distribution"><i class="fa fa-check"></i><b>5.5.2</b> t distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#summary"><i class="fa fa-check"></i><b>5.6</b> Summary</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#numerical-examples-based-on-normal-and-t-distributions"><i class="fa fa-check"></i><b>5.6.1</b> Numerical Examples Based on Normal and t Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#assignment---probability-distributions"><i class="fa fa-check"></i><b>5.7</b> Assignment - Probability Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>6</b> Sampling Distributions</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#concepts-of-the-sampling-distribution"><i class="fa fa-check"></i><b>6.1</b> Concepts of the sampling distribution</a></li>
+<li class="chapter" data-level="6.2" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sampling-distribution-of-sampling-means"><i class="fa fa-check"></i><b>6.2</b> Sampling Distribution of Sampling Means</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#working-data-set-plant-diversity"><i class="fa fa-check"></i><b>6.2.1</b> Working Data Set: Plant Diversity</a></li>
+<li class="chapter" data-level="6.2.2" data-path="sampling-distributions.html"><a href="sampling-distributions.html#normal-population-with-given-mean-mu-and-variance-sigma2"><i class="fa fa-check"></i><b>6.2.2</b> Normal Population with given mean (<span class="math inline">\(\mu\)</span>) and Variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+<li class="chapter" data-level="6.2.3" data-path="sampling-distributions.html"><a href="sampling-distributions.html#normal-population-with-a-given-mean-mu-and-an-unknown-variance-sigma2"><i class="fa fa-check"></i><b>6.2.3</b> Normal Population with a given mean (<span class="math inline">\(\mu\)</span>) and an <strong>Unknown</strong> Variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+<li class="chapter" data-level="6.2.4" data-path="sampling-distributions.html"><a href="sampling-distributions.html#unspecified-population-with-a-given-mean-muand-an-unspecifed-variance-sigma2"><i class="fa fa-check"></i><b>6.2.4</b> Unspecified Population with a given mean (<span class="math inline">\(\mu\)</span>)and an unspecifed variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sampling-distribution-of-sample-proportions"><i class="fa fa-check"></i><b>6.3</b> Sampling distribution of sample proportions</a></li>
+<li class="chapter" data-level="6.4" data-path="sampling-distributions.html"><a href="sampling-distributions.html#summary-1"><i class="fa fa-check"></i><b>6.4</b> Summary</a></li>
+<li class="chapter" data-level="6.5" data-path="sampling-distributions.html"><a href="sampling-distributions.html#assignment---sampling-distributions"><i class="fa fa-check"></i><b>6.5</b> Assignment - Sampling Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>7</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#some-terms"><i class="fa fa-check"></i><b>7.1</b> Some Terms</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#what-are-the-issues-of-a-point-estimate"><i class="fa fa-check"></i><b>7.1.1</b> What are the issues of a point estimate?</a></li>
+<li class="chapter" data-level="7.1.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#how-about-multiple-samples"><i class="fa fa-check"></i><b>7.1.2</b> How About Multiple Samples?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#how-to-find-the-confidence-intervals-for-means-and-proportions"><i class="fa fa-check"></i><b>7.2</b> How to find the Confidence Intervals for Means and Proportions?</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#framework-of-confidence-interval"><i class="fa fa-check"></i><b>7.2.1</b> Framework Of Confidence Interval</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-population-mean"><i class="fa fa-check"></i><b>7.3</b> Confidence Interval of Population Mean</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#normal-population-with-known-variance."><i class="fa fa-check"></i><b>7.3.1</b> Normal Population with Known Variance.</a></li>
+<li class="chapter" data-level="7.3.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#normal-population-with-unknown-variance"><i class="fa fa-check"></i><b>7.3.2</b> Normal Population with Unknown Variance</a></li>
+<li class="chapter" data-level="7.3.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#unspecified-population-with-unknown-variance-but-with-large-sample-sizes"><i class="fa fa-check"></i><b>7.3.3</b> Unspecified Population with Unknown Variance but with Large Sample Sizes</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-proportion"><i class="fa fa-check"></i><b>7.4</b> Confidence Interval of Proportion</a></li>
+<li class="chapter" data-level="7.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#two-sample-problems---comparing-two-population-means"><i class="fa fa-check"></i><b>7.5</b> Two Sample Problems - Comparing Two Population Means</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-the-difference-of-two-unspecified-populations-means"><i class="fa fa-check"></i><b>7.5.1</b> Confidence Interval of the Difference of Two Unspecified Populations Means</a></li>
+<li class="chapter" data-level="7.5.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-the-difference-of-two-normal-populations-means"><i class="fa fa-check"></i><b>7.5.2</b> Confidence Interval of the Difference of Two Normal Populations Means</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="confidence-intervals.html"><a href="confidence-intervals.html#assignment---confidence-intervals"><i class="fa fa-check"></i><b>7.6</b> Assignment - Confidence Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html"><i class="fa fa-check"></i><b>8</b> Testing Statistical Hypothesis</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#formulation-of-statistical-hypothesis-testing"><i class="fa fa-check"></i><b>8.1</b> Formulation of Statistical Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#null-and-alternative-hypotheses"><i class="fa fa-check"></i><b>8.1.1</b> Null and Alternative Hypotheses</a></li>
+<li class="chapter" data-level="8.1.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#relationship-between-the-claim-and-the-statistical-hypotheses"><i class="fa fa-check"></i><b>8.1.2</b> Relationship between the claim and the statistical hypotheses</a></li>
+<li class="chapter" data-level="8.1.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#test-statistics---statistical-evidence"><i class="fa fa-check"></i><b>8.1.3</b> Test Statistics - Statistical Evidence</a></li>
+<li class="chapter" data-level="8.1.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#types-of-test-and-rejection-region"><i class="fa fa-check"></i><b>8.1.4</b> Types of Test and Rejection Region</a></li>
+<li class="chapter" data-level="8.1.5" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#statistical-decision-rule-p-value"><i class="fa fa-check"></i><b>8.1.5</b> Statistical Decision Rule: p-value</a></li>
+<li class="chapter" data-level="8.1.6" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#summary-of-the-test-hypothesis-procedure"><i class="fa fa-check"></i><b>8.1.6</b> Summary of the Test Hypothesis Procedure</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-studies"><i class="fa fa-check"></i><b>8.2</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-i-normal-population-with-a-known-variance."><i class="fa fa-check"></i><b>8.2.1</b> Case I: normal population with a known variance.</a></li>
+<li class="chapter" data-level="8.2.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-ii-normal-population-with-an-unknown-variance"><i class="fa fa-check"></i><b>8.2.2</b> Case II: Normal population with an unknown variance</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#unspecified-population-with-an-unknown-variance---clt"><i class="fa fa-check"></i><b>8.3</b> Unspecified population with an unknown variance - CLT</a></li>
+<li class="chapter" data-level="8.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#testing-population-proportion"><i class="fa fa-check"></i><b>8.4</b> Testing Population Proportion</a></li>
+<li class="chapter" data-level="8.5" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#testing-the-difference-between-two-population-means"><i class="fa fa-check"></i><b>8.5</b> Testing the difference between two population means</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#both-populations-are-unspecified-and-sample-sizes-are-large."><i class="fa fa-check"></i><b>8.5.1</b> Both populations are unspecified and sample sizes are large.</a></li>
+<li class="chapter" data-level="8.5.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#both-populations-are-normal-with-unknown-but-equal-variances"><i class="fa fa-check"></i><b>8.5.2</b> Both populations are normal with unknown but equal variances</a></li>
+<li class="chapter" data-level="8.5.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#paired-t-test"><i class="fa fa-check"></i><b>8.5.3</b> Paired t-test</a></li>
+<li class="chapter" data-level="8.5.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#concluding-remarks"><i class="fa fa-check"></i><b>8.5.4</b> Concluding Remarks</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#practice-problems"><i class="fa fa-check"></i><b>8.6</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>9</b> Analysis of Variance (ANOVA)</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#the-question-of-one-way-anova"><i class="fa fa-check"></i><b>9.1</b> The Question of One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#what-is-anova"><i class="fa fa-check"></i><b>9.1.1</b> What is ANOVA</a></li>
+<li class="chapter" data-level="9.1.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#assumptions-of-anova"><i class="fa fa-check"></i><b>9.1.2</b> Assumptions of ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#steps-of-anova"><i class="fa fa-check"></i><b>9.2</b> Steps of ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#anova-tables"><i class="fa fa-check"></i><b>9.2.1</b> ANOVA Tables</a></li>
+<li class="chapter" data-level="9.2.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#post-hoc-pairwise-comparison"><i class="fa fa-check"></i><b>9.2.2</b> Post hoc Pairwise Comparison</a></li>
+<li class="chapter" data-level="9.2.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#how-to-summarize-anova-results"><i class="fa fa-check"></i><b>9.2.3</b> How to Summarize ANOVA Results</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#welchs-anova"><i class="fa fa-check"></i><b>9.3</b> Welch’s ANOVA</a></li>
+<li class="chapter" data-level="9.4" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#case-study-mussel-length-example---solution"><i class="fa fa-check"></i><b>9.4</b> Case Study: Mussel Length Example - Solution</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#creating-an-anova-table"><i class="fa fa-check"></i><b>9.4.1</b> Creating An ANOVA Table</a></li>
+<li class="chapter" data-level="9.4.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#diagnostic-analysis"><i class="fa fa-check"></i><b>9.4.2</b> Diagnostic Analysis</a></li>
+<li class="chapter" data-level="9.4.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#welch-anova"><i class="fa fa-check"></i><b>9.4.3</b> Welch ANOVA</a></li>
+<li class="chapter" data-level="9.4.4" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#post-hoc-multiple-comparisons"><i class="fa fa-check"></i><b>9.4.4</b> Post-hoc Multiple Comparisons</a></li>
+<li class="chapter" data-level="9.4.5" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#visual-comparison---boxplots"><i class="fa fa-check"></i><b>9.4.5</b> Visual Comparison - Boxplots</a></li>
+<li class="chapter" data-level="9.4.6" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#anova-reporting"><i class="fa fa-check"></i><b>9.4.6</b> ANOVA Reporting</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#practice-problems-1"><i class="fa fa-check"></i><b>9.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html"><i class="fa fa-check"></i><b>10</b> Correlation and Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#the-question-and-the-data"><i class="fa fa-check"></i><b>10.1</b> The question and the data</a></li>
+<li class="chapter" data-level="10.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#visual-inspection-for-association"><i class="fa fa-check"></i><b>10.2</b> Visual Inspection for Association</a></li>
+<li class="chapter" data-level="10.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#coefficient-of-correlation"><i class="fa fa-check"></i><b>10.3</b> Coefficient of Correlation</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#definition-of-pearson-correlation-coefficient"><i class="fa fa-check"></i><b>10.3.1</b> Definition of Pearson correlation coefficient</a></li>
+<li class="chapter" data-level="10.3.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#interpretation-of-correlation-coefficient"><i class="fa fa-check"></i><b>10.3.2</b> Interpretation of correlation coefficient</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#least-square-regression-structure-diagnostics-and-applications"><i class="fa fa-check"></i><b>10.4</b> Least square regression: structure, diagnostics, and applications</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#definitions"><i class="fa fa-check"></i><b>10.4.1</b> Definitions</a></li>
+<li class="chapter" data-level="10.4.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#assumptions-of-least-square-regression"><i class="fa fa-check"></i><b>10.4.2</b> Assumptions of Least Square Regression</a></li>
+<li class="chapter" data-level="10.4.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-building-and-diagnostics"><i class="fa fa-check"></i><b>10.4.3</b> Model Building and Diagnostics</a></li>
+<li class="chapter" data-level="10.4.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#residual-diagnostics-and-remedies"><i class="fa fa-check"></i><b>10.4.4</b> Residual Diagnostics and Remedies</a></li>
+<li class="chapter" data-level="10.4.5" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#final-model-with-applications"><i class="fa fa-check"></i><b>10.4.5</b> Final Model with Applications</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#case-study-amyotrophic-lateral-sclerosis-analysis-revisited"><i class="fa fa-check"></i><b>10.5</b> Case Study: Amyotrophic lateral sclerosis analysis revisited</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#objectives"><i class="fa fa-check"></i><b>10.5.1</b> Objectives</a></li>
+<li class="chapter" data-level="10.5.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-fitting"><i class="fa fa-check"></i><b>10.5.2</b> Model Fitting</a></li>
+<li class="chapter" data-level="10.5.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#box-cox-transformation"><i class="fa fa-check"></i><b>10.5.3</b> Box-Cox Transformation</a></li>
+<li class="chapter" data-level="10.5.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-applications"><i class="fa fa-check"></i><b>10.5.4</b> Model Applications</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>11</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-practical-question"><i class="fa fa-check"></i><b>11.1</b> The Practical Question</a></li>
+<li class="chapter" data-level="11.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-process-of-building-a-multiple-linear-regression-model"><i class="fa fa-check"></i><b>11.2</b> The Process of Building A Multiple Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#assumptions-of-mlr"><i class="fa fa-check"></i><b>11.2.1</b> Assumptions of MLR</a></li>
+<li class="chapter" data-level="11.2.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-structure-of-mlr"><i class="fa fa-check"></i><b>11.2.2</b> The Structure of MLR</a></li>
+<li class="chapter" data-level="11.2.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#more-on-model-specifications"><i class="fa fa-check"></i><b>11.2.3</b> More on Model Specifications</a></li>
+<li class="chapter" data-level="11.2.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#estimation-of-regression-coefficients"><i class="fa fa-check"></i><b>11.2.4</b> Estimation of Regression Coefficients</a></li>
+<li class="chapter" data-level="11.2.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#model-diagnostics"><i class="fa fa-check"></i><b>11.2.5</b> Model Diagnostics</a></li>
+<li class="chapter" data-level="11.2.6" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#goodness-of-fit-and-variable-selection"><i class="fa fa-check"></i><b>11.2.6</b> Goodness-of-fit and Variable Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#case-study-1"><i class="fa fa-check"></i><b>11.3</b> Case Study 1</a></li>
+<li class="chapter" data-level="11.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#case-study-2"><i class="fa fa-check"></i><b>11.4</b> Case Study 2</a></li>
+<li class="chapter" data-level="11.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#practice-problems-2"><i class="fa fa-check"></i><b>11.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>12</b> Logistic Regression Models</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#motivational-example-and-practical-question"><i class="fa fa-check"></i><b>12.1</b> Motivational Example and Practical Question</a></li>
+<li class="chapter" data-level="12.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#logistic-regression-models-and-applications"><i class="fa fa-check"></i><b>12.2</b> Logistic Regression Models and Applications</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#the-structure-of-logistic-regression-model"><i class="fa fa-check"></i><b>12.2.1</b> The Structure of Logistic Regression Model</a></li>
+<li class="chapter" data-level="12.2.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#assumptions-and-diagnostics"><i class="fa fa-check"></i><b>12.2.2</b> Assumptions and Diagnostics</a></li>
+<li class="chapter" data-level="12.2.3" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#coefficient-estimation-and-interpretation"><i class="fa fa-check"></i><b>12.2.3</b> Coefficient Estimation and Interpretation</a></li>
+<li class="chapter" data-level="12.2.4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#use-of-glm-and-annotations"><i class="fa fa-check"></i><b>12.2.4</b> Use of <strong>glm()</strong> and Annotations</a></li>
+<li class="chapter" data-level="12.2.5" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#applications-of-logistic-regression-models"><i class="fa fa-check"></i><b>12.2.5</b> Applications of Logistic Regression Models</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#case-studies-1"><i class="fa fa-check"></i><b>12.3</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#the-simple-logistic-regression-model"><i class="fa fa-check"></i><b>12.3.1</b> The simple logistic regression model</a></li>
+<li class="chapter" data-level="12.3.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#multiple-logistic-regression-model"><i class="fa fa-check"></i><b>12.3.2</b> Multiple Logistic Regression Model</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#practice-problems-3"><i class="fa fa-check"></i><b>12.4</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html"><i class="fa fa-check"></i><b>13</b> Contingency Table Analysis</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#the-motivational-examples"><i class="fa fa-check"></i><b>13.1</b> The Motivational Examples</a></li>
+<li class="chapter" data-level="13.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#two-way-contingency-tables-and-analysis"><i class="fa fa-check"></i><b>13.2</b> Two-way Contingency Tables and Analysis</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#the-structure-of-two-way-contingency-table"><i class="fa fa-check"></i><b>13.2.1</b> The Structure of Two-way Contingency Table</a></li>
+<li class="chapter" data-level="13.2.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#pearson-chi2-test-of-independence"><i class="fa fa-check"></i><b>13.2.2</b> Pearson <span class="math inline">\(\chi^2\)</span> Test of Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#measures-of-association"><i class="fa fa-check"></i><b>13.3</b> Measures of Association</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#times2-table-under-different-study-designs"><i class="fa fa-check"></i><b>13.3.1</b> <span class="math inline">\(2\times2\)</span>-table Under Different Study Designs</a></li>
+<li class="chapter" data-level="13.3.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#measures-of-association-1"><i class="fa fa-check"></i><b>13.3.2</b> Measures of Association</a></li>
+<li class="chapter" data-level="13.3.3" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#validity-of-measures-of-association"><i class="fa fa-check"></i><b>13.3.3</b> Validity of Measures of Association</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-studies-2"><i class="fa fa-check"></i><b>13.4</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-study-1-1"><i class="fa fa-check"></i><b>13.4.1</b> Case Study 1</a></li>
+<li class="chapter" data-level="13.4.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-study-2-1"><i class="fa fa-check"></i><b>13.4.2</b> Case Study 2</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#practice-problems-4"><i class="fa fa-check"></i><b>13.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html"><i class="fa fa-check"></i><b>14</b> Analysis of Counts and Rates</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#motivational-examples"><i class="fa fa-check"></i><b>14.1</b> Motivational Examples</a></li>
+<li class="chapter" data-level="14.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#poisson-regression-for-counts-and-rates"><i class="fa fa-check"></i><b>14.2</b> Poisson Regression for Counts and Rates</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#structure-and-interpretations"><i class="fa fa-check"></i><b>14.2.1</b> Structure and Interpretations</a></li>
+<li class="chapter" data-level="14.2.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#assumptions-and-goodness-of-fit"><i class="fa fa-check"></i><b>14.2.2</b> Assumptions and Goodness-of-fit</a></li>
+<li class="chapter" data-level="14.2.3" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#dispersion-issue-and-remedies"><i class="fa fa-check"></i><b>14.2.3</b> Dispersion Issue and Remedies</a></li>
+<li class="chapter" data-level="14.2.4" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#data-structure-of-poisson-regression"><i class="fa fa-check"></i><b>14.2.4</b> Data Structure of Poisson Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#case-studies-3"><i class="fa fa-check"></i><b>14.3</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#harbor-seal-data"><i class="fa fa-check"></i><b>14.3.1</b> Harbor Seal Data</a></li>
+<li class="chapter" data-level="14.3.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#toxicity-study"><i class="fa fa-check"></i><b>14.3.2</b> Toxicity Study</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#concluding-remarks-1"><i class="fa fa-check"></i><b>14.4</b> Concluding Remarks</a></li>
+<li class="chapter" data-level="14.5" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#practice-problems-5"><i class="fa fa-check"></i><b>14.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html"><i class="fa fa-check"></i><b>15</b> Power Calculation and Sample Size Determination</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#two-sample-proportion-problems"><i class="fa fa-check"></i><b>15.1</b> Two-sample Proportion Problems</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#sample-size-estimations-for-two-proportions"><i class="fa fa-check"></i><b>15.1.1</b> Sample size estimations for <strong>two proportions</strong></a></li>
+<li class="chapter" data-level="15.1.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-for-two-proportions"><i class="fa fa-check"></i><b>15.1.2</b> Power analysis for <strong>two proportions</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#two-sample-mean-problems"><i class="fa fa-check"></i><b>15.2</b> Two-sample Mean Problems</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#sample-size-estimations-for-two-averages"><i class="fa fa-check"></i><b>15.2.1</b> Sample size estimations for <strong>two averages</strong></a></li>
+<li class="chapter" data-level="15.2.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-for-two-averages"><i class="fa fa-check"></i><b>15.2.2</b> Power analysis for two averages</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#paired-sample-problems"><i class="fa fa-check"></i><b>15.3</b> Paired-sample Problems</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#sample-size-estimation-for-paired-data-before-and-after"><i class="fa fa-check"></i><b>15.3.1</b> Sample size estimation for <strong>paired data (before and after)</strong></a></li>
+<li class="chapter" data-level="15.3.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-of-paired-samples-paired-t-test"><i class="fa fa-check"></i><b>15.3.2</b> Power analysis of <strong>paired samples (paired t-test)</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#unequal-sample-sizes-problems"><i class="fa fa-check"></i><b>15.4</b> Unequal Sample Sizes Problems</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-with-unequal-sample-sizes"><i class="fa fa-check"></i><b>15.4.1</b> Power analysis with <strong>unequal sample sizes</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#conclusions"><i class="fa fa-check"></i><b>15.5</b> Conclusions</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STA501 E-Pack: Applied Statistical Methods</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="confidence-intervals" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Topic 7</span> Confidence Intervals<a href="confidence-intervals.html#confidence-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>Objectives</strong>: We want to estimate the population parameters such as mean, standard deviation, and proportion from a random sample and build a confidence interval (also called interval estimate) to show how good the estimate is, finally, we should be able to interpret the estimate.</p>
+<div id="some-terms" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Some Terms<a href="confidence-intervals.html#some-terms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>The sample is random. That is, the values in the sample are representative of the whole population.</p></li>
+<li><p><strong>An estimate</strong> is a specific value or range of values obtained from a random sample that is used to approximate a population parameter.</p></li>
+<li><p><strong>A point estimate</strong> is a single value (obtained from the random sample) that is used to approximate a population parameter.</p>
+<p><strong>Example 1</strong>: The sample mean <span class="math inline">\(\bar{X}\)</span> is the best point estimate of the population mean <span class="math inline">\(\mu\)</span>.</p>
+<p><strong>Example 2</strong>: The sample variance <span class="math inline">\(s^2\)</span> is the best point estimate of the population variance <span class="math inline">\(\sigma^2\)</span>.</p></li>
+<li><p><strong>The bias of the point estimate</strong> is equal to the difference between the estimate and the true parameter. For example, the bias of the sample mean is <span class="math inline">\(\bar{x} -\mu\)</span>. The bias of an estimate measures the accuracy of the estimate.</p></li>
+</ul>
+<p>Since the point estimate of a parameter is obtained from an underlying random sample, it is a random variable. The variance of the point estimate measures the precision of the point estimate of the corresponding population parameter.</p>
+<p><strong>The goodness of an estimate</strong> – no bias (accurate) and small variance (precise).</p>
+<div id="what-are-the-issues-of-a-point-estimate" class="section level3 hasAnchor" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> What are the issues of a point estimate?<a href="confidence-intervals.html#what-are-the-issues-of-a-point-estimate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>With a point estimate, we can only say that it is close to the true population parameter. The question is how close is called “close”?</p>
+<p><strong>Example 1</strong>: The distribution of heights of WCU students is approximately normal with mean <span class="math inline">\(\mu\)</span> inches and standard deviation <span class="math inline">\(\sigma\)</span> inches. To estimate <span class="math inline">\(\mu\)</span>, we select a random sample <span class="math inline">\(\{x_1, \cdots ,x_n\}\)</span></p>
+<p>Then
+<span class="math display">\[
+\bar{x} = \frac{x_1 + x_2 + \cdots + x_n}{n}
+\]</span></p>
+<p>is close to the unknown true average height of WCU students. For example, assuming the true mean is 69 inches, a sample of 50 heights yields a sample average of 68.5 inches.</p>
+<p><strong>Is 68.5 close to 69?</strong></p>
+<p>Apparently, we <span style="color: red;">cannot </span> answer the above question with a<span style="color: red;"> single sample mean </span> without any additional information.</p>
+</div>
+<div id="how-about-multiple-samples" class="section level3 hasAnchor" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> How About Multiple Samples?<a href="confidence-intervals.html#how-about-multiple-samples" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If I invite 100 students to help collect 100 random samples of the same size 50 from the WCU student population. Then we will have the following 100 sample means, say</p>
+<pre><code>68.2 68.3 68.3 68.4 68.4 68.5 68.6 68.6 68.6 68.6 68.6 68.7 68.7 68.7 68.7 68.7 
+68.7 68.7 68.8 68.8 68.8 68.8 68.8 68.8 68.8 68.8 68.8 68.8 68.8 68.8 68.8 68.8 
+68.9 68.9 68.9 68.9 68.9 68.9 68.9 68.9 68.9 68.9 68.9 68.9 69.0 69.0 69.0 69.0 
+69.0 69.0 69.0 69.0 69.0 69.0 69.0 69.1 69.1 69.1 69.1 69.1 69.1 69.1 69.1 69.1 
+69.1 69.1 69.1 69.2 69.2 69.2 69.2 69.2 69.2 69.2 69.2 69.2 69.2 69.3 69.3 69.3 
+69.3 69.3 69.3 69.4 69.4 69.4 69.5 69.5 69.5 69.5 69.5 69.5 69.6 69.6 69.6 69.6 
+69.7 69.7 69.7 69.9</code></pre>
+<p>Each of the above means is supposed to be close to 69. Can we now answer the question about how close is called “close”? Let’s make a histogram of all sample means in the following.</p>
+<p><img src="STA501EB_files/figure-html/unnamed-chunk-96-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>We can see from the above histogram that most of the means are around (“close” to) 69. In fact, 95% of the sample means are within the interval [68.3, 69.7]. If we consider sample means within the interval to be <span style="color: red;"><b> “close” </b></span>to the true mean, the above interval [68.3, 69.7] reveals the following information.</p>
+<ul>
+<li><p>The interval has a 95% chance to include the true mean - accuracy and confidence;</p></li>
+<li><p>The width of the confidence interval reflects the precision.</p></li>
+</ul>
+<p>Therefore, this interval contains all desired information, but <span style="color: red;"><b> What is more important is that the interval was obtained from the distribution of sample means.</b></span> In other words,<span style="color: blue;"> <b>only the sampling distribution of sample mean </b>can provide such intervals that provide <b>both accuracy and precision</b> of the interval for a <b>given confidence level</b>! </span></p>
+</div>
+</div>
+<div id="how-to-find-the-confidence-intervals-for-means-and-proportions" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> How to find the Confidence Intervals for Means and Proportions?<a href="confidence-intervals.html#how-to-find-the-confidence-intervals-for-means-and-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The above section explained the concept of the confidence interval of the population mean intuitively with an example. This section provides a slightly formal approach to confidence intervals for population means and proportions.</p>
+<div id="framework-of-confidence-interval" class="section level3 hasAnchor" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Framework Of Confidence Interval<a href="confidence-intervals.html#framework-of-confidence-interval" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The ways of constructing confidence intervals for different parameters may be slightly different from a procedural perspective, but they follow the same framework of using the distribution of a random variable that contains the parameter of interest and its point estimate.</p>
+<p><strong>Definition</strong>: a <span style="color: red; font-weight: bold;">pivotal quantity</span> is a random quantity of both parameters and sample statistics and its distribution is independent of the parameters.</p>
+<p>The following are a few examples related to the distribution we learned in the previous weeks.</p>
+<p><strong>Example 1</strong>. Recall in <strong>result #1</strong> of the previous note, that if a random sample is taken from a normal population with a known variance <span class="math inline">\(\sigma_0^2\)</span>, the sampling distribution of the sample mean <span class="math inline">\(bar{x}\)</span> is given by</p>
+<p><span class="math display">\[
+\bar{x} \to N(\mu, \sigma_0^2/n).
+\]</span></p>
+<p><span class="math inline">\(\bar{x}\)</span> is not a pivotal quantity since its distribution <span class="math inline">\(N(\mu, \sigma_0^2/n)\)</span> is dependent on the unknown parameter <span class="math inline">\(\mu\)</span>. However,</p>
+<p><span class="math display">\[
+Z_1 = \frac{\bar{x} - \mu}{\sigma_0/\sqrt{n}} \to N(0,1).
+\]</span></p>
+<p>Since <span class="math inline">\(Z_1\)</span> has a standard normal distribution that is independent of parameters and statistics, <span class="math inline">\(Z_1\)</span> is a pivotal quantity.</p>
+<p><strong>Example 2</strong>. If a random sample is taken from a normal population with unknown variance. Let <span class="math inline">\(s\)</span> be the sample standard deviation. From <strong>Result #2</strong>, we have</p>
+<p><span class="math display">\[
+T = \frac{\bar{x}-\mu}{s/\sqrt{n}} \to t_{n-1}
+\]</span></p>
+<p><span class="math inline">\(T\)</span> is also a pivotal quantity since its distribution is independent of the population parameters.</p>
+<p><strong>Example 3</strong>. If a random sample is taken from an unspecified population with an unknown variance. Let <span class="math inline">\(s\)</span> be the sample standard deviation. If the sample size is large, by the C.L.T,</p>
+<p><span class="math display">\[
+\bar{x} \to N(\mu, \sigma^2/n)
+\]</span></p>
+<p>The standardized form is independent of unknown parameters</p>
+<p><span class="math display">\[
+Z_2 = \frac{\bar{X}-\mu}{s/\sqrt{n}} \to N(0,1).
+\]</span></p>
+<p>Therefore, <span class="math inline">\(Z_2\)</span> is a pivotal quantity.</p>
+<p><strong>Example 4</strong> Let <span class="math inline">\(\{ x_1, x_2, \cdots, x_n\}\)</span> be a random sample taken from a binary population <span class="math inline">\(Y\)</span> with <span class="math inline">\(P(X=1) = p\)</span>. If <span class="math inline">\(np &gt; 5\)</span> and <span class="math inline">\(n(1-p) &gt;5\)</span>, according to <strong>result #4</strong>, <span class="math inline">\(\hat{p} \to N(p, \sqrt{p(1-p)/n})\)</span>. The following standardized <span class="math inline">\(Z_3\)</span> has a distribution</p>
+<p><span class="math display">\[
+Z_3 = \frac{\hat{p}-p}{\sqrt{\frac{p(1-p)}{n}}} \to N(0,1).
+\]</span></p>
+<p><span class="math inline">\(Z_3\)</span> is also a pivotal quantity.</p>
+<p>From the above four examples, we can see that the pivotal quantity associated with a sample mean or sample proportion is either the standard normal distribution or a t-distribution. Both distributions are symmetric with respect to the vertical axis.</p>
+<p>For ease of illustration, we use <span class="math inline">\(U\)</span> to denote either one of the above four quantities (<span class="math inline">\(Z_1, Z_2, Z_3\)</span>, and <span class="math inline">\(T\)</span>). Now, for a given confidence level of <span class="math inline">\(95\%\)</span> (or other confidence levels), we can find two cut-off <span class="math inline">\(U\)</span> values, denoted by <span class="math inline">\(U_1\)</span> and <span class="math inline">\(U_2\)</span> such that <span class="math inline">\(P(U_1 &lt; U &lt; U_2) = 95\%\)</span>.</p>
+<p><img src="STA501EB_files/figure-html/unnamed-chunk-97-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The above figure gives the steps for constructing the confidence interval for population means and proportions.</p>
+<ul>
+<li><p><strong>Confidence Level</strong> - The area of the shaded region in the above figure is called the confidence level. Note that 95% of the U values will be in [<span class="math inline">\(U_1\)</span>, <span class="math inline">\(U_2\)</span>] is equivalent to sat the 95% of sample means based on the same size will be in [LCL, UCL].</p></li>
+<li><p><strong>Critical Value</strong> - <span class="math inline">\(U_2\)</span> on the right-hand side of the density curve of the pivotal quantity is called the <strong>critical value</strong>. R functions <strong>qnorm()</strong> and <strong>qt()</strong> can be used to find the normal critical and t-critical values respectively.</p></li>
+</ul>
+</div>
+</div>
+<div id="confidence-interval-of-population-mean" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Confidence Interval of Population Mean<a href="confidence-intervals.html#confidence-interval-of-population-mean" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This section introduces confidence intervals based on two sampling distributions: normal and t-distributions under different assumptions. We will use examples to illustrate how to construct confidence intervals with given confidence intervals.</p>
+<p><span style="color: red;"><b>From the histogram of the mean heights of WCU students, we can see that a 95% confidence interval of the population mean under normal sampling distribution is 2.5% and 97.5% quantiles. Therefore, <font color = "blue">R function <strong>qnorm()</strong> </font> will be used to construct the confidence intervals of means and proportions. </b></span></p>
+<div id="normal-population-with-known-variance." class="section level3 hasAnchor" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Normal Population with Known Variance.<a href="confidence-intervals.html#normal-population-with-known-variance." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>According to result #1 in the previous module, we have
+<span class="math display">\[
+\bar{X} \to N(\mu, \sigma_0^2/n) \Longleftrightarrow \frac{\bar{X} -\mu}{\sigma_0/\sqrt{n}} \to N(0, 1).
+\]</span>
+If the confidence interval <span class="math inline">\(1-\alpha = 95\%\)</span>, then <span class="math inline">\(U_1 = U_{0.025} = qnorm(0.025)\)</span> and <span class="math inline">\(U_2 = U_{0.975} = qnorm(0.975)\)</span>.</p>
+<p><span class="math display">\[
+P\left( U_1&lt;\frac{\bar{X} -\mu}{\sigma_0/\sqrt{n}} &lt;U_2 \right) = 0.95 \Longleftrightarrow \\ P\left(\bar{x}+U_1\frac{\sigma_0}{\sqrt{n}} &lt;\mu&lt; \bar{x}+U_2\frac{\sigma_0}{\sqrt{n}}\right) = 0.95
+\]</span>
+The <span class="math inline">\(95\%\)</span> confidence interval of <span class="math inline">\(\mu\)</span> is given by
+<span class="math display">\[
+\left(\bar{x}+U_1\frac{\sigma_0}{\sqrt{n}}, \bar{x}+U_2\frac{\sigma_0}{\sqrt{n}}\right)=\left[qnorm(0.025, mean =\bar{x}, sd = \sigma_0), qnorm(0.975, mean =\bar{x}, sd = \sigma_0) \right].
+\]</span></p>
+<p>The left-hand side equation is the confidence interval and the right-hand side of the equation is the confidence interval expressed in R functions <strong>qnorm()</strong>.</p>
+<p><strong>Example 1.</strong> Suppose a researcher, interested in obtaining an estimate of the average level of some enzyme in a certain human population, takes a sample of 10 individuals, determines the level of the enzyme in each, and computes a sample mean of <span class="math inline">\(\bar{x}=22\)</span>. Suppose further it is known that the variable of interest is approximately normally distributed with a variance <span class="math inline">\(\sigma_0^2=45\)</span> We wish to construct a confidence interval of the population mean <span class="math inline">\(\mu\)</span> at a confidence level of 95%.</p>
+<p><strong>Solution</strong> Let <span class="math inline">\(\bar{x}\)</span> be the sample mean calculated based on a random sample with size <span class="math inline">\(n = 10\)</span>. Since the population is approximately distributed with a known variance <span class="math inline">\(\sigma_0^2 = 45\)</span>, according to result #1 in the last note, we have the sampling distribution of the sample mean in the following form
+<span class="math display">\[
+\bar{x} \to N(\mu, \frac{45}{10}).
+\]</span></p>
+<p>When we use <strong>pnorm()</strong> to find the quantiles, we replace the unknown mean <span class="math inline">\(\mu\)</span> with the <span class="math inline">\(\bar{x}\)</span>. The following code is used to find the confidence interval.</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="confidence-intervals.html#cb94-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>), <span class="at">mean =</span> <span class="dv">22</span>, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">45</span><span class="sc">/</span><span class="dv">10</span>))</span></code></pre></div>
+<pre><code>## [1] 17.84229 26.15771</code></pre>
+<p><strong><font color = "blue">Conclusion</font></strong>. We are 95% confident that the interval [17.84, 26.16] includes the true mean level of some enzyme in a certain human population.</p>
+<p><strong>Example 2.</strong> Some studies of Alzheimer’s disease (AD) have shown an increase in CO2 production in patients with the disease. In one such study, the following CO2 values were obtained from 16 neocortical biopsy samples from AD patients.</p>
+<pre><code>1009 1280 1180 1255 1547 2352 1956 1080 1776 1767 1680 2050 1452 2857 3100 1621</code></pre>
+<p>Assume that the population of such values is normally distributed with a standard deviation of 350.</p>
+<p><strong>Solution</strong> Based on the condition, we have <span class="math inline">\(\bar{x} \to N(\mu, 350/\sqrt{16})\)</span>. The unknown population will be estimated by the sample mean <span class="math inline">\(\bar{x}\)</span> in the following R code.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="confidence-intervals.html#cb97-1" tabindex="-1"></a>normal.sample <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1009</span>, <span class="dv">1280</span>, <span class="dv">1180</span>, <span class="dv">1255</span>, <span class="dv">1547</span>, <span class="dv">2352</span>, <span class="dv">1956</span>, <span class="dv">1080</span>, <span class="dv">1776</span>, <span class="dv">1767</span>, </span>
+<span id="cb97-2"><a href="confidence-intervals.html#cb97-2" tabindex="-1"></a>                  <span class="dv">1680</span>, <span class="dv">2050</span>, <span class="dv">1452</span>, <span class="dv">2857</span>, <span class="dv">3100</span>, <span class="dv">1621</span>)</span>
+<span id="cb97-3"><a href="confidence-intervals.html#cb97-3" tabindex="-1"></a>sample.avg <span class="ot">=</span> <span class="fu">mean</span>(normal.sample)    <span class="co"># sample mean</span></span>
+<span id="cb97-4"><a href="confidence-intervals.html#cb97-4" tabindex="-1"></a><span class="do">## 95% confidence intervals</span></span>
+<span id="cb97-5"><a href="confidence-intervals.html#cb97-5" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>), <span class="at">mean =</span> sample.avg, <span class="at">sd =</span> <span class="dv">350</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">16</span>))</span></code></pre></div>
+<pre><code>## [1] 1576.128 1919.122</code></pre>
+<p><font color = "blue"><b>Conclusion</b></font>. We are 95% confident that the interval [1576.1, 1919.1] includes the true mean level of CO2 in neocortical biopsy samples from AD patients with size 16.</p>
+</div>
+<div id="normal-population-with-unknown-variance" class="section level3 hasAnchor" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Normal Population with Unknown Variance<a href="confidence-intervals.html#normal-population-with-unknown-variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Recall in <strong>Results #2</strong>, the standardized pivotal quantity <span class="math inline">\(U = T_{n-1}\)</span>, t-distribution with <span class="math inline">\(n-1\)</span> degrees of freedom.</p>
+<p><span class="math display">\[\frac{\bar{x}-\mu}{s/\sqrt{n}} \to t_{n-1}.\]</span></p>
+<p>Using the same logic, we have the following <span class="math inline">\(95%\)</span> confidence intervals based on the t-distribution.</p>
+<p><span class="math display">\[
+\left(\bar{x}+qt(0.025, df=n-1)\frac{s}{\sqrt{n}}, \bar{x}+qt(0.975, df=n-1)\frac{s}{\sqrt{n}}\right)
+\]</span></p>
+<p>Unfortunately, there is no direct sampling distribution of <span class="math inline">\(\bar{x}\)</span>, so we have to use the above formula to find the t-confidence interval if we are given the sample mean (<span class="math inline">\(\bar{x}\)</span>) and sample standard deviation (<span class="math inline">\(s\)</span>). However, if we were given a data set, the R function <strong>t.test()</strong> can be used to generate the above confidence interval.</p>
+<p><strong>Example 3</strong> In a study of the effects of early Alzheimer’s disease on non-declarative memory, the Category Fluency Test was used to establish baseline persistence semantic memory, and language abilities. The eight subjects in the sample had Category Fluency Test scores of 11, 10, 6, 3, 11, 10, 9, and 11. Assume that the eight subjects constitute a simple random sample from a normally distributed population of similar subjects with early Alzheimer’s disease.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>What is the point estimate of the population mean?</p></li>
+<li><p>What is the standard deviation of the sample?</p></li>
+<li><p>What is the estimated standard error of the sample mean?</p></li>
+<li><p>Construct a 95 percent confidence interval for the population mean category fluency test score.</p></li>
+</ol>
+<p><strong>Solution</strong> The following R code gives the answers to the above questions.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="confidence-intervals.html#cb99-1" tabindex="-1"></a>test.score<span class="ot">=</span> <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">10</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">11</span>, <span class="dv">10</span>, <span class="dv">9</span>, <span class="dv">11</span>)</span>
+<span id="cb99-2"><a href="confidence-intervals.html#cb99-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">length</span>(test.score)                <span class="co"># sample size</span></span>
+<span id="cb99-3"><a href="confidence-intervals.html#cb99-3" tabindex="-1"></a>Q.a <span class="ot">=</span> <span class="fu">mean</span>(test.score)</span>
+<span id="cb99-4"><a href="confidence-intervals.html#cb99-4" tabindex="-1"></a>Q.b <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">sd</span>(test.score),<span class="dv">3</span>)</span>
+<span id="cb99-5"><a href="confidence-intervals.html#cb99-5" tabindex="-1"></a>Q.c <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">sd</span>(test.score)<span class="sc">/</span><span class="fu">sqrt</span>(n),<span class="dv">3</span>)</span>
+<span id="cb99-6"><a href="confidence-intervals.html#cb99-6" tabindex="-1"></a>Q.d <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">t.test</span>(test.score, <span class="at">conf.level =</span> <span class="fl">0.95</span>)<span class="sc">$</span>conf.int,<span class="dv">3</span>)</span>
+<span id="cb99-7"><a href="confidence-intervals.html#cb99-7" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(<span class="at">Q.a =</span> Q.a,</span>
+<span id="cb99-8"><a href="confidence-intervals.html#cb99-8" tabindex="-1"></a>      <span class="at">Q.b =</span> Q.b,</span>
+<span id="cb99-9"><a href="confidence-intervals.html#cb99-9" tabindex="-1"></a>      <span class="at">Q.c =</span> Q.c,</span>
+<span id="cb99-10"><a href="confidence-intervals.html#cb99-10" tabindex="-1"></a>      <span class="at">Q.d =</span> <span class="fu">paste</span>(<span class="st">&quot;[&quot;</span>,Q.d[<span class="dv">1</span>], <span class="st">&quot;, &quot;</span>, Q.d[<span class="dv">2</span>], <span class="st">&quot;]&quot;</span>))))</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Q.a</th>
+<th align="left">Q.b</th>
+<th align="left">Q.c</th>
+<th align="left">Q.d</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">8.875</td>
+<td align="left">2.9</td>
+<td align="left">1.025</td>
+<td align="left">[ 6.45 , 11.3 ]</td>
+</tr>
+</tbody>
+</table>
+<p>The answers to questions a, b, and c are given in the above table. The 95% confidence interval for the fluency test score is [6.45, 11.3] meaning that interval [6.45, 11.3] has a 95% chance to include the true mean test score.</p>
+<p><strong>Example 4</strong>: A sample of 16 ten-year-old girls had a mean weight of 71.5 and a standard deviation of 12 pounds, respectively. Assuming normality, find a 99 percent confidence interval for <span class="math inline">\(\mu\)</span>.</p>
+<p><strong>Solution</strong> Based on the given assumption, the pivotal quantity has a t-distribution with 15 degrees of freedom. We cannot use <strong>t.test()</strong> to find the confidence interval since it requires the raw data set. We can then use the given formula to find the confidence interval.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="confidence-intervals.html#cb100-1" tabindex="-1"></a>xbar <span class="ot">=</span> <span class="fl">71.5</span></span>
+<span id="cb100-2"><a href="confidence-intervals.html#cb100-2" tabindex="-1"></a>s <span class="ot">=</span> <span class="dv">12</span></span>
+<span id="cb100-3"><a href="confidence-intervals.html#cb100-3" tabindex="-1"></a>LCL <span class="ot">=</span> xbar <span class="sc">+</span> <span class="fu">qt</span>(<span class="fl">0.005</span>, <span class="at">df =</span> <span class="dv">15</span>)<span class="sc">*</span>s<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">16</span>)</span>
+<span id="cb100-4"><a href="confidence-intervals.html#cb100-4" tabindex="-1"></a>UCL <span class="ot">=</span> xbar <span class="sc">+</span> <span class="fu">qt</span>(<span class="fl">0.995</span>, <span class="at">df =</span> <span class="dv">15</span>)<span class="sc">*</span>s<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">16</span>)</span>
+<span id="cb100-5"><a href="confidence-intervals.html#cb100-5" tabindex="-1"></a>CI <span class="ot">=</span> <span class="fu">cbind</span>(<span class="at">LCL =</span> LCL, <span class="at">UCL =</span> UCL)</span>
+<span id="cb100-6"><a href="confidence-intervals.html#cb100-6" tabindex="-1"></a>CI <span class="ot">=</span> <span class="fu">round</span>(CI,<span class="dv">2</span>)</span>
+<span id="cb100-7"><a href="confidence-intervals.html#cb100-7" tabindex="-1"></a><span class="fu">kable</span>(CI)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">LCL</th>
+<th align="right">UCL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">62.66</td>
+<td align="right">80.34</td>
+</tr>
+</tbody>
+</table>
+<p>The 95% confidence interval of the mean weight is [62.66, 80.34]. Therefore, we are 99% confident that the mean weight is in [62.66, 80.34].</p>
+</div>
+<div id="unspecified-population-with-unknown-variance-but-with-large-sample-sizes" class="section level3 hasAnchor" number="7.3.3">
+<h3><span class="header-section-number">7.3.3</span> Unspecified Population with Unknown Variance but with Large Sample Sizes<a href="confidence-intervals.html#unspecified-population-with-unknown-variance-but-with-large-sample-sizes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When the sample size is large, we then use the central limit theorem (CLT). The pivotal quantity is approximately normally distributed. The confidence interval can be similarly found using the sample code as used in <strong>Example 1</strong>.</p>
+<p><strong>Example 5</strong> A physical therapist wished to estimate, with 99 percent confidence, the mean maximal strength of a particular muscle in a certain group of individuals. A sample of 64 subjects who participated in the experiment yielded a mean of 84.3 and a sample variance of 144.</p>
+<p><strong>Solution</strong> Since sample size <span class="math inline">\(n = 64\)</span>, according to the CLT, we have
+<span class="math display">\[
+\bar{x} \to N(84.3, 144/64)
+\]</span></p>
+<p>We can use the above sampling distribution to find the 99% confidence interval given in the following code.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="confidence-intervals.html#cb101-1" tabindex="-1"></a>LCL <span class="ot">=</span> <span class="fu">qnorm</span>(<span class="fl">0.005</span>, <span class="at">mean =</span> <span class="fl">84.3</span>, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">144</span><span class="sc">/</span><span class="dv">64</span>))</span>
+<span id="cb101-2"><a href="confidence-intervals.html#cb101-2" tabindex="-1"></a>UCL <span class="ot">=</span> <span class="fu">qnorm</span>(<span class="fl">0.995</span>, <span class="at">mean =</span> <span class="fl">84.3</span>, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">144</span><span class="sc">/</span><span class="dv">64</span>))</span>
+<span id="cb101-3"><a href="confidence-intervals.html#cb101-3" tabindex="-1"></a>CI <span class="ot">=</span> <span class="fu">cbind</span>(LCL, UCL)</span>
+<span id="cb101-4"><a href="confidence-intervals.html#cb101-4" tabindex="-1"></a>CI <span class="ot">=</span> <span class="fu">round</span>(CI,<span class="dv">2</span>)</span>
+<span id="cb101-5"><a href="confidence-intervals.html#cb101-5" tabindex="-1"></a><span class="fu">kable</span>(CI)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">LCL</th>
+<th align="right">UCL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">80.44</td>
+<td align="right">88.16</td>
+</tr>
+</tbody>
+</table>
+<p>The 99% confidence interval is [80.44, 88.16]. Therefore, we are 99% confident that the mean maximal strength of a particular muscle in a certain group of individuals is between 80.44 and 88.16.</p>
+</div>
+</div>
+<div id="confidence-interval-of-proportion" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Confidence Interval of Proportion<a href="confidence-intervals.html#confidence-interval-of-proportion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>According to <strong>Result 4</strong> in the previous section, we can find a 95% confidence interval of the population proportion based on the following sampling distribution of <span class="math inline">\(\hat{p}\)</span></p>
+<p><span class="math display">\[
+\hat{p} \to N(p, \sqrt{\hat{p}(1-\hat{p})/n})
+\]</span></p>
+<p><strong>Example 6</strong> To study patients who were mechanically ventilated in the intensive care unit of six hospitals in Buenos Aires, Argentina. The researchers found that of 472 mechanically ventilated patients, 63 had clinical evidence of ventilator-associated pneumonia (VAP). Construct a 95 percent confidence interval for the proportion of all mechanically ventilated patients at these hospitals who may be expected to develop VAP and interpret the confidence interval.</p>
+<p><strong>Solution</strong> Since <span class="math inline">\(n\hat{p} = 472 \times (63/472) = 63 &gt; 5\)</span> and <span class="math inline">\(n(1-\hat{p}) = 409 &gt; 5\)</span>, according to <strong>Result 4</strong>, <span class="math inline">\(\hat{p} \to N(p, \sqrt{\hat{p}(1-\hat{p})/472})\)</span>. The following R code generates the 95% confidence interval of the proportion.</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="confidence-intervals.html#cb102-1" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">472</span></span>
+<span id="cb102-2"><a href="confidence-intervals.html#cb102-2" tabindex="-1"></a>phat <span class="ot">=</span> <span class="dv">63</span><span class="sc">/</span><span class="dv">472</span></span>
+<span id="cb102-3"><a href="confidence-intervals.html#cb102-3" tabindex="-1"></a>s.phat <span class="ot">=</span> <span class="fu">sqrt</span>((<span class="dv">63</span><span class="sc">/</span><span class="dv">472</span>)<span class="sc">*</span>(<span class="dv">1-63</span><span class="sc">/</span><span class="dv">472</span>)<span class="sc">/</span><span class="dv">472</span>)</span>
+<span id="cb102-4"><a href="confidence-intervals.html#cb102-4" tabindex="-1"></a>LCL <span class="ot">=</span> <span class="fu">qnorm</span>(<span class="fl">0.025</span>, <span class="at">mean =</span>phat, <span class="at">sd =</span> s.phat)</span>
+<span id="cb102-5"><a href="confidence-intervals.html#cb102-5" tabindex="-1"></a>UCL <span class="ot">=</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>, <span class="at">mean =</span>phat, <span class="at">sd =</span> s.phat)</span>
+<span id="cb102-6"><a href="confidence-intervals.html#cb102-6" tabindex="-1"></a>CI<span class="ot">=</span><span class="fu">cbind</span>(LCL, UCL)</span>
+<span id="cb102-7"><a href="confidence-intervals.html#cb102-7" tabindex="-1"></a>CI <span class="ot">=</span> <span class="fu">round</span>(CI,<span class="dv">2</span>)</span>
+<span id="cb102-8"><a href="confidence-intervals.html#cb102-8" tabindex="-1"></a><span class="fu">kable</span>(CI)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">LCL</th>
+<th align="right">UCL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">0.1</td>
+<td align="right">0.16</td>
+</tr>
+</tbody>
+</table>
+<p>The 95% confidence interval of the proportion of all mechanically ventilated patients at these hospitals who may be expected to develop VAP is [0.1, 0.16]. Therefore, [0.10, 0.16] has a 95% chance to include the true proportion.</p>
+</div>
+<div id="two-sample-problems---comparing-two-population-means" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Two Sample Problems - Comparing Two Population Means<a href="confidence-intervals.html#two-sample-problems---comparing-two-population-means" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We only introduce two sample problems based on independent samples with large sample sizes. One important fact is that the <code>variances</code> of two <strong>independent</strong> variables are additive. To be more specific, let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be independent random variables, then <span class="math inline">\(Var(X \pm Y) = Var(X) + Var(Y)\)</span>. <strong>However</strong>, standard deviations are <strong>NOT</strong> additive, <span class="math inline">\(sd(X \pm Y) = sd(X) + sd(Y)\)</span>.</p>
+<p>In real-world applications, one of the practical questions is to compare the difference between two population means (<span class="math inline">\(\mu_1 - \mu_2\)</span>). One way to address this issue is to construct a confidence interval for <span class="math inline">\(\mu_1 - \mu_2\)</span>.</p>
+<div id="confidence-interval-of-the-difference-of-two-unspecified-populations-means" class="section level3 hasAnchor" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> Confidence Interval of the Difference of Two Unspecified Populations Means<a href="confidence-intervals.html#confidence-interval-of-the-difference-of-two-unspecified-populations-means" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let <span class="math inline">\(\bar{x}_1\)</span> and <span class="math inline">\(\bar{x}_2\)</span> be sample means of two independent populations. The corresponding sample standard deviations are <span class="math inline">\(s_1\)</span> and <span class="math inline">\(s_2\)</span>, and <span class="math inline">\(n_1 &gt; 30\)</span> and <span class="math inline">\(n_2 &gt;30\)</span> are sample sizes. The sampling distribution of <span class="math inline">\(\bar{x}_1 - \bar{x}_2\)</span> is given by</p>
+<p><span class="math display">\[
+\bar{x}_1 - \bar{x}_2 \to N\left(\mu_1 - \mu_2, \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} \right)
+\]</span></p>
+<p>Using the above sampling distribution, we can construct a 95% confidence interval of the difference between two population means.</p>
+<p><strong>Example 7</strong> Despite common knowledge of the adverse effects of doing so, many women continue to smoke while pregnant. To examine the effectiveness of a smoking cessation program for pregnant women. The mean number of cigarettes smoked daily at the close of the program by the 328 women who completed the program was 4.3 with a standard deviation of 5.22. Among 64 women who did not complete the program, the mean number of cigarettes smoked per day at the close of the program was 13 with a standard deviation of 8.97. We wish to construct a 99 percent confidence interval for the difference between the means of the populations from which the samples may be presumed to have been selected.</p>
+<p><strong>Solution</strong> Since <span class="math inline">\(n_1 = 328 &gt; 30\)</span> and <span class="math inline">\(n_2 = 64 &gt; 30\)</span>, then
+<span class="math display">\[
+\bar{x}_1 - \bar{x}_2 \to N\left(\mu_1 - \mu_2, \sqrt{\frac{5.22^2}{328} + \frac{8.97^2}{64}}\right)
+\]</span>
+The 95% confidence interval is given by</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="confidence-intervals.html#cb103-1" tabindex="-1"></a>n1 <span class="ot">=</span> <span class="dv">328</span></span>
+<span id="cb103-2"><a href="confidence-intervals.html#cb103-2" tabindex="-1"></a>n2 <span class="ot">=</span> <span class="dv">64</span></span>
+<span id="cb103-3"><a href="confidence-intervals.html#cb103-3" tabindex="-1"></a>x1bar <span class="ot">=</span> <span class="fl">4.3</span></span>
+<span id="cb103-4"><a href="confidence-intervals.html#cb103-4" tabindex="-1"></a>x2bar <span class="ot">=</span> <span class="dv">13</span></span>
+<span id="cb103-5"><a href="confidence-intervals.html#cb103-5" tabindex="-1"></a>s1 <span class="ot">=</span> <span class="fl">5.22</span></span>
+<span id="cb103-6"><a href="confidence-intervals.html#cb103-6" tabindex="-1"></a>s2 <span class="ot">=</span> <span class="fl">8.97</span></span>
+<span id="cb103-7"><a href="confidence-intervals.html#cb103-7" tabindex="-1"></a>LCL <span class="ot">=</span> <span class="fu">qnorm</span>(<span class="fl">0.005</span>, <span class="at">mean =</span> x1bar <span class="sc">-</span>x2bar, <span class="at">sd =</span> <span class="fu">sqrt</span>(s1<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n1 <span class="sc">+</span> s2<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n2))</span>
+<span id="cb103-8"><a href="confidence-intervals.html#cb103-8" tabindex="-1"></a>UCL <span class="ot">=</span> <span class="fu">qnorm</span>(<span class="fl">0.995</span>, <span class="at">mean =</span> x1bar <span class="sc">-</span>x2bar, <span class="at">sd =</span> <span class="fu">sqrt</span>(s1<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n1 <span class="sc">+</span> s2<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n2))</span>
+<span id="cb103-9"><a href="confidence-intervals.html#cb103-9" tabindex="-1"></a>CI<span class="ot">=</span><span class="fu">cbind</span>(LCL, UCL)</span>
+<span id="cb103-10"><a href="confidence-intervals.html#cb103-10" tabindex="-1"></a>CI<span class="ot">=</span><span class="fu">round</span>(CI,<span class="dv">2</span>)</span>
+<span id="cb103-11"><a href="confidence-intervals.html#cb103-11" tabindex="-1"></a><span class="fu">kable</span>(CI)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">LCL</th>
+<th align="right">UCL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">-11.68</td>
+<td align="right">-5.72</td>
+</tr>
+</tbody>
+</table>
+<p>Therefore, we are 99% confident that the difference between the two population means <span class="math inline">\(\mu_1-\mu_2\)</span> is in [-11.68, -5.72]. Since both confidence limits are negative, we can claim that <span class="math inline">\(\mu_1-\mu_2 &lt; 0\)</span>, that is, <span class="math inline">\(\mu_2 &gt; \mu_1\)</span>.</p>
+</div>
+<div id="confidence-interval-of-the-difference-of-two-normal-populations-means" class="section level3 hasAnchor" number="7.5.2">
+<h3><span class="header-section-number">7.5.2</span> Confidence Interval of the Difference of Two Normal Populations Means<a href="confidence-intervals.html#confidence-interval-of-the-difference-of-two-normal-populations-means" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We only discuss a special case in which</p>
+<ul>
+<li><p>both populations are normal.</p></li>
+<li><p>population variances are unknown but equal.</p></li>
+</ul>
+<p>Because the two population variances are equal, we combine two samples to estimate the common variance using the following formula.</p>
+<p><span class="math display">\[
+s_{pool} = \sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1 + n_2} }
+\]</span></p>
+<p>With the above pooled standard deviation, we have</p>
+<p><span class="math display">\[
+\frac{(\bar{x}_1 - \bar{x}_2)-(\mu_{1} - \mu_{2}) }{s_{pool}\sqrt{1/n_1 + 1/n_2}} \to t_{n_1 + n_2 -2}
+\]</span></p>
+<p>Let <span class="math inline">\(U_1 = qt(0.025, df =n_1+n_2 -2)\)</span> and <span class="math inline">\(U_2 = qt(0.975, df =n_1+n_2 -2)\)</span>, then the 95% confidence interval of <span class="math inline">\(\mu_1 - \mu_2\)</span> is given by</p>
+<p><span class="math display">\[
+\left[(\bar{x}_1 - \bar{x}_2)+U_1\frac{s_{pool}}{\sqrt{1/n_1 + 1/n_2}}, (\bar{x}_1 - \bar{x}_2)+U_2\frac{s_{pool}}{\sqrt{1/n_1 + 1/n_2}}\right]
+\]</span></p>
+<p><strong>Example 8</strong> To determine the effectiveness of an integrated outpatient dual-diagnosis treatment program for mentally ill subjects. The authors were addressing the problem of substance abuse issues among people with severe mental disorders. A retrospective chart review was performed on 50 consecutive patient referrals to the Substance Abuse/Mental Illness program at the VA San Diego Healthcare System. One of the outcome variables examined was the number of inpatient treatment days for a psychiatric disorder during the year following the end of the program. Among 18 subjects with schizophrenia, the mean number of treatment days was 4.7 with a standard deviation of 9.3. For 10 subjects with bipolar disorder, the mean number of psychiatric disorder treatment days was 8.8 with a standard deviation of 11.5. We wish to construct a 95 percent confidence interval for the difference between the means of the populations represented by these two samples. We assume that both populations are normal and have equal variances.</p>
+<p><strong>Solution</strong> Based on the given information, we pivotal quantity is given by</p>
+<p><span class="math display">\[
+\frac{(\bar{x}_1 - \bar{x}_2)-(\mu_1-\mu_2)}{\sqrt{s_1^2/n_1 + s_2^2/n_2}} \to t_{n_1+n_1 - 2}
+\]</span></p>
+<p>Therefore, the t-confidence interval of the difference of the two population means is given by the following code.</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="confidence-intervals.html#cb104-1" tabindex="-1"></a>n1 <span class="ot">=</span> <span class="dv">18</span></span>
+<span id="cb104-2"><a href="confidence-intervals.html#cb104-2" tabindex="-1"></a>n2<span class="ot">=</span><span class="dv">10</span></span>
+<span id="cb104-3"><a href="confidence-intervals.html#cb104-3" tabindex="-1"></a>x1bar <span class="ot">=</span> <span class="fl">4.7</span></span>
+<span id="cb104-4"><a href="confidence-intervals.html#cb104-4" tabindex="-1"></a>x2bar <span class="ot">=</span> <span class="fl">8.8</span></span>
+<span id="cb104-5"><a href="confidence-intervals.html#cb104-5" tabindex="-1"></a>s1 <span class="ot">=</span> <span class="fl">9.3</span></span>
+<span id="cb104-6"><a href="confidence-intervals.html#cb104-6" tabindex="-1"></a>s2<span class="ot">=</span><span class="fl">11.5</span></span>
+<span id="cb104-7"><a href="confidence-intervals.html#cb104-7" tabindex="-1"></a>s.pool <span class="ot">=</span> <span class="fu">sqrt</span>(((n1<span class="dv">-1</span>)<span class="sc">*</span>s1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (n2<span class="dv">-1</span>)<span class="sc">*</span>s2<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(n1<span class="sc">+</span>n2<span class="dv">-2</span>))</span>
+<span id="cb104-8"><a href="confidence-intervals.html#cb104-8" tabindex="-1"></a>LCL <span class="ot">=</span> (x1bar<span class="sc">-</span>x2bar)<span class="sc">+</span><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="at">df =</span> n1<span class="sc">+</span>n2<span class="dv">-2</span>)<span class="sc">*</span>s.pool<span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>n1 <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>n2)</span>
+<span id="cb104-9"><a href="confidence-intervals.html#cb104-9" tabindex="-1"></a>UCL <span class="ot">=</span> (x1bar<span class="sc">-</span>x2bar)<span class="sc">+</span><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> n1<span class="sc">+</span>n2<span class="dv">-2</span>)<span class="sc">*</span>s.pool<span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>n1 <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>n2)</span>
+<span id="cb104-10"><a href="confidence-intervals.html#cb104-10" tabindex="-1"></a>CI<span class="ot">=</span><span class="fu">cbind</span>(LCL, UCL)</span>
+<span id="cb104-11"><a href="confidence-intervals.html#cb104-11" tabindex="-1"></a>CI <span class="ot">=</span> <span class="fu">round</span>(CI, <span class="dv">2</span>)</span>
+<span id="cb104-12"><a href="confidence-intervals.html#cb104-12" tabindex="-1"></a><span class="fu">kable</span>(CI)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">LCL</th>
+<th align="right">UCL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">-12.3</td>
+<td align="right">4.1</td>
+</tr>
+</tbody>
+</table>
+<p>Therefore, the 95% confidence interval of <span class="math inline">\(\mu_1-\mu_2\)</span> is [-12.3, 4.1]. Since the 95% confidence interval does contain 0. We are 95% confident that there is no significant difference between the two population means.</p>
+<p><strong>Conclusion Remarks</strong></p>
+<ul>
+<li><p>We can discuss the difference between two independent proportions using the same logic in the previous sections.</p></li>
+<li><p>In the next module, we will discuss testing hypotheses - another type of inference.</p></li>
+</ul>
+</div>
+</div>
+<div id="assignment---confidence-intervals" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Assignment - Confidence Intervals<a href="confidence-intervals.html#assignment---confidence-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Please study the examples in the class note and complete the following problems. Please note that you are expected to interpret each of the confidence intervals you obtained. You can modify my code to calculate confidence intervals.</p>
+<p><strong>Problem 1</strong></p>
+<p>We wish to estimate the mean serum indirect bilirubin level of 4-day-old infants. The mean for a
+sample of 16 infants was found to be 5.98 mg/100 cc. Assume that bilirubin levels in 4-day-old infants
+are approximately normally distributed with a standard deviation of 3.5 mg/100 cc. Construct a 95% confidence interval of the mean serum indirect bilirubin level of 4-day-old infants (<span class="math inline">\(\mu\)</span>) and interpret the interval.</p>
+<p><strong>Problem 2</strong></p>
+10 obstetrics and gynecology interns participated in a study conducted by researchers at the University of Colorado Health Sciences Center. The researchers wanted to assess competence in performing clinical breast examinations. One of the baseline measurements was the number of such examinations performed. The following data give the number of breast examinations performed for this sample of 10 interns.
+<center>
+30, 40, 8, 20, 26, 35, 35, 20, 25, 20
+</center>
+<p>Construct a 95% confidence interval for the number of breast examinations and give an interpretation of the confidence interval.</p>
+<p><strong>Problem 3</strong></p>
+<p>The punctuality of patients in keeping appointments is of interest to a research team. In a study of patient flow through the offices of general practitioners, it was found that a sample of 35 patients was 17.2 minutes late for appointments, on average. Previous research had shown the standard deviation to be about 8 minutes. The population distribution was felt to be non-normal. Find the 90 percent confidence interval for <span class="math inline">\(\mu\)</span>, the true mean amount of time late for appointments and interpret the confidence interval.</p>
+<p><strong>Problem 4</strong></p>
+<p>The following are the activity values (micromoles per minute per gram of tissue) of a
+certain enzyme measured in normal gastric tissue of 35 patients with gastric carcinoma.</p>
+<pre><code>0.360, 1.189, 0.614, 0.788, 0.273, 2.464, 0.571, 1.827, 0.537, 0.374, 0.449, 0.262, 
+0.448, 0.971, 0.372, 0.898, 0.411, 0.348, 1.925, 0.550, 0.622, 0.610, 0.319, 0.406, 
+0.413, 0.767, 0.385, 0.674, 0.521, 0.603, 0.533, 0.662, 1.177, 0.307, 1.499</code></pre>
+<p>We wish to construct a 95 percent confidence interval for the population mean and interpret the confidence interval. It is not necessary to assume that the sampled population of values is normally distributed.</p>
+<p><strong>Problem 5</strong></p>
+<p>In a study, 136 subjects with syncope or near syncope were studied. Syncope is the temporary loss of consciousness due to a sudden decline in blood flow to the brain. Of these subjects, 75 also reported having cardiovascular disease. Construct a 99 percent confidence interval for the population proportion of subjects with syncope or near syncope who also have cardiovascular disease and interpret the interval.</p>
+<p><strong>Problem 6</strong></p>
+<p>In a study of factors thought to be responsible for the adverse effects of smoking on human
+reproduction, cadmium level determinations (nanograms per gram) were made on the placenta tissue of a sample of 14 mothers who were smokers and an independent random sample of 18 nonsmoking
+mothers. The results were as follows:</p>
+<p>Nonsmokers: 10.0, 8.4, 12.8, 25.0, 11.8, 9.8, 12.5, 15.4, 23.5, 9.4, 25.1, 19.5, 25.5, 9.8, 7.5, 11.8, 12.2, 15.0</p>
+<p>Smokers: 30.0, 30.1, 15.0, 24.1, 30.5, 17.8, 16.8, 14.8, 13.4, 28.5, 17.5, 14.4, 12.5, 20.4</p>
+<p>Assume that both smokers and non-smoker populations are normally distributed and have equal variance.</p>
+<p>Does it appear likely that the mean cadmium level is higher among smokers than nonsmokers? Why
+Do you reach this conclusion? [Hint: answer the above questions by constructing a 95% confidence interval of the difference between population means.]</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="sampling-distributions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="testing-statistical-hypothesis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/pengdsci/STA501EB/edit/master/07-ConfidenceIntervals.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["STA501EB.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

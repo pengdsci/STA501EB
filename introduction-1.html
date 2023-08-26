@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Topic 15 Introduction | STA501 E-Pack: Applied Statistical Methods</title>
+  <meta name="description" content="The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Topic 15 Introduction | STA501 E-Pack: Applied Statistical Methods" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Topic 15 Introduction | STA501 E-Pack: Applied Statistical Methods" />
+  
+  <meta name="twitter:description" content="The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Cheng Peng" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="analysis-of-counts-and-rates.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<center><li><a href="./"><font color = "darkred"><b>STA 501 E-Pack: Applied Statistical Methods</b></font></a><br><font color = "navy">Cheng Peng</font></li></center>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html"><i class="fa fa-check"></i><b>2</b> R, RStudio and RMarkdown</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#r"><i class="fa fa-check"></i><b>2.1</b> R</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#order-of-operations"><i class="fa fa-check"></i><b>2.1.1</b> Order of Operations</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#basic-r-objects"><i class="fa fa-check"></i><b>2.1.2</b> Basic R Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio"><i class="fa fa-check"></i><b>2.2</b> RStudio</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio-gui"><i class="fa fa-check"></i><b>2.2.1</b> RStudio GUI</a></li>
+<li class="chapter" data-level="2.2.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#console"><i class="fa fa-check"></i><b>2.2.2</b> Console</a></li>
+<li class="chapter" data-level="2.2.3" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#source-editor"><i class="fa fa-check"></i><b>2.2.3</b> Source Editor</a></li>
+<li class="chapter" data-level="2.2.4" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#environment-window"><i class="fa fa-check"></i><b>2.2.4</b> Environment Window</a></li>
+<li class="chapter" data-level="2.2.5" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#system-and-graphic-files"><i class="fa fa-check"></i><b>2.2.5</b> System and Graphic files</a></li>
+<li class="chapter" data-level="2.2.6" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio-offers-numerous-helpful-features"><i class="fa fa-check"></i><b>2.2.6</b> RStudio offers numerous helpful features:</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rmarkdown"><i class="fa fa-check"></i><b>2.3</b> RMarkdown</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#code-chunk"><i class="fa fa-check"></i><b>2.3.1</b> Code Chunk</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#graphics-generated-from-r-code-chunks"><i class="fa fa-check"></i><b>2.3.2</b> Graphics Generated from R Code Chunks</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html"><i class="fa fa-check"></i><b>3</b> Data Collection and Data Loading</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#sampling-plans"><i class="fa fa-check"></i><b>3.1</b> Sampling Plans</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#simple-random-sampling-srs"><i class="fa fa-check"></i><b>3.1.1</b> Simple Random Sampling (SRS)</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#systematic-sampling"><i class="fa fa-check"></i><b>3.1.2</b> Systematic sampling</a></li>
+<li class="chapter" data-level="3.1.3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#stratified-sampling"><i class="fa fa-check"></i><b>3.1.3</b> Stratified sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#study-designs"><i class="fa fa-check"></i><b>3.2</b> Study Designs</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#observational-studies"><i class="fa fa-check"></i><b>3.2.1</b> Observational Studies</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#experimental-designs"><i class="fa fa-check"></i><b>3.2.2</b> Experimental Designs</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#loading-data-to-r-from-external-data-files"><i class="fa fa-check"></i><b>3.3</b> Loading Data to R from External Data Files</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#text-file-aka.-delimited-text-file"><i class="fa fa-check"></i><b>3.3.1</b> Text File ( aka. Delimited Text File)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#data-frame-and-list"><i class="fa fa-check"></i><b>3.4</b> Data Frame and List</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#data-frame-1"><i class="fa fa-check"></i><b>3.4.1</b> Data Frame</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>4</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#data-types"><i class="fa fa-check"></i><b>4.1</b> Data Types</a></li>
+<li class="chapter" data-level="4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#tabular-and-graphic-summary"><i class="fa fa-check"></i><b>4.2</b> Tabular and Graphic Summary</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#categorical-data"><i class="fa fa-check"></i><b>4.2.1</b> Categorical Data</a></li>
+<li class="chapter" data-level="4.2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#numerical-data"><i class="fa fa-check"></i><b>4.2.2</b> Numerical Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#numerical-summary-of-numerical-data"><i class="fa fa-check"></i><b>4.3</b> Numerical Summary of Numerical Data</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#central-tendency"><i class="fa fa-check"></i><b>4.3.1</b> Central Tendency</a></li>
+<li class="chapter" data-level="4.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variations"><i class="fa fa-check"></i><b>4.3.2</b> Variations</a></li>
+<li class="chapter" data-level="4.3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#location"><i class="fa fa-check"></i><b>4.3.3</b> Location</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#assignment---descriptive-statistics"><i class="fa fa-check"></i><b>4.4</b> Assignment - Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summarizing-categorical-data"><i class="fa fa-check"></i><b>4.4.1</b> Summarizing Categorical Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html"><i class="fa fa-check"></i><b>5</b> Concepts of Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-random-variables"><i class="fa fa-check"></i><b>5.1</b> Concepts of random variables</a></li>
+<li class="chapter" data-level="5.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#types-of-random-variables"><i class="fa fa-check"></i><b>5.2</b> Types of random variables</a></li>
+<li class="chapter" data-level="5.3" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-probability-distributions-1"><i class="fa fa-check"></i><b>5.3</b> Concepts of probability distributions</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-probability"><i class="fa fa-check"></i><b>5.3.1</b> Concepts of probability</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#probability-distribution-of-random-variables"><i class="fa fa-check"></i><b>5.4</b> Probability distribution of random variables</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#discrete-probability-distribution"><i class="fa fa-check"></i><b>5.4.1</b> Discrete probability distribution</a></li>
+<li class="chapter" data-level="5.4.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#continuous-probability-distribution"><i class="fa fa-check"></i><b>5.4.2</b> Continuous probability distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#special-continuous-distributions"><i class="fa fa-check"></i><b>5.5</b> Special continuous distributions</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#normal-distribution"><i class="fa fa-check"></i><b>5.5.1</b> Normal distribution</a></li>
+<li class="chapter" data-level="5.5.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#t-distribution"><i class="fa fa-check"></i><b>5.5.2</b> t distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#summary"><i class="fa fa-check"></i><b>5.6</b> Summary</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#numerical-examples-based-on-normal-and-t-distributions"><i class="fa fa-check"></i><b>5.6.1</b> Numerical Examples Based on Normal and t Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#assignment---proability-distributions"><i class="fa fa-check"></i><b>5.7</b> Assignment - Proability Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>6</b> Sampling Distributions</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#concepts-of-the-sampling-distribution"><i class="fa fa-check"></i><b>6.1</b> Concepts of the sampling distribution</a></li>
+<li class="chapter" data-level="6.2" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sampling-distribution-of-sampling-means"><i class="fa fa-check"></i><b>6.2</b> Sampling Distribution of Sampling Means</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#working-data-set-plant-diversity"><i class="fa fa-check"></i><b>6.2.1</b> Working Data Set: Plant Diversity</a></li>
+<li class="chapter" data-level="6.2.2" data-path="sampling-distributions.html"><a href="sampling-distributions.html#normal-population-with-given-mean-mu-and-variance-sigma2"><i class="fa fa-check"></i><b>6.2.2</b> Normal Population with given mean (<span class="math inline">\(\mu\)</span>) and Variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+<li class="chapter" data-level="6.2.3" data-path="sampling-distributions.html"><a href="sampling-distributions.html#normal-population-with-a-given-mean-mu-and-an-unknown-variance-sigma2"><i class="fa fa-check"></i><b>6.2.3</b> Normal Population with a given mean (<span class="math inline">\(\mu\)</span>) and an <strong>Unknown</strong> Variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+<li class="chapter" data-level="6.2.4" data-path="sampling-distributions.html"><a href="sampling-distributions.html#unspecified-population-with-a-given-mean-muand-an-unspecifed-variance-sigma2"><i class="fa fa-check"></i><b>6.2.4</b> Unspecified Population with a given mean (<span class="math inline">\(\mu\)</span>)and an unspecifed variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sampling-distribution-of-sample-proportions"><i class="fa fa-check"></i><b>6.3</b> Sampling distribution of sample proportions</a></li>
+<li class="chapter" data-level="6.4" data-path="sampling-distributions.html"><a href="sampling-distributions.html#summary-1"><i class="fa fa-check"></i><b>6.4</b> Summary</a></li>
+<li class="chapter" data-level="6.5" data-path="sampling-distributions.html"><a href="sampling-distributions.html#assignment---sampling-distributions"><i class="fa fa-check"></i><b>6.5</b> Assignment - Sampling Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>7</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#some-terms"><i class="fa fa-check"></i><b>7.1</b> Some Terms</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#what-are-the-issues-of-a-point-estimate"><i class="fa fa-check"></i><b>7.1.1</b> What are the issues of a point estimate?</a></li>
+<li class="chapter" data-level="7.1.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#how-about-multiple-samples"><i class="fa fa-check"></i><b>7.1.2</b> How About Multiple Samples?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#how-to-find-the-confidence-intervals-for-means-and-proportions"><i class="fa fa-check"></i><b>7.2</b> How to find the Confidence Intervals for Means and Proportions?</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#framework-of-confidence-interval"><i class="fa fa-check"></i><b>7.2.1</b> Framework Of Confidence Interval</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-population-mean"><i class="fa fa-check"></i><b>7.3</b> Confidence Interval of Population Mean</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#normal-population-with-known-variance."><i class="fa fa-check"></i><b>7.3.1</b> Normal Population with Known Variance.</a></li>
+<li class="chapter" data-level="7.3.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#normal-population-with-unknown-variance"><i class="fa fa-check"></i><b>7.3.2</b> Normal Population with Unknown Variance</a></li>
+<li class="chapter" data-level="7.3.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#unspecified-population-with-unknown-variance-but-with-large-sample-sizes"><i class="fa fa-check"></i><b>7.3.3</b> Unspecified Population with Unknown Variance but with Large Sample Sizes</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-proportion"><i class="fa fa-check"></i><b>7.4</b> Confidence Interval of Proportion</a></li>
+<li class="chapter" data-level="7.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#two-sample-problems---comparing-two-population-means"><i class="fa fa-check"></i><b>7.5</b> Two Sample Problems - Comparing Two Population Means</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-the-difference-of-two-unspecified-populations-means"><i class="fa fa-check"></i><b>7.5.1</b> Confidence Interval of the Difference of Two Unspecified Populations Means</a></li>
+<li class="chapter" data-level="7.5.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-the-difference-of-two-normal-populations-means"><i class="fa fa-check"></i><b>7.5.2</b> Confidence Interval of the Difference of Two Normal Populations Means</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="confidence-intervals.html"><a href="confidence-intervals.html#assignment---confidence-intervals"><i class="fa fa-check"></i><b>7.6</b> Assignment - Confidence Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html"><i class="fa fa-check"></i><b>8</b> Testing Statistical Hypothesis</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#formulation-of-statistical-hypothesis-testing"><i class="fa fa-check"></i><b>8.1</b> Formulation of Statistical Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#null-and-alternative-hypotheses"><i class="fa fa-check"></i><b>8.1.1</b> Null and Alternative Hypotheses</a></li>
+<li class="chapter" data-level="8.1.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#relationship-between-the-claim-and-the-statistical-hypotheses"><i class="fa fa-check"></i><b>8.1.2</b> Relationship between the claim and the statistical hypotheses</a></li>
+<li class="chapter" data-level="8.1.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#test-statistics---statistical-evidence"><i class="fa fa-check"></i><b>8.1.3</b> Test Statistics - Statistical Evidence</a></li>
+<li class="chapter" data-level="8.1.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#types-of-test-and-rejection-region"><i class="fa fa-check"></i><b>8.1.4</b> Types of Test and Rejection Region</a></li>
+<li class="chapter" data-level="8.1.5" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#statistical-decision-rule-p-value"><i class="fa fa-check"></i><b>8.1.5</b> Statistical Decision Rule: p-value</a></li>
+<li class="chapter" data-level="8.1.6" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#summary-of-the-test-hypothesis-procedure"><i class="fa fa-check"></i><b>8.1.6</b> Summary of the Test Hypothesis Procedure</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-studies"><i class="fa fa-check"></i><b>8.2</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-i-normal-population-with-a-known-variance."><i class="fa fa-check"></i><b>8.2.1</b> Case I: normal population with a known variance.</a></li>
+<li class="chapter" data-level="8.2.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-ii-normal-population-with-an-unknown-variance"><i class="fa fa-check"></i><b>8.2.2</b> Case II: Normal population with an unknown variance</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#unspecified-population-with-an-unknown-variance---clt"><i class="fa fa-check"></i><b>8.3</b> Unspecified population with an unknown variance - CLT</a></li>
+<li class="chapter" data-level="8.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#testing-population-proportion"><i class="fa fa-check"></i><b>8.4</b> Testing Population Proportion</a></li>
+<li class="chapter" data-level="8.5" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#testing-the-difference-between-two-population-means"><i class="fa fa-check"></i><b>8.5</b> Testing the difference between two population means</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#both-populations-are-unspecified-and-sample-sizes-are-large."><i class="fa fa-check"></i><b>8.5.1</b> Both populations are unspecified and sample sizes are large.</a></li>
+<li class="chapter" data-level="8.5.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#both-populations-are-normal-with-unknown-but-equal-variances"><i class="fa fa-check"></i><b>8.5.2</b> Both populations are normal with unknown but equal variances</a></li>
+<li class="chapter" data-level="8.5.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#paired-t-test"><i class="fa fa-check"></i><b>8.5.3</b> Paired t-test</a></li>
+<li class="chapter" data-level="8.5.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#concluding-remarks"><i class="fa fa-check"></i><b>8.5.4</b> Concluding Remarks</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#practice-problems"><i class="fa fa-check"></i><b>8.6</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>9</b> Analysis of Variance (ANOVA)</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#the-question-of-one-way-anova"><i class="fa fa-check"></i><b>9.1</b> The Question of One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#what-is-anova"><i class="fa fa-check"></i><b>9.1.1</b> What is ANOVA</a></li>
+<li class="chapter" data-level="9.1.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#assumptions-of-anova"><i class="fa fa-check"></i><b>9.1.2</b> Assumptions of ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#steps-of-anova"><i class="fa fa-check"></i><b>9.2</b> Steps of ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#anova-tables"><i class="fa fa-check"></i><b>9.2.1</b> ANOVA Tables</a></li>
+<li class="chapter" data-level="9.2.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#post-hoc-pairwise-comparison"><i class="fa fa-check"></i><b>9.2.2</b> Post hoc Pairwise Comparison</a></li>
+<li class="chapter" data-level="9.2.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#how-to-summarize-anova-results"><i class="fa fa-check"></i><b>9.2.3</b> How to Summarize ANOVA Results</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#welchs-anova"><i class="fa fa-check"></i><b>9.3</b> Welch’s ANOVA</a></li>
+<li class="chapter" data-level="9.4" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#case-study-mussel-length-example---solution"><i class="fa fa-check"></i><b>9.4</b> Case Study: Mussel Length Example - Solution</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#creating-an-anova-table"><i class="fa fa-check"></i><b>9.4.1</b> Creating An ANOVA Table</a></li>
+<li class="chapter" data-level="9.4.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#diagnostic-analysis"><i class="fa fa-check"></i><b>9.4.2</b> Diagnostic Analysis</a></li>
+<li class="chapter" data-level="9.4.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#welch-anova"><i class="fa fa-check"></i><b>9.4.3</b> Welch ANOVA</a></li>
+<li class="chapter" data-level="9.4.4" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#post-hoc-multiple-comparisons"><i class="fa fa-check"></i><b>9.4.4</b> Post-hoc Multiple Comparisons</a></li>
+<li class="chapter" data-level="9.4.5" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#visual-comparison---boxplots"><i class="fa fa-check"></i><b>9.4.5</b> Visual Comparison - Boxplots</a></li>
+<li class="chapter" data-level="9.4.6" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#anova-reporting"><i class="fa fa-check"></i><b>9.4.6</b> ANOVA Reporting</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#practice-problems-1"><i class="fa fa-check"></i><b>9.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html"><i class="fa fa-check"></i><b>10</b> Correlation and Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#the-question-and-the-data"><i class="fa fa-check"></i><b>10.1</b> The question and the data</a></li>
+<li class="chapter" data-level="10.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#visual-inspection-for-association"><i class="fa fa-check"></i><b>10.2</b> Visual Inspection for Association</a></li>
+<li class="chapter" data-level="10.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#coefficient-of-correlation"><i class="fa fa-check"></i><b>10.3</b> Coefficient of Correlation</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#definition-of-pearosn-correlation-coefficient"><i class="fa fa-check"></i><b>10.3.1</b> Definition of Pearosn correlation coefficient</a></li>
+<li class="chapter" data-level="10.3.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#interpretation-of-correlation-coefficient"><i class="fa fa-check"></i><b>10.3.2</b> Interpretation of correlation coefficient</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#least-square-regression-structure-diagnostics-and-applications"><i class="fa fa-check"></i><b>10.4</b> Least square regression: structure, diagnostics, and applications</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#definitions"><i class="fa fa-check"></i><b>10.4.1</b> Definitions</a></li>
+<li class="chapter" data-level="10.4.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#assumptions-of-least-square-regression"><i class="fa fa-check"></i><b>10.4.2</b> Assumptions of Least Square Regression</a></li>
+<li class="chapter" data-level="10.4.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-building-and-diagnostics"><i class="fa fa-check"></i><b>10.4.3</b> Model Building and Diagnostics</a></li>
+<li class="chapter" data-level="10.4.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#residual-diagnostics-and-remedies"><i class="fa fa-check"></i><b>10.4.4</b> Residual Diagnostics and Remedies</a></li>
+<li class="chapter" data-level="10.4.5" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#final-model-with-applications"><i class="fa fa-check"></i><b>10.4.5</b> Final Model with Applications</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#case-study-amyotrophic-lateral-sclerosis-analysis-revisited"><i class="fa fa-check"></i><b>10.5</b> Case Study: Amyotrophic lateral sclerosis analysis revisited</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#objectives"><i class="fa fa-check"></i><b>10.5.1</b> Objectives</a></li>
+<li class="chapter" data-level="10.5.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-fitting"><i class="fa fa-check"></i><b>10.5.2</b> Model Fitting</a></li>
+<li class="chapter" data-level="10.5.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#box-cox-transformation"><i class="fa fa-check"></i><b>10.5.3</b> Box-Cox Transformation</a></li>
+<li class="chapter" data-level="10.5.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-applications"><i class="fa fa-check"></i><b>10.5.4</b> Model Applications</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>11</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-practical-question"><i class="fa fa-check"></i><b>11.1</b> The Practical Question</a></li>
+<li class="chapter" data-level="11.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-process-of-building-a-multiple-linear-regression-model"><i class="fa fa-check"></i><b>11.2</b> The Process of Building A Multiple Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#assumptions-of-mlr"><i class="fa fa-check"></i><b>11.2.1</b> Assumptions of MLR</a></li>
+<li class="chapter" data-level="11.2.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-structure-of-mlr"><i class="fa fa-check"></i><b>11.2.2</b> The Structure of MLR</a></li>
+<li class="chapter" data-level="11.2.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#more-on-model-specifications"><i class="fa fa-check"></i><b>11.2.3</b> More on Model Specifications</a></li>
+<li class="chapter" data-level="11.2.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#estimation-of-regression-coefficients"><i class="fa fa-check"></i><b>11.2.4</b> Estimation of Regression Coefficients</a></li>
+<li class="chapter" data-level="11.2.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#model-diagnostics"><i class="fa fa-check"></i><b>11.2.5</b> Model Diagnostics</a></li>
+<li class="chapter" data-level="11.2.6" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#goodness-of-fit-and-variable-selection"><i class="fa fa-check"></i><b>11.2.6</b> Goodness-of-fit and Variable Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#case-study-1"><i class="fa fa-check"></i><b>11.3</b> Case Study 1</a></li>
+<li class="chapter" data-level="11.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#case-study-2"><i class="fa fa-check"></i><b>11.4</b> Case Study 2</a></li>
+<li class="chapter" data-level="11.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#practice-problems-2"><i class="fa fa-check"></i><b>11.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>12</b> Logistic Regression Models</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#motivational-example-and-practical-question"><i class="fa fa-check"></i><b>12.1</b> Motivational Example and Practical Question</a></li>
+<li class="chapter" data-level="12.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#logistic-regression-models-and-applications"><i class="fa fa-check"></i><b>12.2</b> Logistic Regression Models and Applications</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#the-structure-of-logistic-regression-model"><i class="fa fa-check"></i><b>12.2.1</b> The Structure of Logistic Regression Model</a></li>
+<li class="chapter" data-level="12.2.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#assumptions-and-diagnostics"><i class="fa fa-check"></i><b>12.2.2</b> Assumptions and Diagnostics</a></li>
+<li class="chapter" data-level="12.2.3" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#coefficient-estimation-and-interpretation"><i class="fa fa-check"></i><b>12.2.3</b> Coefficient Estimation and Interpretation</a></li>
+<li class="chapter" data-level="12.2.4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#use-of-glm-and-annotations"><i class="fa fa-check"></i><b>12.2.4</b> Use of <strong>glm()</strong> and Annotations</a></li>
+<li class="chapter" data-level="12.2.5" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#applications-of-logistic-regression-models"><i class="fa fa-check"></i><b>12.2.5</b> Applications of Logistic Regression Models</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#case-studies-1"><i class="fa fa-check"></i><b>12.3</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#the-simple-logistic-regression-model"><i class="fa fa-check"></i><b>12.3.1</b> The simple logistic regression model</a></li>
+<li class="chapter" data-level="12.3.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#multiple-logistic-regression-model"><i class="fa fa-check"></i><b>12.3.2</b> Multiple Logistic Regression Model</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#practice-problems-3"><i class="fa fa-check"></i><b>12.4</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html"><i class="fa fa-check"></i><b>13</b> Contingency Table Analysis</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#the-motivational-examples"><i class="fa fa-check"></i><b>13.1</b> The Motivational Examples</a></li>
+<li class="chapter" data-level="13.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#two-way-contingency-tables-and-analysis"><i class="fa fa-check"></i><b>13.2</b> Two-way Contingency Tables and Analysis</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#the-structure-of-two-way-contingency-table"><i class="fa fa-check"></i><b>13.2.1</b> The Structure of Two-way Contingency Table</a></li>
+<li class="chapter" data-level="13.2.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#pearson-chi2-test-of-independence"><i class="fa fa-check"></i><b>13.2.2</b> Pearson <span class="math inline">\(\chi^2\)</span> Test of Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#measures-of-association"><i class="fa fa-check"></i><b>13.3</b> Measures of Association</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#times2-table-under-different-study-designs"><i class="fa fa-check"></i><b>13.3.1</b> <span class="math inline">\(2\times2\)</span>-table Under Different Study Designs</a></li>
+<li class="chapter" data-level="13.3.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#measures-of-association-1"><i class="fa fa-check"></i><b>13.3.2</b> Measures of Association</a></li>
+<li class="chapter" data-level="13.3.3" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#validity-of-measures-of-association"><i class="fa fa-check"></i><b>13.3.3</b> Validity of Measures of Association</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-studies-2"><i class="fa fa-check"></i><b>13.4</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-study-1-1"><i class="fa fa-check"></i><b>13.4.1</b> Case Study 1</a></li>
+<li class="chapter" data-level="13.4.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-study-2-1"><i class="fa fa-check"></i><b>13.4.2</b> Case Study 2</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#practice-problems-4"><i class="fa fa-check"></i><b>13.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html"><i class="fa fa-check"></i><b>14</b> Analysis of Counts and Rates</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#motivational-examples"><i class="fa fa-check"></i><b>14.1</b> Motivational Examples</a></li>
+<li class="chapter" data-level="14.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#poisson-regression-for-counts-and-rates"><i class="fa fa-check"></i><b>14.2</b> Poisson Regression for Counts and Rates</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#structure-and-interpretations"><i class="fa fa-check"></i><b>14.2.1</b> Structure and Interpretations</a></li>
+<li class="chapter" data-level="14.2.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#assumptions-and-goodness-of-fit"><i class="fa fa-check"></i><b>14.2.2</b> Assumptions and Goodness-of-fit</a></li>
+<li class="chapter" data-level="14.2.3" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#dispersion-issue-and-remedies"><i class="fa fa-check"></i><b>14.2.3</b> Dispersion Issue and Remedies</a></li>
+<li class="chapter" data-level="14.2.4" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#data-structure-of-poisson-regression"><i class="fa fa-check"></i><b>14.2.4</b> Data Structure of Poisson Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#case-studies-3"><i class="fa fa-check"></i><b>14.3</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#harbor-seal-data"><i class="fa fa-check"></i><b>14.3.1</b> Harbor Seal Data</a></li>
+<li class="chapter" data-level="14.3.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#toxicity-study"><i class="fa fa-check"></i><b>14.3.2</b> Toxicity Study</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#concluding-remarks-1"><i class="fa fa-check"></i><b>14.4</b> Concluding Remarks</a></li>
+<li class="chapter" data-level="14.5" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#practice-problems-5"><i class="fa fa-check"></i><b>14.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>15</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="introduction-1.html"><a href="introduction-1.html#two-sample-proportion-problems"><i class="fa fa-check"></i><b>15.1</b> Two-sample Proportion Problems</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="introduction-1.html"><a href="introduction-1.html#sample-size-estimations-for-two-proportions"><i class="fa fa-check"></i><b>15.1.1</b> Sample size estimations for <strong>two proportions</strong></a></li>
+<li class="chapter" data-level="15.1.2" data-path="introduction-1.html"><a href="introduction-1.html#power-analysis-for-two-proportions"><i class="fa fa-check"></i><b>15.1.2</b> Power analysis for <strong>two proportions</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="introduction-1.html"><a href="introduction-1.html#two-sample-mean-problems"><i class="fa fa-check"></i><b>15.2</b> Two-sample Mean Problems</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="introduction-1.html"><a href="introduction-1.html#sample-size-estimations-for-two-averages"><i class="fa fa-check"></i><b>15.2.1</b> Sample size estimations for <strong>two averages</strong></a></li>
+<li class="chapter" data-level="15.2.2" data-path="introduction-1.html"><a href="introduction-1.html#power-analysis-for-two-averages"><i class="fa fa-check"></i><b>15.2.2</b> Power analysis for two averages</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="introduction-1.html"><a href="introduction-1.html#paired-sample-problems"><i class="fa fa-check"></i><b>15.3</b> Paired-sample Problems</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="introduction-1.html"><a href="introduction-1.html#sample-size-estimation-for-paired-data-before-and-after"><i class="fa fa-check"></i><b>15.3.1</b> Sample size estimation for <strong>paired data (before and after)</strong></a></li>
+<li class="chapter" data-level="15.3.2" data-path="introduction-1.html"><a href="introduction-1.html#power-analysis-of-paired-samples-paired-t-test"><i class="fa fa-check"></i><b>15.3.2</b> Power analysis of <strong>paired samples (paired t test)</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="introduction-1.html"><a href="introduction-1.html#unequal-sample-sizes-problems"><i class="fa fa-check"></i><b>15.4</b> Unequal Sample sizes Problems</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="introduction-1.html"><a href="introduction-1.html#power-analysis-with-unequal-sample-sizes"><i class="fa fa-check"></i><b>15.4.1</b> Power analysis with <strong>unequal sample sizes</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="introduction-1.html"><a href="introduction-1.html#conclusions"><i class="fa fa-check"></i><b>15.5</b> Conclusions</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STA501 E-Pack: Applied Statistical Methods</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction-1" class="section level1 hasAnchor" number="15">
+<h1><span class="header-section-number">Topic 15</span> Introduction<a href="introduction-1.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Estimating the sample size for a prospective study is one of the first most important tasks in classical statistics. In clinical studies, researchers need to determine the number of subjects to enroll in a clinical trial to guarantee the reliability of the study results. If the sample size is too small, it will not be able to achieve the power of the analysis. If the size excessively larger than needed, it will waste resources.</p>
+<p>Estimating the optimal number of patients is necessary for developing a Statistical Analysis Plan (SAP) in all prospective study. In retrospective studies, we can determine how much power of the analysis (for example, the power of detecting a difference if one existed).</p>
+<p>This chapter focuses on how to</p>
+<ol style="list-style-type: decimal">
+<li><p>estimate sample size for a prospective study (e.g., randomized controlled trial)</p></li>
+<li><p>determine how much power we have to detect a difference if one existed (post hoc analysis)</p></li>
+</ol>
+<p><font color = "red"><strong>We also restrict our discussion within two-sample tests</strong></font>.</p>
+<div id="two-sample-proportion-problems" class="section level2 hasAnchor" number="15.1">
+<h2><span class="header-section-number">15.1</span> Two-sample Proportion Problems<a href="introduction-1.html#two-sample-proportion-problems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before enrolling patients in a clinical trial, we want to make sure the we have the optimal number of patients for the study. Different statistical procedures require different optimal sample sizes to attain the target power. Next we discuss sample size determination for several commonly used statistical procedures.</p>
+<p>Before move forward, let recall two error probabilities associated with a statistical test of hypothesis <span class="math inline">\(\text{H}_{\text{0}}\)</span>:</p>
+<p><span class="math inline">\(\alpha = \text{P[type I error]} = \text{P[reject Ho | Ho is true]}\)</span> = false positive rate</p>
+<p><span class="math inline">\(\beta = \text{P[type II error]} = \text{P[fail to reject Ho | Ho is false]}\)</span> = false negative.</p>
+<p><span class="math inline">\(\text{power of a test} = 1 - \beta =\text{P[reject Ho | Ho is false]}\)</span></p>
+<p>Several observations about <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>:</p>
+<ul>
+<li><p><span class="math inline">\(alpha\)</span> and <span class="math inline">\(\beta\)</span> are negatively dependent on each other (not linearly dependent).</p></li>
+<li><p>Estimated <span class="math inline">\(alpha\)</span> and <span class="math inline">\(\beta\)</span> are dependent on the sample size.</p></li>
+</ul>
+<blockquote>
+<p>In general, if more than one test for testing a given hypothesis <span class="math inline">\(Ho\)</span> under the same <span class="math inline">\(\alpha\)</span>, the one that achieves the lowest <span class="math inline">\(\beta\)</span> is the best test. This tells the relationship among estimated <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, power, and the sample size <span class="math inline">\(n\)</span>.</p>
+</blockquote>
+<div id="sample-size-estimations-for-two-proportions" class="section level3 hasAnchor" number="15.1.1">
+<h3><span class="header-section-number">15.1.1</span> Sample size estimations for <strong>two proportions</strong><a href="introduction-1.html#sample-size-estimations-for-two-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is a common sample size calculation when you have two groups and the outcome is dichotomous (e.g., Yes / No)
+Assume that we have a study that aims to estimate the efficacy of Treatment A versus Treatment B. The main end point is a dichotomous variable: “Response” or “No response.”</p>
+<p>The null hypothesis is:</p>
+<p><span class="math inline">\(H_{0}\)</span>: There is no difference in the proportion of responders between Treatment A and Treatment B</p>
+<p>The alternative hypothesis is:</p>
+<p><span class="math inline">\(H_{a}\)</span>: There is a difference in the proportion of responders between Treatment A and Treatment B</p>
+<p><br />
+</p>
+<p>To determine the sample size needed to detect a meaningful difference in the proportion of responders between Treatment A and Treatment B, we need the following information:</p>
+<ul>
+<li><p><strong><span class="math inline">\(\alpha\)</span> level</strong> (type I error) is the threshold where we make the determination whether something is statistically significantly different. We normally use an alpha level of 0.05 (type I error).</p></li>
+<li><p><strong>Effect size</strong> is the standardized difference one would expect to see between treatment groups. This is an estimate and something that is usually based on past studies.</p></li>
+<li><p><strong>Power (1 - <span class="math inline">\(\beta\)</span>)</strong> is the ability to correctly reject the null hypothesis if the actual effect of the population is equal to or greater than the specified effect size.</p></li>
+</ul>
+<p>We’ll set the two-tailed alpha level to 0.05 estimate size <span class="math inline">\(h\)</span> using the following equation:</p>
+<p><span class="math display">\[
+h = \varphi_{1} - \varphi_{2}
+\]</span>
+where <span class="math inline">\(\varphi_{i} = 2 * arcsine(\sqrt{p_{i}})\)</span> and <span class="math inline">\(p_{i}\)</span> denotes the proportion in treatment <span class="math inline">\(i\)</span> that were classified as “responders.” In generally, the power is set to 80%.</p>
+<p>With these pieces of information, we can estimate the sample size for a study with two proportions as the outcome using the following formula:</p>
+<p><span class="math display">\[
+\begin{aligned}
+n_{i} = \frac{(Z_{\alpha/2} + Z_{1 - \beta})^2 + (p_{1}(1 - p_{1})) + (p_{2}(1 - p_{2}))}{(p_{1} - p_{2})^2}
+\end{aligned}
+\]</span></p>
+<p>where <span class="math inline">\(n_{i}\)</span> is the sample size for one group.</p>
+<p>Use the <code>pwr.2p.test()</code> function in <code>library("pwr")</code>to find out optimal sample size that meet the requirements on the alpha level (<code>alpha = 0.05</code>), effect size <span class="math inline">\(h\)</span>, and power level (<code>power = 80%</code>).</p>
+<p><strong>Example 1</strong>: We consider Treatment A and Treatment B in a survey study. Set Treatment B as the reference (e.g., control) with 50% response rate. Assume that Treatment A is slightly better with a response rate of 60%. With these pieces of information, we can estimate the sample size required to detect a difference in “response” rate between Treatment A and Treatment B that is 10% (<span class="math inline">\(p_{1}\)</span> - <span class="math inline">\(p_{2}\)</span>) with an alpha of 5% and power of 80%.</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="introduction-1.html#cb198-1" tabindex="-1"></a><span class="do">### alpha = sig.level option and is equal to 0.05</span></span>
+<span id="cb198-2"><a href="introduction-1.html#cb198-2" tabindex="-1"></a><span class="do">### power = 0.80</span></span>
+<span id="cb198-3"><a href="introduction-1.html#cb198-3" tabindex="-1"></a><span class="do">### p1 = 0.60 </span></span>
+<span id="cb198-4"><a href="introduction-1.html#cb198-4" tabindex="-1"></a><span class="do">### p2 = 0.50</span></span>
+<span id="cb198-5"><a href="introduction-1.html#cb198-5" tabindex="-1"></a>power1 <span class="ot">&lt;-</span><span class="fu">pwr.2p.test</span>(<span class="at">h =</span> <span class="fu">ES.h</span>(<span class="at">p1 =</span> <span class="fl">0.60</span>, <span class="at">p2 =</span> <span class="fl">0.50</span>), <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">power =</span> .<span class="dv">80</span>)</span>
+<span id="cb198-6"><a href="introduction-1.html#cb198-6" tabindex="-1"></a>power1</span></code></pre></div>
+<pre><code>## 
+##      Difference of proportion power calculation for binomial distribution (arcsine transformation) 
+## 
+##               h = 0.2013579
+##               n = 387.1677
+##       sig.level = 0.05
+##           power = 0.8
+##     alternative = two.sided
+## 
+## NOTE: same sample sizes</code></pre>
+<p>The effect size <code>h</code> is 0.201, and the sample <code>n</code> is 387.2 or 388 rounded to the nearest whole number. This <code>n</code> is only for one group. Hence, based on the parameters of our study, we need approximately 388 patients in Treatment A and 388 patients in Treatment B to detect a difference of 10% response or greater with an alpha of 0.05 and power of 80%.</p>
+</div>
+<div id="power-analysis-for-two-proportions" class="section level3 hasAnchor" number="15.1.2">
+<h3><span class="header-section-number">15.1.2</span> Power analysis for <strong>two proportions</strong><a href="introduction-1.html#power-analysis-for-two-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Power (1 - <span class="math inline">\(\beta\)</span>) is the ability to correctly reject the null hypothesis if the actual effect of the population is equal to or greater than the specified effect size. In other words, if you conclude that there is no difference in the sample, then there is no true difference in the population conditioned on the specified effect size</p>
+<p>We can also use the plot feature to see how the power level changes with varying sample sizes. As the sample size goes up, power increases. As the sample size goes down, power decreases. This is important to understand. As we increase our sample size, we reduce the uncertainty around the estimates. By reducing this uncertainty, we gain greater precision in our estimates, which results in greater confidence in our ability to avoid making a type II error.</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="introduction-1.html#cb200-1" tabindex="-1"></a><span class="do">### We can plot the power relative to different levels of the sample size. </span></span>
+<span id="cb200-2"><a href="introduction-1.html#cb200-2" tabindex="-1"></a><span class="fu">plot</span>(power1)</span></code></pre></div>
+<p><img src="STA501EB_files/figure-html/unnamed-chunk-228-1.png" width="672" /></p>
+<p>Let’s change the <span class="math inline">\(p_{i}\)</span> and see how the power level change; we are fixing our sample size at 388 for each group with an alpha of 0.05.</p>
+<p>We create a sequence of values by varying the proportion of “responders” for Treatment A. We will change these from 50% to 100% in intervals of 5%.</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="introduction-1.html#cb201-1" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.5</span>, <span class="fl">1.0</span>, <span class="fl">0.05</span>)</span>
+<span id="cb201-2"><a href="introduction-1.html#cb201-2" tabindex="-1"></a>power1 <span class="ot">&lt;-</span><span class="fu">pwr.2p.test</span>(<span class="at">h =</span> <span class="fu">ES.h</span>(<span class="at">p1 =</span> p1, <span class="at">p2 =</span> <span class="fl">0.50</span>),</span>
+<span id="cb201-3"><a href="introduction-1.html#cb201-3" tabindex="-1"></a>                     <span class="at">n =</span> <span class="dv">388</span>,</span>
+<span id="cb201-4"><a href="introduction-1.html#cb201-4" tabindex="-1"></a>                     <span class="at">sig.level =</span> <span class="fl">0.05</span>)</span>
+<span id="cb201-5"><a href="introduction-1.html#cb201-5" tabindex="-1"></a>powerchange <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(p1, <span class="at">power =</span> power1<span class="sc">$</span>power <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb201-6"><a href="introduction-1.html#cb201-6" tabindex="-1"></a><span class="fu">plot</span>(powerchange<span class="sc">$</span>p1, </span>
+<span id="cb201-7"><a href="introduction-1.html#cb201-7" tabindex="-1"></a>     powerchange<span class="sc">$</span>power, </span>
+<span id="cb201-8"><a href="introduction-1.html#cb201-8" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;b&quot;</span>, </span>
+<span id="cb201-9"><a href="introduction-1.html#cb201-9" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Proportion of Responders in Treatment A&quot;</span>, </span>
+<span id="cb201-10"><a href="introduction-1.html#cb201-10" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Power (%)&quot;</span>)</span></code></pre></div>
+<p><img src="STA501EB_files/figure-html/unnamed-chunk-229-1.png" width="672" /></p>
+<p>We can also write a function for this:</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="introduction-1.html#cb202-1" tabindex="-1"></a>iteration <span class="ot">&lt;-</span> <span class="cf">function</span>(p_i, P_i, i_i, p2, n, alpha) {</span>
+<span id="cb202-2"><a href="introduction-1.html#cb202-2" tabindex="-1"></a>              p1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(p_i, P_i, i_i)</span>
+<span id="cb202-3"><a href="introduction-1.html#cb202-3" tabindex="-1"></a>              power1 <span class="ot">&lt;-</span><span class="fu">pwr.2p.test</span>(<span class="at">h =</span> <span class="fu">ES.h</span>(<span class="at">p1 =</span> p1, <span class="at">p2 =</span> p2),</span>
+<span id="cb202-4"><a href="introduction-1.html#cb202-4" tabindex="-1"></a>                                   <span class="at">n =</span> n,</span>
+<span id="cb202-5"><a href="introduction-1.html#cb202-5" tabindex="-1"></a>                                   <span class="at">sig.level =</span> alpha)</span>
+<span id="cb202-6"><a href="introduction-1.html#cb202-6" tabindex="-1"></a>              powerchange <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(p1, <span class="at">power =</span> power1<span class="sc">$</span>power <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb202-7"><a href="introduction-1.html#cb202-7" tabindex="-1"></a>              powerchange</span>
+<span id="cb202-8"><a href="introduction-1.html#cb202-8" tabindex="-1"></a>}</span>
+<span id="cb202-9"><a href="introduction-1.html#cb202-9" tabindex="-1"></a></span>
+<span id="cb202-10"><a href="introduction-1.html#cb202-10" tabindex="-1"></a><span class="fu">iteration</span>(<span class="fl">0.5</span>, <span class="fl">1.0</span>, <span class="fl">0.05</span>, <span class="fl">0.50</span>, <span class="dv">388</span>, <span class="fl">0.05</span>)</span></code></pre></div>
+<pre><code>##      p1     power
+## 1  0.50   5.00000
+## 2  0.55  28.65038
+## 3  0.60  80.08415
+## 4  0.65  98.88117
+## 5  0.70  99.99190
+## 6  0.75 100.00000
+## 7  0.80 100.00000
+## 8  0.85 100.00000
+## 9  0.90 100.00000
+## 10 0.95 100.00000
+## 11 1.00 100.00000</code></pre>
+</div>
+</div>
+<div id="two-sample-mean-problems" class="section level2 hasAnchor" number="15.2">
+<h2><span class="header-section-number">15.2</span> Two-sample Mean Problems<a href="introduction-1.html#two-sample-mean-problems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="sample-size-estimations-for-two-averages" class="section level3 hasAnchor" number="15.2.1">
+<h3><span class="header-section-number">15.2.1</span> Sample size estimations for <strong>two averages</strong><a href="introduction-1.html#sample-size-estimations-for-two-averages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is another common sample size estimation for two groups when the outcome is a continuous variable.</p>
+<p>Now let’s estimate the sample size for a study where we are comparing the averages between two groups. Let’s suppose that we are working on a randomized controlled trial that seeks to evaluate the difference in the average change in hemogloblin A1c (HbA1c) from baseline between Treatment A and Treatment B.</p>
+<p><br />
+</p>
+<p>The null hypothesis is:</p>
+<p><span class="math inline">\(H_{0}\)</span>: There is no difference in the average change in HbA1c from baseline between Treatment A and Treatment B</p>
+<p>The alternative hypothesis is:</p>
+<p><span class="math inline">\(H_{a}\)</span>: There is a difference in the average change in HbA1c from baseline between Treatment A and Treatment B</p>
+<p>To determine the sample size needed to detect a meaningful difference in the average HbA1c change from baseline between Treatment A and Treatment B, we can use the following formula:</p>
+<p><span class="math display">\[
+\begin{aligned}
+n_{i} = \frac{2 \sigma^2 * (Z_{\alpha/2} + Z_{1 - \beta})^2}{({\mu_{1} - \mu_{2}})^2}
+\end{aligned}
+\]</span></p>
+<p>where <span class="math inline">\(n_{i}\)</span> is the sample size for one of the groups, <span class="math inline">\(\mu_{1}\)</span> and <span class="math inline">\(\mu_{2}\)</span> are the average changes in HbA1c from baseline for Treatment A and Treatment B, respectively.</p>
+<p>As usual, we’ll set the two-tailed alpha level to 0.05. The effect size, also known as Cohen’s <span class="math inline">\(d\)</span>, is estimated using the following equation:</p>
+<p><span class="math display">\[
+\begin{aligned}
+d = \frac{\mu_{1} - \mu_{2}}{\sigma_{pooled}}
+\end{aligned}
+\]</span></p>
+<p>The pooled standard deviation is estimated using the following formula:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sigma_{pooled} = \sqrt{\frac{sd_{1}^2 + sd_{2}^2}{2}}
+\end{aligned}
+\]</span></p>
+<p>Once again, the R <code>pwr</code> package can make this task easy for us. However, we’ll need to estimate the Cohen’s <span class="math inline">\(d\)</span>.</p>
+<p><strong>Example 2</strong>: Since we haven’t started the study, we have to make some assumptions of about each treatment strategy’s change in HbA1c. Let’s assume that the expected average change in HbA1c from baseline for Treatment A was 1.5% with a standard deviation of 0.25%. Additionally, let’s assume that the expected average change in HbA1c from baseline for Treatment B was 1.0% with a standard deviation of 0.20.</p>
+<p>First, we’ll calculate the pooled standard deviation (<span class="math inline">\(\sigma_{pooled}\)</span>):</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="introduction-1.html#cb204-1" tabindex="-1"></a>sd1 <span class="ot">=</span> <span class="fl">0.25</span></span>
+<span id="cb204-2"><a href="introduction-1.html#cb204-2" tabindex="-1"></a>sd2 <span class="ot">=</span> <span class="fl">0.30</span></span>
+<span id="cb204-3"><a href="introduction-1.html#cb204-3" tabindex="-1"></a>sd.pooled <span class="ot">=</span> <span class="fu">sqrt</span>((sd1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span>sd2<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb204-4"><a href="introduction-1.html#cb204-4" tabindex="-1"></a>sd.pooled</span></code></pre></div>
+<pre><code>## [1] 0.276134</code></pre>
+<p>Once we have the <span class="math inline">\(\sigma_{pooled}\)</span>, we can estimate the Cohen’s <span class="math inline">\(d\)</span>:</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="introduction-1.html#cb206-1" tabindex="-1"></a>mu1 <span class="ot">=</span> <span class="fl">1.5</span></span>
+<span id="cb206-2"><a href="introduction-1.html#cb206-2" tabindex="-1"></a>mu2 <span class="ot">=</span> <span class="fl">1.0</span></span>
+<span id="cb206-3"><a href="introduction-1.html#cb206-3" tabindex="-1"></a>d <span class="ot">=</span> (mu1 <span class="sc">-</span> mu2) <span class="sc">/</span> sd.pooled</span>
+<span id="cb206-4"><a href="introduction-1.html#cb206-4" tabindex="-1"></a>d</span></code></pre></div>
+<pre><code>## [1] 1.810715</code></pre>
+<p>The Cohen’s <span class="math inline">\(d\)</span> is 1.81, which is considered a large effect size.</p>
+<p>Now, we can take advantage of the <code>pwr</code> package and estimate the sample size needed to detect a difference of 0.5% (1.5% - 1.0%) in the average HbA1c change from baseline between Treatment A and Treatment B with 80% power and a significance threshold of 5%.</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="introduction-1.html#cb208-1" tabindex="-1"></a><span class="do">### d = Cohen&#39;s d</span></span>
+<span id="cb208-2"><a href="introduction-1.html#cb208-2" tabindex="-1"></a><span class="do">### power = 0.80</span></span>
+<span id="cb208-3"><a href="introduction-1.html#cb208-3" tabindex="-1"></a><span class="do">### alpha = 0.05</span></span>
+<span id="cb208-4"><a href="introduction-1.html#cb208-4" tabindex="-1"></a>n.i <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(<span class="at">d =</span> d, <span class="at">power =</span> <span class="fl">0.80</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>)</span>
+<span id="cb208-5"><a href="introduction-1.html#cb208-5" tabindex="-1"></a>n.i</span></code></pre></div>
+<pre><code>## 
+##      Two-sample t test power calculation 
+## 
+##               n = 5.921286
+##               d = 1.810715
+##       sig.level = 0.05
+##           power = 0.8
+##     alternative = two.sided
+## 
+## NOTE: n is number in *each* group</code></pre>
+<p>Based on our study parameters, we need 6 patients in each group to detect a difference of 0.5% or greater with 80% power and a significance threshold of 5%.</p>
+</div>
+<div id="power-analysis-for-two-averages" class="section level3 hasAnchor" number="15.2.2">
+<h3><span class="header-section-number">15.2.2</span> Power analysis for two averages<a href="introduction-1.html#power-analysis-for-two-averages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Power</strong> (1 - <span class="math inline">\(\beta\)</span>) is the ability to correctly reject the null hypothesis if the actual effect of the population is equal to or greater than the specified effect size.</p>
+<p>We can plot how the power will change as the sample size changes. As the sample size increases, power increases. This should make sense. Like our previous example with two proportions, as we increase our sample size, we reduce the uncertainty around the estimates. By reducing this uncertainty, we gain greater precision in our estimates, which results in greater confidence in our ability to avoid making a type II error.</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="introduction-1.html#cb210-1" tabindex="-1"></a><span class="do">### We can plot the power relative to different levels of the sample size. </span></span>
+<span id="cb210-2"><a href="introduction-1.html#cb210-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">1</span>)</span>
+<span id="cb210-3"><a href="introduction-1.html#cb210-3" tabindex="-1"></a>nchange <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(<span class="at">d =</span> d, <span class="at">n =</span> n, <span class="at">sig.level =</span> <span class="fl">0.05</span>)</span>
+<span id="cb210-4"><a href="introduction-1.html#cb210-4" tabindex="-1"></a>nchange.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(n, <span class="at">power =</span> nchange<span class="sc">$</span>power <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb210-5"><a href="introduction-1.html#cb210-5" tabindex="-1"></a>nchange.df</span></code></pre></div>
+<pre><code>##     n    power
+## 1   1      NaN
+## 2   2 19.03307
+## 3   3 39.61785
+## 4   4 57.33850
+## 5   5 70.87945
+## 6   6 80.64997
+## 7   7 87.42531
+## 8   8 91.98145
+## 9   9 94.96979
+## 10 10 96.88938</code></pre>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="introduction-1.html#cb212-1" tabindex="-1"></a><span class="fu">plot</span>(nchange.df<span class="sc">$</span>n, </span>
+<span id="cb212-2"><a href="introduction-1.html#cb212-2" tabindex="-1"></a>     nchange.df<span class="sc">$</span>power, </span>
+<span id="cb212-3"><a href="introduction-1.html#cb212-3" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;b&quot;</span>, </span>
+<span id="cb212-4"><a href="introduction-1.html#cb212-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Sample size, n&quot;</span>, </span>
+<span id="cb212-5"><a href="introduction-1.html#cb212-5" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Power (%)&quot;</span>)</span></code></pre></div>
+<p><img src="STA501EB_files/figure-html/unnamed-chunk-235-1.png" width="672" /></p>
+<p><img src="STA501EB_files/figure-html/unnamed-chunk-236-1.png" width="672" /></p>
+<p>As the sample size increases, our power increases. This makes sense because we have more patients to detect differences that may be smaller. But we fixed our effect size (Cohen’s <span class="math inline">\(d\)</span>), so as we increase the sample size, our power to detect that difference ultimately increases.</p>
+<p>Let’s change the <span class="math inline">\(\mu_{i}\)</span> and see how the power level change; we are fixing our sample size at 6 for each group with an alpha of 0.05.</p>
+<p>We create a sequence of values by varying the average change in HbA1c from baseline for Treatment A. We will change these from 0% to 2% in intervals of 0.1%.</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="introduction-1.html#cb213-1" tabindex="-1"></a>mu1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.0</span>, <span class="fl">2.0</span>, <span class="fl">0.1</span>)</span>
+<span id="cb213-2"><a href="introduction-1.html#cb213-2" tabindex="-1"></a></span>
+<span id="cb213-3"><a href="introduction-1.html#cb213-3" tabindex="-1"></a>d <span class="ot">&lt;-</span> (mu1 <span class="sc">-</span> mu2) <span class="sc">/</span> sd.pooled</span>
+<span id="cb213-4"><a href="introduction-1.html#cb213-4" tabindex="-1"></a></span>
+<span id="cb213-5"><a href="introduction-1.html#cb213-5" tabindex="-1"></a>power1 <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(<span class="at">d =</span> d, <span class="at">n =</span> <span class="dv">6</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>)</span>
+<span id="cb213-6"><a href="introduction-1.html#cb213-6" tabindex="-1"></a>powerchange <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(d, <span class="at">power =</span> power1<span class="sc">$</span>power <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb213-7"><a href="introduction-1.html#cb213-7" tabindex="-1"></a>powerchange</span></code></pre></div>
+<pre><code>##            d     power
+## 1  -3.621430 99.986261
+## 2  -3.259287 99.898978
+## 3  -2.897144 99.437136
+## 4  -2.535001 97.615372
+## 5  -2.172858 92.271971
+## 6  -1.810715 80.649971
+## 7  -1.448572 61.960800
+## 8  -1.086429 39.817661
+## 9  -0.724286 20.610368
+## 10 -0.362143  8.785855
+## 11  0.000000  5.000000
+## 12  0.362143  8.785855
+## 13  0.724286 20.610368
+## 14  1.086429 39.817661
+## 15  1.448572 61.960800
+## 16  1.810715 80.649971
+## 17  2.172858 92.271971
+## 18  2.535001 97.615372
+## 19  2.897144 99.437136
+## 20  3.259287 99.898978
+## 21  3.621430 99.986261</code></pre>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="introduction-1.html#cb215-1" tabindex="-1"></a><span class="fu">plot</span>(powerchange<span class="sc">$</span>d, </span>
+<span id="cb215-2"><a href="introduction-1.html#cb215-2" tabindex="-1"></a>     powerchange<span class="sc">$</span>power, </span>
+<span id="cb215-3"><a href="introduction-1.html#cb215-3" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;b&quot;</span>, </span>
+<span id="cb215-4"><a href="introduction-1.html#cb215-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Cohen&#39;s d&quot;</span>, </span>
+<span id="cb215-5"><a href="introduction-1.html#cb215-5" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Power (%)&quot;</span>)</span></code></pre></div>
+<p><img src="STA501EB_files/figure-html/unnamed-chunk-238-1.png" width="672" /></p>
+<p>This figure shows how the power changes with Cohen’s <span class="math inline">\(d\)</span>. It has a symmetrical patter because of negative and positive range associated with Cohen’s <span class="math inline">\(d\)</span>. But the story is the same. As the effect size increases (negative and positive signs do not matter; we only care about the absolute values), the power increases. This makes sense because we only have enough power to detect large differences with the current sample size (which is fixed in this case). If the differences are small, then we do not have enough power with the current sample size of 6.</p>
+</div>
+</div>
+<div id="paired-sample-problems" class="section level2 hasAnchor" number="15.3">
+<h2><span class="header-section-number">15.3</span> Paired-sample Problems<a href="introduction-1.html#paired-sample-problems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="sample-size-estimation-for-paired-data-before-and-after" class="section level3 hasAnchor" number="15.3.1">
+<h3><span class="header-section-number">15.3.1</span> Sample size estimation for <strong>paired data (before and after)</strong><a href="introduction-1.html#sample-size-estimation-for-paired-data-before-and-after" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>So far, we discussed how to perform sample size estimations for “between-groups” comparisons. However, many studies investigate the “within-group” changes. This are paired data, which means that the observation for one data point is dependent on another observation. A common study design where paired data is collected are longitudinal studies. Theses types of studies involve repeated measure. For example a pretest posttest study design will measure a data point for a patient at baseline and then repeat that measurement at another point in time. In the figure, Patient A has two measurements at <span class="math inline">\(t_{0}\)</span> and <span class="math inline">\(t_{f}\)</span>. Since these measurements were made in the same person, the change is “within” the patient. Alternatively, we can think of this as a “repeated” measure since the patient had the measurement performed twice.</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-239"></span>
+<img src="img14/w14-BeforeAfter.png" alt="Figure caption: Pretest-Posttest (repeated measures) framework" width="100%" />
+<p class="caption">
+Figure 15.1: Figure caption: Pretest-Posttest (repeated measures) framework
+</p>
+</div>
+<p>When you have a study where you are performing a paired t test, you can use the same <code>pwr.t.test()</code> function for a two sample test from the <code>pwr</code> package.</p>
+<p>Let’s assume that we want to conduct a prospective study measure the weight change of a cohort of patients who started a diet. You want to enroll enough patients to detect a 5 lb reduction in the weight 3 weeks after the diet started. Let’s assume that at baseline the expected average weight for the cohort was 130 lbs with a standard deviation of 11. After 3 weeks of diet, the expected average weight was 125 lbs with a standard deviation of 12.</p>
+<p>We can estimate the effect size (Cohen’s <span class="math inline">\(d_{z}\)</span>) for a paired t test.</p>
+<p><span class="math display">\[
+\begin{aligned}
+d_{z} = \frac{ | \mu_{z} |}{\sigma_{z}} = \frac{| \mu_{x} - \mu_{y} | }{ \sqrt{\sigma_{x}^{2} + \sigma_{y}^{2} - 2 \rho_{x, y} \sigma_{x} \sigma_{y}}}
+\end{aligned}
+\]</span></p>
+<p>where <span class="math inline">\(x\)</span> denotes “before” (or baseline), <span class="math inline">\(y\)</span> denotes “after”, <span class="math inline">\(d_{z}\)</span> denotes the Cohen’s <span class="math inline">\(d\)</span> for paired analysis <span class="math inline">\(\rho\)</span> denotes the correlation between the measures before and after the diet. (For simplicity, I use 0.50 if I don’t have prior information about this correlation.)</p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="introduction-1.html#cb216-1" tabindex="-1"></a><span class="do">### Parameters for paired analysis or a pretest-posttest study design</span></span>
+<span id="cb216-2"><a href="introduction-1.html#cb216-2" tabindex="-1"></a></span>
+<span id="cb216-3"><a href="introduction-1.html#cb216-3" tabindex="-1"></a>mu_x <span class="ot">&lt;-</span> <span class="dv">130</span>     <span class="do">### Average weight before the diet (baseline)</span></span>
+<span id="cb216-4"><a href="introduction-1.html#cb216-4" tabindex="-1"></a>mu_y <span class="ot">&lt;-</span> <span class="dv">125</span>     <span class="do">### Average weight after the diet</span></span>
+<span id="cb216-5"><a href="introduction-1.html#cb216-5" tabindex="-1"></a></span>
+<span id="cb216-6"><a href="introduction-1.html#cb216-6" tabindex="-1"></a>sd_x <span class="ot">&lt;-</span> <span class="dv">11</span>      <span class="do">### Standard deviation before the diet</span></span>
+<span id="cb216-7"><a href="introduction-1.html#cb216-7" tabindex="-1"></a>sd_y <span class="ot">&lt;-</span> <span class="dv">12</span>      <span class="do">### Standard deviation after the diet</span></span>
+<span id="cb216-8"><a href="introduction-1.html#cb216-8" tabindex="-1"></a></span>
+<span id="cb216-9"><a href="introduction-1.html#cb216-9" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.5</span>      <span class="do">### Correlation between measures before and after the diet</span></span>
+<span id="cb216-10"><a href="introduction-1.html#cb216-10" tabindex="-1"></a></span>
+<span id="cb216-11"><a href="introduction-1.html#cb216-11" tabindex="-1"></a>sd_z <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(sd_x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> sd_y<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span>rho<span class="sc">*</span>sd_x<span class="sc">*</span>sd_y)</span>
+<span id="cb216-12"><a href="introduction-1.html#cb216-12" tabindex="-1"></a>  </span>
+<span id="cb216-13"><a href="introduction-1.html#cb216-13" tabindex="-1"></a>d_z <span class="ot">&lt;-</span> <span class="fu">abs</span>(mu_x <span class="sc">-</span> mu_y) <span class="sc">/</span> sd_z</span>
+<span id="cb216-14"><a href="introduction-1.html#cb216-14" tabindex="-1"></a>d_z</span></code></pre></div>
+<pre><code>## [1] 0.433555</code></pre>
+<p>The Cohen’s <span class="math inline">\(d_{z}\)</span> is 0.433. We can input this into the <code>pwr.t.test()</code> function.</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="introduction-1.html#cb218-1" tabindex="-1"></a>n.paired <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(<span class="at">d =</span> d_z, <span class="at">power =</span> <span class="fl">0.80</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;paired&quot;</span>)</span>
+<span id="cb218-2"><a href="introduction-1.html#cb218-2" tabindex="-1"></a>n.paired</span></code></pre></div>
+<pre><code>## 
+##      Paired t test power calculation 
+## 
+##               n = 43.71557
+##               d = 0.433555
+##       sig.level = 0.05
+##           power = 0.8
+##     alternative = two.sided
+## 
+## NOTE: n is number of *pairs*</code></pre>
+<p>We need 44 patients with two measurements (before and after) they implement their diet to detect a difference of 5 lbs or greater with 80% power and a significance level of 0.05.</p>
+</div>
+<div id="power-analysis-of-paired-samples-paired-t-test" class="section level3 hasAnchor" number="15.3.2">
+<h3><span class="header-section-number">15.3.2</span> Power analysis of <strong>paired samples (paired t test)</strong><a href="introduction-1.html#power-analysis-of-paired-samples-paired-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can plot how the power will change as the sample size changes for the paired t test analysis. As the sample size increases, power increases. This should make sense. Like our previous examples, as we increase our sample size, we reduce the uncertainty around the estimates. By reducing this uncertainty, we gain greater precision in our estimates, which results in greater confidence in our ability to avoid making a type II error.</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="introduction-1.html#cb220-1" tabindex="-1"></a><span class="do">### We can plot the power relative to different levels of the sample size for paired analysis. </span></span>
+<span id="cb220-2"><a href="introduction-1.html#cb220-2" tabindex="-1"></a>n_z <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">80</span>, <span class="dv">5</span>)</span>
+<span id="cb220-3"><a href="introduction-1.html#cb220-3" tabindex="-1"></a>n_z.change <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(<span class="at">d =</span> d_z, <span class="at">n =</span> n_z, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;paired&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning in qt(sig.level/tside, nu, lower = FALSE): 产生了NaNs</code></pre>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="introduction-1.html#cb222-1" tabindex="-1"></a>n_z.change.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(n_z, <span class="at">power =</span> n_z.change<span class="sc">$</span>power <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb222-2"><a href="introduction-1.html#cb222-2" tabindex="-1"></a>n_z.change.df</span></code></pre></div>
+<pre><code>##    n_z    power
+## 1    1      NaN
+## 2    6 14.03624
+## 3   11 25.58334
+## 4   16 36.84309
+## 5   21 47.26307
+## 6   26 56.56985
+## 7   31 64.66154
+## 8   36 71.54769
+## 9   41 77.30572
+## 10  46 82.04980
+## 11  51 85.90929
+## 12  56 89.01478
+## 13  61 91.48950
+## 14  66 93.44465
+## 15  71 94.97744
+## 16  76 96.17076</code></pre>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="introduction-1.html#cb224-1" tabindex="-1"></a><span class="fu">plot</span>(n_z.change.df<span class="sc">$</span>n, </span>
+<span id="cb224-2"><a href="introduction-1.html#cb224-2" tabindex="-1"></a>     n_z.change.df<span class="sc">$</span>power, </span>
+<span id="cb224-3"><a href="introduction-1.html#cb224-3" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;b&quot;</span>, </span>
+<span id="cb224-4"><a href="introduction-1.html#cb224-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Sample size, n&quot;</span>, </span>
+<span id="cb224-5"><a href="introduction-1.html#cb224-5" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Power (%)&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-243"></span>
+<img src="STA501EB_files/figure-html/unnamed-chunk-243-1.png" alt="We increase the sample size from 1 to 80 at 5-unit intervals." width="672" />
+<p class="caption">
+Figure 15.2: We increase the sample size from 1 to 80 at 5-unit intervals.
+</p>
+</div>
+<p>As the sample size increases, we generate more power to detect a difference of 5 lbs with a significance level of 0.05 and a fixed sample size of 44 patients with two measurements (before and after) they implement their diet.</p>
+<p>Let’s see how power changes when we change the effect size. Let’s change the average weight after the patients implement their diet. Instead of an average of 125 lbs, let’s see how the power will change when we reduce that to 100 lbs.</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="introduction-1.html#cb225-1" tabindex="-1"></a><span class="do">### Vary the mu_y from 50 lbs to 130 lbs in intervals of 5 lbs.</span></span>
+<span id="cb225-2"><a href="introduction-1.html#cb225-2" tabindex="-1"></a>mu_y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">50</span>, <span class="dv">130</span>, <span class="dv">5</span>)</span>
+<span id="cb225-3"><a href="introduction-1.html#cb225-3" tabindex="-1"></a></span>
+<span id="cb225-4"><a href="introduction-1.html#cb225-4" tabindex="-1"></a>d_z <span class="ot">&lt;-</span> <span class="fu">abs</span>(mu_x <span class="sc">-</span> mu_y) <span class="sc">/</span> sd_z</span>
+<span id="cb225-5"><a href="introduction-1.html#cb225-5" tabindex="-1"></a></span>
+<span id="cb225-6"><a href="introduction-1.html#cb225-6" tabindex="-1"></a>n_z.change <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(<span class="at">d =</span> d_z, <span class="at">n =</span> <span class="dv">44</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>)</span>
+<span id="cb225-7"><a href="introduction-1.html#cb225-7" tabindex="-1"></a>n_z.change.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(d_z, <span class="at">power =</span> n_z.change<span class="sc">$</span>power <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb225-8"><a href="introduction-1.html#cb225-8" tabindex="-1"></a>n_z.change.df</span></code></pre></div>
+<pre><code>##         d_z     power
+## 1  6.936880 100.00000
+## 2  6.503325 100.00000
+## 3  6.069770 100.00000
+## 4  5.636215 100.00000
+## 5  5.202660 100.00000
+## 6  4.769105 100.00000
+## 7  4.335550 100.00000
+## 8  3.901995 100.00000
+## 9  3.468440 100.00000
+## 10 3.034885 100.00000
+## 11 2.601330 100.00000
+## 12 2.167775 100.00000
+## 13 1.734220 100.00000
+## 14 1.300665  99.99766
+## 15 0.867110  98.03639
+## 16 0.433555  52.03146
+## 17 0.000000   5.00000</code></pre>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="introduction-1.html#cb227-1" tabindex="-1"></a><span class="fu">plot</span>(n_z.change.df<span class="sc">$</span>d_z, </span>
+<span id="cb227-2"><a href="introduction-1.html#cb227-2" tabindex="-1"></a>     n_z.change.df<span class="sc">$</span>power, </span>
+<span id="cb227-3"><a href="introduction-1.html#cb227-3" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;b&quot;</span>, </span>
+<span id="cb227-4"><a href="introduction-1.html#cb227-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Cohen&#39;s d_z&quot;</span>, </span>
+<span id="cb227-5"><a href="introduction-1.html#cb227-5" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Power (%)&quot;</span>,</span>
+<span id="cb227-6"><a href="introduction-1.html#cb227-6" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-244"></span>
+<img src="STA501EB_files/figure-html/unnamed-chunk-244-1.png" alt="We vary the average weight $\mu_{y}$ between 50 lbs and 130 lbs in intervals of 5 lbs." width="672" />
+<p class="caption">
+Figure 15.3: We vary the average weight <span class="math inline">\(\mu_{y}\)</span> between 50 lbs and 130 lbs in intervals of 5 lbs.
+</p>
+</div>
+<p>When we increase the effect size (Cohen’s <span class="math inline">\(d_{z}\)</span>), our power goes up; recall that the sample size is fixed at 44 and significance level is 0.05. But when the effect size gets smaller (or when the average weight loss shrinks), we lose power to detect a difference because our sample size is too small. We’ll need to increase our sample size to have a reasonable power to detect small differences.</p>
+<p>We can also see how power changes when we vary <span class="math inline">\(\rho\)</span>. If we set <span class="math inline">\(\rho\)</span> = 0, then the Cohen’s <span class="math inline">\(d_{z}\)</span> = 0.307. If we set <span class="math inline">\(\rho\)</span> = 1, then the Cohen’s <span class="math inline">\(d_{z}\)</span> = 5.</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="introduction-1.html#cb228-1" tabindex="-1"></a>mu_x <span class="ot">&lt;-</span> <span class="dv">130</span>     <span class="do">### Average weight before the diet (baseline)</span></span>
+<span id="cb228-2"><a href="introduction-1.html#cb228-2" tabindex="-1"></a>mu_y <span class="ot">&lt;-</span> <span class="dv">125</span>     <span class="do">### Average weight after the diet</span></span>
+<span id="cb228-3"><a href="introduction-1.html#cb228-3" tabindex="-1"></a></span>
+<span id="cb228-4"><a href="introduction-1.html#cb228-4" tabindex="-1"></a>sd_x <span class="ot">&lt;-</span> <span class="dv">11</span>      <span class="do">### Standard deviation before the diet</span></span>
+<span id="cb228-5"><a href="introduction-1.html#cb228-5" tabindex="-1"></a>sd_y <span class="ot">&lt;-</span> <span class="dv">12</span>      <span class="do">### Standard deviation after the diet</span></span>
+<span id="cb228-6"><a href="introduction-1.html#cb228-6" tabindex="-1"></a></span>
+<span id="cb228-7"><a href="introduction-1.html#cb228-7" tabindex="-1"></a>sd_z_1 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(sd_x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> sd_y<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span><span class="dv">1</span><span class="sc">*</span>sd_x<span class="sc">*</span>sd_y)</span>
+<span id="cb228-8"><a href="introduction-1.html#cb228-8" tabindex="-1"></a>sd_z_0 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(sd_x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> sd_y<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span><span class="dv">0</span><span class="sc">*</span>sd_x<span class="sc">*</span>sd_y)</span>
+<span id="cb228-9"><a href="introduction-1.html#cb228-9" tabindex="-1"></a></span>
+<span id="cb228-10"><a href="introduction-1.html#cb228-10" tabindex="-1"></a>d_z_1 <span class="ot">&lt;-</span> <span class="fu">abs</span>(mu_x <span class="sc">-</span> mu_y) <span class="sc">/</span> sd_z_1</span>
+<span id="cb228-11"><a href="introduction-1.html#cb228-11" tabindex="-1"></a>d_z_0 <span class="ot">&lt;-</span> <span class="fu">abs</span>(mu_x <span class="sc">-</span> mu_y) <span class="sc">/</span> sd_z_0</span>
+<span id="cb228-12"><a href="introduction-1.html#cb228-12" tabindex="-1"></a></span>
+<span id="cb228-13"><a href="introduction-1.html#cb228-13" tabindex="-1"></a>d_z_1</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="introduction-1.html#cb230-1" tabindex="-1"></a>d_z_0</span></code></pre></div>
+<pre><code>## [1] 0.3071476</code></pre>
+<p>So, higher <span class="math inline">\(\rho\)</span> results in large <span class="math inline">\(d_{z}\)</span> and smaller <span class="math inline">\(\rho\)</span> results in small <span class="math inline">\(d_{z}\)</span> values.</p>
+<p>Let’s see how power changes when we change the <span class="math inline">\(\rho\)</span> range from 0 to 1 in intervals of 0.1 units.</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="introduction-1.html#cb232-1" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">0.1</span>)</span>
+<span id="cb232-2"><a href="introduction-1.html#cb232-2" tabindex="-1"></a></span>
+<span id="cb232-3"><a href="introduction-1.html#cb232-3" tabindex="-1"></a>sd_z <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(sd_x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> sd_y<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span>rho<span class="sc">*</span>sd_x<span class="sc">*</span>sd_y)</span>
+<span id="cb232-4"><a href="introduction-1.html#cb232-4" tabindex="-1"></a></span>
+<span id="cb232-5"><a href="introduction-1.html#cb232-5" tabindex="-1"></a>d_z <span class="ot">&lt;-</span> <span class="fu">abs</span>(mu_x <span class="sc">-</span> mu_y) <span class="sc">/</span> sd_z</span>
+<span id="cb232-6"><a href="introduction-1.html#cb232-6" tabindex="-1"></a></span>
+<span id="cb232-7"><a href="introduction-1.html#cb232-7" tabindex="-1"></a>rho.change <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(<span class="at">d =</span> d_z, <span class="at">n =</span> <span class="dv">44</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>)</span>
+<span id="cb232-8"><a href="introduction-1.html#cb232-8" tabindex="-1"></a>rho.change.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(d_z, <span class="at">power =</span> rho.change<span class="sc">$</span>power <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb232-9"><a href="introduction-1.html#cb232-9" tabindex="-1"></a>rho.change.df</span></code></pre></div>
+<pre><code>##          d_z     power
+## 1  0.3071476  29.65480
+## 2  0.3236941  32.35129
+## 3  0.3432395  35.66281
+## 4  0.3668151  39.80733
+## 5  0.3960280  45.10546
+## 6  0.4335550  52.03146
+## 7  0.4842743  61.25990
+## 8  0.5583195  73.54735
+## 9  0.6816774  88.52181
+## 10 0.9552009  99.32401
+## 11 5.0000000 100.00000</code></pre>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="introduction-1.html#cb234-1" tabindex="-1"></a><span class="fu">plot</span>(rho.change.df<span class="sc">$</span>d_z, </span>
+<span id="cb234-2"><a href="introduction-1.html#cb234-2" tabindex="-1"></a>     rho.change.df<span class="sc">$</span>power, </span>
+<span id="cb234-3"><a href="introduction-1.html#cb234-3" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;b&quot;</span>, </span>
+<span id="cb234-4"><a href="introduction-1.html#cb234-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Cohen&#39;s d_z&quot;</span>, </span>
+<span id="cb234-5"><a href="introduction-1.html#cb234-5" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Power (%)&quot;</span>,</span>
+<span id="cb234-6"><a href="introduction-1.html#cb234-6" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.5</span>))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-247"></span>
+<img src="STA501EB_files/figure-html/unnamed-chunk-247-1.png" alt="We vary $\rho$ from 0 to 1 at intervals of 0.1 unit." width="672" />
+<p class="caption">
+Figure 15.4: We vary <span class="math inline">\(\rho\)</span> from 0 to 1 at intervals of 0.1 unit.
+</p>
+</div>
+<p>As <span class="math inline">\(\rho\)</span> increases, our power increases. This makes sense because we are nearing “perfect” correlation, which would require less sample to detect a difference if one existed. As the correlation becomes less “perfect” our power drops suggesting that we need to increase our sample size to make up for this poor correlation.</p>
+</div>
+</div>
+<div id="unequal-sample-sizes-problems" class="section level2 hasAnchor" number="15.4">
+<h2><span class="header-section-number">15.4</span> Unequal Sample sizes Problems<a href="introduction-1.html#unequal-sample-sizes-problems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="power-analysis-with-unequal-sample-sizes" class="section level3 hasAnchor" number="15.4.1">
+<h3><span class="header-section-number">15.4.1</span> Power analysis with <strong>unequal sample sizes</strong><a href="introduction-1.html#power-analysis-with-unequal-sample-sizes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It is common for the sample size to be different. The <code>pwr.t2n.test()</code> is a useful tool to help estimate the power given the sample sizes of the study.</p>
+<p>It is common to perform power analysis on a study where the sample sizes between groups are different.</p>
+<p>Suppose you have a retrospective study where the patients were prescribed Treatment A and Treatment B. There were 130 patients in Treatment A (<span class="math inline">\(n_{A}\)</span> = 130) and 120 patients in Treatment B (<span class="math inline">\(n_{B}\)</span> = 120). The average change in HbA1c was 1.5% with a standard deviation of 1.25% in Treatment A, and the average change in HbA1c was 1.4% with a standard deviation of 1.01% in Treatment B.</p>
+<p>First, we’ll calculate the pooled standard deviation (<span class="math inline">\(\sigma_{pooled}\)</span>):</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="introduction-1.html#cb235-1" tabindex="-1"></a>sd1 <span class="ot">&lt;-</span> <span class="fl">1.25</span></span>
+<span id="cb235-2"><a href="introduction-1.html#cb235-2" tabindex="-1"></a>sd2 <span class="ot">&lt;-</span> <span class="fl">1.01</span></span>
+<span id="cb235-3"><a href="introduction-1.html#cb235-3" tabindex="-1"></a>sd_pooled <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((sd1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span>sd2<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb235-4"><a href="introduction-1.html#cb235-4" tabindex="-1"></a>sd_pooled</span></code></pre></div>
+<pre><code>## [1] 1.136354</code></pre>
+<p>Once we have the <span class="math inline">\(\sigma_{pooled}\)</span>, we can estimate the Cohen’s <span class="math inline">\(d\)</span>:</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="introduction-1.html#cb237-1" tabindex="-1"></a>mu1 <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb237-2"><a href="introduction-1.html#cb237-2" tabindex="-1"></a>mu2 <span class="ot">&lt;-</span> <span class="fl">1.4</span></span>
+<span id="cb237-3"><a href="introduction-1.html#cb237-3" tabindex="-1"></a>d <span class="ot">&lt;-</span> (mu1 <span class="sc">-</span> mu2) <span class="sc">/</span> sd_pooled</span>
+<span id="cb237-4"><a href="introduction-1.html#cb237-4" tabindex="-1"></a>d</span></code></pre></div>
+<pre><code>## [1] 0.08800076</code></pre>
+<p>Now, we can estimate the power with the different sample sizes across the groups (<span class="math inline">\(n_{A}\)</span> = 130, <span class="math inline">\(n_{B}\)</span> = 120).</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="introduction-1.html#cb239-1" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="dv">130</span></span>
+<span id="cb239-2"><a href="introduction-1.html#cb239-2" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> <span class="dv">120</span></span>
+<span id="cb239-3"><a href="introduction-1.html#cb239-3" tabindex="-1"></a></span>
+<span id="cb239-4"><a href="introduction-1.html#cb239-4" tabindex="-1"></a>power.diff_n <span class="ot">&lt;-</span> <span class="fu">pwr.t2n.test</span>(<span class="at">d =</span> d, <span class="at">n1 =</span> n1, <span class="at">n2 =</span> n2, <span class="at">sig.level =</span> <span class="fl">0.05</span>)</span>
+<span id="cb239-5"><a href="introduction-1.html#cb239-5" tabindex="-1"></a>power.diff_n</span></code></pre></div>
+<pre><code>## 
+##      t test power calculation 
+## 
+##              n1 = 130
+##              n2 = 120
+##               d = 0.08800076
+##       sig.level = 0.05
+##           power = 0.1064836
+##     alternative = two.sided</code></pre>
+<p>Since the average HbA1c change from baseline for Treatment A is 1.5% and 1.4% for Treatment B, the average difference in the HbA1c change from baseline is 0.1%. This is a difference (difference between the groups) of the differences (difference from baseline within the group) calculation.</p>
+<p>You only have 11% power to detect a difference of 0.10% or greater in the HbA1c change from baseline. This means that you are underpowered to detect a difference of 0.10% or greater in the HbA1c change from baseline with <span class="math inline">\(n_{A}\)</span> = 130, <span class="math inline">\(n_{B}\)</span> = 120, and a significance level of 0.05. When studies are underpowered, there is a high potential for type II error. The only way to address this problem is to enroll more patients or expand the sample by relaxing inclusion criteria. But this may increase the threats to the study’s internal validity.</p>
+</div>
+</div>
+<div id="conclusions" class="section level2 hasAnchor" number="15.5">
+<h2><span class="header-section-number">15.5</span> Conclusions<a href="introduction-1.html#conclusions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sample size estimations and power analysis are very useful tools to determine how many patients you need in your study and how confident you are that you didn’t make a type II error. Depending on the type of study, you will need to use different functions from the <code>pwr</code> package. I highly encourage you to explore the other functions of the <code>pwr</code> package to see if those fit the study design you have planned.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="analysis-of-counts-and-rates.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/pengdsci/STA501EB/edit/master/15-SampleSizePowerCalc.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["STA501EB.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

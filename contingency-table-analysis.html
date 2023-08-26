@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Topic 13 Contingency Table Analysis | STA501 E-Pack: Applied Statistical Methods</title>
+  <meta name="description" content="The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Topic 13 Contingency Table Analysis | STA501 E-Pack: Applied Statistical Methods" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Topic 13 Contingency Table Analysis | STA501 E-Pack: Applied Statistical Methods" />
+  
+  <meta name="twitter:description" content="The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Cheng Peng" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="logistic-regression-models.html"/>
+<link rel="next" href="analysis-of-counts-and-rates.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<center><li><a href="./"><font color = "darkred"><b>STA 501 E-Pack: Applied Statistical Methods</b></font></a><br><font color = "navy">Cheng Peng</font></li></center>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html"><i class="fa fa-check"></i><b>2</b> R, RStudio and RMarkdown</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#r"><i class="fa fa-check"></i><b>2.1</b> R</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#order-of-operations"><i class="fa fa-check"></i><b>2.1.1</b> Order of Operations</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#basic-r-objects"><i class="fa fa-check"></i><b>2.1.2</b> Basic R Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio"><i class="fa fa-check"></i><b>2.2</b> RStudio</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio-gui"><i class="fa fa-check"></i><b>2.2.1</b> RStudio GUI</a></li>
+<li class="chapter" data-level="2.2.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#console"><i class="fa fa-check"></i><b>2.2.2</b> Console</a></li>
+<li class="chapter" data-level="2.2.3" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#source-editor"><i class="fa fa-check"></i><b>2.2.3</b> Source Editor</a></li>
+<li class="chapter" data-level="2.2.4" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#environment-window"><i class="fa fa-check"></i><b>2.2.4</b> Environment Window</a></li>
+<li class="chapter" data-level="2.2.5" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#system-and-graphic-files"><i class="fa fa-check"></i><b>2.2.5</b> System and Graphic files</a></li>
+<li class="chapter" data-level="2.2.6" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio-offers-numerous-helpful-features"><i class="fa fa-check"></i><b>2.2.6</b> RStudio offers numerous helpful features:</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rmarkdown"><i class="fa fa-check"></i><b>2.3</b> RMarkdown</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#code-chunk"><i class="fa fa-check"></i><b>2.3.1</b> Code Chunk</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#graphics-generated-from-r-code-chunks"><i class="fa fa-check"></i><b>2.3.2</b> Graphics Generated from R Code Chunks</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html"><i class="fa fa-check"></i><b>3</b> Data Collection and Data Loading</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#sampling-plans"><i class="fa fa-check"></i><b>3.1</b> Sampling Plans</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#simple-random-sampling-srs"><i class="fa fa-check"></i><b>3.1.1</b> Simple Random Sampling (SRS)</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#systematic-sampling"><i class="fa fa-check"></i><b>3.1.2</b> Systematic sampling</a></li>
+<li class="chapter" data-level="3.1.3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#stratified-sampling"><i class="fa fa-check"></i><b>3.1.3</b> Stratified sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#study-designs"><i class="fa fa-check"></i><b>3.2</b> Study Designs</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#observational-studies"><i class="fa fa-check"></i><b>3.2.1</b> Observational Studies</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#experimental-designs"><i class="fa fa-check"></i><b>3.2.2</b> Experimental Designs</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#loading-data-to-r-from-external-data-files"><i class="fa fa-check"></i><b>3.3</b> Loading Data to R from External Data Files</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#text-file-aka.-delimited-text-file"><i class="fa fa-check"></i><b>3.3.1</b> Text File ( aka. Delimited Text File)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#data-frame-and-list"><i class="fa fa-check"></i><b>3.4</b> Data Frame and List</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#data-frame-1"><i class="fa fa-check"></i><b>3.4.1</b> Data Frame</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>4</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#data-types"><i class="fa fa-check"></i><b>4.1</b> Data Types</a></li>
+<li class="chapter" data-level="4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#tabular-and-graphic-summary"><i class="fa fa-check"></i><b>4.2</b> Tabular and Graphic Summary</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#categorical-data"><i class="fa fa-check"></i><b>4.2.1</b> Categorical Data</a></li>
+<li class="chapter" data-level="4.2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#numerical-data"><i class="fa fa-check"></i><b>4.2.2</b> Numerical Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#numerical-summary-of-numerical-data"><i class="fa fa-check"></i><b>4.3</b> Numerical Summary of Numerical Data</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#central-tendency"><i class="fa fa-check"></i><b>4.3.1</b> Central Tendency</a></li>
+<li class="chapter" data-level="4.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variations"><i class="fa fa-check"></i><b>4.3.2</b> Variations</a></li>
+<li class="chapter" data-level="4.3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#location"><i class="fa fa-check"></i><b>4.3.3</b> Location</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#assignment---descriptive-statistics"><i class="fa fa-check"></i><b>4.4</b> Assignment - Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summarizing-categorical-data"><i class="fa fa-check"></i><b>4.4.1</b> Summarizing Categorical Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html"><i class="fa fa-check"></i><b>5</b> Concepts of Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-random-variables"><i class="fa fa-check"></i><b>5.1</b> Concepts of random variables</a></li>
+<li class="chapter" data-level="5.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#types-of-random-variables"><i class="fa fa-check"></i><b>5.2</b> Types of random variables</a></li>
+<li class="chapter" data-level="5.3" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-probability-distributions-1"><i class="fa fa-check"></i><b>5.3</b> Concepts of probability distributions</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-probability"><i class="fa fa-check"></i><b>5.3.1</b> Concepts of probability</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#probability-distribution-of-random-variables"><i class="fa fa-check"></i><b>5.4</b> Probability distribution of random variables</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#discrete-probability-distribution"><i class="fa fa-check"></i><b>5.4.1</b> Discrete probability distribution</a></li>
+<li class="chapter" data-level="5.4.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#continuous-probability-distribution"><i class="fa fa-check"></i><b>5.4.2</b> Continuous probability distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#special-continuous-distributions"><i class="fa fa-check"></i><b>5.5</b> Special Continuous Distributions</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#normal-distribution"><i class="fa fa-check"></i><b>5.5.1</b> Normal Distribution</a></li>
+<li class="chapter" data-level="5.5.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#t-distribution"><i class="fa fa-check"></i><b>5.5.2</b> t distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#summary"><i class="fa fa-check"></i><b>5.6</b> Summary</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#numerical-examples-based-on-normal-and-t-distributions"><i class="fa fa-check"></i><b>5.6.1</b> Numerical Examples Based on Normal and t Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#assignment---probability-distributions"><i class="fa fa-check"></i><b>5.7</b> Assignment - Probability Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>6</b> Sampling Distributions</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#concepts-of-the-sampling-distribution"><i class="fa fa-check"></i><b>6.1</b> Concepts of the sampling distribution</a></li>
+<li class="chapter" data-level="6.2" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sampling-distribution-of-sampling-means"><i class="fa fa-check"></i><b>6.2</b> Sampling Distribution of Sampling Means</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#working-data-set-plant-diversity"><i class="fa fa-check"></i><b>6.2.1</b> Working Data Set: Plant Diversity</a></li>
+<li class="chapter" data-level="6.2.2" data-path="sampling-distributions.html"><a href="sampling-distributions.html#normal-population-with-given-mean-mu-and-variance-sigma2"><i class="fa fa-check"></i><b>6.2.2</b> Normal Population with given mean (<span class="math inline">\(\mu\)</span>) and Variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+<li class="chapter" data-level="6.2.3" data-path="sampling-distributions.html"><a href="sampling-distributions.html#normal-population-with-a-given-mean-mu-and-an-unknown-variance-sigma2"><i class="fa fa-check"></i><b>6.2.3</b> Normal Population with a given mean (<span class="math inline">\(\mu\)</span>) and an <strong>Unknown</strong> Variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+<li class="chapter" data-level="6.2.4" data-path="sampling-distributions.html"><a href="sampling-distributions.html#unspecified-population-with-a-given-mean-muand-an-unspecifed-variance-sigma2"><i class="fa fa-check"></i><b>6.2.4</b> Unspecified Population with a given mean (<span class="math inline">\(\mu\)</span>)and an unspecifed variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sampling-distribution-of-sample-proportions"><i class="fa fa-check"></i><b>6.3</b> Sampling distribution of sample proportions</a></li>
+<li class="chapter" data-level="6.4" data-path="sampling-distributions.html"><a href="sampling-distributions.html#summary-1"><i class="fa fa-check"></i><b>6.4</b> Summary</a></li>
+<li class="chapter" data-level="6.5" data-path="sampling-distributions.html"><a href="sampling-distributions.html#assignment---sampling-distributions"><i class="fa fa-check"></i><b>6.5</b> Assignment - Sampling Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>7</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#some-terms"><i class="fa fa-check"></i><b>7.1</b> Some Terms</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#what-are-the-issues-of-a-point-estimate"><i class="fa fa-check"></i><b>7.1.1</b> What are the issues of a point estimate?</a></li>
+<li class="chapter" data-level="7.1.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#how-about-multiple-samples"><i class="fa fa-check"></i><b>7.1.2</b> How About Multiple Samples?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#how-to-find-the-confidence-intervals-for-means-and-proportions"><i class="fa fa-check"></i><b>7.2</b> How to find the Confidence Intervals for Means and Proportions?</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#framework-of-confidence-interval"><i class="fa fa-check"></i><b>7.2.1</b> Framework Of Confidence Interval</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-population-mean"><i class="fa fa-check"></i><b>7.3</b> Confidence Interval of Population Mean</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#normal-population-with-known-variance."><i class="fa fa-check"></i><b>7.3.1</b> Normal Population with Known Variance.</a></li>
+<li class="chapter" data-level="7.3.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#normal-population-with-unknown-variance"><i class="fa fa-check"></i><b>7.3.2</b> Normal Population with Unknown Variance</a></li>
+<li class="chapter" data-level="7.3.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#unspecified-population-with-unknown-variance-but-with-large-sample-sizes"><i class="fa fa-check"></i><b>7.3.3</b> Unspecified Population with Unknown Variance but with Large Sample Sizes</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-proportion"><i class="fa fa-check"></i><b>7.4</b> Confidence Interval of Proportion</a></li>
+<li class="chapter" data-level="7.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#two-sample-problems---comparing-two-population-means"><i class="fa fa-check"></i><b>7.5</b> Two Sample Problems - Comparing Two Population Means</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-the-difference-of-two-unspecified-populations-means"><i class="fa fa-check"></i><b>7.5.1</b> Confidence Interval of the Difference of Two Unspecified Populations Means</a></li>
+<li class="chapter" data-level="7.5.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-the-difference-of-two-normal-populations-means"><i class="fa fa-check"></i><b>7.5.2</b> Confidence Interval of the Difference of Two Normal Populations Means</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="confidence-intervals.html"><a href="confidence-intervals.html#assignment---confidence-intervals"><i class="fa fa-check"></i><b>7.6</b> Assignment - Confidence Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html"><i class="fa fa-check"></i><b>8</b> Testing Statistical Hypothesis</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#formulation-of-statistical-hypothesis-testing"><i class="fa fa-check"></i><b>8.1</b> Formulation of Statistical Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#null-and-alternative-hypotheses"><i class="fa fa-check"></i><b>8.1.1</b> Null and Alternative Hypotheses</a></li>
+<li class="chapter" data-level="8.1.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#relationship-between-the-claim-and-the-statistical-hypotheses"><i class="fa fa-check"></i><b>8.1.2</b> Relationship between the claim and the statistical hypotheses</a></li>
+<li class="chapter" data-level="8.1.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#test-statistics---statistical-evidence"><i class="fa fa-check"></i><b>8.1.3</b> Test Statistics - Statistical Evidence</a></li>
+<li class="chapter" data-level="8.1.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#types-of-test-and-rejection-region"><i class="fa fa-check"></i><b>8.1.4</b> Types of Test and Rejection Region</a></li>
+<li class="chapter" data-level="8.1.5" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#statistical-decision-rule-p-value"><i class="fa fa-check"></i><b>8.1.5</b> Statistical Decision Rule: p-value</a></li>
+<li class="chapter" data-level="8.1.6" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#summary-of-the-test-hypothesis-procedure"><i class="fa fa-check"></i><b>8.1.6</b> Summary of the Test Hypothesis Procedure</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-studies"><i class="fa fa-check"></i><b>8.2</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-i-normal-population-with-a-known-variance."><i class="fa fa-check"></i><b>8.2.1</b> Case I: normal population with a known variance.</a></li>
+<li class="chapter" data-level="8.2.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-ii-normal-population-with-an-unknown-variance"><i class="fa fa-check"></i><b>8.2.2</b> Case II: Normal population with an unknown variance</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#unspecified-population-with-an-unknown-variance---clt"><i class="fa fa-check"></i><b>8.3</b> Unspecified population with an unknown variance - CLT</a></li>
+<li class="chapter" data-level="8.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#testing-population-proportion"><i class="fa fa-check"></i><b>8.4</b> Testing Population Proportion</a></li>
+<li class="chapter" data-level="8.5" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#testing-the-difference-between-two-population-means"><i class="fa fa-check"></i><b>8.5</b> Testing the difference between two population means</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#both-populations-are-unspecified-and-sample-sizes-are-large."><i class="fa fa-check"></i><b>8.5.1</b> Both populations are unspecified and sample sizes are large.</a></li>
+<li class="chapter" data-level="8.5.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#both-populations-are-normal-with-unknown-but-equal-variances"><i class="fa fa-check"></i><b>8.5.2</b> Both populations are normal with unknown but equal variances</a></li>
+<li class="chapter" data-level="8.5.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#paired-t-test"><i class="fa fa-check"></i><b>8.5.3</b> Paired t-test</a></li>
+<li class="chapter" data-level="8.5.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#concluding-remarks"><i class="fa fa-check"></i><b>8.5.4</b> Concluding Remarks</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#practice-problems"><i class="fa fa-check"></i><b>8.6</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>9</b> Analysis of Variance (ANOVA)</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#the-question-of-one-way-anova"><i class="fa fa-check"></i><b>9.1</b> The Question of One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#what-is-anova"><i class="fa fa-check"></i><b>9.1.1</b> What is ANOVA</a></li>
+<li class="chapter" data-level="9.1.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#assumptions-of-anova"><i class="fa fa-check"></i><b>9.1.2</b> Assumptions of ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#steps-of-anova"><i class="fa fa-check"></i><b>9.2</b> Steps of ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#anova-tables"><i class="fa fa-check"></i><b>9.2.1</b> ANOVA Tables</a></li>
+<li class="chapter" data-level="9.2.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#post-hoc-pairwise-comparison"><i class="fa fa-check"></i><b>9.2.2</b> Post hoc Pairwise Comparison</a></li>
+<li class="chapter" data-level="9.2.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#how-to-summarize-anova-results"><i class="fa fa-check"></i><b>9.2.3</b> How to Summarize ANOVA Results</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#welchs-anova"><i class="fa fa-check"></i><b>9.3</b> Welch’s ANOVA</a></li>
+<li class="chapter" data-level="9.4" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#case-study-mussel-length-example---solution"><i class="fa fa-check"></i><b>9.4</b> Case Study: Mussel Length Example - Solution</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#creating-an-anova-table"><i class="fa fa-check"></i><b>9.4.1</b> Creating An ANOVA Table</a></li>
+<li class="chapter" data-level="9.4.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#diagnostic-analysis"><i class="fa fa-check"></i><b>9.4.2</b> Diagnostic Analysis</a></li>
+<li class="chapter" data-level="9.4.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#welch-anova"><i class="fa fa-check"></i><b>9.4.3</b> Welch ANOVA</a></li>
+<li class="chapter" data-level="9.4.4" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#post-hoc-multiple-comparisons"><i class="fa fa-check"></i><b>9.4.4</b> Post-hoc Multiple Comparisons</a></li>
+<li class="chapter" data-level="9.4.5" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#visual-comparison---boxplots"><i class="fa fa-check"></i><b>9.4.5</b> Visual Comparison - Boxplots</a></li>
+<li class="chapter" data-level="9.4.6" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#anova-reporting"><i class="fa fa-check"></i><b>9.4.6</b> ANOVA Reporting</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#practice-problems-1"><i class="fa fa-check"></i><b>9.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html"><i class="fa fa-check"></i><b>10</b> Correlation and Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#the-question-and-the-data"><i class="fa fa-check"></i><b>10.1</b> The question and the data</a></li>
+<li class="chapter" data-level="10.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#visual-inspection-for-association"><i class="fa fa-check"></i><b>10.2</b> Visual Inspection for Association</a></li>
+<li class="chapter" data-level="10.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#coefficient-of-correlation"><i class="fa fa-check"></i><b>10.3</b> Coefficient of Correlation</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#definition-of-pearson-correlation-coefficient"><i class="fa fa-check"></i><b>10.3.1</b> Definition of Pearson correlation coefficient</a></li>
+<li class="chapter" data-level="10.3.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#interpretation-of-correlation-coefficient"><i class="fa fa-check"></i><b>10.3.2</b> Interpretation of correlation coefficient</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#least-square-regression-structure-diagnostics-and-applications"><i class="fa fa-check"></i><b>10.4</b> Least square regression: structure, diagnostics, and applications</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#definitions"><i class="fa fa-check"></i><b>10.4.1</b> Definitions</a></li>
+<li class="chapter" data-level="10.4.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#assumptions-of-least-square-regression"><i class="fa fa-check"></i><b>10.4.2</b> Assumptions of Least Square Regression</a></li>
+<li class="chapter" data-level="10.4.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-building-and-diagnostics"><i class="fa fa-check"></i><b>10.4.3</b> Model Building and Diagnostics</a></li>
+<li class="chapter" data-level="10.4.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#residual-diagnostics-and-remedies"><i class="fa fa-check"></i><b>10.4.4</b> Residual Diagnostics and Remedies</a></li>
+<li class="chapter" data-level="10.4.5" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#final-model-with-applications"><i class="fa fa-check"></i><b>10.4.5</b> Final Model with Applications</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#case-study-amyotrophic-lateral-sclerosis-analysis-revisited"><i class="fa fa-check"></i><b>10.5</b> Case Study: Amyotrophic lateral sclerosis analysis revisited</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#objectives"><i class="fa fa-check"></i><b>10.5.1</b> Objectives</a></li>
+<li class="chapter" data-level="10.5.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-fitting"><i class="fa fa-check"></i><b>10.5.2</b> Model Fitting</a></li>
+<li class="chapter" data-level="10.5.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#box-cox-transformation"><i class="fa fa-check"></i><b>10.5.3</b> Box-Cox Transformation</a></li>
+<li class="chapter" data-level="10.5.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-applications"><i class="fa fa-check"></i><b>10.5.4</b> Model Applications</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>11</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-practical-question"><i class="fa fa-check"></i><b>11.1</b> The Practical Question</a></li>
+<li class="chapter" data-level="11.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-process-of-building-a-multiple-linear-regression-model"><i class="fa fa-check"></i><b>11.2</b> The Process of Building A Multiple Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#assumptions-of-mlr"><i class="fa fa-check"></i><b>11.2.1</b> Assumptions of MLR</a></li>
+<li class="chapter" data-level="11.2.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-structure-of-mlr"><i class="fa fa-check"></i><b>11.2.2</b> The Structure of MLR</a></li>
+<li class="chapter" data-level="11.2.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#more-on-model-specifications"><i class="fa fa-check"></i><b>11.2.3</b> More on Model Specifications</a></li>
+<li class="chapter" data-level="11.2.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#estimation-of-regression-coefficients"><i class="fa fa-check"></i><b>11.2.4</b> Estimation of Regression Coefficients</a></li>
+<li class="chapter" data-level="11.2.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#model-diagnostics"><i class="fa fa-check"></i><b>11.2.5</b> Model Diagnostics</a></li>
+<li class="chapter" data-level="11.2.6" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#goodness-of-fit-and-variable-selection"><i class="fa fa-check"></i><b>11.2.6</b> Goodness-of-fit and Variable Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#case-study-1"><i class="fa fa-check"></i><b>11.3</b> Case Study 1</a></li>
+<li class="chapter" data-level="11.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#case-study-2"><i class="fa fa-check"></i><b>11.4</b> Case Study 2</a></li>
+<li class="chapter" data-level="11.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#practice-problems-2"><i class="fa fa-check"></i><b>11.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>12</b> Logistic Regression Models</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#motivational-example-and-practical-question"><i class="fa fa-check"></i><b>12.1</b> Motivational Example and Practical Question</a></li>
+<li class="chapter" data-level="12.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#logistic-regression-models-and-applications"><i class="fa fa-check"></i><b>12.2</b> Logistic Regression Models and Applications</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#the-structure-of-logistic-regression-model"><i class="fa fa-check"></i><b>12.2.1</b> The Structure of Logistic Regression Model</a></li>
+<li class="chapter" data-level="12.2.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#assumptions-and-diagnostics"><i class="fa fa-check"></i><b>12.2.2</b> Assumptions and Diagnostics</a></li>
+<li class="chapter" data-level="12.2.3" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#coefficient-estimation-and-interpretation"><i class="fa fa-check"></i><b>12.2.3</b> Coefficient Estimation and Interpretation</a></li>
+<li class="chapter" data-level="12.2.4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#use-of-glm-and-annotations"><i class="fa fa-check"></i><b>12.2.4</b> Use of <strong>glm()</strong> and Annotations</a></li>
+<li class="chapter" data-level="12.2.5" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#applications-of-logistic-regression-models"><i class="fa fa-check"></i><b>12.2.5</b> Applications of Logistic Regression Models</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#case-studies-1"><i class="fa fa-check"></i><b>12.3</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#the-simple-logistic-regression-model"><i class="fa fa-check"></i><b>12.3.1</b> The simple logistic regression model</a></li>
+<li class="chapter" data-level="12.3.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#multiple-logistic-regression-model"><i class="fa fa-check"></i><b>12.3.2</b> Multiple Logistic Regression Model</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#practice-problems-3"><i class="fa fa-check"></i><b>12.4</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html"><i class="fa fa-check"></i><b>13</b> Contingency Table Analysis</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#the-motivational-examples"><i class="fa fa-check"></i><b>13.1</b> The Motivational Examples</a></li>
+<li class="chapter" data-level="13.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#two-way-contingency-tables-and-analysis"><i class="fa fa-check"></i><b>13.2</b> Two-way Contingency Tables and Analysis</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#the-structure-of-two-way-contingency-table"><i class="fa fa-check"></i><b>13.2.1</b> The Structure of Two-way Contingency Table</a></li>
+<li class="chapter" data-level="13.2.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#pearson-chi2-test-of-independence"><i class="fa fa-check"></i><b>13.2.2</b> Pearson <span class="math inline">\(\chi^2\)</span> Test of Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#measures-of-association"><i class="fa fa-check"></i><b>13.3</b> Measures of Association</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#times2-table-under-different-study-designs"><i class="fa fa-check"></i><b>13.3.1</b> <span class="math inline">\(2\times2\)</span>-table Under Different Study Designs</a></li>
+<li class="chapter" data-level="13.3.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#measures-of-association-1"><i class="fa fa-check"></i><b>13.3.2</b> Measures of Association</a></li>
+<li class="chapter" data-level="13.3.3" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#validity-of-measures-of-association"><i class="fa fa-check"></i><b>13.3.3</b> Validity of Measures of Association</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-studies-2"><i class="fa fa-check"></i><b>13.4</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-study-1-1"><i class="fa fa-check"></i><b>13.4.1</b> Case Study 1</a></li>
+<li class="chapter" data-level="13.4.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-study-2-1"><i class="fa fa-check"></i><b>13.4.2</b> Case Study 2</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#practice-problems-4"><i class="fa fa-check"></i><b>13.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html"><i class="fa fa-check"></i><b>14</b> Analysis of Counts and Rates</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#motivational-examples"><i class="fa fa-check"></i><b>14.1</b> Motivational Examples</a></li>
+<li class="chapter" data-level="14.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#poisson-regression-for-counts-and-rates"><i class="fa fa-check"></i><b>14.2</b> Poisson Regression for Counts and Rates</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#structure-and-interpretations"><i class="fa fa-check"></i><b>14.2.1</b> Structure and Interpretations</a></li>
+<li class="chapter" data-level="14.2.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#assumptions-and-goodness-of-fit"><i class="fa fa-check"></i><b>14.2.2</b> Assumptions and Goodness-of-fit</a></li>
+<li class="chapter" data-level="14.2.3" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#dispersion-issue-and-remedies"><i class="fa fa-check"></i><b>14.2.3</b> Dispersion Issue and Remedies</a></li>
+<li class="chapter" data-level="14.2.4" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#data-structure-of-poisson-regression"><i class="fa fa-check"></i><b>14.2.4</b> Data Structure of Poisson Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#case-studies-3"><i class="fa fa-check"></i><b>14.3</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#harbor-seal-data"><i class="fa fa-check"></i><b>14.3.1</b> Harbor Seal Data</a></li>
+<li class="chapter" data-level="14.3.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#toxicity-study"><i class="fa fa-check"></i><b>14.3.2</b> Toxicity Study</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#concluding-remarks-1"><i class="fa fa-check"></i><b>14.4</b> Concluding Remarks</a></li>
+<li class="chapter" data-level="14.5" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#practice-problems-5"><i class="fa fa-check"></i><b>14.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html"><i class="fa fa-check"></i><b>15</b> Power Calculation and Sample Size Determination</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#two-sample-proportion-problems"><i class="fa fa-check"></i><b>15.1</b> Two-sample Proportion Problems</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#sample-size-estimations-for-two-proportions"><i class="fa fa-check"></i><b>15.1.1</b> Sample size estimations for <strong>two proportions</strong></a></li>
+<li class="chapter" data-level="15.1.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-for-two-proportions"><i class="fa fa-check"></i><b>15.1.2</b> Power analysis for <strong>two proportions</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#two-sample-mean-problems"><i class="fa fa-check"></i><b>15.2</b> Two-sample Mean Problems</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#sample-size-estimations-for-two-averages"><i class="fa fa-check"></i><b>15.2.1</b> Sample size estimations for <strong>two averages</strong></a></li>
+<li class="chapter" data-level="15.2.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-for-two-averages"><i class="fa fa-check"></i><b>15.2.2</b> Power analysis for two averages</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#paired-sample-problems"><i class="fa fa-check"></i><b>15.3</b> Paired-sample Problems</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#sample-size-estimation-for-paired-data-before-and-after"><i class="fa fa-check"></i><b>15.3.1</b> Sample size estimation for <strong>paired data (before and after)</strong></a></li>
+<li class="chapter" data-level="15.3.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-of-paired-samples-paired-t-test"><i class="fa fa-check"></i><b>15.3.2</b> Power analysis of <strong>paired samples (paired t-test)</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#unequal-sample-sizes-problems"><i class="fa fa-check"></i><b>15.4</b> Unequal Sample Sizes Problems</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-with-unequal-sample-sizes"><i class="fa fa-check"></i><b>15.4.1</b> Power analysis with <strong>unequal sample sizes</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#conclusions"><i class="fa fa-check"></i><b>15.5</b> Conclusions</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STA501 E-Pack: Applied Statistical Methods</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="contingency-table-analysis" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Topic 13</span> Contingency Table Analysis<a href="contingency-table-analysis.html#contingency-table-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>We have introduced different modeling to solve the association and prediction analyses. The ANOVA is used when the response is a continuous normal random variable and the predictor variable is categorical. When the response variable is a continuous normal random variable and is also a continuous (non-random) variable, we use the simple linear regression model to address the associated problems. When predictor variables are hybrid (continuous and categorical), we have a multiple linear regression model (numerically coded categorical variables need to be specified during the modeling process). When the response variable is binary, we use logistic regression to study the association between the response and predictor variables.</p>
+<p>The following table summarizes different models for different situations.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Response variable</th>
+<th align="center">Predictor variable</th>
+<th align="center">Type of Models</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">continuous, normal</td>
+<td align="center">single categorical</td>
+<td align="center">ANOVA</td>
+</tr>
+<tr class="even">
+<td align="center">continuous, normal</td>
+<td align="center">single continuous</td>
+<td align="center">SLR</td>
+</tr>
+<tr class="odd">
+<td align="center">continuous, normal</td>
+<td align="center">continuous or categorical</td>
+<td align="center">MLR</td>
+</tr>
+<tr class="even">
+<td align="center">binary, categorical</td>
+<td align="center">continuous or categorical</td>
+<td align="center">logistic model</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p><strong>ANOVA</strong>: Analysis of variance model</p></li>
+<li><p><strong>SLR</strong>: Simple linear regression model</p></li>
+<li><p><strong>MLR</strong>: multiple linear regression model, ANOVA is a special MLR. MLR with both categorical and numerical predictor variables is also an Analysis of covariance (ANCOVA).</p></li>
+<li><p><strong>The logistic model</strong> is also called the <strong>logit model</strong>.</p></li>
+</ul>
+<p>We also discussed the relationship between two numerical variables using the Pearson correlation coefficients. When we use correlation coefficients to measure the strength of the linear correlation between two numerical variables, we don’t specify the response variable.</p>
+<p>In this note, we will discuss the association between two categorical variables. We first assess the association through <span class="math inline">\(\chi^2\)</span> test of independence of the two variables. If they are dependent, we then define measures for the association.</p>
+<div id="the-motivational-examples" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> The Motivational Examples<a href="contingency-table-analysis.html#the-motivational-examples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Example 1</strong>: A biologist might want to determine if two species of organisms associate (are found together) in a vegetation community. Two hypotheses could be set up in the following:</p>
+<p><strong>Null Hypothesis (Ho)</strong>: There is no significant association between Species A and Species B; the species are independent of each other. The location of Species A does not affect the location of Species B.</p>
+<p><strong>Alternative Hypothesis (Ha)</strong>: There is a significant association between Species A and Species B; the species are dependent. Either Species A significantly associates with Species B or Species A does not significantly associate with Species B.</p>
+<p><img src="img12/w12-QuadrantSurvey.jpg" width="80%" style="display: block; margin: auto;" /></p>
+<p>To test the hypotheses, we can use the quadrant random sampling method to collect the raw data. Assume we collect data in 9 randomly placed quadrants and classify the survey outcomes in the following:</p>
+<ul>
+<li>The number of quadrants with both species present</li>
+<li>The number of quadrants with Species A but not Species B</li>
+<li>The number of quadrants with Species B but not Species A</li>
+<li>The number of quadrants with neither species</li>
+</ul>
+<p>The above classification is summarized in the following table.</p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="34%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">..</th>
+<th align="center">Presence of A</th>
+<th align="center">Absence of A</th>
+<th align="center"><strong>Total</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>Presence of B</strong></td>
+<td align="center">5</td>
+<td align="center">2</td>
+<td align="center"><strong>7</strong></td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Absence of B</strong></td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center"><strong>2</strong></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Total</strong></td>
+<td align="center"><strong>6</strong></td>
+<td align="center"><strong>3</strong></td>
+<td align="center"><strong>9</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The above table is called the contingency table. Since this table has two rows and two columns, it is also called 2 by 2 contingency table.</p>
+<p>In practice, we have a more general m-by-n contingency table - this is called the two-way table. This week, we focus on analyzing two-way tables.</p>
+<p><strong>Example 2</strong>: Arrington et al. (2002) examined the frequency with which African, Neotropical and North American fishes have empty stomachs and found that the mean percentage of empty stomachs was around 16.2%. As part of the investigation, they were interested in <strong>whether the frequency of empty stomachs was related to dietary items</strong>. The data were separated into four major trophic classifications (detritivores, omnivores, invertivores, and piscivores) and whether the fish species had greater or less than 16.2% of individuals with empty stomachs. The number of fish species in each category combination was calculated and a subset of that (just the diurnal fish) was provided.</p>
+<p><strong>STOMACH</strong> Categorical listing of the proportion of individuals in the species with empty stomachs (&lt; 16.2% or &gt; 16.2%).</p>
+<p><strong>TROPHIC</strong> Categorical listing of the trophic classification (DET = detritovore, OMN = omnivore, INV = invertivore, PISC = piscivore).</p>
+<p>Then the above information is summarized in the following table.</p>
+<table>
+<colgroup>
+<col width="28%" />
+<col width="30%" />
+<col width="29%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Trophic classification</th>
+<th align="center">Stomachs empty (&lt; 16.2%)</th>
+<th align="center">Stomachs empty (&gt;16.2%)</th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">DET</td>
+<td align="center">18</td>
+<td align="center">4</td>
+<td align="center"><strong>22</strong></td>
+</tr>
+<tr class="even">
+<td align="center">OMN</td>
+<td align="center">45</td>
+<td align="center">8</td>
+<td align="center"><strong>53</strong></td>
+</tr>
+<tr class="odd">
+<td align="center">INV</td>
+<td align="center">58</td>
+<td align="center">15</td>
+<td align="center"><strong>73</strong></td>
+</tr>
+<tr class="even">
+<td align="center">PISC</td>
+<td align="center">16</td>
+<td align="center">34</td>
+<td align="center"><strong>50</strong></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Total</strong></td>
+<td align="center"><strong>137</strong></td>
+<td align="center"><strong>61</strong></td>
+<td align="center"><strong>198</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="two-way-contingency-tables-and-analysis" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> Two-way Contingency Tables and Analysis<a href="contingency-table-analysis.html#two-way-contingency-tables-and-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A k-way contingency table is used to summarize the relationship between k categorical variables. It is a special type of frequency distribution table that k variables are shown simultaneously.</p>
+<p>In this note, We will introduce the general structure of two-way contingency tables and statistical tools for analyzing these tables. We will also introduce different study designs that generate two-way contingency tables containing different amounts of information.</p>
+<div id="the-structure-of-two-way-contingency-table" class="section level3 hasAnchor" number="13.2.1">
+<h3><span class="header-section-number">13.2.1</span> The Structure of Two-way Contingency Table<a href="contingency-table-analysis.html#the-structure-of-two-way-contingency-table" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be two categorical variables. <span class="math inline">\(Y\)</span> is usually random (except in a case-control study) and is also called the response variable; <span class="math inline">\(X\)</span> can be random or fixed, and usually acts as a predictor variable. Assume that <span class="math inline">\(X\)</span> has <span class="math inline">\(I\)</span> levels and <span class="math inline">\(Y\)</span> has <span class="math inline">\(J\)</span> levels. For ease of illustration, we consider the <span class="math inline">\(4\times3\)</span> contingency table. The general structure of this <strong>observed</strong> two-way contingency table (also called <span class="math inline">\(4\times3\)</span> table) is given by</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-190"></span>
+<img src="img12/w12-ObservedTable.jpg" alt="Observed two-way table based on a random sample" width="80%" />
+<p class="caption">
+Figure 13.1: Observed two-way table based on a random sample
+</p>
+</div>
+<p>Where the figures in the bottom and right-most column are called marginal totals. For examples,</p>
+<ul>
+<li><p><span class="math inline">\(n_{+ 2} = n_{12} + n_{22} + n_{32} + n_{42}\)</span> is the column total of the second column.</p></li>
+<li><p><span class="math inline">\(n_{2+} = n_{21} + n_{22} + n_{23}\)</span> is the row total of the second row.</p></li>
+<li><p><span class="math inline">\(n_{++} =\)</span> total of all frequencies in the table. This is also commonly called the grand total.</p></li>
+</ul>
+<p>If the grand total is a simple random sample from a population, then we can easily turn the above-observed frequency table to an estimated <strong>true joint probability distribution table</strong> of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> that is below.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-191"></span>
+<img src="img12/w12-ProbTable.jpg" alt="The true joint probability distribution of two categorical variables" width="80%" />
+<p class="caption">
+Figure 13.2: The true joint probability distribution of two categorical variables
+</p>
+</div>
+<p>For illustration, we look at a few examples in the following.</p>
+<ul>
+<li><p><strong>Joint Probability</strong>: <span class="math inline">\(\hat{P}(X=2, Y=3) = \hat{p}_{23} = n_{23}/n_{++}\)</span> is probability of observing <span class="math inline">\(Y=j\)</span> and <span class="math inline">\(X=2\)</span>. We can also estimate the marginal probability from the above model.</p></li>
+<li><p><strong>Marginal Probability</strong>: <span class="math inline">\(\hat{P}(Y=3) = \hat{p}_{+3} = n_{+ 3}/n_{++}\)</span> is the probablity of observing <span class="math inline">\(Y=3\)</span>. The probability of observing <span class="math inline">\(X=2\)</span> is estimated by <span class="math inline">\(\hat{P}(X=2) = \hat{p}_{2+} = n_{2+}/n_{++}\)</span> is the probability of observing <span class="math inline">\(X = 2\)</span>.</p></li>
+</ul>
+<p>This means that we can estimate the <strong>true joint distribution of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span></strong> by using the observed table</p>
+</div>
+<div id="pearson-chi2-test-of-independence" class="section level3 hasAnchor" number="13.2.2">
+<h3><span class="header-section-number">13.2.2</span> Pearson <span class="math inline">\(\chi^2\)</span> Test of Independence<a href="contingency-table-analysis.html#pearson-chi2-test-of-independence" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As mentioned earlier, the null hypothesis of the Pearson <span class="math inline">\(\chi^2\)</span> test of independence is the two categorical variables are independent. Since the general relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is completely determined by the above <strong>joint probability distribution table</strong>.</p>
+<p><strong>Under the null hypothesis <span class="math inline">\(H_o\)</span></strong>, the <strong>joint probability distribution table of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span></strong> has the following special structure.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-192"></span>
+<img src="img12/w12-NULLProbTable.jpg" alt="The true joint probability distribution of two categorical variables" width="80%" />
+<p class="caption">
+Figure 13.3: The true joint probability distribution of two categorical variables
+</p>
+</div>
+<p>This implies that, under the null hypothesis, the <strong>estimated frequency</strong> of any given cell, say (<span class="math inline">\(X=2,Y=3\)</span>), is given by <span class="math inline">\(e_{23} = n_{++} \times \hat{p}_{2+}\times\hat{p}_{+3} = n_{2+}n_{+3}/n_{++}\)</span>. We can use the same formula to calculate all <strong>estimated frequencies</strong> - we call it the estimated table.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-193"></span>
+<img src="img12/w12-ExpectedTable.jpg" alt="The true joint probability distribution of two categorical variables" width="80%" />
+<p class="caption">
+Figure 13.4: The true joint probability distribution of two categorical variables
+</p>
+</div>
+<p>In other words, if the <strong>observed</strong> and <strong>estimated</strong> tables are close to each other, we intend to conclude the null hypothesis.</p>
+<p>To answer how close is close, we define a <strong>statistical distance</strong> between the <strong>observed</strong> and <strong>expected</strong> tables as follows</p>
+<p><span class="math display">\[
+TS = \sum_{i=1}^4\sum_{j=1}^2 \left(\frac{n_{ij}-e_{ij}}{\sqrt{e_{ij}}} \right)^2 \to \chi^2_{(4-1)(2-1)}
+\]</span></p>
+<p>where <span class="math inline">\((4-1)(2-1)\)</span> is the degrees of freedom of <span class="math inline">\(\chi^2_3\)</span> distribution based on the above <span class="math inline">\(4\times2\)</span> contingency table. In general, for an <span class="math inline">\(I\times J\)</span> contingency table, the degrees of freedom are defined to be <span class="math inline">\((I-1)(J-1)\)</span>.</p>
+<p><span class="math inline">\(\chi^2\)</span> is a distribution of a positive random variable such as the <strong>distance</strong> between <strong>observed</strong> and <strong>estimated</strong> tables. Different degrees of freedom define different <span class="math inline">\(\chi^2\)</span> distributions. The following curve is a specific <span class="math inline">\(\chi^2\)</span> distribution</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-194"></span>
+<img src="STA501EB_files/figure-html/unnamed-chunk-194-1.png" alt="Density curve of a chi-sqaure distribution" width="480" />
+<p class="caption">
+Figure 13.5: Density curve of a chi-sqaure distribution
+</p>
+</div>
+<p>Similar to normal and t-distributions, there are also R functions to find quantiles and tail probabilities.</p>
+<pre><code>pchisq(quantile, df)   # left-tail area of the chi-square distribution. 
+qchisq(left.tail.area, df) # quantile of the chi-square distribution. </code></pre>
+<p>The chi-squared test is essentially always right-tailed since the chi-squared test measures the discrepancy between two distributions. A large <strong>distance</strong> implies rejecting the null hypothesis. Therefore, the rejection is always on the right tail of the <span class="math inline">\(\chi^2\)</span> density curve.</p>
+<p><strong>Example 2</strong> (continued):</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="contingency-table-analysis.html#cb178-1" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;https://raw.githubusercontent.com/pengdsci/STA501/main/ref/w12-table2x2Calculator.txt&quot;</span>)</span>
+<span id="cb178-2"><a href="contingency-table-analysis.html#cb178-2" tabindex="-1"></a><span class="do">## define column vector</span></span>
+<span id="cb178-3"><a href="contingency-table-analysis.html#cb178-3" tabindex="-1"></a>less.<span class="fl">16.2</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">45</span>, <span class="dv">58</span>, <span class="dv">16</span>)</span>
+<span id="cb178-4"><a href="contingency-table-analysis.html#cb178-4" tabindex="-1"></a>bigger.<span class="fl">16.2</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">15</span>,<span class="dv">34</span>)</span>
+<span id="cb178-5"><a href="contingency-table-analysis.html#cb178-5" tabindex="-1"></a>cont.table <span class="ot">=</span> <span class="fu">cbind</span>(<span class="at">less.16.2 =</span> less.<span class="fl">16.2</span> , <span class="at">bigger.16.2 =</span> bigger.<span class="fl">16.2</span>)</span>
+<span id="cb178-6"><a href="contingency-table-analysis.html#cb178-6" tabindex="-1"></a>chi.test <span class="ot">=</span> <span class="fu">Pearson.chisq</span>(cont.table)<span class="sc">$</span>inference</span>
+<span id="cb178-7"><a href="contingency-table-analysis.html#cb178-7" tabindex="-1"></a><span class="fu">kable</span>(chi.test, <span class="at">caption=</span><span class="st">&quot;Pearson chi-square test of independence&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-195">Table 13.1: </span>Pearson chi-square test of independence</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">ts.stats</th>
+<th align="left">p.value</th>
+<th align="left">d.f</th>
+<th align="left">method</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">43.8346</td>
+<td align="left">0</td>
+<td align="left">3</td>
+<td align="left">Pearson’s Chi-squared test</td>
+</tr>
+</tbody>
+</table>
+<p>The small p-value implies we rejected the null hypothesis. Therefore, the frequency of empty stomachs was related to dietary items. We can also extract the expected frequency table from the above <span class="math inline">\(\chi^2\)</span> test</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="contingency-table-analysis.html#cb179-1" tabindex="-1"></a>exp <span class="ot">=</span> <span class="fu">Pearson.chisq</span>(cont.table)<span class="sc">$</span>expected</span>
+<span id="cb179-2"><a href="contingency-table-analysis.html#cb179-2" tabindex="-1"></a><span class="fu">row.names</span>(exp)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;DET&quot;</span>, <span class="st">&quot;OMN&quot;</span>, <span class="st">&quot;INV&quot;</span>, <span class="st">&quot;PISC&quot;</span>)</span>
+<span id="cb179-3"><a href="contingency-table-analysis.html#cb179-3" tabindex="-1"></a><span class="fu">kable</span>(exp, <span class="at">caption =</span> <span class="st">&quot;The expected table under the null hypothesis&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-196">Table 13.2: </span>The expected table under the null hypothesis</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">less.16.2</th>
+<th align="right">bigger.16.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">DET</td>
+<td align="right">15.22222</td>
+<td align="right">6.777778</td>
+</tr>
+<tr class="even">
+<td align="left">OMN</td>
+<td align="right">36.67172</td>
+<td align="right">16.328283</td>
+</tr>
+<tr class="odd">
+<td align="left">INV</td>
+<td align="right">50.51010</td>
+<td align="right">22.489899</td>
+</tr>
+<tr class="even">
+<td align="left">PISC</td>
+<td align="right">34.59596</td>
+<td align="right">15.404040</td>
+</tr>
+</tbody>
+</table>
+<p>The original observed table can also be retrieved from the above <span class="math inline">\(\chi^2\)</span> test as follows.</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="contingency-table-analysis.html#cb180-1" tabindex="-1"></a>obs <span class="ot">=</span> <span class="fu">Pearson.chisq</span>(cont.table)<span class="sc">$</span>observed</span>
+<span id="cb180-2"><a href="contingency-table-analysis.html#cb180-2" tabindex="-1"></a><span class="fu">row.names</span>(obs) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;DET&quot;</span>, <span class="st">&quot;OMN&quot;</span>, <span class="st">&quot;INV&quot;</span>, <span class="st">&quot;PISC&quot;</span>)</span>
+<span id="cb180-3"><a href="contingency-table-analysis.html#cb180-3" tabindex="-1"></a><span class="fu">kable</span>(obs, <span class="at">caption =</span> <span class="st">&quot;The original observed frequency table&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-197">Table 13.3: </span>The original observed frequency table</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">less.16.2</th>
+<th align="right">bigger.16.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">DET</td>
+<td align="right">18</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">OMN</td>
+<td align="right">45</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="left">INV</td>
+<td align="right">58</td>
+<td align="right">15</td>
+</tr>
+<tr class="even">
+<td align="left">PISC</td>
+<td align="right">16</td>
+<td align="right">34</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+<p><strong>Caution of Using Pearson <span class="math inline">\(\chi^2\)</span> Test</strong>: The Pearson <span class="math inline">\(\chi^2\)</span> test assumes that the sample size must be large. The test result is not reliable if one or more of the cells of the contingency table is less than or equal to 5.</p>
+</div>
+</div>
+<div id="measures-of-association" class="section level2 hasAnchor" number="13.3">
+<h2><span class="header-section-number">13.3</span> Measures of Association<a href="contingency-table-analysis.html#measures-of-association" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Depending on the structure of the contingency table, we can define different measures for the association between the two categorical variables. In this section, we restrict our discussion to <span class="math inline">\(2\times2\)</span> tables. The general two-way or three-way tables are more complex and will not be discussed in this note.</p>
+<p>A <span class="math inline">\(2\times2\)</span> table can be obtained from different study designs, hence, has a different amount of information.</p>
+<div id="times2-table-under-different-study-designs" class="section level3 hasAnchor" number="13.3.1">
+<h3><span class="header-section-number">13.3.1</span> <span class="math inline">\(2\times2\)</span>-table Under Different Study Designs<a href="contingency-table-analysis.html#times2-table-under-different-study-designs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We use the following table as a template to discuss the different amount of information in the <span class="math inline">\(2\times2\)</span> tables based on the different study designs.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-198"></span>
+<img src="img12/w12-typical2x2table.jpg" alt="The true joint probability distribution of two categorical variables" width="80%" />
+<p class="caption">
+Figure 13.6: The true joint probability distribution of two categorical variables
+</p>
+</div>
+<p>We can think about <strong>Characteristic B</strong> to be the status of a disease and <strong>Characteristic A</strong> as the status of exposure to some risk.</p>
+<ul>
+<li><strong>Cross-sectional Study Design</strong></li>
+</ul>
+<p>This method assumes a random sample of n subjects from a large population <strong>followed</strong> by the determination for each subject of the presence or absence of characteristic A and the presence or absence of characteristic B. <strong>Only the total sample size n can be specified before the collection of the data</strong>.</p>
+<ul>
+<li><strong>Stratified Sampling Design</strong></li>
+</ul>
+<p>The stratified sampling (also called purposive sampling) assumes that the original population is stratified by either <strong>characteristic A</strong> or <strong>characteristic B</strong>.</p>
+<ol style="list-style-type: decimal">
+<li><p><em>Stratification with Characteristic B</em>. This design stratifies the population into exposure and non-exposure sub-populations. Two simple random samples were taken independently from the exposure and non-exposure populations respectively. This means that <span class="math inline">\(n_{1+}\)</span> and <span class="math inline">\(n_{2+}\)</span> are pre-determined sample sizes - the typical follow-up study is an example of this design.</p></li>
+<li><p><em>Stratification with Characteristic A</em>. This design stratifies the population into diseased and disease-free sub-populations. Two simple random samples were taken independently from the diseased and disease-free populations respectively. This means that <span class="math inline">\(n_{+1}\)</span> and <span class="math inline">\(n_{+2}\)</span> are pre-determined sample sizes - the typical case-control study is an example of this design.</p></li>
+</ol>
+<ul>
+<li><strong>Randomized Clinical Trials</strong></li>
+</ul>
+<p>Of a total of <span class="math inline">\(n_{++}\)</span> subjects, <span class="math inline">\(n_{1+}\)</span> are selected at random to be treated with the control treatment (placebo), and the remaining <span class="math inline">\(n_{2+}\)</span> to be treated with test treatment.</p>
+</div>
+<div id="measures-of-association-1" class="section level3 hasAnchor" number="13.3.2">
+<h3><span class="header-section-number">13.3.2</span> Measures of Association<a href="contingency-table-analysis.html#measures-of-association-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We now define several measures of association. The inference of all three measures of association assumes that the sample size is large. <strong>By convention, each cell of the observed frequency table must be bigger than or equal to 5 in order to yield reliable results</strong>. For example, motivational example 1 has several small cells. Pearson <span class="math inline">\(\chi^2\)</span> test and inference on measures of association are reliable. In order to perform the test of independence, we need to increase the sample size until all cell sizes are bigger than or equal to 5.</p>
+<ul>
+<li><strong>Relative Risk (also Risk Ratio)</strong>: is defined to be the ratio of proportions of disease in exposure and non-exposure populations.</li>
+</ul>
+<p>The relative risk (RR) is estimated by</p>
+<p><span class="math display">\[
+\widehat{RR} = \frac{n_{11}/n_{1+}}{n_{21}/n_{2+}}
+\]</span>
+Note that the definition of RR requires fixed <span class="math inline">\(n_{1+}\)</span> and <span class="math inline">\(n_{2+}\)</span>. If <span class="math inline">\(RR = 1\)</span>, there is no association between characteristics A and B. We will use the R program to calculate the confidence interval.</p>
+<ul>
+<li><strong>Risk Difference</strong> is defined to be the difference of proportions of disease of exposure and non-exposure populations.</li>
+</ul>
+<p>The risk difference (RD) can be estimated by</p>
+<p><span class="math display">\[
+RD = n_{11}/n_{1+} - n_{21}/n_{2+}
+\]</span></p>
+<p>Note also that the definition of RD requires fixed <span class="math inline">\(n_{1+}\)</span> and <span class="math inline">\(n_{2+}\)</span>. If <span class="math inline">\(RD = 0\)</span>, there is no association between characteristics A and B.</p>
+<ul>
+<li>The <strong>odds</strong> of disease is the ratio of the probability of being disease divided by the probability of being disease-free.</li>
+</ul>
+<p>For example, we can define odds of disease in exposure population to be <span class="math inline">\(O(D+)_{T+} = [n_{11}/n_{1+}/[n_{12}/n_{1+}] = n_{11}/n_{12}\)</span>, and <span class="math inline">\(O(D+)_{T-} = [n_{21}/n_{2+}/[n_{22}/n_{2+}] = n_{21}/n_{22}\)</span> for the non-exposure population. <strong>Note that the odds of an event are not a probability since it can be bigger than 1</strong>.</p>
+<p>From the definition of the odds in the above examples, we don’t require fixed marginal totals.</p>
+<ul>
+<li>The <strong>odds Ratio</strong> of a disease is the ratio of the odds of disease in the exposed population and the odds of disease in the non-exposed population.</li>
+</ul>
+<p>For example, <span class="math inline">\(OR(disease) = O(D+)_{T+}/O(D+)_{T-} = n_{11}n_{22}/n_{12}n_{21}\)</span>. From this definition, we can see that there is no requirement for the marginal totals.</p>
+</div>
+<div id="validity-of-measures-of-association" class="section level3 hasAnchor" number="13.3.3">
+<h3><span class="header-section-number">13.3.3</span> Validity of Measures of Association<a href="contingency-table-analysis.html#validity-of-measures-of-association" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We have defined several commonly used measures of association for <span class="math inline">\(2\times2\)</span> tables. Since the definition of different measures requires to have different fixed marginal totals. Therefore, one that is valid under one design might not be valid for another study design. The following is the summary of the validity of measures of association.</p>
+<ul>
+<li><p>Under the <strong>cross-sectional design</strong>, all measures of association (RD, RR, and OR) are valid.</p></li>
+<li><p>Under the <strong>case-control study design</strong> (fixed column totals), relative risk (RR) and risk difference (RD) are <strong>invalid</strong> since their definitions require fixed marginal totals of both exposure and non-exposure populations. The odds ratio (OR) is valid in the case-control study.</p></li>
+<li><p>Under the <strong>follow-up study design</strong> (fixed row totals), all three measures (RR, RD, and OR) are valid.</p></li>
+<li><p>Under the <strong>randomized clinical trial (RCT)</strong>, all three measures (RR, RD, and OR) are valid since the RCT is the combination of random sampling and (random) stratification for follow-up.</p></li>
+</ul>
+<table style="width:100%;">
+<colgroup>
+<col width="30%" />
+<col width="22%" />
+<col width="23%" />
+<col width="22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Study Design</th>
+<th align="center">Relative Risk</th>
+<th align="center">Risk Difference</th>
+<th align="center">Odds Ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">cross-section</td>
+<td align="center">Valid</td>
+<td align="center">valid</td>
+<td align="center">valid</td>
+</tr>
+<tr class="even">
+<td align="center">Stratified follow-up</td>
+<td align="center">valid</td>
+<td align="center">valid</td>
+<td align="center">valid</td>
+</tr>
+<tr class="odd">
+<td align="center">Stratified case-control</td>
+<td align="center">invalid</td>
+<td align="center">invalid</td>
+<td align="center">valid</td>
+</tr>
+<tr class="even">
+<td align="center">RCT</td>
+<td align="center">valid</td>
+<td align="center">valid</td>
+<td align="center">valid</td>
+</tr>
+</tbody>
+</table>
+<p>We will present examples in the next section of case studies using the two R functions <strong>Pearson.chisq()</strong> and <strong>table2x2()</strong> that can be sourced at <a href="source(%22https://raw.githubusercontent.com/pengdsci/STA501/main/ref/w12-table2x2Calculator.txt%22)">source(“https://raw.githubusercontent.com/pengdsci/STA501/main/ref/w12-table2x2Calculator.txt”)</a>. Whenever you use the function for the first time in the current version, you simply place the one-line code <strong>source(“source(”<a href="https://raw.githubusercontent.com/pengdsci/STA501/main/ref/w12-table2x2Calculator.txt" class="uri">https://raw.githubusercontent.com/pengdsci/STA501/main/ref/w12-table2x2Calculator.txt</a>“)”)</strong> in the code chunk before calling the above two R functions. In the rest of the current session, you don’t need to source the code!</p>
+</div>
+</div>
+<div id="case-studies-2" class="section level2 hasAnchor" number="13.4">
+<h2><span class="header-section-number">13.4</span> Case Studies<a href="contingency-table-analysis.html#case-studies-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When conducting the independence test, we need to check the assumption of sample size in order to make the correct decision. For the analyzing <span class="math inline">\(2\times2\)</span> table, we need to know the study designs since some measures may not be valid for all designs.</p>
+<div id="case-study-1-1" class="section level3 hasAnchor" number="13.4.1">
+<h3><span class="header-section-number">13.4.1</span> Case Study 1<a href="contingency-table-analysis.html#case-study-1-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Example 1</strong>. In 1992, the U.S. Public Health Service and the Centers for Disease Control and Prevention recommended that all women of childbearing age consume 400mg of folic acid daily to reduce the risk of having a pregnancy that is affected by a neural tube defect such as spina bifida or anencephaly. In a study by Stepanuk et al, 693 pregnant women called a teratology information service about their use of folic acid supplementation. The researchers wished to determine if preconceptional use of folic acid and race are independent. The data appear in the following table.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-199"></span>
+<img src="img12/w12-casestusy01.jpg" alt="Use of folic acid supplementation data table" width="80%" />
+<p class="caption">
+Figure 13.7: Use of folic acid supplementation data table
+</p>
+</div>
+<p>We use the R function <strong>Pearson.chisq()</strong> to test the independence between the race and the use of folic acid.</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="contingency-table-analysis.html#cb181-1" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;https://raw.githubusercontent.com/pengdsci/STA501/main/ref/w12-table2x2Calculator.txt&quot;</span>)</span>
+<span id="cb181-2"><a href="contingency-table-analysis.html#cb181-2" tabindex="-1"></a><span class="do">## 2-by-2 table must be defined as a data frame</span></span>
+<span id="cb181-3"><a href="contingency-table-analysis.html#cb181-3" tabindex="-1"></a>case1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Yes=</span><span class="fu">c</span>(<span class="dv">260</span>, <span class="dv">15</span>, <span class="dv">7</span>),<span class="at">No=</span><span class="fu">c</span>(<span class="dv">299</span>, <span class="dv">41</span>,<span class="dv">14</span>))</span>
+<span id="cb181-4"><a href="contingency-table-analysis.html#cb181-4" tabindex="-1"></a><span class="fu">rownames</span>(case1) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Other&quot;</span>)</span>
+<span id="cb181-5"><a href="contingency-table-analysis.html#cb181-5" tabindex="-1"></a>Pearson.chi.test <span class="ot">=</span> <span class="fu">Pearson.chisq</span>(case1)</span>
+<span id="cb181-6"><a href="contingency-table-analysis.html#cb181-6" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb181-7"><a href="contingency-table-analysis.html#cb181-7" tabindex="-1"></a><span class="fu">pander</span>(Pearson.chi.test<span class="sc">$</span>inference, <span class="at">caption=</span><span class="st">&quot;Summary of Pearson chi-square test of independence&quot;</span>)</span></code></pre></div>
+<table style="width:78%;">
+<caption>Summary of Pearson chi-square test of independence</caption>
+<colgroup>
+<col width="15%" />
+<col width="13%" />
+<col width="8%" />
+<col width="40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">ts.stats</th>
+<th align="center">p.value</th>
+<th align="center">d.f</th>
+<th align="center">method</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">9.0913</td>
+<td align="center">0.0106</td>
+<td align="center">2</td>
+<td align="center">Pearson’s Chi-squared test</td>
+</tr>
+</tbody>
+</table>
+<p>The above Pearson <span class="math inline">\(\chi^2\)</span> test independence indicates that the pre-conceptional use of folic acid and race are dependent with <span class="math inline">\(\chi_2^2 = 9.0913\)</span> with p-value = 0.0106.</p>
+<p>To compare the observed frequency table and the expected frequency table, we can extract them from the above <strong>Pearson.chisq()</strong>.</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="contingency-table-analysis.html#cb182-1" tabindex="-1"></a><span class="fu">pander</span>(Pearson.chi.test<span class="sc">$</span>observed, <span class="at">caption =</span> <span class="st">&quot;The observed frequency table&quot;</span>)</span></code></pre></div>
+<table style="width:33%;">
+<caption>The observed frequency table</caption>
+<colgroup>
+<col width="16%" />
+<col width="8%" />
+<col width="8%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Yes</th>
+<th align="center">No</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>white</strong></td>
+<td align="center">260</td>
+<td align="center">299</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Black</strong></td>
+<td align="center">15</td>
+<td align="center">41</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Other</strong></td>
+<td align="center">7</td>
+<td align="center">14</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="contingency-table-analysis.html#cb183-1" tabindex="-1"></a><span class="fu">pander</span>(Pearson.chi.test<span class="sc">$</span>expected, <span class="at">caption =</span> <span class="st">&quot;The expected frequency table&quot;</span>)</span></code></pre></div>
+<table style="width:39%;">
+<caption>The expected frequency table</caption>
+<colgroup>
+<col width="16%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Yes</th>
+<th align="center">No</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>white</strong></td>
+<td align="center">247.9</td>
+<td align="center">311.1</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Black</strong></td>
+<td align="center">24.83</td>
+<td align="center">31.17</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Other</strong></td>
+<td align="center">9.311</td>
+<td align="center">11.69</td>
+</tr>
+</tbody>
+</table>
+<p>We can see that the above two tables are different. The second row of the expected table is significantly different from that of the observed table.</p>
+</div>
+<div id="case-study-2-1" class="section level3 hasAnchor" number="13.4.2">
+<h3><span class="header-section-number">13.4.2</span> Case Study 2<a href="contingency-table-analysis.html#case-study-2-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Example 2</strong>: The food-frequency questionnaire is widely used to measure dietary intake. A person specifies the number of servings consumed per day of each of many different food items. The total nutrient composition is then calculated from the specific dietary components of each food item. One way to judge how well a questionnaire measures dietary intake is by its reproducibility. To assess reproducibility the questionnaire is administered at two different times to 50 people and the reported nutrient intakes from the two questionnaires are compared. Suppose dietary cholesterol is quantified on each questionnaire as high if it exceeds 300 mg/day and as normal otherwise. The contingency table in the following table is a natural way to compare the results of the two surveys. Notice that this example has no natural denominator. We simply want to test whether there is some association between the two reported measures of dietary cholesterol for the same person. More specifically, we want to assess how unlikely it is that 15 women will report high dietary cholesterol intake on both questionnaires, given that 20 of 50 women report high intake on the first questionnaire and 24 of 50 women report high intake on the second questionnaire. This test is called a test of independence or a test of association between the two characteristics.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-203"></span>
+<img src="img12/w12-casestudy02.jpg" alt=" dietary intake data table" width="80%" />
+<p class="caption">
+Figure 13.8:  dietary intake data table
+</p>
+</div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="contingency-table-analysis.html#cb184-1" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;https://raw.githubusercontent.com/pengdsci/STA501/main/ref/w12-table2x2Calculator.txt&quot;</span>)</span>
+<span id="cb184-2"><a href="contingency-table-analysis.html#cb184-2" tabindex="-1"></a><span class="do">## 2-by-2 table must be defined as a data frame</span></span>
+<span id="cb184-3"><a href="contingency-table-analysis.html#cb184-3" tabindex="-1"></a>case2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">High=</span><span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">9</span>),<span class="at">Normal=</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">21</span>))</span>
+<span id="cb184-4"><a href="contingency-table-analysis.html#cb184-4" tabindex="-1"></a><span class="fu">rownames</span>(case2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;High&quot;</span>,<span class="st">&quot;Normal&quot;</span>)</span>
+<span id="cb184-5"><a href="contingency-table-analysis.html#cb184-5" tabindex="-1"></a>Pearson.chi.test02 <span class="ot">=</span> <span class="fu">Pearson.chisq</span>(case2)</span>
+<span id="cb184-6"><a href="contingency-table-analysis.html#cb184-6" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb184-7"><a href="contingency-table-analysis.html#cb184-7" tabindex="-1"></a><span class="fu">pander</span>(Pearson.chi.test02<span class="sc">$</span>inference, <span class="at">caption=</span><span class="st">&quot;Summary of Pearson chi-square </span></span>
+<span id="cb184-8"><a href="contingency-table-analysis.html#cb184-8" tabindex="-1"></a><span class="st">      test of independence&quot;</span>)</span></code></pre></div>
+<table style="width:71%;">
+<caption>Summary of Pearson chi-square
+test of independence</caption>
+<colgroup>
+<col width="15%" />
+<col width="13%" />
+<col width="8%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">ts.stats</th>
+<th align="center">p.value</th>
+<th align="center">d.f</th>
+<th align="center">method</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">8.0162</td>
+<td align="center">0.0046</td>
+<td align="center">1</td>
+<td align="center">Pearson’s Chi-squared
+test(with correction)</td>
+</tr>
+</tbody>
+</table>
+<p>The Pearson <span class="math inline">\(\chi^2\)</span> test indicates that the first and second questionnaires are dependent (<span class="math inline">\(\chi^2_1 = 8.0163\)</span>, p-value = 0.0046). Next, we use measures of association to assess the strength of the association.</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="contingency-table-analysis.html#cb185-1" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;https://raw.githubusercontent.com/pengdsci/STA501/main/ref/w12-table2x2Calculator.txt&quot;</span>)</span>
+<span id="cb185-2"><a href="contingency-table-analysis.html#cb185-2" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb185-3"><a href="contingency-table-analysis.html#cb185-3" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">table2x2</span>(case2), <span class="at">caption=</span><span class="st">&quot;Measures of association&quot;</span>)</span></code></pre></div>
+<table>
+<caption>Measures of association (continued below)</caption>
+<colgroup>
+<col width="30%" />
+<col width="13%" />
+<col width="12%" />
+<col width="21%" />
+<col width="21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">measure</th>
+<th align="center">SE</th>
+<th align="center">Lower(95%).CI</th>
+<th align="center">Upper(95%).CI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>relative.risk</strong></td>
+<td align="center">2.5</td>
+<td align="center">0.3073</td>
+<td align="center">1.3689</td>
+<td align="center">4.5658</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>risk.difference</strong></td>
+<td align="center">0.45</td>
+<td align="center">0.128</td>
+<td align="center">0.1991</td>
+<td align="center">0.7009</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>odds.ratio</strong></td>
+<td align="center">7</td>
+<td align="center">0.6522</td>
+<td align="center">1.9496</td>
+<td align="center">25.1334</td>
+</tr>
+</tbody>
+</table>
+<table style="width:61%;">
+<colgroup>
+<col width="30%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">significance(0.05)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>relative.risk</strong></td>
+<td align="center">Yes</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>risk.difference</strong></td>
+<td align="center">Yes</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>odds.ratio</strong></td>
+<td align="center">Yes</td>
+</tr>
+</tbody>
+</table>
+<p>Since the above <span class="math inline">\(2\times2\)</span> table was generated based on cross-sectional design (assuming the random sampling). All measures of association are valid. The above results based on measures of association are consistent with that of the Pearson <span class="math inline">\(\chi^2\)</span> test. Moreover, we can explicitly interpret the strength of the association between the two survey results.</p>
+<ul>
+<li><p><strong>relative risk</strong>: the percentage of those who reported <strong>high-dietary-intake</strong> in the first survey also reported the <strong>same</strong> in the second survey is 2.5 times the percentage of those who reported <strong>low-dietary-intake</strong> in the first survey but reported <strong>high-dietary-intake</strong> in the second survey. The corresponding <span class="math inline">\(95\%\)</span> of the confidence interval is <span class="math inline">\([1.37, 4.57]\)</span>.</p></li>
+<li><p><strong>risk difference</strong>: the percentage of those who reported <strong>high-dietary-intake</strong> in the first survey also reported the <strong>same</strong> in the second survey is <span class="math inline">\(45\%\)</span> higher than the percentage of those who reported <strong>low-dietary-intake</strong> in the first survey but reported <strong>high-dietary-intake</strong> in the second survey. The corresponding <span class="math inline">\(95\%\)</span> of confidence interval is <span class="math inline">\([19.9\%, 70.1\%]\)</span>.</p></li>
+<li><p><strong>odds ratio</strong>: The odds of reporting <strong>high-dietary-intake</strong> among those who reported <strong>high-dietary-intake</strong> in the first survey is 7 times that among those who reported <strong>low-dietary-intake</strong> in their first survey.</p></li>
+</ul>
+</div>
+</div>
+<div id="practice-problems-4" class="section level2 hasAnchor" number="13.5">
+<h2><span class="header-section-number">13.5</span> Practice Problems<a href="contingency-table-analysis.html#practice-problems-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this assignment, we focus on the Pearson <span class="math inline">\(\chi^2\)</span> test and the measures of association. The level of detail should be similar to what you have seen in the case study (Section 5 of the class note). You can also use the two R functions that were used in the class note by running the following one-line code in the code chunk.</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="contingency-table-analysis.html#cb186-1" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;https://raw.githubusercontent.com/pengdsci/STA501/main/ref/w12-table2x2Calculator.txt&quot;</span>)</span></code></pre></div>
+<p><strong>Problem 1</strong>.</p>
+<p>In a prospective, randomized, double-blind study, Stanley et al. examined the relative efficacy and side effects of morphine and pethidine, drugs commonly used for patient-controlled analgesia (PCA). Subjects were 40 women, between the ages of 20 and 65 years, undergoing total abdominal hysterectomy. Patients were allocated randomly to receive morphine or pethidine by PCA. At the end of the study, subjects described their appreciation of nausea and vomiting, pain, and satisfaction by means of a three-point verbal scale. We only focus on the association between the severity of nausea and the use of the drug. The observed table is given below.</p>
+<p><img src="img12/w12-assin-prob01.jpg" width="80%" style="display: block; margin: auto;" /></p>
+<p>Is there any association between appreciation of nausea and satisfaction? Use the Pearson <span class="math inline">\(\chi^2\)</span> test to justify your conclusion and interpret the test results.</p>
+<p><strong>Problem 2</strong></p>
+<p>The following data table was collected to study the obesity status of children ages 5–6 years and the smoking status of the mother during the pregnancy, also reported on another outcome variable: whether the child was born premature (37 weeks or fewer of gestation). The following table summarizes the results of this aspect of the study. The same risk factor (smoking during pregnancy) is considered, but a case is now defined as a mother who gave birth prematurely.</p>
+<p><img src="img12/w12-assin-prob02.jpg" width="80%" style="display: block; margin: auto;" /></p>
+<p>Use the chi-square test of independence to determine if one may conclude that there is an association between smoking throughout pregnancy and premature birth. Let <span class="math inline">\(\alpha = 05\)</span>. Compute the odds ratio to determine if smoking throughout pregnancy is related to premature birth.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="logistic-regression-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analysis-of-counts-and-rates.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/pengdsci/STA501EB/edit/master/13-ContingencyTableAnalysis.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["STA501EB.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

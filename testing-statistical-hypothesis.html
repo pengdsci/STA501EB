@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Topic 8 Testing Statistical Hypothesis | STA501 E-Pack: Applied Statistical Methods</title>
+  <meta name="description" content="The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Topic 8 Testing Statistical Hypothesis | STA501 E-Pack: Applied Statistical Methods" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Topic 8 Testing Statistical Hypothesis | STA501 E-Pack: Applied Statistical Methods" />
+  
+  <meta name="twitter:description" content="The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Cheng Peng" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="confidence-intervals.html"/>
+<link rel="next" href="analysis-of-variance-anova.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<center><li><a href="./"><font color = "darkred"><b>STA 501 E-Pack: Applied Statistical Methods</b></font></a><br><font color = "navy">Cheng Peng</font></li></center>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html"><i class="fa fa-check"></i><b>2</b> R, RStudio and RMarkdown</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#r"><i class="fa fa-check"></i><b>2.1</b> R</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#order-of-operations"><i class="fa fa-check"></i><b>2.1.1</b> Order of Operations</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#basic-r-objects"><i class="fa fa-check"></i><b>2.1.2</b> Basic R Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio"><i class="fa fa-check"></i><b>2.2</b> RStudio</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio-gui"><i class="fa fa-check"></i><b>2.2.1</b> RStudio GUI</a></li>
+<li class="chapter" data-level="2.2.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#console"><i class="fa fa-check"></i><b>2.2.2</b> Console</a></li>
+<li class="chapter" data-level="2.2.3" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#source-editor"><i class="fa fa-check"></i><b>2.2.3</b> Source Editor</a></li>
+<li class="chapter" data-level="2.2.4" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#environment-window"><i class="fa fa-check"></i><b>2.2.4</b> Environment Window</a></li>
+<li class="chapter" data-level="2.2.5" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#system-and-graphic-files"><i class="fa fa-check"></i><b>2.2.5</b> System and Graphic files</a></li>
+<li class="chapter" data-level="2.2.6" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio-offers-numerous-helpful-features"><i class="fa fa-check"></i><b>2.2.6</b> RStudio offers numerous helpful features:</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rmarkdown"><i class="fa fa-check"></i><b>2.3</b> RMarkdown</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#code-chunk"><i class="fa fa-check"></i><b>2.3.1</b> Code Chunk</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#graphics-generated-from-r-code-chunks"><i class="fa fa-check"></i><b>2.3.2</b> Graphics Generated from R Code Chunks</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html"><i class="fa fa-check"></i><b>3</b> Data Collection and Data Loading</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#sampling-plans"><i class="fa fa-check"></i><b>3.1</b> Sampling Plans</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#simple-random-sampling-srs"><i class="fa fa-check"></i><b>3.1.1</b> Simple Random Sampling (SRS)</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#systematic-sampling"><i class="fa fa-check"></i><b>3.1.2</b> Systematic sampling</a></li>
+<li class="chapter" data-level="3.1.3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#stratified-sampling"><i class="fa fa-check"></i><b>3.1.3</b> Stratified sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#study-designs"><i class="fa fa-check"></i><b>3.2</b> Study Designs</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#observational-studies"><i class="fa fa-check"></i><b>3.2.1</b> Observational Studies</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#experimental-designs"><i class="fa fa-check"></i><b>3.2.2</b> Experimental Designs</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#loading-data-to-r-from-external-data-files"><i class="fa fa-check"></i><b>3.3</b> Loading Data to R from External Data Files</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#text-file-aka.-delimited-text-file"><i class="fa fa-check"></i><b>3.3.1</b> Text File ( aka. Delimited Text File)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#data-frame-and-list"><i class="fa fa-check"></i><b>3.4</b> Data Frame and List</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#data-frame-1"><i class="fa fa-check"></i><b>3.4.1</b> Data Frame</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>4</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#data-types"><i class="fa fa-check"></i><b>4.1</b> Data Types</a></li>
+<li class="chapter" data-level="4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#tabular-and-graphic-summary"><i class="fa fa-check"></i><b>4.2</b> Tabular and Graphic Summary</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#categorical-data"><i class="fa fa-check"></i><b>4.2.1</b> Categorical Data</a></li>
+<li class="chapter" data-level="4.2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#numerical-data"><i class="fa fa-check"></i><b>4.2.2</b> Numerical Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#numerical-summary-of-numerical-data"><i class="fa fa-check"></i><b>4.3</b> Numerical Summary of Numerical Data</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#central-tendency"><i class="fa fa-check"></i><b>4.3.1</b> Central Tendency</a></li>
+<li class="chapter" data-level="4.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variations"><i class="fa fa-check"></i><b>4.3.2</b> Variations</a></li>
+<li class="chapter" data-level="4.3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#location"><i class="fa fa-check"></i><b>4.3.3</b> Location</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#assignment---descriptive-statistics"><i class="fa fa-check"></i><b>4.4</b> Assignment - Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summarizing-categorical-data"><i class="fa fa-check"></i><b>4.4.1</b> Summarizing Categorical Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html"><i class="fa fa-check"></i><b>5</b> Concepts of Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-random-variables"><i class="fa fa-check"></i><b>5.1</b> Concepts of random variables</a></li>
+<li class="chapter" data-level="5.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#types-of-random-variables"><i class="fa fa-check"></i><b>5.2</b> Types of random variables</a></li>
+<li class="chapter" data-level="5.3" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-probability-distributions-1"><i class="fa fa-check"></i><b>5.3</b> Concepts of probability distributions</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-probability"><i class="fa fa-check"></i><b>5.3.1</b> Concepts of probability</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#probability-distribution-of-random-variables"><i class="fa fa-check"></i><b>5.4</b> Probability distribution of random variables</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#discrete-probability-distribution"><i class="fa fa-check"></i><b>5.4.1</b> Discrete probability distribution</a></li>
+<li class="chapter" data-level="5.4.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#continuous-probability-distribution"><i class="fa fa-check"></i><b>5.4.2</b> Continuous probability distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#special-continuous-distributions"><i class="fa fa-check"></i><b>5.5</b> Special Continuous Distributions</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#normal-distribution"><i class="fa fa-check"></i><b>5.5.1</b> Normal Distribution</a></li>
+<li class="chapter" data-level="5.5.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#t-distribution"><i class="fa fa-check"></i><b>5.5.2</b> t distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#summary"><i class="fa fa-check"></i><b>5.6</b> Summary</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#numerical-examples-based-on-normal-and-t-distributions"><i class="fa fa-check"></i><b>5.6.1</b> Numerical Examples Based on Normal and t Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#assignment---probability-distributions"><i class="fa fa-check"></i><b>5.7</b> Assignment - Probability Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>6</b> Sampling Distributions</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#concepts-of-the-sampling-distribution"><i class="fa fa-check"></i><b>6.1</b> Concepts of the sampling distribution</a></li>
+<li class="chapter" data-level="6.2" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sampling-distribution-of-sampling-means"><i class="fa fa-check"></i><b>6.2</b> Sampling Distribution of Sampling Means</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#working-data-set-plant-diversity"><i class="fa fa-check"></i><b>6.2.1</b> Working Data Set: Plant Diversity</a></li>
+<li class="chapter" data-level="6.2.2" data-path="sampling-distributions.html"><a href="sampling-distributions.html#normal-population-with-given-mean-mu-and-variance-sigma2"><i class="fa fa-check"></i><b>6.2.2</b> Normal Population with given mean (<span class="math inline">\(\mu\)</span>) and Variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+<li class="chapter" data-level="6.2.3" data-path="sampling-distributions.html"><a href="sampling-distributions.html#normal-population-with-a-given-mean-mu-and-an-unknown-variance-sigma2"><i class="fa fa-check"></i><b>6.2.3</b> Normal Population with a given mean (<span class="math inline">\(\mu\)</span>) and an <strong>Unknown</strong> Variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+<li class="chapter" data-level="6.2.4" data-path="sampling-distributions.html"><a href="sampling-distributions.html#unspecified-population-with-a-given-mean-muand-an-unspecifed-variance-sigma2"><i class="fa fa-check"></i><b>6.2.4</b> Unspecified Population with a given mean (<span class="math inline">\(\mu\)</span>)and an unspecifed variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sampling-distribution-of-sample-proportions"><i class="fa fa-check"></i><b>6.3</b> Sampling distribution of sample proportions</a></li>
+<li class="chapter" data-level="6.4" data-path="sampling-distributions.html"><a href="sampling-distributions.html#summary-1"><i class="fa fa-check"></i><b>6.4</b> Summary</a></li>
+<li class="chapter" data-level="6.5" data-path="sampling-distributions.html"><a href="sampling-distributions.html#assignment---sampling-distributions"><i class="fa fa-check"></i><b>6.5</b> Assignment - Sampling Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>7</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#some-terms"><i class="fa fa-check"></i><b>7.1</b> Some Terms</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#what-are-the-issues-of-a-point-estimate"><i class="fa fa-check"></i><b>7.1.1</b> What are the issues of a point estimate?</a></li>
+<li class="chapter" data-level="7.1.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#how-about-multiple-samples"><i class="fa fa-check"></i><b>7.1.2</b> How About Multiple Samples?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#how-to-find-the-confidence-intervals-for-means-and-proportions"><i class="fa fa-check"></i><b>7.2</b> How to find the Confidence Intervals for Means and Proportions?</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#framework-of-confidence-interval"><i class="fa fa-check"></i><b>7.2.1</b> Framework Of Confidence Interval</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-population-mean"><i class="fa fa-check"></i><b>7.3</b> Confidence Interval of Population Mean</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#normal-population-with-known-variance."><i class="fa fa-check"></i><b>7.3.1</b> Normal Population with Known Variance.</a></li>
+<li class="chapter" data-level="7.3.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#normal-population-with-unknown-variance"><i class="fa fa-check"></i><b>7.3.2</b> Normal Population with Unknown Variance</a></li>
+<li class="chapter" data-level="7.3.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#unspecified-population-with-unknown-variance-but-with-large-sample-sizes"><i class="fa fa-check"></i><b>7.3.3</b> Unspecified Population with Unknown Variance but with Large Sample Sizes</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-proportion"><i class="fa fa-check"></i><b>7.4</b> Confidence Interval of Proportion</a></li>
+<li class="chapter" data-level="7.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#two-sample-problems---comparing-two-population-means"><i class="fa fa-check"></i><b>7.5</b> Two Sample Problems - Comparing Two Population Means</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-the-difference-of-two-unspecified-populations-means"><i class="fa fa-check"></i><b>7.5.1</b> Confidence Interval of the Difference of Two Unspecified Populations Means</a></li>
+<li class="chapter" data-level="7.5.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-the-difference-of-two-normal-populations-means"><i class="fa fa-check"></i><b>7.5.2</b> Confidence Interval of the Difference of Two Normal Populations Means</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="confidence-intervals.html"><a href="confidence-intervals.html#assignment---confidence-intervals"><i class="fa fa-check"></i><b>7.6</b> Assignment - Confidence Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html"><i class="fa fa-check"></i><b>8</b> Testing Statistical Hypothesis</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#formulation-of-statistical-hypothesis-testing"><i class="fa fa-check"></i><b>8.1</b> Formulation of Statistical Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#null-and-alternative-hypotheses"><i class="fa fa-check"></i><b>8.1.1</b> Null and Alternative Hypotheses</a></li>
+<li class="chapter" data-level="8.1.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#relationship-between-the-claim-and-the-statistical-hypotheses"><i class="fa fa-check"></i><b>8.1.2</b> Relationship between the claim and the statistical hypotheses</a></li>
+<li class="chapter" data-level="8.1.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#test-statistics---statistical-evidence"><i class="fa fa-check"></i><b>8.1.3</b> Test Statistics - Statistical Evidence</a></li>
+<li class="chapter" data-level="8.1.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#types-of-test-and-rejection-region"><i class="fa fa-check"></i><b>8.1.4</b> Types of Test and Rejection Region</a></li>
+<li class="chapter" data-level="8.1.5" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#statistical-decision-rule-p-value"><i class="fa fa-check"></i><b>8.1.5</b> Statistical Decision Rule: p-value</a></li>
+<li class="chapter" data-level="8.1.6" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#summary-of-the-test-hypothesis-procedure"><i class="fa fa-check"></i><b>8.1.6</b> Summary of the Test Hypothesis Procedure</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-studies"><i class="fa fa-check"></i><b>8.2</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-i-normal-population-with-a-known-variance."><i class="fa fa-check"></i><b>8.2.1</b> Case I: normal population with a known variance.</a></li>
+<li class="chapter" data-level="8.2.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-ii-normal-population-with-an-unknown-variance"><i class="fa fa-check"></i><b>8.2.2</b> Case II: Normal population with an unknown variance</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#unspecified-population-with-an-unknown-variance---clt"><i class="fa fa-check"></i><b>8.3</b> Unspecified population with an unknown variance - CLT</a></li>
+<li class="chapter" data-level="8.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#testing-population-proportion"><i class="fa fa-check"></i><b>8.4</b> Testing Population Proportion</a></li>
+<li class="chapter" data-level="8.5" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#testing-the-difference-between-two-population-means"><i class="fa fa-check"></i><b>8.5</b> Testing the difference between two population means</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#both-populations-are-unspecified-and-sample-sizes-are-large."><i class="fa fa-check"></i><b>8.5.1</b> Both populations are unspecified and sample sizes are large.</a></li>
+<li class="chapter" data-level="8.5.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#both-populations-are-normal-with-unknown-but-equal-variances"><i class="fa fa-check"></i><b>8.5.2</b> Both populations are normal with unknown but equal variances</a></li>
+<li class="chapter" data-level="8.5.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#paired-t-test"><i class="fa fa-check"></i><b>8.5.3</b> Paired t-test</a></li>
+<li class="chapter" data-level="8.5.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#concluding-remarks"><i class="fa fa-check"></i><b>8.5.4</b> Concluding Remarks</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#practice-problems"><i class="fa fa-check"></i><b>8.6</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>9</b> Analysis of Variance (ANOVA)</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#the-question-of-one-way-anova"><i class="fa fa-check"></i><b>9.1</b> The Question of One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#what-is-anova"><i class="fa fa-check"></i><b>9.1.1</b> What is ANOVA</a></li>
+<li class="chapter" data-level="9.1.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#assumptions-of-anova"><i class="fa fa-check"></i><b>9.1.2</b> Assumptions of ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#steps-of-anova"><i class="fa fa-check"></i><b>9.2</b> Steps of ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#anova-tables"><i class="fa fa-check"></i><b>9.2.1</b> ANOVA Tables</a></li>
+<li class="chapter" data-level="9.2.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#post-hoc-pairwise-comparison"><i class="fa fa-check"></i><b>9.2.2</b> Post hoc Pairwise Comparison</a></li>
+<li class="chapter" data-level="9.2.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#how-to-summarize-anova-results"><i class="fa fa-check"></i><b>9.2.3</b> How to Summarize ANOVA Results</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#welchs-anova"><i class="fa fa-check"></i><b>9.3</b> Welch’s ANOVA</a></li>
+<li class="chapter" data-level="9.4" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#case-study-mussel-length-example---solution"><i class="fa fa-check"></i><b>9.4</b> Case Study: Mussel Length Example - Solution</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#creating-an-anova-table"><i class="fa fa-check"></i><b>9.4.1</b> Creating An ANOVA Table</a></li>
+<li class="chapter" data-level="9.4.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#diagnostic-analysis"><i class="fa fa-check"></i><b>9.4.2</b> Diagnostic Analysis</a></li>
+<li class="chapter" data-level="9.4.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#welch-anova"><i class="fa fa-check"></i><b>9.4.3</b> Welch ANOVA</a></li>
+<li class="chapter" data-level="9.4.4" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#post-hoc-multiple-comparisons"><i class="fa fa-check"></i><b>9.4.4</b> Post-hoc Multiple Comparisons</a></li>
+<li class="chapter" data-level="9.4.5" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#visual-comparison---boxplots"><i class="fa fa-check"></i><b>9.4.5</b> Visual Comparison - Boxplots</a></li>
+<li class="chapter" data-level="9.4.6" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#anova-reporting"><i class="fa fa-check"></i><b>9.4.6</b> ANOVA Reporting</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#practice-problems-1"><i class="fa fa-check"></i><b>9.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html"><i class="fa fa-check"></i><b>10</b> Correlation and Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#the-question-and-the-data"><i class="fa fa-check"></i><b>10.1</b> The question and the data</a></li>
+<li class="chapter" data-level="10.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#visual-inspection-for-association"><i class="fa fa-check"></i><b>10.2</b> Visual Inspection for Association</a></li>
+<li class="chapter" data-level="10.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#coefficient-of-correlation"><i class="fa fa-check"></i><b>10.3</b> Coefficient of Correlation</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#definition-of-pearson-correlation-coefficient"><i class="fa fa-check"></i><b>10.3.1</b> Definition of Pearson correlation coefficient</a></li>
+<li class="chapter" data-level="10.3.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#interpretation-of-correlation-coefficient"><i class="fa fa-check"></i><b>10.3.2</b> Interpretation of correlation coefficient</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#least-square-regression-structure-diagnostics-and-applications"><i class="fa fa-check"></i><b>10.4</b> Least square regression: structure, diagnostics, and applications</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#definitions"><i class="fa fa-check"></i><b>10.4.1</b> Definitions</a></li>
+<li class="chapter" data-level="10.4.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#assumptions-of-least-square-regression"><i class="fa fa-check"></i><b>10.4.2</b> Assumptions of Least Square Regression</a></li>
+<li class="chapter" data-level="10.4.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-building-and-diagnostics"><i class="fa fa-check"></i><b>10.4.3</b> Model Building and Diagnostics</a></li>
+<li class="chapter" data-level="10.4.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#residual-diagnostics-and-remedies"><i class="fa fa-check"></i><b>10.4.4</b> Residual Diagnostics and Remedies</a></li>
+<li class="chapter" data-level="10.4.5" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#final-model-with-applications"><i class="fa fa-check"></i><b>10.4.5</b> Final Model with Applications</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#case-study-amyotrophic-lateral-sclerosis-analysis-revisited"><i class="fa fa-check"></i><b>10.5</b> Case Study: Amyotrophic lateral sclerosis analysis revisited</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#objectives"><i class="fa fa-check"></i><b>10.5.1</b> Objectives</a></li>
+<li class="chapter" data-level="10.5.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-fitting"><i class="fa fa-check"></i><b>10.5.2</b> Model Fitting</a></li>
+<li class="chapter" data-level="10.5.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#box-cox-transformation"><i class="fa fa-check"></i><b>10.5.3</b> Box-Cox Transformation</a></li>
+<li class="chapter" data-level="10.5.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-applications"><i class="fa fa-check"></i><b>10.5.4</b> Model Applications</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>11</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-practical-question"><i class="fa fa-check"></i><b>11.1</b> The Practical Question</a></li>
+<li class="chapter" data-level="11.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-process-of-building-a-multiple-linear-regression-model"><i class="fa fa-check"></i><b>11.2</b> The Process of Building A Multiple Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#assumptions-of-mlr"><i class="fa fa-check"></i><b>11.2.1</b> Assumptions of MLR</a></li>
+<li class="chapter" data-level="11.2.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-structure-of-mlr"><i class="fa fa-check"></i><b>11.2.2</b> The Structure of MLR</a></li>
+<li class="chapter" data-level="11.2.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#more-on-model-specifications"><i class="fa fa-check"></i><b>11.2.3</b> More on Model Specifications</a></li>
+<li class="chapter" data-level="11.2.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#estimation-of-regression-coefficients"><i class="fa fa-check"></i><b>11.2.4</b> Estimation of Regression Coefficients</a></li>
+<li class="chapter" data-level="11.2.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#model-diagnostics"><i class="fa fa-check"></i><b>11.2.5</b> Model Diagnostics</a></li>
+<li class="chapter" data-level="11.2.6" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#goodness-of-fit-and-variable-selection"><i class="fa fa-check"></i><b>11.2.6</b> Goodness-of-fit and Variable Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#case-study-1"><i class="fa fa-check"></i><b>11.3</b> Case Study 1</a></li>
+<li class="chapter" data-level="11.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#case-study-2"><i class="fa fa-check"></i><b>11.4</b> Case Study 2</a></li>
+<li class="chapter" data-level="11.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#practice-problems-2"><i class="fa fa-check"></i><b>11.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>12</b> Logistic Regression Models</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#motivational-example-and-practical-question"><i class="fa fa-check"></i><b>12.1</b> Motivational Example and Practical Question</a></li>
+<li class="chapter" data-level="12.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#logistic-regression-models-and-applications"><i class="fa fa-check"></i><b>12.2</b> Logistic Regression Models and Applications</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#the-structure-of-logistic-regression-model"><i class="fa fa-check"></i><b>12.2.1</b> The Structure of Logistic Regression Model</a></li>
+<li class="chapter" data-level="12.2.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#assumptions-and-diagnostics"><i class="fa fa-check"></i><b>12.2.2</b> Assumptions and Diagnostics</a></li>
+<li class="chapter" data-level="12.2.3" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#coefficient-estimation-and-interpretation"><i class="fa fa-check"></i><b>12.2.3</b> Coefficient Estimation and Interpretation</a></li>
+<li class="chapter" data-level="12.2.4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#use-of-glm-and-annotations"><i class="fa fa-check"></i><b>12.2.4</b> Use of <strong>glm()</strong> and Annotations</a></li>
+<li class="chapter" data-level="12.2.5" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#applications-of-logistic-regression-models"><i class="fa fa-check"></i><b>12.2.5</b> Applications of Logistic Regression Models</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#case-studies-1"><i class="fa fa-check"></i><b>12.3</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#the-simple-logistic-regression-model"><i class="fa fa-check"></i><b>12.3.1</b> The simple logistic regression model</a></li>
+<li class="chapter" data-level="12.3.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#multiple-logistic-regression-model"><i class="fa fa-check"></i><b>12.3.2</b> Multiple Logistic Regression Model</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#practice-problems-3"><i class="fa fa-check"></i><b>12.4</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html"><i class="fa fa-check"></i><b>13</b> Contingency Table Analysis</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#the-motivational-examples"><i class="fa fa-check"></i><b>13.1</b> The Motivational Examples</a></li>
+<li class="chapter" data-level="13.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#two-way-contingency-tables-and-analysis"><i class="fa fa-check"></i><b>13.2</b> Two-way Contingency Tables and Analysis</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#the-structure-of-two-way-contingency-table"><i class="fa fa-check"></i><b>13.2.1</b> The Structure of Two-way Contingency Table</a></li>
+<li class="chapter" data-level="13.2.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#pearson-chi2-test-of-independence"><i class="fa fa-check"></i><b>13.2.2</b> Pearson <span class="math inline">\(\chi^2\)</span> Test of Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#measures-of-association"><i class="fa fa-check"></i><b>13.3</b> Measures of Association</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#times2-table-under-different-study-designs"><i class="fa fa-check"></i><b>13.3.1</b> <span class="math inline">\(2\times2\)</span>-table Under Different Study Designs</a></li>
+<li class="chapter" data-level="13.3.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#measures-of-association-1"><i class="fa fa-check"></i><b>13.3.2</b> Measures of Association</a></li>
+<li class="chapter" data-level="13.3.3" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#validity-of-measures-of-association"><i class="fa fa-check"></i><b>13.3.3</b> Validity of Measures of Association</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-studies-2"><i class="fa fa-check"></i><b>13.4</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-study-1-1"><i class="fa fa-check"></i><b>13.4.1</b> Case Study 1</a></li>
+<li class="chapter" data-level="13.4.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-study-2-1"><i class="fa fa-check"></i><b>13.4.2</b> Case Study 2</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#practice-problems-4"><i class="fa fa-check"></i><b>13.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html"><i class="fa fa-check"></i><b>14</b> Analysis of Counts and Rates</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#motivational-examples"><i class="fa fa-check"></i><b>14.1</b> Motivational Examples</a></li>
+<li class="chapter" data-level="14.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#poisson-regression-for-counts-and-rates"><i class="fa fa-check"></i><b>14.2</b> Poisson Regression for Counts and Rates</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#structure-and-interpretations"><i class="fa fa-check"></i><b>14.2.1</b> Structure and Interpretations</a></li>
+<li class="chapter" data-level="14.2.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#assumptions-and-goodness-of-fit"><i class="fa fa-check"></i><b>14.2.2</b> Assumptions and Goodness-of-fit</a></li>
+<li class="chapter" data-level="14.2.3" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#dispersion-issue-and-remedies"><i class="fa fa-check"></i><b>14.2.3</b> Dispersion Issue and Remedies</a></li>
+<li class="chapter" data-level="14.2.4" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#data-structure-of-poisson-regression"><i class="fa fa-check"></i><b>14.2.4</b> Data Structure of Poisson Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#case-studies-3"><i class="fa fa-check"></i><b>14.3</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#harbor-seal-data"><i class="fa fa-check"></i><b>14.3.1</b> Harbor Seal Data</a></li>
+<li class="chapter" data-level="14.3.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#toxicity-study"><i class="fa fa-check"></i><b>14.3.2</b> Toxicity Study</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#concluding-remarks-1"><i class="fa fa-check"></i><b>14.4</b> Concluding Remarks</a></li>
+<li class="chapter" data-level="14.5" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#practice-problems-5"><i class="fa fa-check"></i><b>14.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html"><i class="fa fa-check"></i><b>15</b> Power Calculation and Sample Size Determination</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#two-sample-proportion-problems"><i class="fa fa-check"></i><b>15.1</b> Two-sample Proportion Problems</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#sample-size-estimations-for-two-proportions"><i class="fa fa-check"></i><b>15.1.1</b> Sample size estimations for <strong>two proportions</strong></a></li>
+<li class="chapter" data-level="15.1.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-for-two-proportions"><i class="fa fa-check"></i><b>15.1.2</b> Power analysis for <strong>two proportions</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#two-sample-mean-problems"><i class="fa fa-check"></i><b>15.2</b> Two-sample Mean Problems</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#sample-size-estimations-for-two-averages"><i class="fa fa-check"></i><b>15.2.1</b> Sample size estimations for <strong>two averages</strong></a></li>
+<li class="chapter" data-level="15.2.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-for-two-averages"><i class="fa fa-check"></i><b>15.2.2</b> Power analysis for two averages</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#paired-sample-problems"><i class="fa fa-check"></i><b>15.3</b> Paired-sample Problems</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#sample-size-estimation-for-paired-data-before-and-after"><i class="fa fa-check"></i><b>15.3.1</b> Sample size estimation for <strong>paired data (before and after)</strong></a></li>
+<li class="chapter" data-level="15.3.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-of-paired-samples-paired-t-test"><i class="fa fa-check"></i><b>15.3.2</b> Power analysis of <strong>paired samples (paired t-test)</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#unequal-sample-sizes-problems"><i class="fa fa-check"></i><b>15.4</b> Unequal Sample Sizes Problems</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-with-unequal-sample-sizes"><i class="fa fa-check"></i><b>15.4.1</b> Power analysis with <strong>unequal sample sizes</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#conclusions"><i class="fa fa-check"></i><b>15.5</b> Conclusions</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STA501 E-Pack: Applied Statistical Methods</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="testing-statistical-hypothesis" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Topic 8</span> Testing Statistical Hypothesis<a href="testing-statistical-hypothesis.html#testing-statistical-hypothesis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>There are two basic statistical inferences: confidence interval and testing hypothesis. In confidence interval inference, we estimate the population parameter(s) by constructing an interval that reveals the information about the precision and accuracy of the estimate and the level of confidence of the estimate to be correct.</p>
+<p>The other type of inference is to justify a statement about a population parameter. For example, if someone <strong>claims</strong> that the average height of students at a university is higher than 70 inches, how to justify the claim? To reach the binary decision of either supporting the claim or rejecting the claim, we need to gather information from the population and then use the sample evidence to make the statistical decision.</p>
+<p>The logic of statistical hypothesis testing is similar to the medical diagnostic decision process and jury trial - both are evidence-based decision processes. Analogies between the statistical testing hypothesis and the aforementioned two processes are summarized in the following table.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-107"></span>
+<img src="img07/w07-HypothesisTest-logic.jpg" alt="Analogies of statistical hypothesis testing to jury trial and medical diagnostics" width="80%" />
+<p class="caption">
+Figure 8.1: Analogies of statistical hypothesis testing to jury trial and medical diagnostics
+</p>
+</div>
+<p>Note that no matter whichever statistical decision is made, there will be two possible errors: Type I and type II errors. We can see from the above analogies that <strong>the type I error is <span style="color:red">more serious than</span> the type II error</strong>. Because of this relationship between the two types of errors, in practice, we control the type I error and then minimize the type II error - this is the basis of Neymann-Pearson’s Lemma for statistical hypothesis testing.</p>
+<p>With the above conceptual understanding of the testing hypothesis, we next formally formulate the statistical testing hypothesis so that we can implement it in real-world applications.</p>
+<div id="formulation-of-statistical-hypothesis-testing" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Formulation of Statistical Hypothesis Testing<a href="testing-statistical-hypothesis.html#formulation-of-statistical-hypothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The formal statistical testing hypothesis is summarized in the following steps.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-108"></span>
+<img src="img07/w07-Steps4HypothesisTest.jpg" alt="Formulation of statistical hypothesis testing" width="80%" />
+<p class="caption">
+Figure 8.2: Formulation of statistical hypothesis testing
+</p>
+</div>
+<p>Unlike the formulation used in the textbook, we separate the <strong>statistical hypothesis testing procedure</strong> from the general testing problem. Steps 2-5 are actual statistical procedures. The general workflow of conducting a testing hypothesis is summarized in the following few sections.</p>
+<div id="null-and-alternative-hypotheses" class="section level3 hasAnchor" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> Null and Alternative Hypotheses<a href="testing-statistical-hypothesis.html#null-and-alternative-hypotheses" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We start with a practical question that involves data and a statement claiming population parameters.</p>
+<p><strong>Example</strong> The yield of alfalfa from a random sample of six test plots is 1.4, 1.6, 0.9, 1.9, 2.2, and 1.2 tons per acre. Assume that the random sample comes from a normal population. Test at the 0.05 level of significance whether this supports the contention that the average yield for this kind of alfalfa is 1.5 tons per acre.</p>
+<ul>
+<li><strong>Data Set</strong>: <code>{1.4, 1.6, 0.9, 1.9, 2.2, 1.2}</code></li>
+<li><strong>Claim</strong>: <code>The average yield for this kind of alfalfa is 1.5 tons per acre</code>.</li>
+</ul>
+<p>If we use the Greek letter <span class="math inline">\(\mu\)</span> to denote the population mean, then the claim is <span class="math inline">\(\mu \ne 1.5\)</span> of this particular example. In general, there are six possible claims</p>
+<p><span class="math display">\[\mu = 1.5, \mu \ne 1.5, \mu &gt; 1.5, \mu \le 1.5, \mu &lt; 1.5, \mu &gt; 1.5 \]</span></p>
+<p>Three of the six potential claims <strong>have an equal sign</strong> and the other three potential claims <strong>do not have an equal sign</strong>.</p>
+</div>
+<div id="relationship-between-the-claim-and-the-statistical-hypotheses" class="section level3 hasAnchor" number="8.1.2">
+<h3><span class="header-section-number">8.1.2</span> Relationship between the claim and the statistical hypotheses<a href="testing-statistical-hypothesis.html#relationship-between-the-claim-and-the-statistical-hypotheses" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The statistical <strong>null hypothesis</strong> must contain an <strong>equal sign</strong> since we assume that <strong>the null hypothesis is true</strong>. The <strong>alternative hypothesis</strong> is the opposite of the <strong>null hypothesis</strong>!</p>
+<p>In other words, if the claim has an <strong>equal sign</strong>, the corresponding <strong>null hypothesis</strong> is the same as the claim. Otherwise, the <strong>opposite of the claim will be the null hypothesis</strong>.</p>
+<p>The above relationship is summarized in the following table.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-109"></span>
+<img src="img07/w07-claim-null-hypothesis.jpg" alt="Formulation of statistical hypothesis testing" width="80%" />
+<p class="caption">
+Figure 8.3: Formulation of statistical hypothesis testing
+</p>
+</div>
+<strong>Example 1 (Revisited)</strong> Based on the above description, the <strong>claim</strong> is <span class="math inline">\(\mu = 1.5\)</span>. It contains an <strong>equal sign</strong>. Therefore, the <strong>null hypothesis (Ho)</strong> and the <strong>alternative hypothesis (Ha)</strong> are given by
+<center>
+Ho: <span class="math inline">\(\mu = 1.5\)</span> v.s. Ha: <span class="math inline">\(\mu \ne 1.5\)</span>.
+</center>
+</div>
+<div id="test-statistics---statistical-evidence" class="section level3 hasAnchor" number="8.1.3">
+<h3><span class="header-section-number">8.1.3</span> Test Statistics - Statistical Evidence<a href="testing-statistical-hypothesis.html#test-statistics---statistical-evidence" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the construction of confidence intervals of population mean and proportion, we used the distribution of <strong>pivotal quantity</strong> since it contains all the information needed for constructing a confidence interval. <strong><span style="color:red">The same amount of information is needed for testing the hypothesis</span></strong>. We introduced four major types of <strong>pivotal quantities</strong> in the previous module for constructing the confidence intervals of the single population mean <span class="math inline">\(\mu\)</span> and proportion <span class="math inline">\(p\)</span>.</p>
+<p>In testing hypotheses, we assume the <strong>null hypothesis</strong> is true. Therefore, we replace the unknown population parameter with the claimed value of the parameter in the <strong>null hypothesis</strong>. Therefore, the four test statistics are under various assumptions.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-110"></span>
+<img src="img07/w07-Test-Statistics.jpg" alt="Test statistics under different assumptions" width="80%" />
+<p class="caption">
+Figure 8.4: Test statistics under different assumptions
+</p>
+</div>
+<p>The above four statistics are either standard normal or t distribution. <strong><span style="color:blue">If the claimed value in the null hypothesis is close to the true population parameter, we would expect the value of the test statistic to be around zero<span></strong>. However, if the value of the test statistic is <strong>far away from zero</strong>, we intend to reject the <strong>null hypothesis</strong> and accept the <strong>alternative hypothesis</strong>.</p>
+<p>A similar question that was asked when we constructed confidence intervals needs to be answered in the testing hypothesis. The <strong>null hypothesis</strong> is rejected if the test statistic is far ways from zero. <strong><span style="color:blue">How Far Is Far?</span></strong></p>
+</div>
+<div id="types-of-test-and-rejection-region" class="section level3 hasAnchor" number="8.1.4">
+<h3><span class="header-section-number">8.1.4</span> Types of Test and Rejection Region<a href="testing-statistical-hypothesis.html#types-of-test-and-rejection-region" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The rejection of a test is dependent on its specific type (right-, left-, and two-tailed) and the type I error (also called significance level <span class="math inline">\(\alpha\)</span>, the same <span class="math inline">\(\alpha\)</span> used in the confidence level <span class="math inline">\(1-\alpha\)</span>). Next, we assume the significance to be <span class="math inline">\(\alpha\)</span>. The reject region of each of the three types of tests is summarized in the following.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-111"></span>
+<img src="img07/w07-Test-types.jpg" alt="Three different types of hypothesis tests" width="80%" />
+<p class="caption">
+Figure 8.5: Three different types of hypothesis tests
+</p>
+</div>
+<p>From the above figure, we can see the location of the rejection region from the form of the alternative test. The rejection region of the left-tailed test is on the left tail of <strong>the distribution of the test statistic</strong>. The area of the rejection regions is equal to the <strong>significance level <span class="math inline">\(\alpha\)</span></strong>. For a two-tailed test, there are two rejection regions located on both sides of the tails of the sampling distribution of the test statistic. The tail regions on both tails are equal to <span class="math inline">\(\alpha/2\)</span>. We can also similarly interpret the right-tailed test.</p>
+</div>
+<div id="statistical-decision-rule-p-value" class="section level3 hasAnchor" number="8.1.5">
+<h3><span class="header-section-number">8.1.5</span> Statistical Decision Rule: p-value<a href="testing-statistical-hypothesis.html#statistical-decision-rule-p-value" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In this subsection, we define the <strong>p-value</strong> based on the statistic and the significance level to determine whether the test statistic is in the rejection region.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-112"></span>
+<img src="img07/w07-p-values.jpg" alt="Definitions of p-values for different types of tests" width="80%" />
+<p class="caption">
+Figure 8.6: Definitions of p-values for different types of tests
+</p>
+</div>
+<p>The definition of the p-value for different types of tests is given in the above figures. The statistical decision rule is summarized in the following.</p>
+<ul>
+<li><p>If the p-value is less than the significance level <span class="math inline">\(\alpha\)</span>, the <strong>null hypothesis is rejected</strong> and the alternative is accepted.</p></li>
+<li><p>If the p-value is greater than the significance level <span class="math inline">\(\alpha\)</span>, the <strong>null hypothesis is accepted</strong> and the alternative is rejected.</p></li>
+</ul>
+</div>
+<div id="summary-of-the-test-hypothesis-procedure" class="section level3 hasAnchor" number="8.1.6">
+<h3><span class="header-section-number">8.1.6</span> Summary of the Test Hypothesis Procedure<a href="testing-statistical-hypothesis.html#summary-of-the-test-hypothesis-procedure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The above subsection describes the steps for performing a formal statistical hypothesis. When we implement the testing procedure, we need to follow the above-mentioned steps. Particularly, write the original clearly and then based on the description in section 2.1.1 set up the <strong>null hypothesis (Ho)</strong> and the <strong>alternative hypothesis (Ha)</strong> correctly.</p>
+<p>In the next section, we will present numerical examples with different claims and assumptions about the populations. For the two-sample comparison problems, we only focus on testing the difference between two population means.</p>
+<p>Some of the examples will be based on the raw data set(s). The analysis related to your research will be based on raw data you generated from lab experiments or fieldwork.</p>
+</div>
+</div>
+<div id="case-studies" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Case Studies<a href="testing-statistical-hypothesis.html#case-studies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>One important piece of advice is to draw a density curve of the distribution of the underlying distribution of the test statistics and label all information about the population, samples, and the null hypothesis (rejection regions) on the density curve so you can choose a correct R function from <strong>pnorm()</strong> or <strong>pt()</strong> to find the p-value. As a convention, if you are given the significance level <span class="math inline">\(\alpha\)</span>, you are expected to use the default significance level <span class="math inline">\(\alpha = 0.05\)</span> meaning that your resulting statistical decision only allows less than <span class="math inline">\(5\%\)</span> of chance to be wrong.</p>
+<div id="case-i-normal-population-with-a-known-variance." class="section level3 hasAnchor" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> Case I: normal population with a known variance.<a href="testing-statistical-hypothesis.html#case-i-normal-population-with-a-known-variance." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This situation is not common in real-life applications unless you have some prior information about the population variance and you believe that variance remains unchanged.</p>
+<p><strong>Example 2</strong>: Researchers are interested in the mean age of a certain population. The data available to the researchers are the ages of a simple random <strong>sample of 10 individuals</strong> drawn from the population of interest with mean <span class="math inline">\(\bar{x} = 27\)</span>. It is assumed that the sample comes from a population whose ages are approximately normally distributed. Let us also assume that the population has a known variance of <span class="math inline">\(\sigma_0^2 = 20\)</span>. The question that researchers want to ask is: Can we conclude that the mean age of this population is different from 30 years? Assuming that the mean age of the population is equal to 30.</p>
+<p><strong>Solution</strong>: First of all, the <strong>claim</strong> is the mean age of the research population remains unchanged meaning that <span class="math inline">\(\mu_0=20\)</span>. Since the original claim has an equal sign in it, the null hypothesis is identical to the claim. Therefore, the null and alternative hypotheses are given by</p>
+<p><span class="math display">\[
+H_o: \mu = 30  \leftrightarrow  H_a: \mu \ne 30.
+\]</span></p>
+<p>Since the study population is normal with known variance <span class="math inline">\(\sigma_0^2=20\)</span>. Therefore, the test statistic
+<span class="math display">\[
+TS = \frac{\bar{x} - \mu_0}{\sigma_0/\sqrt{n}} \to N(0,1)
+\]</span>
+The calculation of the p-value is given in the following code.</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="testing-statistical-hypothesis.html#cb106-1" tabindex="-1"></a><span class="co"># given conditions</span></span>
+<span id="cb106-2"><a href="testing-statistical-hypothesis.html#cb106-2" tabindex="-1"></a>xbar <span class="ot">=</span> <span class="dv">27</span></span>
+<span id="cb106-3"><a href="testing-statistical-hypothesis.html#cb106-3" tabindex="-1"></a>sig.sq<span class="fl">.0</span> <span class="ot">=</span> <span class="dv">20</span></span>
+<span id="cb106-4"><a href="testing-statistical-hypothesis.html#cb106-4" tabindex="-1"></a>mu0 <span class="ot">=</span> <span class="dv">30</span></span>
+<span id="cb106-5"><a href="testing-statistical-hypothesis.html#cb106-5" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">10</span></span>
+<span id="cb106-6"><a href="testing-statistical-hypothesis.html#cb106-6" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">0.05</span>   <span class="co"># not given, use the default</span></span>
+<span id="cb106-7"><a href="testing-statistical-hypothesis.html#cb106-7" tabindex="-1"></a><span class="co"># two-tailed normal test</span></span>
+<span id="cb106-8"><a href="testing-statistical-hypothesis.html#cb106-8" tabindex="-1"></a>TS <span class="ot">=</span> (xbar <span class="sc">-</span> mu0)<span class="sc">/</span>(<span class="fu">sqrt</span>(sig.sq<span class="fl">.0</span><span class="sc">/</span>n))    <span class="co"># test statistics</span></span>
+<span id="cb106-9"><a href="testing-statistical-hypothesis.html#cb106-9" tabindex="-1"></a>right.tail.area <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(TS)      <span class="co"># TS is standard normal</span></span>
+<span id="cb106-10"><a href="testing-statistical-hypothesis.html#cb106-10" tabindex="-1"></a>left.tail.area <span class="ot">=</span> <span class="fu">pnorm</span>(TS)           </span>
+<span id="cb106-11"><a href="testing-statistical-hypothesis.html#cb106-11" tabindex="-1"></a>p.value <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">min</span>(right.tail.area, left.tail.area)   <span class="co"># double the smaller tail area</span></span>
+<span id="cb106-12"><a href="testing-statistical-hypothesis.html#cb106-12" tabindex="-1"></a>p.value</span></code></pre></div>
+<pre><code>## [1] 0.03389485</code></pre>
+<p>p-value = 0.03389 is less than the default significance level of 0.05. We reject the NULL HYPOTHESIS. We conclude the current mean age of the study population is significantly different from 30 years ago.</p>
+<p><strong>Remarks</strong></p>
+<ol style="list-style-type: decimal">
+<li>The statistical decision is always made on the <strong>Null Hypothesis</strong>!</li>
+<li>If we are given a raw data set, we need to find the sample mean and sample size and then use the above code to find the p-value.</li>
+</ol>
+<p><strong>Example 3</strong>: Refer to <strong>Example 2</strong>. Suppose, instead of asking if they could conclude that <span class="math inline">\(\mu_0= 30\)</span>, the
+researchers had asked: Can we conclude that <span class="math inline">\(\mu &lt; 30\)</span>?</p>
+<p><strong>Solution</strong>: To this question, the claim is <span class="math inline">\(\mu &lt; 30\)</span> that does NOT have an equal sign in it, we need to the opposite the claim as the null hypothesis. The alternative hypothesis will be identical to the claim. That is, we have the following null and alternative hypotheses.</p>
+<p><span class="math display">\[
+H_o: \mu \ge 30  \leftrightarrow  H_a: \mu &lt; 30.
+\]</span></p>
+<p>This is a left-tailed test. The rejection region is on the left tail of the density curve of the test statistic. The p-value is calculated by</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="testing-statistical-hypothesis.html#cb108-1" tabindex="-1"></a><span class="co"># given conditions</span></span>
+<span id="cb108-2"><a href="testing-statistical-hypothesis.html#cb108-2" tabindex="-1"></a>xbar <span class="ot">=</span> <span class="dv">27</span></span>
+<span id="cb108-3"><a href="testing-statistical-hypothesis.html#cb108-3" tabindex="-1"></a>sig.sq<span class="fl">.0</span> <span class="ot">=</span> <span class="dv">20</span></span>
+<span id="cb108-4"><a href="testing-statistical-hypothesis.html#cb108-4" tabindex="-1"></a>mu0 <span class="ot">=</span> <span class="dv">30</span></span>
+<span id="cb108-5"><a href="testing-statistical-hypothesis.html#cb108-5" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">10</span></span>
+<span id="cb108-6"><a href="testing-statistical-hypothesis.html#cb108-6" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">0.05</span>   <span class="co"># not given, use the default</span></span>
+<span id="cb108-7"><a href="testing-statistical-hypothesis.html#cb108-7" tabindex="-1"></a><span class="co"># two-tailed normal test</span></span>
+<span id="cb108-8"><a href="testing-statistical-hypothesis.html#cb108-8" tabindex="-1"></a>TS <span class="ot">=</span> (xbar <span class="sc">-</span> mu0)<span class="sc">/</span>(<span class="fu">sqrt</span>(sig.sq<span class="fl">.0</span><span class="sc">/</span>n))    <span class="co"># test statistics</span></span>
+<span id="cb108-9"><a href="testing-statistical-hypothesis.html#cb108-9" tabindex="-1"></a>right.tail.area <span class="ot">=</span> <span class="fu">pnorm</span>(TS)         <span class="co"># TS is standard normal</span></span>
+<span id="cb108-10"><a href="testing-statistical-hypothesis.html#cb108-10" tabindex="-1"></a>p.value <span class="ot">=</span> right.tail.area</span>
+<span id="cb108-11"><a href="testing-statistical-hypothesis.html#cb108-11" tabindex="-1"></a>p.value</span></code></pre></div>
+<pre><code>## [1] 0.01694743</code></pre>
+<p>Since the p-value is less than 0.05. We reject the null hypothesis that <span class="math inline">\(\mu \ge 30\)</span>, and we conclude the actual mean age of the population less than 30.</p>
+</div>
+<div id="case-ii-normal-population-with-an-unknown-variance" class="section level3 hasAnchor" number="8.2.2">
+<h3><span class="header-section-number">8.2.2</span> Case II: Normal population with an unknown variance<a href="testing-statistical-hypothesis.html#case-ii-normal-population-with-an-unknown-variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>From theory, if the sample was taken from a normal population with unknown variance, the test statistic is always a random variable that follows t-distribution with degrees of freedom <span class="math inline">\(df = n-1\)</span>.</p>
+<p><span class="math display">\[
+TS = \frac{\bar{x}-\mu_0}{s/\sqrt{n}} \to t_{n-1}
+\]</span></p>
+<p>If the sample is large, the t-distribution is close to the standard normal distribution. In this case, you can use either normal or t-distribution to find the p-value. <strong>However</strong>, if the sample size small (n &lt; 30), we <strong>MUST</strong> use the t -distribution to find the p-value.</p>
+<p><strong>Example 4</strong>: Nakamura et al. studied subjects with medial collateral ligament (MCL) and anterior cruciate ligament (ACL) tears. Between February 1995 and December 1997, 17 consecutive patients with combined acute ACL and grade III MCL injuries were treated by the same physician at the research center. One of the variables of interest was the length of time in days between the occurrence of the injury and the first magnetic resonance imaging (MRI). The data are shown in the following.</p>
+<p>14, 0, 28, 14, 9, 10, 24, 9, 18, 4, 24, 26, 8, 2, 12, 21, 3</p>
+<p>We wish to know if we can conclude that the mean number of days between injury and initial MRI <strong>is not 15 days</strong> in a population presumed to be represented by these sample data. The original problem did not mention the normal distribution of the population, but we assumed the normality of the population in order to perform a t-test about the population mean.</p>
+<p><strong>Solution</strong>: The claim about the population mean is <span class="math inline">\(\mu \ne 15\)</span>. This is a two-tailed test.</p>
+<p><span class="math display">\[
+H_o: \mu = 15  \leftrightarrow  H_a: \mu \ne 15.
+\]</span></p>
+<p>Since we have a small sample (n = 17) from an implicitly assumed population with an unknown variance. The test statistic</p>
+<p><span class="math display">\[
+TS = \frac{\bar{x} - \mu_0}{s/\sqrt{n}} \to t_{n-1}
+\]</span></p>
+<p>Since this is a t-test with a given set of raw data values, we can use a convenient R function <strong>t.test()</strong> was built based on the above formulas and the definition of p-values. You type <code>?t.test</code> in the R console to find the help document of this function and accompanying examples as well.</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="testing-statistical-hypothesis.html#cb110-1" tabindex="-1"></a><span class="co"># defining a data set</span></span>
+<span id="cb110-2"><a href="testing-statistical-hypothesis.html#cb110-2" tabindex="-1"></a>days <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">0</span>, <span class="dv">28</span>, <span class="dv">14</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">24</span>, <span class="dv">9</span>, <span class="dv">18</span>, <span class="dv">4</span>, <span class="dv">24</span>, <span class="dv">26</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">21</span>, <span class="dv">3</span>) </span>
+<span id="cb110-3"><a href="testing-statistical-hypothesis.html#cb110-3" tabindex="-1"></a><span class="fu">t.test</span>(days,                         <span class="co"># data set</span></span>
+<span id="cb110-4"><a href="testing-statistical-hypothesis.html#cb110-4" tabindex="-1"></a>       <span class="at">mu =</span> <span class="dv">15</span>,                    <span class="co"># claimed value in the null hypothesis</span></span>
+<span id="cb110-5"><a href="testing-statistical-hypothesis.html#cb110-5" tabindex="-1"></a>       <span class="at">conf.level =</span> <span class="fl">0.95</span>,     <span class="co"># confidence level 0.95 =&gt; significant level 1-0.95.</span></span>
+<span id="cb110-6"><a href="testing-statistical-hypothesis.html#cb110-6" tabindex="-1"></a>       <span class="at">alternative =</span><span class="st">&quot;two.sided&quot;</span>)  <span class="co"># alternative hypothesis</span></span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  days
+## t = -0.79148, df = 16, p-value = 0.4402
+## alternative hypothesis: true mean is not equal to 15
+## 95 percent confidence interval:
+##   8.725081 17.863155
+## sample estimates:
+## mean of x 
+##  13.29412</code></pre>
+<p>The p-value is 0.4403 which is greater than 0.05. We <strong>fail to reject</strong> the null hypothesis. Therefore, the sample DOES NOT have evidence to support the claim that <span class="math inline">\(\mu \ne 15\)</span>.</p>
+<p><strong>Remark</strong> We use the formula to find the p-value using <strong>pt()</strong> to find the p-values as shown in the following.</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="testing-statistical-hypothesis.html#cb112-1" tabindex="-1"></a>days <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">0</span>, <span class="dv">28</span>, <span class="dv">14</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">24</span>, <span class="dv">9</span>, <span class="dv">18</span>, <span class="dv">4</span>, <span class="dv">24</span>, <span class="dv">26</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">21</span>, <span class="dv">3</span>)</span>
+<span id="cb112-2"><a href="testing-statistical-hypothesis.html#cb112-2" tabindex="-1"></a>xbar <span class="ot">=</span> <span class="fu">mean</span>(days)</span>
+<span id="cb112-3"><a href="testing-statistical-hypothesis.html#cb112-3" tabindex="-1"></a>s <span class="ot">=</span> <span class="fu">sd</span>(days)</span>
+<span id="cb112-4"><a href="testing-statistical-hypothesis.html#cb112-4" tabindex="-1"></a>mu0 <span class="ot">=</span> <span class="dv">15</span></span>
+<span id="cb112-5"><a href="testing-statistical-hypothesis.html#cb112-5" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">length</span>(days)</span>
+<span id="cb112-6"><a href="testing-statistical-hypothesis.html#cb112-6" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">0.05</span>    <span class="co"># not given, use the default</span></span>
+<span id="cb112-7"><a href="testing-statistical-hypothesis.html#cb112-7" tabindex="-1"></a><span class="co"># two-tailed normal test</span></span>
+<span id="cb112-8"><a href="testing-statistical-hypothesis.html#cb112-8" tabindex="-1"></a>TS <span class="ot">=</span> (xbar <span class="sc">-</span> mu0)<span class="sc">/</span>(s<span class="sc">/</span><span class="fu">sqrt</span>(n))    <span class="co"># test statistics</span></span>
+<span id="cb112-9"><a href="testing-statistical-hypothesis.html#cb112-9" tabindex="-1"></a>right.tail.area <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(TS, <span class="at">df =</span> n<span class="dv">-1</span>)         <span class="co"># TS is standard normal</span></span>
+<span id="cb112-10"><a href="testing-statistical-hypothesis.html#cb112-10" tabindex="-1"></a>leftt.tail.area <span class="ot">=</span> <span class="fu">pt</span>(TS, <span class="at">df =</span> n<span class="dv">-1</span>) </span>
+<span id="cb112-11"><a href="testing-statistical-hypothesis.html#cb112-11" tabindex="-1"></a>p.value <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">min</span>(right.tail.area,leftt.tail.area)</span>
+<span id="cb112-12"><a href="testing-statistical-hypothesis.html#cb112-12" tabindex="-1"></a>p.value</span></code></pre></div>
+<pre><code>## [1] 0.4402394</code></pre>
+<p>We can see the p-values generated from the two methods are identical.</p>
+</div>
+</div>
+<div id="unspecified-population-with-an-unknown-variance---clt" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Unspecified population with an unknown variance - CLT<a href="testing-statistical-hypothesis.html#unspecified-population-with-an-unknown-variance---clt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This is a direct application of the CLT. The key is that the sample size MUST be large!</p>
+<p><strong>Example 5</strong>: The goal of a study by Klingler et al. was to determine how symptom recognition and perception influence clinical presentation as a function of race. They characterized symptoms and care-seeking behavior in African-American patients with chest pain seen in the emergency department. One of the presenting vital signs was systolic blood
+pressure. Among 157 African-American men, the mean systolic blood pressure was 146mm Hg with a standard deviation of 27. We wish to know if, on the basis of these data, we may conclude that the mean systolic blood pressure for a population of African-American men <strong>is greater than</strong> 140.</p>
+<p><strong>Solution</strong>: The claim is that the mean systolic blood pressure for a population of African-American men <strong>is greater than</strong> 140. That is <span class="math inline">\(\mu &gt; 140\)</span>. Since the claim does not have an equal sign in it, its opposite will be the null hypothesis.</p>
+<p><span class="math display">\[
+H_o: \mu \le 140  \leftrightarrow  H_a: \mu &gt; 140.
+\]</span></p>
+<p>We are also given the sample size <span class="math inline">\(n = 157 &gt; 30\)</span>, by the CLT, the test statistic</p>
+<p><span class="math display">\[
+TS = \frac{\bar{x} - \mu_0}{s/\sqrt{n}} \to N(0,1)
+\]</span></p>
+<p>The following code calculates the p-value</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="testing-statistical-hypothesis.html#cb114-1" tabindex="-1"></a><span class="co"># sample information</span></span>
+<span id="cb114-2"><a href="testing-statistical-hypothesis.html#cb114-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">157</span></span>
+<span id="cb114-3"><a href="testing-statistical-hypothesis.html#cb114-3" tabindex="-1"></a>xbar <span class="ot">=</span> <span class="dv">146</span></span>
+<span id="cb114-4"><a href="testing-statistical-hypothesis.html#cb114-4" tabindex="-1"></a>s <span class="ot">=</span> <span class="dv">27</span></span>
+<span id="cb114-5"><a href="testing-statistical-hypothesis.html#cb114-5" tabindex="-1"></a>mu0 <span class="ot">=</span> <span class="dv">140</span></span>
+<span id="cb114-6"><a href="testing-statistical-hypothesis.html#cb114-6" tabindex="-1"></a><span class="do">###</span></span>
+<span id="cb114-7"><a href="testing-statistical-hypothesis.html#cb114-7" tabindex="-1"></a>TS <span class="ot">=</span> (xbar <span class="sc">-</span> mu0)<span class="sc">/</span>(s<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">157</span>))</span>
+<span id="cb114-8"><a href="testing-statistical-hypothesis.html#cb114-8" tabindex="-1"></a><span class="co"># This is a right-tailed test. We need the right tail area using 1- pnorm(TS)</span></span>
+<span id="cb114-9"><a href="testing-statistical-hypothesis.html#cb114-9" tabindex="-1"></a>p.value <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span><span class="fu">pnorm</span>(TS)</span>
+<span id="cb114-10"><a href="testing-statistical-hypothesis.html#cb114-10" tabindex="-1"></a>p.value</span></code></pre></div>
+<pre><code>## [1] 0.002681041</code></pre>
+</div>
+<div id="testing-population-proportion" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Testing Population Proportion<a href="testing-statistical-hypothesis.html#testing-population-proportion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The most important step is to check whether conditions <span class="math inline">\(np &gt; 5\)</span> and <span class="math inline">\(n(1-p) &gt; 5\)</span> before claiming that
+<span class="math display">\[
+TS = \frac{\hat{p}-p_0}{\sqrt{\hat{p}(1-\hat{p})/n}} \to N(0,1)
+\]</span>
+R has a function <strong>prop.test()</strong> for testing the proportion and equality of two proportions. Of course, we can also translate the above formula and appropriate distribution of the test statistics to calculate the p-value.</p>
+<p><strong>Example 6</strong>: Wagenknecht et al. collected data on a sample of 301 Hispanic women living in San Antonio, Texas. One variable of interest was the percentage of subjects with impaired fasting glucose (IFG). IFG refers to a metabolic stage intermediate between normal glucose homeostasis and diabetes. In the study, 24 women were classified in the IFG stage. The article cites population estimates for IFG among Hispanic women in Texas as 6.3 percent. Is there sufficient evidence to indicate that the population of Hispanic women in San Antonio has a prevalence of IFG higher than 6.3 percent?</p>
+<p><strong>Solution</strong>: Note that the claim is that the population of Hispanic women in San Antonio has a prevalence of IFG higher than 6.3 percent. That is, <span class="math inline">\(p &gt; 0.063\)</span>. The null and alternative hypotheses are given by</p>
+<p><span class="math display">\[
+H_o: p \le 0.063  \leftrightarrow  H_a: p &gt; 0.063.
+\]</span></p>
+<p>Since <span class="math inline">\(\hat{p} = 24/301\)</span> <span class="math inline">\(n\hat{p} = 301\times\hat{p} = 24 &gt; 5\)</span>, <span class="math inline">\(n(1-\hat{p}) = 301\times(1-24/301) &gt; 5\)</span>. We can claim that the test statistic is approximately normally distributed.</p>
+<p><span class="math display">\[
+TS_0 = \frac{\hat{p}-p_0}{\sqrt{\hat{p}(1-\hat{p})/n}} \to N(0,1)
+\]</span></p>
+<p>R also has a built-in function <strong>prop.test()</strong> that can be used for testing a single proportion or the equality of two proportions. Here we use the <strong>prop.test()</strong> to conduct the above right-tailed test. The test used in the R function has the following form</p>
+<p><span class="math display">\[
+TS_1 = \frac{\hat{p}-p_0}{\sqrt{p_0(1-p_0)/n}} \to N(0,1)
+\]</span></p>
+<p>The p-value reported from <strong>prop.test()</strong> is slightly different from the formula in which the denominator uses <span class="math inline">\(\hat{p}\)</span>.</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="testing-statistical-hypothesis.html#cb116-1" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="at">x=</span><span class="dv">24</span>,                     <span class="co"># number of successes</span></span>
+<span id="cb116-2"><a href="testing-statistical-hypothesis.html#cb116-2" tabindex="-1"></a>          <span class="at">n =</span> <span class="dv">301</span>,                  <span class="co"># sample size</span></span>
+<span id="cb116-3"><a href="testing-statistical-hypothesis.html#cb116-3" tabindex="-1"></a>          <span class="at">p =</span> <span class="fl">0.063</span>,                <span class="co"># claimed probability in the null hypothesis</span></span>
+<span id="cb116-4"><a href="testing-statistical-hypothesis.html#cb116-4" tabindex="-1"></a>          <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>,  <span class="co"># right-tailed test</span></span>
+<span id="cb116-5"><a href="testing-statistical-hypothesis.html#cb116-5" tabindex="-1"></a>          <span class="at">conf.level =</span> <span class="fl">0.95</span>)        <span class="co"># significance level = 1 - confidence level</span></span></code></pre></div>
+<pre><code>## 
+##  1-sample proportions test with continuity correction
+## 
+## data:  24 out of 301, null probability 0.063
+## X-squared = 1.1585, df = 1, p-value = 0.1409
+## alternative hypothesis: true p is greater than 0.063
+## 95 percent confidence interval:
+##  0.05623225 1.00000000
+## sample estimates:
+##          p 
+## 0.07973422</code></pre>
+<p>The p-value is 0.1409 which is greater than 0.05. We fail to reject the null hypothesis that <span class="math inline">\(p \le 0.063\)</span>. Therefore, the sample does not support the claim that <span class="math inline">\(p &gt; 0.063\)</span>.</p>
+<p><strong>Remark</strong> Both <span class="math inline">\(TS_0\)</span> and <span class="math inline">\(TS_1\)</span> are valid statistics. They are derived using different methods. The following code shows that the two statistics result in similar p-values.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="testing-statistical-hypothesis.html#cb118-1" tabindex="-1"></a>TS1 <span class="ot">=</span> (<span class="dv">24</span><span class="sc">/</span><span class="dv">301</span><span class="fl">-0.063</span>)<span class="sc">/</span>(<span class="fu">sqrt</span>((<span class="dv">24</span><span class="sc">/</span><span class="dv">301</span>)<span class="sc">*</span>(<span class="dv">1-24</span><span class="sc">/</span><span class="dv">301</span>)<span class="sc">/</span><span class="dv">301</span>))</span>
+<span id="cb118-2"><a href="testing-statistical-hypothesis.html#cb118-2" tabindex="-1"></a>TS2 <span class="ot">=</span> (<span class="dv">24</span><span class="sc">/</span><span class="dv">301</span><span class="fl">-0.063</span>)<span class="sc">/</span>(<span class="fu">sqrt</span>((<span class="fl">0.063</span>)<span class="sc">*</span>(<span class="dv">1</span><span class="fl">-0.063</span>)<span class="sc">/</span><span class="dv">301</span>))</span>
+<span id="cb118-3"><a href="testing-statistical-hypothesis.html#cb118-3" tabindex="-1"></a>p.value1 <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(TS1)</span>
+<span id="cb118-4"><a href="testing-statistical-hypothesis.html#cb118-4" tabindex="-1"></a>p.value2 <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(TS2)</span>
+<span id="cb118-5"><a href="testing-statistical-hypothesis.html#cb118-5" tabindex="-1"></a><span class="fu">cbind</span>(p.value1, p.value2)</span></code></pre></div>
+<pre><code>##       p.value1  p.value2
+## [1,] 0.1419072 0.1160539</code></pre>
+</div>
+<div id="testing-the-difference-between-two-population-means" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Testing the difference between two population means<a href="testing-statistical-hypothesis.html#testing-the-difference-between-two-population-means" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Comparing two population means is common in practice. In this subsection, we introduce two special procedures for testing two population means under different conditions.</p>
+<div id="both-populations-are-unspecified-and-sample-sizes-are-large." class="section level3 hasAnchor" number="8.5.1">
+<h3><span class="header-section-number">8.5.1</span> Both populations are unspecified and sample sizes are large.<a href="testing-statistical-hypothesis.html#both-populations-are-unspecified-and-sample-sizes-are-large." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Assume that <span class="math inline">\(\{ x_1, x_2, \cdots, x_{n_1}\}\)</span> and <span class="math inline">\(\{ y_1, y_2, \cdots, y_{n_2}\}\)</span> are taken from two independent populations with means <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span>, respectively. Assume <span class="math inline">\(n_1 &gt; 30\)</span> and <span class="math inline">\(n_2 &gt; 30\)</span>. By CLT, we have</p>
+<p><span class="math display">\[
+\bar{x}-\bar{y} \to N\left(\mu_1-\mu_2, \sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}\right).
+\]</span></p>
+<p>Then the test statistic for testing <span class="math inline">\(\mu_1-\mu_2\)</span> is defined to be</p>
+<p><span class="math display">\[
+TS = \frac{(\bar{x}-\bar{y}) -(\mu_1-\mu_2)}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}} \to N(0, 1)
+\]</span></p>
+<p><strong>Example 7</strong>: To identify the role of various disease states and additional risk factors in the development of thrombosis. One focus of the study was to determine if there were differing levels of the anticardiolipin antibody IgG in subjects with and without thrombosis. The following table summarizes the researchers’ findings in a study</p>
+<pre><code>Sample statistics:
+
+                     mean   size   stdev
+Thrombosis (x)      59.01    53    44.89
+No thrombosis (y)   46.61    54    34.85</code></pre>
+<p>We wish to know if we may conclude, on the basis of these results, that, in general, persons with thrombosis have, on average, higher IgG levels than persons without thrombosis.</p>
+<p><strong>Solution</strong>: The <strong>claim</strong> is that persons with thrombosis have, on average, higher IgG levels than persons without thrombosis, that is, <span class="math inline">\(\mu_1 - \mu_2 &gt; 0\)</span>. The opposite of the claim will be the null hypothesis.</p>
+<p><span class="math display">\[
+H_o: \mu_1 - \mu_2 \le 0 \leftrightarrow  H_a: \mu_1 - \mu_2 &gt; 0 .
+\]</span></p>
+<p>This is a right-tailed test. The test statistic is</p>
+<p><span class="math display">\[
+TS = \frac{(\bar{x}-\bar{y}) -(\mu_1-\mu_2)}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}} =
+\frac{(59.01-46.61) -(0)}{\sqrt{\frac{44.89^2}{53}+\frac{34.85^2}{54}}}
+\]</span></p>
+<p>We use the following code to find the p-value.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="testing-statistical-hypothesis.html#cb121-1" tabindex="-1"></a><span class="co">#                      mean   size   stdev</span></span>
+<span id="cb121-2"><a href="testing-statistical-hypothesis.html#cb121-2" tabindex="-1"></a><span class="co"># Thrombosis (x)      59.01    53    44.89</span></span>
+<span id="cb121-3"><a href="testing-statistical-hypothesis.html#cb121-3" tabindex="-1"></a><span class="co"># No thrombosis (y)   46.61    54    34.85</span></span>
+<span id="cb121-4"><a href="testing-statistical-hypothesis.html#cb121-4" tabindex="-1"></a>xbar <span class="ot">=</span> <span class="fl">59.01</span></span>
+<span id="cb121-5"><a href="testing-statistical-hypothesis.html#cb121-5" tabindex="-1"></a>ybar <span class="ot">=</span> <span class="fl">46.61</span></span>
+<span id="cb121-6"><a href="testing-statistical-hypothesis.html#cb121-6" tabindex="-1"></a>s1 <span class="ot">=</span> <span class="fl">44.89</span></span>
+<span id="cb121-7"><a href="testing-statistical-hypothesis.html#cb121-7" tabindex="-1"></a>s2 <span class="ot">=</span> <span class="fl">34.85</span></span>
+<span id="cb121-8"><a href="testing-statistical-hypothesis.html#cb121-8" tabindex="-1"></a>n1 <span class="ot">=</span> <span class="dv">53</span></span>
+<span id="cb121-9"><a href="testing-statistical-hypothesis.html#cb121-9" tabindex="-1"></a>n2 <span class="ot">=</span> <span class="dv">54</span></span>
+<span id="cb121-10"><a href="testing-statistical-hypothesis.html#cb121-10" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb121-11"><a href="testing-statistical-hypothesis.html#cb121-11" tabindex="-1"></a>TS <span class="ot">=</span> ((xbar <span class="sc">-</span> ybar) <span class="sc">-</span> <span class="dv">0</span>)<span class="sc">/</span><span class="fu">sqrt</span>(s1<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n1 <span class="sc">+</span> s2<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>n2)</span>
+<span id="cb121-12"><a href="testing-statistical-hypothesis.html#cb121-12" tabindex="-1"></a><span class="do">## right-tailed test</span></span>
+<span id="cb121-13"><a href="testing-statistical-hypothesis.html#cb121-13" tabindex="-1"></a>p.value <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(TS)</span>
+<span id="cb121-14"><a href="testing-statistical-hypothesis.html#cb121-14" tabindex="-1"></a>p.value</span></code></pre></div>
+<pre><code>## [1] 0.05546304</code></pre>
+<p>Since p-value = 0.0555 &gt; 0.05, we fail to reject the <strong>null hypothesis</strong> at level 0.05. We conclude that the <span class="math inline">\(\mu_1 - \mu_2 &gt; 0\)</span> meaning that persons with thrombosis have, on average, higher IgG levels than persons without thrombosis.</p>
+<p><strong>Remark</strong>: If we are given two raw data sets, we use <strong>mean()</strong> and <strong>var()</strong> and <strong>length()</strong> to calculate the means, variances, and sample sizes.</p>
+</div>
+<div id="both-populations-are-normal-with-unknown-but-equal-variances" class="section level3 hasAnchor" number="8.5.2">
+<h3><span class="header-section-number">8.5.2</span> Both populations are normal with unknown but equal variances<a href="testing-statistical-hypothesis.html#both-populations-are-normal-with-unknown-but-equal-variances" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Assume that <span class="math inline">\(\{ x_1, x_2, \cdots, x_{n_1}\}\)</span> and <span class="math inline">\(\{ y_1, y_2, \cdots, y_{n_2}\}\)</span> are taken from two independent <strong>normal</strong> populations with means <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span>, respectively. Let <span class="math inline">\(s_1^2\)</span> and <span class="math inline">\(s_2^2\)</span> be the corresponding sample variances. Since we assume that the two population variances are equal.</p>
+<p><span class="math display">\[
+s_{pool} = \sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1 + n_2 -2}}
+\]</span></p>
+<p>Then the test statistic for testing <span class="math inline">\(\mu_1 - \mu_2\)</span> is defined to be</p>
+<p><span class="math display">\[
+TS = \frac{(\bar{x}-\bar{y}) -(\mu_1-\mu_2)}{\sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1 + n_2 -2}}} \to N(0, 1)
+\]</span></p>
+<p>We can use the above formulas to find the p-value based on the type of test. In R, <strong>t.test()</strong> can also be used to generate the result directly if we are given the raw data.</p>
+<p><strong>Example 8</strong>: To investigate wheelchair maneuvering in individuals with lower-level spinal cord injury (SCI) and healthy controls (C). Subjects used a modified wheelchair to incorporate a rigid seat surface to facilitate the specified experimental measurements. Interface pressure measurement was recorded by using a high-resolution pressure-sensitive mat with a spatial resolution of four sensors per square centimeter taped on the rigid seat support. During static sitting conditions, average pressures were recorded under the ischial tuberosities (the bottom part of the pelvic bones). The data for measurements of the left ischial tuberosity (in mm Hg) for the SCI and control groups are shown in the following</p>
+<pre><code>Control: 131 115 124 131 122 117 88 114 150 169
+SCI:     60 150 130 180 163 130 121 119 130 148</code></pre>
+<p>We wish to know if we may conclude, on the basis of these data, that, in general, healthy subjects exhibit lower pressure than SCI subjects.</p>
+<p><strong>Solution</strong>: The <strong>claim</strong> is healthy subjects exhibit lower pressure than SCI subjects, <span class="math inline">\(\mu_c &lt; \mu_s\)</span>. Since the claim <span class="math inline">\(\mu_c - \mu_s &lt; 0\)</span> has no equal sign in it,</p>
+<p><span class="math display">\[
+H_o: \mu_c - \mu_s \ge 0 \leftrightarrow  H_a: \mu_1 - \mu_2 &lt; 0 .
+\]</span></p>
+<p>This is a left-tailed test. We use the following code to test the above hypothesis.</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="testing-statistical-hypothesis.html#cb124-1" tabindex="-1"></a><span class="do">## R is case-sensitive, we encourage to use of all lowercase letters to name variables</span></span>
+<span id="cb124-2"><a href="testing-statistical-hypothesis.html#cb124-2" tabindex="-1"></a>control <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">131</span>, <span class="dv">115</span>, <span class="dv">124</span>, <span class="dv">131</span>, <span class="dv">122</span>, <span class="dv">117</span>, <span class="dv">88</span>, <span class="dv">114</span>, <span class="dv">150</span>, <span class="dv">169</span>)</span>
+<span id="cb124-3"><a href="testing-statistical-hypothesis.html#cb124-3" tabindex="-1"></a>sci<span class="ot">=</span> <span class="fu">c</span>(<span class="dv">60</span>, <span class="dv">150</span>, <span class="dv">130</span>, <span class="dv">180</span>, <span class="dv">163</span>, <span class="dv">130</span>, <span class="dv">121</span>, <span class="dv">119</span>, <span class="dv">130</span>, <span class="dv">148</span>)</span>
+<span id="cb124-4"><a href="testing-statistical-hypothesis.html#cb124-4" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb124-5"><a href="testing-statistical-hypothesis.html#cb124-5" tabindex="-1"></a><span class="fu">t.test</span>(control, sci, </span>
+<span id="cb124-6"><a href="testing-statistical-hypothesis.html#cb124-6" tabindex="-1"></a>       <span class="at">conf.level =</span> <span class="fl">0.95</span>, </span>
+<span id="cb124-7"><a href="testing-statistical-hypothesis.html#cb124-7" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>, </span>
+<span id="cb124-8"><a href="testing-statistical-hypothesis.html#cb124-8" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  control and sci
+## t = -0.56936, df = 18, p-value = 0.2881
+## alternative hypothesis: true difference in means is less than 0
+## 95 percent confidence interval:
+##      -Inf 14.31935
+## sample estimates:
+## mean of x mean of y 
+##     126.1     133.1</code></pre>
+<p>We can also use the above formulas to find the p-value.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="testing-statistical-hypothesis.html#cb126-1" tabindex="-1"></a>control <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">131</span>, <span class="dv">115</span>, <span class="dv">124</span>, <span class="dv">131</span>, <span class="dv">122</span>, <span class="dv">117</span>, <span class="dv">88</span>, <span class="dv">114</span>, <span class="dv">150</span>, <span class="dv">169</span>)</span>
+<span id="cb126-2"><a href="testing-statistical-hypothesis.html#cb126-2" tabindex="-1"></a>sci<span class="ot">=</span> <span class="fu">c</span>(<span class="dv">60</span>, <span class="dv">150</span>, <span class="dv">130</span>, <span class="dv">180</span>, <span class="dv">163</span>, <span class="dv">130</span>, <span class="dv">121</span>, <span class="dv">119</span>, <span class="dv">130</span>, <span class="dv">148</span>)</span>
+<span id="cb126-3"><a href="testing-statistical-hypothesis.html#cb126-3" tabindex="-1"></a>xbar.c <span class="ot">=</span> <span class="fu">mean</span>(control)</span>
+<span id="cb126-4"><a href="testing-statistical-hypothesis.html#cb126-4" tabindex="-1"></a>s.sq.c <span class="ot">=</span> <span class="fu">var</span>(control)</span>
+<span id="cb126-5"><a href="testing-statistical-hypothesis.html#cb126-5" tabindex="-1"></a>ybar.s <span class="ot">=</span> <span class="fu">mean</span>(sci)</span>
+<span id="cb126-6"><a href="testing-statistical-hypothesis.html#cb126-6" tabindex="-1"></a>s.sq.s <span class="ot">=</span> <span class="fu">var</span>(sci)</span>
+<span id="cb126-7"><a href="testing-statistical-hypothesis.html#cb126-7" tabindex="-1"></a>n.c <span class="ot">=</span> <span class="fu">length</span>(control)</span>
+<span id="cb126-8"><a href="testing-statistical-hypothesis.html#cb126-8" tabindex="-1"></a>n.s <span class="ot">=</span> <span class="fu">length</span>(sci)</span>
+<span id="cb126-9"><a href="testing-statistical-hypothesis.html#cb126-9" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb126-10"><a href="testing-statistical-hypothesis.html#cb126-10" tabindex="-1"></a>s.pool <span class="ot">=</span> <span class="fu">sqrt</span>(((n.c<span class="dv">-1</span>)<span class="sc">*</span>s.sq.c<span class="sc">+</span>(n.s<span class="dv">-1</span>)<span class="sc">*</span>s.sq.s)<span class="sc">/</span>(n.c<span class="sc">+</span>n.s<span class="dv">-2</span>))</span>
+<span id="cb126-11"><a href="testing-statistical-hypothesis.html#cb126-11" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb126-12"><a href="testing-statistical-hypothesis.html#cb126-12" tabindex="-1"></a>TS <span class="ot">=</span> (xbar.c <span class="sc">-</span> ybar.s)<span class="sc">/</span>(s.pool<span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>n.c <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>n.s))</span>
+<span id="cb126-13"><a href="testing-statistical-hypothesis.html#cb126-13" tabindex="-1"></a><span class="do">## left-tailed test</span></span>
+<span id="cb126-14"><a href="testing-statistical-hypothesis.html#cb126-14" tabindex="-1"></a>p.value <span class="ot">=</span> <span class="fu">pt</span>(TS, <span class="at">df =</span> n.c<span class="sc">+</span>n.s<span class="dv">-2</span>)</span>
+<span id="cb126-15"><a href="testing-statistical-hypothesis.html#cb126-15" tabindex="-1"></a>p.value</span></code></pre></div>
+<pre><code>## [1] 0.2880734</code></pre>
+<p>With p-value = 0.288 &gt; 0.05, we fail to reject the <strong>null hypothesis</strong> and reject the alternative hypothesis. We don’t have the sample evidence to support the claim that healthy subjects exhibit lower pressure than SCI subjects.</p>
+<p><strong>Remark</strong>: <strong>t.test()</strong> can conduct two-sample test with unequal variances.</p>
+</div>
+<div id="paired-t-test" class="section level3 hasAnchor" number="8.5.3">
+<h3><span class="header-section-number">8.5.3</span> Paired t-test<a href="testing-statistical-hypothesis.html#paired-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The paired t-test is widely used in clinical studies. For example, an investigator wants to assess the effect of an intervention in reducing systolic blood pressure (SBP) in a pre-post design. Here, for each patient, there would be two observations of SBP, that is, before and after. Here instead of individual observations, the difference between pairs of observations would be of interest and the problem reduces to the one-sample situation where the null hypothesis would be to test the mean difference in SBP equal to zero against the alternate hypothesis of mean SBP being not equal to zero. The underlying assumption for using paired t-test is that under the null hypothesis <strong>the population of difference is normally distributed</strong> and this can be judged using the sample values.</p>
+<p><strong>t.test()</strong> can do the paired test. We can also convert the two-sample problem to a single-sample problem. Let <span class="math inline">\(\{x_1, x_2, \cdots, x_n \}\)</span> be the before sample and <span class="math inline">\(\{y_1, y_2, \cdots, y_n \}\)</span> be the after sample. We can take the difference of the corresponding before-after sample values to create a single sample <span class="math inline">\(\{y_1-x_1, y_2-x_2, \cdots, y_n-x_n \}\)</span>. We can use the one-sample procedure to test the difference between before and after means.</p>
+<p><strong>Example 9</strong>: To study the effects of reminiscence therapy for older women with depression. She studied 15 women 60 years or older residing for 3 months or longer in an assisted living long-term care facility. For this study, depression was measured by the Geriatric Depression Scale (GDS). Higher scores indicate more severe depression symptoms. The participants received reminiscence therapy for long-term care, which uses family photographs, scrapbooks, and personal memorabilia to stimulate memory and conversation among group members. Pre-treatment and post-treatment
+depression scores are given in the following table. Can we conclude, based on these data, that subjects who participate in reminiscence therapy experience, on average, a decline in GDS depression scores? Let <span class="math inline">\(\alpha = 01\)</span>.</p>
+<pre><code>Pre–GDS:  12 10 16 2 12 18 11 16 16 10 14 21 9 19 20
+Post–GDS: 11 10 11 3  9 13  8 14 16 10 12 22 9 16 18</code></pre>
+<p><strong>Solution</strong>: The <strong>claim</strong> is that subjects who participate in reminiscence therapy experience, on average, a decline in GDS depression scores. <span class="math inline">\(\mu_{after} - \mu_{before} &lt; 0\)</span>. This is a left-tailed test.</p>
+<p><span class="math display">\[
+H_o: \mu_{after} - \mu_{before} \ge 0 \leftrightarrow  H_a: \mu_{after} - \mu_{before} &lt; 0 .
+\]</span></p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="testing-statistical-hypothesis.html#cb129-1" tabindex="-1"></a>pre.GDS <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">10</span>, <span class="dv">16</span>, <span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">11</span>, <span class="dv">16</span>, <span class="dv">16</span>, <span class="dv">10</span>, <span class="dv">14</span>, <span class="dv">21</span>, <span class="dv">9</span>, <span class="dv">19</span>, <span class="dv">20</span>)</span>
+<span id="cb129-2"><a href="testing-statistical-hypothesis.html#cb129-2" tabindex="-1"></a>post.GDS <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">3</span>,  <span class="dv">9</span>, <span class="dv">13</span>,  <span class="dv">8</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">22</span>, <span class="dv">9</span>, <span class="dv">16</span>, <span class="dv">18</span>)</span>
+<span id="cb129-3"><a href="testing-statistical-hypothesis.html#cb129-3" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb129-4"><a href="testing-statistical-hypothesis.html#cb129-4" tabindex="-1"></a><span class="fu">t.test</span>(post.GDS, pre.GDS,  </span>
+<span id="cb129-5"><a href="testing-statistical-hypothesis.html#cb129-5" tabindex="-1"></a>       <span class="at">conf.level =</span> <span class="fl">0.95</span>, </span>
+<span id="cb129-6"><a href="testing-statistical-hypothesis.html#cb129-6" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>, </span>
+<span id="cb129-7"><a href="testing-statistical-hypothesis.html#cb129-7" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  post.GDS and pre.GDS
+## t = -3.167, df = 14, p-value = 0.003428
+## alternative hypothesis: true mean difference is less than 0
+## 95 percent confidence interval:
+##        -Inf -0.7101668
+## sample estimates:
+## mean difference 
+##            -1.6</code></pre>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="testing-statistical-hypothesis.html#cb131-1" tabindex="-1"></a>pre.GDS <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">10</span>, <span class="dv">16</span>, <span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">11</span>, <span class="dv">16</span>, <span class="dv">16</span>, <span class="dv">10</span>, <span class="dv">14</span>, <span class="dv">21</span>, <span class="dv">9</span>, <span class="dv">19</span>, <span class="dv">20</span>)</span>
+<span id="cb131-2"><a href="testing-statistical-hypothesis.html#cb131-2" tabindex="-1"></a>post.GDS <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">3</span>,  <span class="dv">9</span>, <span class="dv">13</span>,  <span class="dv">8</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">22</span>, <span class="dv">9</span>, <span class="dv">16</span>, <span class="dv">18</span>)</span>
+<span id="cb131-3"><a href="testing-statistical-hypothesis.html#cb131-3" tabindex="-1"></a>dif.GDS <span class="ot">=</span> post.GDS <span class="sc">-</span> pre.GDS</span>
+<span id="cb131-4"><a href="testing-statistical-hypothesis.html#cb131-4" tabindex="-1"></a><span class="fu">t.test</span>(dif.GDS,</span>
+<span id="cb131-5"><a href="testing-statistical-hypothesis.html#cb131-5" tabindex="-1"></a>       <span class="at">mu =</span> <span class="dv">0</span>,</span>
+<span id="cb131-6"><a href="testing-statistical-hypothesis.html#cb131-6" tabindex="-1"></a>       <span class="at">conf.level =</span> <span class="fl">0.95</span>,</span>
+<span id="cb131-7"><a href="testing-statistical-hypothesis.html#cb131-7" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  dif.GDS
+## t = -3.167, df = 14, p-value = 0.003428
+## alternative hypothesis: true mean is less than 0
+## 95 percent confidence interval:
+##        -Inf -0.7101668
+## sample estimates:
+## mean of x 
+##      -1.6</code></pre>
+</div>
+<div id="concluding-remarks" class="section level3 hasAnchor" number="8.5.4">
+<h3><span class="header-section-number">8.5.4</span> Concluding Remarks<a href="testing-statistical-hypothesis.html#concluding-remarks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The R built-in function <strong>t.test(x,y)</strong> is a black-box method that is convenient to perform the t-tests. For a two-sample test, the difference in the hypothesis testing is defined to be <span class="math inline">\(\mu_x - \mu_y\)</span>. <strong>Reversing the order will result in a wrong answer</strong>.</p>
+<p><strong>prop.test()</strong> can also be used to test the equality of two proportions. We also need to pay attention to the order of the two proportions.</p>
+<p>Using built-in functions <strong>t.test()</strong> and <strong>prop.test()</strong> is convenient, but we have to know how these functions were set up to avoid unnecessary mistakes. Using formulas to perform test hypotheses can help enhance the understanding of the concept of these testing procedures.</p>
+</div>
+</div>
+<div id="practice-problems" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Practice Problems<a href="testing-statistical-hypothesis.html#practice-problems" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This is an open book and open note exam. The level of detail in your solution should be similar to that in the examples in the class notes. Please keep in mind that interpretation of results is as important as generation of the results. You can use either the built-in R functions or the formulas given in the class notes to complete the exams.</p>
+<p>For confidence interval and testing hypothesis problems, you need to <strong>justify</strong> the sampling distributions and interpret the results. The default confidence level is 0.95 and the default significance level is 0.05.</p>
+<p><strong>Problem 1</strong></p>
+<p>In a study of the physical endurance levels of male college freshmen, the following composite endurance scores based on several exercise routines were collected.</p>
+<pre><code>254, 281, 192, 260, 212, 179, 225, 179, 181, 149, 
+182, 210, 235, 239, 258, 166, 159, 223, 186, 190,
+180, 188, 135, 233, 220, 204, 219, 211, 245, 151, 
+198, 190, 151, 157, 204, 238, 205, 229, 191, 200,
+222, 187, 134, 193, 264, 312, 214, 227, 190, 212, 
+165, 194, 206, 193, 218, 198, 241, 149, 164, 225,
+265, 222, 264, 249, 175, 205, 252, 210, 178, 159, 
+220, 201, 203, 172, 234, 198, 173, 187, 189, 237,
+272, 195, 227, 230, 168, 232, 217, 249, 196, 223,
+232, 191, 175, 236, 152, 258, 155, 215, 197, 210,
+214, 278, 252, 283, 205, 184, 172, 228, 193, 130,
+218, 213, 172, 159, 203, 212, 117, 197, 206, 198,
+169, 187, 204, 180, 261, 236, 217, 205, 212, 218,
+191, 124, 199, 235, 139, 231, 116, 182, 243, 217,
+251, 206, 173, 236, 215, 228, 183, 204, 186, 134,
+188, 195, 240, 163, 208</code></pre>
+<p>Use the above data to construct a frequency table and a histogram. Describe your findings from the histogram.</p>
+<p><strong>Problem 2</strong></p>
+<p>Iron deficiency anemia is an important nutritional health problem in the United States. A dietary assessment was performed on 51 boys 9 to 11 years of age whose families were below the poverty level. The mean daily iron intake among these boys was found to be 12.50 mg with a standard deviation of 4.75 mg. Suppose the mean daily iron intake among a large population of 9- to 11-year-old boys from all income strata is 14.44 mg. We want to test whether the mean iron intake among the low-income group is different from that of the general population. Carry out the hypothesis test using the critical-value method with an <span class="math inline">\(\alpha\)</span> level of .05. State the hypotheses that we can use to consider this question and summarize your findings.</p>
+<p><strong>Problem 3</strong></p>
+<p>A topic of recent clinical interest is the possibility of using drugs to reduce infarct size in patients who have had a myocardial infarction within the past 24 hours. Suppose we know that in untreated patients the mean infarct size is 25 (ck-g-EQ/m2). Furthermore, in 8 patients treated with a drug, the mean infarct size is 16 with a standard deviation of 10. Is the drug effective in <strong>reducing</strong> infarct size? Assuming that the infarct size is normally distributed.</p>
+<p><strong>Problem 4</strong></p>
+<p>Drug A was prescribed for a random sample of 12 patients complaining of insomnia. An independent random sample of 16 patients with the same complaint received drug B. The number of hours of sleep experienced during the second night after treatment began was as follows.</p>
+<pre><code>A: 3.5, 5.7, 3.4, 6.9, 17.8, 3.8, 3.0, 6.4, 6.8, 3.6, 6.9, 5.7
+B: 4.5, 11.7, 10.8, 4.5, 6.3, 3.8, 6.2, 6.6, 7.1, 6.4, 4.5, 5.1, 3.2, 4.7, 4.5, 3.0</code></pre>
+<p>Construct a 95 percent confidence interval for the difference between the population means. Assume that the populations are normal and variances are unknown but equal.</p>
+<p><strong>Problem 5</strong></p>
+<p>Can we conclude that, on average, lymphocytes and tumor cells differ in size? The following are the cell diameters (<span class="math inline">\(\mu m\)</span>) of 40 lymphocytes and 50 tumor cells obtained from biopsies of tissue from patients with melanoma.</p>
+<pre><code>## Lymphocytes
+9.0,  9.4,  4.7,   4.8,  8.9,  4.9,  8.4,  5.9,  6.3,  5.7,  
+5.0,  3.5,  7.8,  10.4,  8.0,  8.0,  8.6,  7.0,  6.8,  7.1,   
+5.7,  7.6,  6.2,   7.1,  7.4,  8.7,  4.9,  7.4,  6.4,  7.1,  
+6.3,  8.8,  8.8,  5.2,  7.1,  5.3,   4.7,  8.4,  6.4,  8.3
+
+## Tumor Cells
+12.6, 14.6, 16.2, 23.9, 23.3, 17.1, 20.0, 21.0, 19.1, 19.4,
+16.7, 15.9, 15.8, 16.0, 17.9, 13.4, 19.1, 16.6, 18.9, 18.7,
+20.0, 17.8, 13.9, 22.1, 13.9, 18.3, 22.8, 13.0, 17.9, 15.2,
+17.7, 15.1, 16.9, 16.4, 22.8, 19.4, 19.6, 18.4, 18.2, 20.7,
+16.3, 17.7, 18.1, 24.3, 11.2, 19.5, 18.6, 16.4, 16.1, 21.5</code></pre>
+<p>What statistical method you are going to use to conduct the analysis? What are the assumptions for the method? Interpret your result appropriately.</p>
+<p><strong>Problem 6</strong></p>
+<p>To evaluate the analgesic effectiveness of a daily dose of oral methadone in patients with chronic neuropathic pain syndromes. The researchers used a visual analog scale (0–100 mm, a higher number indicates higher pain) ratings for maximum pain intensity over the course of the day. Each subject took either 20 mg of methadone or a placebo each day for 5 days. Subjects did not know which treatment they were taking. The following table gives the mean maximum pain intensity scores for the 5 days on methadone and the 5 days on placebo.</p>
+<pre><code>subject ID:    1    2    3     4    5    6   7    8   9    10   11
+methadone:   29.8 73.0 98.6 58.8 60.6 57.2 57.2 89.2 97.0 49.8 37.0
+placebo:     57.2 69.8 98.2 62.4 67.2 70.6 67.8 95.6 98.4 63.2 63.6</code></pre>
+<p>Do these data provide sufficient evidence, at the .05 level of significance, to indicate that, in general, the maximum pain intensity is lower on days when methadone is taken? Perform a formal inferential procedure and interpret the result.</p>
+<p><strong>Problem 7</strong></p>
+<p>A study was conducted on genetic and environmental influences on cholesterol levels. The data set used for the study was obtained from a twin registry in Sweden. Specifically, four populations of adult twins were studied: (1) monozygotic (MZ) twins reared apart, (2) MZ twins reared together, (3) dizygotic (DZ) twins reared apart, and (4) DZ twins reared together. One issue is whether it is necessary to correct <strong>potential differences</strong> in sex before performing more complex genetic analyses. The data in the following table were presented for total cholesterol levels for MZ twins reared apart, by sex.</p>
+<pre><code>           Men      Women
+Mean:     253.3     271.0
+sd:        44.1      44.1
+size(n):   44        48</code></pre>
+<p>If we assume (a) serum cholesterol is normally distributed, (b) the samples are independent, and (c) the standard deviations for men and women are the same.</p>
+<p>Using a two-sided test. State the hypotheses being tested, and implement the method. Report a p-value and interpret the result.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="confidence-intervals.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analysis-of-variance-anova.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/pengdsci/STA501EB/edit/master/08-HypothesisTesting.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["STA501EB.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

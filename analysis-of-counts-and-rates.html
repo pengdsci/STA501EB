@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Topic 14 Analysis of Counts and Rates | STA501 E-Pack: Applied Statistical Methods</title>
+  <meta name="description" content="The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Topic 14 Analysis of Counts and Rates | STA501 E-Pack: Applied Statistical Methods" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Topic 14 Analysis of Counts and Rates | STA501 E-Pack: Applied Statistical Methods" />
+  
+  <meta name="twitter:description" content="The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Cheng Peng" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="contingency-table-analysis.html"/>
+<link rel="next" href="power-calculation-and-sample-size-determination.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<center><li><a href="./"><font color = "darkred"><b>STA 501 E-Pack: Applied Statistical Methods</b></font></a><br><font color = "navy">Cheng Peng</font></li></center>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html"><i class="fa fa-check"></i><b>2</b> R, RStudio and RMarkdown</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#r"><i class="fa fa-check"></i><b>2.1</b> R</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#order-of-operations"><i class="fa fa-check"></i><b>2.1.1</b> Order of Operations</a></li>
+<li class="chapter" data-level="2.1.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#basic-r-objects"><i class="fa fa-check"></i><b>2.1.2</b> Basic R Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio"><i class="fa fa-check"></i><b>2.2</b> RStudio</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio-gui"><i class="fa fa-check"></i><b>2.2.1</b> RStudio GUI</a></li>
+<li class="chapter" data-level="2.2.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#console"><i class="fa fa-check"></i><b>2.2.2</b> Console</a></li>
+<li class="chapter" data-level="2.2.3" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#source-editor"><i class="fa fa-check"></i><b>2.2.3</b> Source Editor</a></li>
+<li class="chapter" data-level="2.2.4" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#environment-window"><i class="fa fa-check"></i><b>2.2.4</b> Environment Window</a></li>
+<li class="chapter" data-level="2.2.5" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#system-and-graphic-files"><i class="fa fa-check"></i><b>2.2.5</b> System and Graphic files</a></li>
+<li class="chapter" data-level="2.2.6" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rstudio-offers-numerous-helpful-features"><i class="fa fa-check"></i><b>2.2.6</b> RStudio offers numerous helpful features:</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#rmarkdown"><i class="fa fa-check"></i><b>2.3</b> RMarkdown</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#code-chunk"><i class="fa fa-check"></i><b>2.3.1</b> Code Chunk</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r-rstudio-and-rmarkdown.html"><a href="r-rstudio-and-rmarkdown.html#graphics-generated-from-r-code-chunks"><i class="fa fa-check"></i><b>2.3.2</b> Graphics Generated from R Code Chunks</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html"><i class="fa fa-check"></i><b>3</b> Data Collection and Data Loading</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#sampling-plans"><i class="fa fa-check"></i><b>3.1</b> Sampling Plans</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#simple-random-sampling-srs"><i class="fa fa-check"></i><b>3.1.1</b> Simple Random Sampling (SRS)</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#systematic-sampling"><i class="fa fa-check"></i><b>3.1.2</b> Systematic sampling</a></li>
+<li class="chapter" data-level="3.1.3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#stratified-sampling"><i class="fa fa-check"></i><b>3.1.3</b> Stratified sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#study-designs"><i class="fa fa-check"></i><b>3.2</b> Study Designs</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#observational-studies"><i class="fa fa-check"></i><b>3.2.1</b> Observational Studies</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#experimental-designs"><i class="fa fa-check"></i><b>3.2.2</b> Experimental Designs</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#loading-data-to-r-from-external-data-files"><i class="fa fa-check"></i><b>3.3</b> Loading Data to R from External Data Files</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#text-file-aka.-delimited-text-file"><i class="fa fa-check"></i><b>3.3.1</b> Text File ( aka. Delimited Text File)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#data-frame-and-list"><i class="fa fa-check"></i><b>3.4</b> Data Frame and List</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="data-collection-and-data-loading.html"><a href="data-collection-and-data-loading.html#data-frame-1"><i class="fa fa-check"></i><b>3.4.1</b> Data Frame</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>4</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#data-types"><i class="fa fa-check"></i><b>4.1</b> Data Types</a></li>
+<li class="chapter" data-level="4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#tabular-and-graphic-summary"><i class="fa fa-check"></i><b>4.2</b> Tabular and Graphic Summary</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#categorical-data"><i class="fa fa-check"></i><b>4.2.1</b> Categorical Data</a></li>
+<li class="chapter" data-level="4.2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#numerical-data"><i class="fa fa-check"></i><b>4.2.2</b> Numerical Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#numerical-summary-of-numerical-data"><i class="fa fa-check"></i><b>4.3</b> Numerical Summary of Numerical Data</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#central-tendency"><i class="fa fa-check"></i><b>4.3.1</b> Central Tendency</a></li>
+<li class="chapter" data-level="4.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variations"><i class="fa fa-check"></i><b>4.3.2</b> Variations</a></li>
+<li class="chapter" data-level="4.3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#location"><i class="fa fa-check"></i><b>4.3.3</b> Location</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#assignment---descriptive-statistics"><i class="fa fa-check"></i><b>4.4</b> Assignment - Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#summarizing-categorical-data"><i class="fa fa-check"></i><b>4.4.1</b> Summarizing Categorical Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html"><i class="fa fa-check"></i><b>5</b> Concepts of Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-random-variables"><i class="fa fa-check"></i><b>5.1</b> Concepts of random variables</a></li>
+<li class="chapter" data-level="5.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#types-of-random-variables"><i class="fa fa-check"></i><b>5.2</b> Types of random variables</a></li>
+<li class="chapter" data-level="5.3" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-probability-distributions-1"><i class="fa fa-check"></i><b>5.3</b> Concepts of probability distributions</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#concepts-of-probability"><i class="fa fa-check"></i><b>5.3.1</b> Concepts of probability</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#probability-distribution-of-random-variables"><i class="fa fa-check"></i><b>5.4</b> Probability distribution of random variables</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#discrete-probability-distribution"><i class="fa fa-check"></i><b>5.4.1</b> Discrete probability distribution</a></li>
+<li class="chapter" data-level="5.4.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#continuous-probability-distribution"><i class="fa fa-check"></i><b>5.4.2</b> Continuous probability distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#special-continuous-distributions"><i class="fa fa-check"></i><b>5.5</b> Special Continuous Distributions</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#normal-distribution"><i class="fa fa-check"></i><b>5.5.1</b> Normal Distribution</a></li>
+<li class="chapter" data-level="5.5.2" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#t-distribution"><i class="fa fa-check"></i><b>5.5.2</b> t distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#summary"><i class="fa fa-check"></i><b>5.6</b> Summary</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#numerical-examples-based-on-normal-and-t-distributions"><i class="fa fa-check"></i><b>5.6.1</b> Numerical Examples Based on Normal and t Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="concepts-of-probability-distributions.html"><a href="concepts-of-probability-distributions.html#assignment---probability-distributions"><i class="fa fa-check"></i><b>5.7</b> Assignment - Probability Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>6</b> Sampling Distributions</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#concepts-of-the-sampling-distribution"><i class="fa fa-check"></i><b>6.1</b> Concepts of the sampling distribution</a></li>
+<li class="chapter" data-level="6.2" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sampling-distribution-of-sampling-means"><i class="fa fa-check"></i><b>6.2</b> Sampling Distribution of Sampling Means</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#working-data-set-plant-diversity"><i class="fa fa-check"></i><b>6.2.1</b> Working Data Set: Plant Diversity</a></li>
+<li class="chapter" data-level="6.2.2" data-path="sampling-distributions.html"><a href="sampling-distributions.html#normal-population-with-given-mean-mu-and-variance-sigma2"><i class="fa fa-check"></i><b>6.2.2</b> Normal Population with given mean (<span class="math inline">\(\mu\)</span>) and Variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+<li class="chapter" data-level="6.2.3" data-path="sampling-distributions.html"><a href="sampling-distributions.html#normal-population-with-a-given-mean-mu-and-an-unknown-variance-sigma2"><i class="fa fa-check"></i><b>6.2.3</b> Normal Population with a given mean (<span class="math inline">\(\mu\)</span>) and an <strong>Unknown</strong> Variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+<li class="chapter" data-level="6.2.4" data-path="sampling-distributions.html"><a href="sampling-distributions.html#unspecified-population-with-a-given-mean-muand-an-unspecifed-variance-sigma2"><i class="fa fa-check"></i><b>6.2.4</b> Unspecified Population with a given mean (<span class="math inline">\(\mu\)</span>)and an unspecifed variance (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sampling-distribution-of-sample-proportions"><i class="fa fa-check"></i><b>6.3</b> Sampling distribution of sample proportions</a></li>
+<li class="chapter" data-level="6.4" data-path="sampling-distributions.html"><a href="sampling-distributions.html#summary-1"><i class="fa fa-check"></i><b>6.4</b> Summary</a></li>
+<li class="chapter" data-level="6.5" data-path="sampling-distributions.html"><a href="sampling-distributions.html#assignment---sampling-distributions"><i class="fa fa-check"></i><b>6.5</b> Assignment - Sampling Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>7</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#some-terms"><i class="fa fa-check"></i><b>7.1</b> Some Terms</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#what-are-the-issues-of-a-point-estimate"><i class="fa fa-check"></i><b>7.1.1</b> What are the issues of a point estimate?</a></li>
+<li class="chapter" data-level="7.1.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#how-about-multiple-samples"><i class="fa fa-check"></i><b>7.1.2</b> How About Multiple Samples?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#how-to-find-the-confidence-intervals-for-means-and-proportions"><i class="fa fa-check"></i><b>7.2</b> How to find the Confidence Intervals for Means and Proportions?</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#framework-of-confidence-interval"><i class="fa fa-check"></i><b>7.2.1</b> Framework Of Confidence Interval</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-population-mean"><i class="fa fa-check"></i><b>7.3</b> Confidence Interval of Population Mean</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#normal-population-with-known-variance."><i class="fa fa-check"></i><b>7.3.1</b> Normal Population with Known Variance.</a></li>
+<li class="chapter" data-level="7.3.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#normal-population-with-unknown-variance"><i class="fa fa-check"></i><b>7.3.2</b> Normal Population with Unknown Variance</a></li>
+<li class="chapter" data-level="7.3.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#unspecified-population-with-unknown-variance-but-with-large-sample-sizes"><i class="fa fa-check"></i><b>7.3.3</b> Unspecified Population with Unknown Variance but with Large Sample Sizes</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-proportion"><i class="fa fa-check"></i><b>7.4</b> Confidence Interval of Proportion</a></li>
+<li class="chapter" data-level="7.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#two-sample-problems---comparing-two-population-means"><i class="fa fa-check"></i><b>7.5</b> Two Sample Problems - Comparing Two Population Means</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-the-difference-of-two-unspecified-populations-means"><i class="fa fa-check"></i><b>7.5.1</b> Confidence Interval of the Difference of Two Unspecified Populations Means</a></li>
+<li class="chapter" data-level="7.5.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-of-the-difference-of-two-normal-populations-means"><i class="fa fa-check"></i><b>7.5.2</b> Confidence Interval of the Difference of Two Normal Populations Means</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="confidence-intervals.html"><a href="confidence-intervals.html#assignment---confidence-intervals"><i class="fa fa-check"></i><b>7.6</b> Assignment - Confidence Intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html"><i class="fa fa-check"></i><b>8</b> Testing Statistical Hypothesis</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#formulation-of-statistical-hypothesis-testing"><i class="fa fa-check"></i><b>8.1</b> Formulation of Statistical Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#null-and-alternative-hypotheses"><i class="fa fa-check"></i><b>8.1.1</b> Null and Alternative Hypotheses</a></li>
+<li class="chapter" data-level="8.1.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#relationship-between-the-claim-and-the-statistical-hypotheses"><i class="fa fa-check"></i><b>8.1.2</b> Relationship between the claim and the statistical hypotheses</a></li>
+<li class="chapter" data-level="8.1.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#test-statistics---statistical-evidence"><i class="fa fa-check"></i><b>8.1.3</b> Test Statistics - Statistical Evidence</a></li>
+<li class="chapter" data-level="8.1.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#types-of-test-and-rejection-region"><i class="fa fa-check"></i><b>8.1.4</b> Types of Test and Rejection Region</a></li>
+<li class="chapter" data-level="8.1.5" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#statistical-decision-rule-p-value"><i class="fa fa-check"></i><b>8.1.5</b> Statistical Decision Rule: p-value</a></li>
+<li class="chapter" data-level="8.1.6" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#summary-of-the-test-hypothesis-procedure"><i class="fa fa-check"></i><b>8.1.6</b> Summary of the Test Hypothesis Procedure</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-studies"><i class="fa fa-check"></i><b>8.2</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-i-normal-population-with-a-known-variance."><i class="fa fa-check"></i><b>8.2.1</b> Case I: normal population with a known variance.</a></li>
+<li class="chapter" data-level="8.2.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#case-ii-normal-population-with-an-unknown-variance"><i class="fa fa-check"></i><b>8.2.2</b> Case II: Normal population with an unknown variance</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#unspecified-population-with-an-unknown-variance---clt"><i class="fa fa-check"></i><b>8.3</b> Unspecified population with an unknown variance - CLT</a></li>
+<li class="chapter" data-level="8.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#testing-population-proportion"><i class="fa fa-check"></i><b>8.4</b> Testing Population Proportion</a></li>
+<li class="chapter" data-level="8.5" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#testing-the-difference-between-two-population-means"><i class="fa fa-check"></i><b>8.5</b> Testing the difference between two population means</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#both-populations-are-unspecified-and-sample-sizes-are-large."><i class="fa fa-check"></i><b>8.5.1</b> Both populations are unspecified and sample sizes are large.</a></li>
+<li class="chapter" data-level="8.5.2" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#both-populations-are-normal-with-unknown-but-equal-variances"><i class="fa fa-check"></i><b>8.5.2</b> Both populations are normal with unknown but equal variances</a></li>
+<li class="chapter" data-level="8.5.3" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#paired-t-test"><i class="fa fa-check"></i><b>8.5.3</b> Paired t-test</a></li>
+<li class="chapter" data-level="8.5.4" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#concluding-remarks"><i class="fa fa-check"></i><b>8.5.4</b> Concluding Remarks</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="testing-statistical-hypothesis.html"><a href="testing-statistical-hypothesis.html#practice-problems"><i class="fa fa-check"></i><b>8.6</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html"><i class="fa fa-check"></i><b>9</b> Analysis of Variance (ANOVA)</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#the-question-of-one-way-anova"><i class="fa fa-check"></i><b>9.1</b> The Question of One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#what-is-anova"><i class="fa fa-check"></i><b>9.1.1</b> What is ANOVA</a></li>
+<li class="chapter" data-level="9.1.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#assumptions-of-anova"><i class="fa fa-check"></i><b>9.1.2</b> Assumptions of ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#steps-of-anova"><i class="fa fa-check"></i><b>9.2</b> Steps of ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#anova-tables"><i class="fa fa-check"></i><b>9.2.1</b> ANOVA Tables</a></li>
+<li class="chapter" data-level="9.2.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#post-hoc-pairwise-comparison"><i class="fa fa-check"></i><b>9.2.2</b> Post hoc Pairwise Comparison</a></li>
+<li class="chapter" data-level="9.2.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#how-to-summarize-anova-results"><i class="fa fa-check"></i><b>9.2.3</b> How to Summarize ANOVA Results</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#welchs-anova"><i class="fa fa-check"></i><b>9.3</b> Welch’s ANOVA</a></li>
+<li class="chapter" data-level="9.4" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#case-study-mussel-length-example---solution"><i class="fa fa-check"></i><b>9.4</b> Case Study: Mussel Length Example - Solution</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#creating-an-anova-table"><i class="fa fa-check"></i><b>9.4.1</b> Creating An ANOVA Table</a></li>
+<li class="chapter" data-level="9.4.2" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#diagnostic-analysis"><i class="fa fa-check"></i><b>9.4.2</b> Diagnostic Analysis</a></li>
+<li class="chapter" data-level="9.4.3" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#welch-anova"><i class="fa fa-check"></i><b>9.4.3</b> Welch ANOVA</a></li>
+<li class="chapter" data-level="9.4.4" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#post-hoc-multiple-comparisons"><i class="fa fa-check"></i><b>9.4.4</b> Post-hoc Multiple Comparisons</a></li>
+<li class="chapter" data-level="9.4.5" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#visual-comparison---boxplots"><i class="fa fa-check"></i><b>9.4.5</b> Visual Comparison - Boxplots</a></li>
+<li class="chapter" data-level="9.4.6" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#anova-reporting"><i class="fa fa-check"></i><b>9.4.6</b> ANOVA Reporting</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="analysis-of-variance-anova.html"><a href="analysis-of-variance-anova.html#practice-problems-1"><i class="fa fa-check"></i><b>9.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html"><i class="fa fa-check"></i><b>10</b> Correlation and Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#the-question-and-the-data"><i class="fa fa-check"></i><b>10.1</b> The question and the data</a></li>
+<li class="chapter" data-level="10.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#visual-inspection-for-association"><i class="fa fa-check"></i><b>10.2</b> Visual Inspection for Association</a></li>
+<li class="chapter" data-level="10.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#coefficient-of-correlation"><i class="fa fa-check"></i><b>10.3</b> Coefficient of Correlation</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#definition-of-pearson-correlation-coefficient"><i class="fa fa-check"></i><b>10.3.1</b> Definition of Pearson correlation coefficient</a></li>
+<li class="chapter" data-level="10.3.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#interpretation-of-correlation-coefficient"><i class="fa fa-check"></i><b>10.3.2</b> Interpretation of correlation coefficient</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#least-square-regression-structure-diagnostics-and-applications"><i class="fa fa-check"></i><b>10.4</b> Least square regression: structure, diagnostics, and applications</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#definitions"><i class="fa fa-check"></i><b>10.4.1</b> Definitions</a></li>
+<li class="chapter" data-level="10.4.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#assumptions-of-least-square-regression"><i class="fa fa-check"></i><b>10.4.2</b> Assumptions of Least Square Regression</a></li>
+<li class="chapter" data-level="10.4.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-building-and-diagnostics"><i class="fa fa-check"></i><b>10.4.3</b> Model Building and Diagnostics</a></li>
+<li class="chapter" data-level="10.4.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#residual-diagnostics-and-remedies"><i class="fa fa-check"></i><b>10.4.4</b> Residual Diagnostics and Remedies</a></li>
+<li class="chapter" data-level="10.4.5" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#final-model-with-applications"><i class="fa fa-check"></i><b>10.4.5</b> Final Model with Applications</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#case-study-amyotrophic-lateral-sclerosis-analysis-revisited"><i class="fa fa-check"></i><b>10.5</b> Case Study: Amyotrophic lateral sclerosis analysis revisited</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#objectives"><i class="fa fa-check"></i><b>10.5.1</b> Objectives</a></li>
+<li class="chapter" data-level="10.5.2" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-fitting"><i class="fa fa-check"></i><b>10.5.2</b> Model Fitting</a></li>
+<li class="chapter" data-level="10.5.3" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#box-cox-transformation"><i class="fa fa-check"></i><b>10.5.3</b> Box-Cox Transformation</a></li>
+<li class="chapter" data-level="10.5.4" data-path="correlation-and-simple-linear-regression.html"><a href="correlation-and-simple-linear-regression.html#model-applications"><i class="fa fa-check"></i><b>10.5.4</b> Model Applications</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>11</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-practical-question"><i class="fa fa-check"></i><b>11.1</b> The Practical Question</a></li>
+<li class="chapter" data-level="11.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-process-of-building-a-multiple-linear-regression-model"><i class="fa fa-check"></i><b>11.2</b> The Process of Building A Multiple Linear Regression Model</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#assumptions-of-mlr"><i class="fa fa-check"></i><b>11.2.1</b> Assumptions of MLR</a></li>
+<li class="chapter" data-level="11.2.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-structure-of-mlr"><i class="fa fa-check"></i><b>11.2.2</b> The Structure of MLR</a></li>
+<li class="chapter" data-level="11.2.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#more-on-model-specifications"><i class="fa fa-check"></i><b>11.2.3</b> More on Model Specifications</a></li>
+<li class="chapter" data-level="11.2.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#estimation-of-regression-coefficients"><i class="fa fa-check"></i><b>11.2.4</b> Estimation of Regression Coefficients</a></li>
+<li class="chapter" data-level="11.2.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#model-diagnostics"><i class="fa fa-check"></i><b>11.2.5</b> Model Diagnostics</a></li>
+<li class="chapter" data-level="11.2.6" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#goodness-of-fit-and-variable-selection"><i class="fa fa-check"></i><b>11.2.6</b> Goodness-of-fit and Variable Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#case-study-1"><i class="fa fa-check"></i><b>11.3</b> Case Study 1</a></li>
+<li class="chapter" data-level="11.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#case-study-2"><i class="fa fa-check"></i><b>11.4</b> Case Study 2</a></li>
+<li class="chapter" data-level="11.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#practice-problems-2"><i class="fa fa-check"></i><b>11.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>12</b> Logistic Regression Models</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#motivational-example-and-practical-question"><i class="fa fa-check"></i><b>12.1</b> Motivational Example and Practical Question</a></li>
+<li class="chapter" data-level="12.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#logistic-regression-models-and-applications"><i class="fa fa-check"></i><b>12.2</b> Logistic Regression Models and Applications</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#the-structure-of-logistic-regression-model"><i class="fa fa-check"></i><b>12.2.1</b> The Structure of Logistic Regression Model</a></li>
+<li class="chapter" data-level="12.2.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#assumptions-and-diagnostics"><i class="fa fa-check"></i><b>12.2.2</b> Assumptions and Diagnostics</a></li>
+<li class="chapter" data-level="12.2.3" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#coefficient-estimation-and-interpretation"><i class="fa fa-check"></i><b>12.2.3</b> Coefficient Estimation and Interpretation</a></li>
+<li class="chapter" data-level="12.2.4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#use-of-glm-and-annotations"><i class="fa fa-check"></i><b>12.2.4</b> Use of <strong>glm()</strong> and Annotations</a></li>
+<li class="chapter" data-level="12.2.5" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#applications-of-logistic-regression-models"><i class="fa fa-check"></i><b>12.2.5</b> Applications of Logistic Regression Models</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#case-studies-1"><i class="fa fa-check"></i><b>12.3</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#the-simple-logistic-regression-model"><i class="fa fa-check"></i><b>12.3.1</b> The simple logistic regression model</a></li>
+<li class="chapter" data-level="12.3.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#multiple-logistic-regression-model"><i class="fa fa-check"></i><b>12.3.2</b> Multiple Logistic Regression Model</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#practice-problems-3"><i class="fa fa-check"></i><b>12.4</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html"><i class="fa fa-check"></i><b>13</b> Contingency Table Analysis</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#the-motivational-examples"><i class="fa fa-check"></i><b>13.1</b> The Motivational Examples</a></li>
+<li class="chapter" data-level="13.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#two-way-contingency-tables-and-analysis"><i class="fa fa-check"></i><b>13.2</b> Two-way Contingency Tables and Analysis</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#the-structure-of-two-way-contingency-table"><i class="fa fa-check"></i><b>13.2.1</b> The Structure of Two-way Contingency Table</a></li>
+<li class="chapter" data-level="13.2.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#pearson-chi2-test-of-independence"><i class="fa fa-check"></i><b>13.2.2</b> Pearson <span class="math inline">\(\chi^2\)</span> Test of Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#measures-of-association"><i class="fa fa-check"></i><b>13.3</b> Measures of Association</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#times2-table-under-different-study-designs"><i class="fa fa-check"></i><b>13.3.1</b> <span class="math inline">\(2\times2\)</span>-table Under Different Study Designs</a></li>
+<li class="chapter" data-level="13.3.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#measures-of-association-1"><i class="fa fa-check"></i><b>13.3.2</b> Measures of Association</a></li>
+<li class="chapter" data-level="13.3.3" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#validity-of-measures-of-association"><i class="fa fa-check"></i><b>13.3.3</b> Validity of Measures of Association</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-studies-2"><i class="fa fa-check"></i><b>13.4</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-study-1-1"><i class="fa fa-check"></i><b>13.4.1</b> Case Study 1</a></li>
+<li class="chapter" data-level="13.4.2" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#case-study-2-1"><i class="fa fa-check"></i><b>13.4.2</b> Case Study 2</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="contingency-table-analysis.html"><a href="contingency-table-analysis.html#practice-problems-4"><i class="fa fa-check"></i><b>13.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html"><i class="fa fa-check"></i><b>14</b> Analysis of Counts and Rates</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#motivational-examples"><i class="fa fa-check"></i><b>14.1</b> Motivational Examples</a></li>
+<li class="chapter" data-level="14.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#poisson-regression-for-counts-and-rates"><i class="fa fa-check"></i><b>14.2</b> Poisson Regression for Counts and Rates</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#structure-and-interpretations"><i class="fa fa-check"></i><b>14.2.1</b> Structure and Interpretations</a></li>
+<li class="chapter" data-level="14.2.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#assumptions-and-goodness-of-fit"><i class="fa fa-check"></i><b>14.2.2</b> Assumptions and Goodness-of-fit</a></li>
+<li class="chapter" data-level="14.2.3" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#dispersion-issue-and-remedies"><i class="fa fa-check"></i><b>14.2.3</b> Dispersion Issue and Remedies</a></li>
+<li class="chapter" data-level="14.2.4" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#data-structure-of-poisson-regression"><i class="fa fa-check"></i><b>14.2.4</b> Data Structure of Poisson Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#case-studies-3"><i class="fa fa-check"></i><b>14.3</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#harbor-seal-data"><i class="fa fa-check"></i><b>14.3.1</b> Harbor Seal Data</a></li>
+<li class="chapter" data-level="14.3.2" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#toxicity-study"><i class="fa fa-check"></i><b>14.3.2</b> Toxicity Study</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#concluding-remarks-1"><i class="fa fa-check"></i><b>14.4</b> Concluding Remarks</a></li>
+<li class="chapter" data-level="14.5" data-path="analysis-of-counts-and-rates.html"><a href="analysis-of-counts-and-rates.html#practice-problems-5"><i class="fa fa-check"></i><b>14.5</b> Practice Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html"><i class="fa fa-check"></i><b>15</b> Power Calculation and Sample Size Determination</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#two-sample-proportion-problems"><i class="fa fa-check"></i><b>15.1</b> Two-sample Proportion Problems</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#sample-size-estimations-for-two-proportions"><i class="fa fa-check"></i><b>15.1.1</b> Sample size estimations for <strong>two proportions</strong></a></li>
+<li class="chapter" data-level="15.1.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-for-two-proportions"><i class="fa fa-check"></i><b>15.1.2</b> Power analysis for <strong>two proportions</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#two-sample-mean-problems"><i class="fa fa-check"></i><b>15.2</b> Two-sample Mean Problems</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#sample-size-estimations-for-two-averages"><i class="fa fa-check"></i><b>15.2.1</b> Sample size estimations for <strong>two averages</strong></a></li>
+<li class="chapter" data-level="15.2.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-for-two-averages"><i class="fa fa-check"></i><b>15.2.2</b> Power analysis for two averages</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#paired-sample-problems"><i class="fa fa-check"></i><b>15.3</b> Paired-sample Problems</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#sample-size-estimation-for-paired-data-before-and-after"><i class="fa fa-check"></i><b>15.3.1</b> Sample size estimation for <strong>paired data (before and after)</strong></a></li>
+<li class="chapter" data-level="15.3.2" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-of-paired-samples-paired-t-test"><i class="fa fa-check"></i><b>15.3.2</b> Power analysis of <strong>paired samples (paired t-test)</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#unequal-sample-sizes-problems"><i class="fa fa-check"></i><b>15.4</b> Unequal Sample Sizes Problems</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#power-analysis-with-unequal-sample-sizes"><i class="fa fa-check"></i><b>15.4.1</b> Power analysis with <strong>unequal sample sizes</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="power-calculation-and-sample-size-determination.html"><a href="power-calculation-and-sample-size-determination.html#conclusions"><i class="fa fa-check"></i><b>15.5</b> Conclusions</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STA501 E-Pack: Applied Statistical Methods</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="analysis-of-counts-and-rates" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">Topic 14</span> Analysis of Counts and Rates<a href="analysis-of-counts-and-rates.html#analysis-of-counts-and-rates" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This module considers the relationship between a discrete response variable and other numeric or categorical predictor variables. The analysis of frequency counts and rates is also one of the important statistical tools in life science. The appropriate model we will discuss is a small family of generalized linear models - The Poisson regression model. It has wide applications for both laboratory experimental data and field data which involve count or rate data.</p>
+<p>We add this model to the summary table of models in the previous module as follows</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Response variable</th>
+<th align="center">Predictor variable</th>
+<th align="center">Type of Models</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">continuous, normal</td>
+<td align="center">single categorical</td>
+<td align="center">ANOVA</td>
+</tr>
+<tr class="even">
+<td align="center">continuous, normal</td>
+<td align="center">single continuous</td>
+<td align="center">SLR</td>
+</tr>
+<tr class="odd">
+<td align="center">continuous, normal</td>
+<td align="center">continuous or categorical</td>
+<td align="center">MLR (ANCOVA)</td>
+</tr>
+<tr class="even">
+<td align="center">binary, categorical</td>
+<td align="center">continuous or categorical</td>
+<td align="center">logistic model</td>
+</tr>
+<tr class="odd">
+<td align="center">numeric, discrete</td>
+<td align="center">continuous or categorical</td>
+<td align="center">Poisson model</td>
+</tr>
+</tbody>
+</table>
+<div id="motivational-examples" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">14.1</span> Motivational Examples<a href="analysis-of-counts-and-rates.html#motivational-examples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Example 1</strong>: Aerial counts of harbor seals (Phora vitulzna concoZw) on ledges along the Maine coast were conducted during the pupping season in 1981, 1986, 1993, 1997, and 2001 to study the changes in abundance of harbor seals. Detailed information on the study can be found in the published work of Gilbert et al (2005) <a href="https://stat501.s3.amazonaws.com/w13-CHANGES-IN-ABUNDANCE-OF-HARBOR.pdf">see the link of the article</a>.</p>
+<p><img src="img13/w13-HarborSeal.jpg" width="80%" style="display: block; margin: auto;" /></p>
+<p>We are interested in whether the counts of harbor seal counts changed significantly over the years. The data used to answer this question is taken from the first half of Table 6.</p>
+<p><img src="img13/w13-HarborSealDataTable.jpg" width="80%" style="display: block; margin: auto;" /></p>
+<p>We construct the R data set in the following based on the above data table that is suitable for modeling.</p>
+<p><strong>Example 2</strong>: This example is based on a study that investigated the cytotoxic and genotoxic effects of soluble and particulate hexavalent chromium in sperm whale skin fibroblasts. The data were extracted from a line plot in the published work of <a href="https://stat501.s3.amazonaws.com/w13-TheGenotoxicityofParticulate+andSolubleChromate.pdf">Wise et al (Fig. 1)</a>. In the first experiment, Particulate Cr(VI) induced a clear concentration-dependent decrease in cell survival over a range of 0.05 to 0.5 lg/cm2. Concentrations of 0.05, 0.1, 0.5, 1, and 5 lg/cm2 lead chromate induced 85%, 86%, 63%, 56%, and 26% relative survival. This information is given in the following figure 1 of the published paper.</p>
+<p><img src="img13/w13-CytotoxicityDataTable.jpg" width="80%" style="display: block; margin: auto;" /></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Dose level</th>
+<th align="center">survived cells</th>
+<th align="center">total cells</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">100</td>
+<td align="center">100</td>
+</tr>
+<tr class="even">
+<td align="center">0.05</td>
+<td align="center">85</td>
+<td align="center">100</td>
+</tr>
+<tr class="odd">
+<td align="center">0.1</td>
+<td align="center">86</td>
+<td align="center">100</td>
+</tr>
+<tr class="even">
+<td align="center">0.5</td>
+<td align="center">63</td>
+<td align="center">100</td>
+</tr>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">56</td>
+<td align="center">100</td>
+</tr>
+<tr class="even">
+<td align="center">5</td>
+<td align="center">26</td>
+<td align="center">100</td>
+</tr>
+</tbody>
+</table>
+<p>The question is whether the survival rates are associated with the dose level.</p>
+</div>
+<div id="poisson-regression-for-counts-and-rates" class="section level2 hasAnchor" number="14.2">
+<h2><span class="header-section-number">14.2</span> Poisson Regression for Counts and Rates<a href="analysis-of-counts-and-rates.html#poisson-regression-for-counts-and-rates" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Poisson regression model assumes the random response variable to be a frequency count or a rate of an uncommon event such as COVID-19 positivity rates, COVID-19 death mortality, etc. As in the linear and logistic regression models, we also assume that predictor variables are non-random.</p>
+<div id="structure-and-interpretations" class="section level3 hasAnchor" number="14.2.1">
+<h3><span class="header-section-number">14.2.1</span> Structure and Interpretations<a href="analysis-of-counts-and-rates.html#structure-and-interpretations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let <span class="math inline">\(Y\)</span> be the response variable that takes on frequency counts as values and <span class="math inline">\(X\)</span> be the set of predictor variables such as demographics and social determinants. Further, let <span class="math inline">\(\mu=E[Y]\)</span> be the mean of the response variable.</p>
+<p><strong>Poisson Regression for Counts</strong></p>
+<p>The Poisson regression model is defined in the following analytic expression.</p>
+<p><span class="math display">\[
+\log(\mu) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p,
+\]</span>
+where <span class="math inline">\(\beta_0, \beta_1, \cdots, \beta_p\)</span> are coefficients of the Poisson regression model.</p>
+<p><strong>Poisson Regression for Rates</strong></p>
+<p>The Poisson regression model for rates is defined in the following analytic expression.</p>
+<p><span class="math display">\[
+\log(\mu/t) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p,
+\]</span></p>
+<p>where <span class="math inline">\(\beta_0, \beta_1, \cdots, \beta_p\)</span> are coefficients of the Poisson regression model. <span class="math inline">\(t\)</span> is called the <strong>offset</strong> variable. The offset variable serves to normalize the fitted cell means per some space, grouping, or time interval in order to define the meaningful rates.</p>
+<p><strong>Interpretation of Regression Coefficients</strong></p>
+<p>The interpretation of the regression coefficient <span class="math inline">\(\beta_i\)</span> is as follows</p>
+<ul>
+<li><p><span class="math inline">\(\beta_0\)</span> = the baseline logarithm of the mean of <span class="math inline">\(Y\)</span>, <span class="math inline">\(\log(\mu)\)</span>, when all predictor variables <span class="math inline">\(x_i = 0\)</span>, for <span class="math inline">\(i = 1, 2, \cdots, p\)</span>. As usual, we are not interested in the inference of the intercept parameter.</p></li>
+<li><p><span class="math inline">\(\beta_i\)</span> = is the change of the <strong>logarithm of the mean count</strong> due to one unit increases in <span class="math inline">\(x_i\)</span> with all other <span class="math inline">\(x_j\)</span> being fixed, for <span class="math inline">\(j\ne i\)</span>.</p></li>
+</ul>
+<p><strong>Estimation of Regression Coefficients</strong></p>
+<p>Estimating Poisson regression coefficients requires numerical optimization. We will not go into detail about how to estimate the regression coefficients and perform model diagnostics in this module. Instead, we will focus on data analysis, in particular, the interpretation of regression coefficients.</p>
+</div>
+<div id="assumptions-and-goodness-of-fit" class="section level3 hasAnchor" number="14.2.2">
+<h3><span class="header-section-number">14.2.2</span> Assumptions and Goodness-of-fit<a href="analysis-of-counts-and-rates.html#assumptions-and-goodness-of-fit" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Like other statistical models, there are some assumptions for the Poisson regression model:</p>
+<ul>
+<li><p>The response variable is a frequency count (or rate variable) that follows the Poisson distribution.</p></li>
+<li><p>The mean of the and the variance are equal.</p></li>
+<li><p>The relationship between the mean of the response and the predictor variables is correct.</p></li>
+<li><p>For a given value of the predictor variable, the mean and variance of the response variable are <strong>equal</strong>. - Unfortunately, this assumption is frequently violated. This type of violation is serious since it produces wrong estimates of the standard errors and, hence, yields wrong p-values.</p></li>
+</ul>
+</div>
+<div id="dispersion-issue-and-remedies" class="section level3 hasAnchor" number="14.2.3">
+<h3><span class="header-section-number">14.2.3</span> Dispersion Issue and Remedies<a href="analysis-of-counts-and-rates.html#dispersion-issue-and-remedies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The first three assumptions mentioned above are regular for all regression models. The violation of the last assumption is directly associated with the distribution of the response variable. Different causes lead to the violation. For example, the data is not from Poisson distribution or a mixture distribution of Poisson and other distributions. Therefore, there are different ways we can consider to fix the problem.</p>
+<p>Although the detailed discussion of remedies is not the focus of this course, it is useful to know some of the available remedies for dispersion (either over-dispersion or under-dispersion).</p>
+<ul>
+<li><p><strong>quasi-Poisson regression</strong> sticks to the simple structure of the Poisson regression and adjusts the dispersed standard error to obtain the valid p-values. We will use this approach in this class.</p></li>
+<li><p><strong>negative binomial regression</strong>, another family regression model for the discrete response variable, relaxes Poisson’s assumption on equality of mean and variance. In the <strong>negative binomial regression</strong>, the variance is a function of the mean. It could also have dispersion problems if the variance function is not correct. The <strong>negative binomial regression</strong> is implemented in R.</p></li>
+<li><p><strong>Zero-inflated family of regression models</strong> assumes the data come from the mixture distribution of Poisson and other distributions such as binomial or negative binomial and binomial distributions. R also has libraries to fit several zero-inflated regression models.</p></li>
+<li><p>The <strong>Hurdle model</strong> also handles the issue of excess zeros in the data but assumes the sources of zeros in the data are different. Hurdle assumes structural zero and the regular zero-inflated model assumes sampling zeros.</p></li>
+</ul>
+<p>We will use <strong>Poisson regression</strong> to detect potential <strong>dispersion</strong> and then decide whether to use the regular Poisson regression model to report and implement in practical applications.</p>
+</div>
+<div id="data-structure-of-poisson-regression" class="section level3 hasAnchor" number="14.2.4">
+<h3><span class="header-section-number">14.2.4</span> Data Structure of Poisson Regression<a href="analysis-of-counts-and-rates.html#data-structure-of-poisson-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The Poisson regression is a subfamily of generalized linear regressions(GLM). The logistic regression is also a member of GLM. Similar to the structure used in the logistic regression, Poisson regression also requires the same data structure usually called the <strong>long table</strong>.</p>
+<p>The data table in the first motivational example is not a <strong>long table</strong>. It is actually a <strong>wide table</strong>. The table in example 2 is a <strong>long table</strong>. When using R to build models in GLM, the data should always be in the form of a <strong>long table</strong>. Therefore, the data table in motivational example 1 <strong>cannot</strong> be used to build GLMs. The code for turning the wide table into a long table is given in Section 2. The resulting <strong>long table</strong> (partial table) is shown below.</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="analysis-of-counts-and-rates.html#cb187-1" tabindex="-1"></a>y1981<span class="ot">=</span><span class="fu">c</span>(<span class="dv">13</span>, <span class="dv">26</span>, <span class="dv">15</span>, <span class="dv">28</span>, <span class="dv">80</span>, <span class="dv">75</span>, <span class="dv">23</span>, <span class="dv">24</span>, <span class="dv">19</span>, <span class="dv">9</span>, <span class="dv">14</span>, <span class="dv">10</span>)</span>
+<span id="cb187-2"><a href="analysis-of-counts-and-rates.html#cb187-2" tabindex="-1"></a>y1986<span class="ot">=</span><span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">22</span>, <span class="dv">15</span>, <span class="dv">21</span>, <span class="dv">72</span>, <span class="dv">54</span>, <span class="dv">10</span>, <span class="dv">24</span>, <span class="dv">18</span>, <span class="dv">13</span>, <span class="dv">15</span>, <span class="dv">10</span>)</span>
+<span id="cb187-3"><a href="analysis-of-counts-and-rates.html#cb187-3" tabindex="-1"></a>y1993<span class="ot">=</span><span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">41</span>, <span class="dv">23</span>, <span class="dv">44</span>, <span class="dv">148</span>, <span class="dv">123</span>, <span class="dv">26</span>, <span class="dv">38</span>, <span class="dv">30</span>, <span class="dv">29</span>, <span class="dv">37</span>, <span class="dv">19</span>)</span>
+<span id="cb187-4"><a href="analysis-of-counts-and-rates.html#cb187-4" tabindex="-1"></a>y1997<span class="ot">=</span><span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">33</span>, <span class="dv">32</span>, <span class="dv">44</span>, <span class="dv">138</span>, <span class="dv">113</span>, <span class="dv">25</span>, <span class="dv">33</span>, <span class="dv">28</span>, <span class="dv">27</span>, <span class="dv">34</span>, <span class="dv">16</span>)</span>
+<span id="cb187-5"><a href="analysis-of-counts-and-rates.html#cb187-5" tabindex="-1"></a>y2001<span class="ot">=</span><span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">43</span>, <span class="dv">26</span>, <span class="dv">47</span>, <span class="dv">125</span>, <span class="dv">107</span>, <span class="dv">28</span>, <span class="dv">36</span>, <span class="dv">36</span>, <span class="dv">35</span>, <span class="dv">41</span>, <span class="dv">25</span>)</span>
+<span id="cb187-6"><a href="analysis-of-counts-and-rates.html#cb187-6" tabindex="-1"></a>seal.vec <span class="ot">=</span> <span class="fu">c</span>(y1981, y1986, y1993, y1997, y2001)</span>
+<span id="cb187-7"><a href="analysis-of-counts-and-rates.html#cb187-7" tabindex="-1"></a>time.vec <span class="ot">=</span> <span class="fu">sort</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;y1981&quot;</span>, <span class="st">&quot;y1986&quot;</span>, <span class="st">&quot;y1993&quot;</span>, <span class="st">&quot;y1997&quot;</span>, <span class="st">&quot;y2001&quot;</span>), <span class="dv">12</span>))</span>
+<span id="cb187-8"><a href="analysis-of-counts-and-rates.html#cb187-8" tabindex="-1"></a>pois.data<span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(<span class="at">seal=</span>seal.vec, <span class="at">time=</span>time.vec))</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="analysis-of-counts-and-rates.html#cb188-1" tabindex="-1"></a>n<span class="ot">=</span><span class="fu">dim</span>(pois.data)[<span class="dv">1</span>]</span>
+<span id="cb188-2"><a href="analysis-of-counts-and-rates.html#cb188-2" tabindex="-1"></a>partial.long.table <span class="ot">=</span> pois.data[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, n, <span class="at">replace =</span> <span class="cn">FALSE</span>), ][<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,]</span>
+<span id="cb188-3"><a href="analysis-of-counts-and-rates.html#cb188-3" tabindex="-1"></a><span class="fu">pander</span>(partial.long.table, <span class="at">caption=</span><span class="st">&quot;Part of the converted long table from the harbor seal data table&quot;</span>)</span></code></pre></div>
+<table style="width:33%;">
+<caption>Part of the converted long table from the harbor seal data table</caption>
+<colgroup>
+<col width="12%" />
+<col width="9%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">seal</th>
+<th align="center">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>43</strong></td>
+<td align="center">25</td>
+<td align="center">y1997</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>38</strong></td>
+<td align="center">33</td>
+<td align="center">y1997</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>11</strong></td>
+<td align="center">14</td>
+<td align="center">y1981</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>39</strong></td>
+<td align="center">32</td>
+<td align="center">y1997</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>7</strong></td>
+<td align="center">23</td>
+<td align="center">y1981</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>9</strong></td>
+<td align="center">19</td>
+<td align="center">y1981</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>45</strong></td>
+<td align="center">28</td>
+<td align="center">y1997</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>58</strong></td>
+<td align="center">35</td>
+<td align="center">y2001</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>23</strong></td>
+<td align="center">15</td>
+<td align="center">y1986</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>30</strong></td>
+<td align="center">123</td>
+<td align="center">y1993</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="case-studies-3" class="section level2 hasAnchor" number="14.3">
+<h2><span class="header-section-number">14.3</span> Case Studies<a href="analysis-of-counts-and-rates.html#case-studies-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We will use the two motivational examples in this section. As mentioned earlier, the Quasi-Poisson Regression is a generalization of the Poisson regression and is used when modeling an overdispersed count variable.</p>
+<p>The Poisson model assumes that the variance is equal to the mean, which is not always a fair assumption. When the variance is greater than the mean, a Quasi-Poisson model, which assumes that the variance is a linear function of the mean, is more appropriate.</p>
+<p>For each example, we will fit both Poisson and quasi-Poisson regression models.</p>
+<div id="harbor-seal-data" class="section level3 hasAnchor" number="14.3.1">
+<h3><span class="header-section-number">14.3.1</span> Harbor Seal Data<a href="analysis-of-counts-and-rates.html#harbor-seal-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We will use the <strong>long table</strong> to fit the two models. Which is to choose to report will depend on the dispersion parameter. Next, we use the R function <strong>glm()</strong> to fit Posson and quasi-Poisson models in the following.</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="analysis-of-counts-and-rates.html#cb189-1" tabindex="-1"></a>pois.model <span class="ot">=</span> <span class="fu">glm</span>(seal.vec <span class="sc">~</span> time.vec, <span class="at">family=</span>poisson, <span class="at">data =</span> pois.data)</span>
+<span id="cb189-2"><a href="analysis-of-counts-and-rates.html#cb189-2" tabindex="-1"></a>summary.table.pois <span class="ot">=</span> <span class="fu">summary</span>(pois.model)</span>
+<span id="cb189-3"><a href="analysis-of-counts-and-rates.html#cb189-3" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb189-4"><a href="analysis-of-counts-and-rates.html#cb189-4" tabindex="-1"></a>quasi.pois.model <span class="ot">=</span> <span class="fu">glm</span>(seal.vec <span class="sc">~</span> time.vec, <span class="at">family=</span>quasipoisson, <span class="at">data =</span> pois.data)</span>
+<span id="cb189-5"><a href="analysis-of-counts-and-rates.html#cb189-5" tabindex="-1"></a>summary.table.quasi.pois <span class="ot">=</span> <span class="fu">summary</span>(quasi.pois.model)</span></code></pre></div>
+<p>The complete outputs of the two models from R function <strong>glm()</strong> are given in the following figure.</p>
+<p><img src="img13/w13-PoissonQuasiPois-Output.jpg" width="80%" style="display: block; margin: auto;" />
+We can observe several pieces of information from the above figure.</p>
+<ul>
+<li><p>The regression coefficients in both Poisson and quasi-Poisson regression models are identical.</p></li>
+<li><p>The standard errors in the Poisson regression model are less than their corresponding standard errors in the quasi-Poisson regression model.</p></li>
+<li><p>The dispersion parameter is forced to be 1 in the Poisson regression model. However, the dispersion parameter is calculated through the quasi-likelihood that yields the value of dispersion parameter 26.0157. This is much bigger than 1 (for the Poisson regression model). Therefore, the p-values in the output of the regular Poisson regression model are not reliable. The inference should be based on the output of the quasi-Poisson model.</p></li>
+</ul>
+<p>The p-values in the quasi-Poisson regression can be extracted in the following table.</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="analysis-of-counts-and-rates.html#cb190-1" tabindex="-1"></a>example.coef.table <span class="ot">=</span> summary.table.quasi.pois<span class="sc">$</span>coef</span>
+<span id="cb190-2"><a href="analysis-of-counts-and-rates.html#cb190-2" tabindex="-1"></a><span class="fu">pander</span>(example.coef.table, <span class="at">caption=</span><span class="st">&quot;The summary statistics based on </span></span>
+<span id="cb190-3"><a href="analysis-of-counts-and-rates.html#cb190-3" tabindex="-1"></a><span class="st">      the quasi-Poisson regression model&quot;</span>)</span></code></pre></div>
+<table>
+<caption>The summary statistics based on
+the quasi-Poisson regression model</caption>
+<colgroup>
+<col width="25%" />
+<col width="13%" />
+<col width="16%" />
+<col width="12%" />
+<col width="31%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">3.332</td>
+<td align="center">0.2783</td>
+<td align="center">11.98</td>
+<td align="center">0.00000000000000005951</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>time.vecy1986</strong></td>
+<td align="center">-0.1646</td>
+<td align="center">0.4107</td>
+<td align="center">-0.4008</td>
+<td align="center">0.6901</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>time.vecy1993</strong></td>
+<td align="center">0.5355</td>
+<td align="center">0.3504</td>
+<td align="center">1.528</td>
+<td align="center">0.1321</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>time.vecy1997</strong></td>
+<td align="center">0.4763</td>
+<td align="center">0.3543</td>
+<td align="center">1.344</td>
+<td align="center">0.1843</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>time.vecy2001</strong></td>
+<td align="center">0.5232</td>
+<td align="center">0.3512</td>
+<td align="center">1.49</td>
+<td align="center">0.1419</td>
+</tr>
+</tbody>
+</table>
+<p>All p-values associated with the survey year are insignificant. The baseline year is 1981 (which is not in the output), this means that counts of harbor seals in any of the survey years were <strong>not significantly</strong> from the baseline year (1981).</p>
+</div>
+<div id="toxicity-study" class="section level3 hasAnchor" number="14.3.2">
+<h3><span class="header-section-number">14.3.2</span> Toxicity Study<a href="analysis-of-counts-and-rates.html#toxicity-study" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This case study is based on the second motivational example. The analysis in the original article involves errors. The statistical problem is a rate regression, the analysis in the original paper used ANOVA which led to a wrong conclusion. Two different methods will be used to assess the association between the concentration and the survival of cells.</p>
+<div id="poisson-regression" class="section level4 hasAnchor" number="14.3.2.1">
+<h4><span class="header-section-number">14.3.2.1</span> Poisson Regression<a href="analysis-of-counts-and-rates.html#poisson-regression" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We can simply use the summarized table extracted from the original article given in Section 2. This is a small data set with only 6 observations and three variables: dose(continuous), survival(discrete - count), and total (discrete - count, which can only be used as an offset variable in the model).</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="analysis-of-counts-and-rates.html#cb191-1" tabindex="-1"></a>dose <span class="ot">=</span>   <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>,  <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="dv">1</span>,   <span class="dv">5</span>)</span>
+<span id="cb191-2"><a href="analysis-of-counts-and-rates.html#cb191-2" tabindex="-1"></a>survived<span class="ot">=</span><span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">85</span>,  <span class="dv">86</span>,  <span class="dv">63</span>,  <span class="dv">56</span>,  <span class="dv">26</span>)</span>
+<span id="cb191-3"><a href="analysis-of-counts-and-rates.html#cb191-3" tabindex="-1"></a>total <span class="ot">=</span>  <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">100</span>, <span class="dv">100</span>)</span>
+<span id="cb191-4"><a href="analysis-of-counts-and-rates.html#cb191-4" tabindex="-1"></a>pois.data <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(<span class="at">survived=</span>survived, <span class="at">dose=</span>dose, <span class="at">total =</span> total))</span></code></pre></div>
+<p>Next, we fit the quasi-Poisson to the above data and check the dispersion parameter to see whether the regular Poisson regression is appropriate.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="analysis-of-counts-and-rates.html#cb192-1" tabindex="-1"></a>quasi.pois<span class="ot">=</span><span class="fu">glm</span>(survived <span class="sc">~</span> dose <span class="sc">+</span> <span class="fu">offset</span>(total), <span class="at">family =</span> quasipoisson, <span class="at">data =</span> pois.data)</span>
+<span id="cb192-2"><a href="analysis-of-counts-and-rates.html#cb192-2" tabindex="-1"></a>disp <span class="ot">=</span> <span class="fu">summary</span>(quasi.pois)<span class="sc">$</span>dispersion</span>
+<span id="cb192-3"><a href="analysis-of-counts-and-rates.html#cb192-3" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">cbind</span>(<span class="at">dispersion=</span>disp), <span class="at">caption =</span> <span class="st">&quot;The dispersion paramter of the Poisson regression&quot;</span>)</span></code></pre></div>
+<table style="width:18%;">
+<caption>The dispersion paramter of the Poisson regression
+The value of the dispersion is slightly bigger than 1 (if there is no dispersion, the dispersion parameter = 1). We only need to fit the Poisson regression to the data and use the fitted Poisson regression model to address the association between the concentration level and the survival rate.</caption>
+<colgroup>
+<col width="18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">dispersion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1.579</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="analysis-of-counts-and-rates.html#cb193-1" tabindex="-1"></a>pois<span class="ot">=</span><span class="fu">glm</span>(survived <span class="sc">~</span> <span class="fu">factor</span>(dose) <span class="sc">+</span> <span class="fu">offset</span>(total), <span class="at">family =</span> poisson, <span class="at">data =</span> pois.data)</span>
+<span id="cb193-2"><a href="analysis-of-counts-and-rates.html#cb193-2" tabindex="-1"></a>coef<span class="ot">=</span><span class="fu">summary</span>(pois)<span class="sc">$</span>coef</span>
+<span id="cb193-3"><a href="analysis-of-counts-and-rates.html#cb193-3" tabindex="-1"></a><span class="fu">pander</span>(coef, <span class="at">caption =</span> <span class="st">&quot;Summary statistics of the regression coefficients&quot;</span>)</span></code></pre></div>
+<table>
+<caption>Summary statistics of the regression coefficients
+Contrary to what was concluded in the original article, the concentration of lead chromate significantly affects the survival of the cells (p-value <span class="math inline">\(\approx\)</span> 0). As the concentration level increases, the survival rate decreases significantly. To be more specific, we can exponentiate the coefficient of the Poisson regression associated with <strong>dose</strong> and obtain <span class="math inline">\(exp(-0.2625) = 0.7691 = 1 - 0.2309\)</span>. This means that, as the concentration increases by one unit, the <strong>survival rate</strong> of the skin cells <strong>decreases</strong> by 23.09%.</caption>
+<colgroup>
+<col width="30%" />
+<col width="14%" />
+<col width="17%" />
+<col width="13%" />
+<col width="24%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">z value</th>
+<th align="center">Pr(&gt;|z|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">-95.39</td>
+<td align="center">0.1</td>
+<td align="center">-953.9</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>factor(dose)0.05</strong></td>
+<td align="center">-0.1625</td>
+<td align="center">0.1475</td>
+<td align="center">-1.102</td>
+<td align="center">0.2706</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>factor(dose)0.1</strong></td>
+<td align="center">-0.1508</td>
+<td align="center">0.1471</td>
+<td align="center">-1.026</td>
+<td align="center">0.3051</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>factor(dose)0.5</strong></td>
+<td align="center">-0.462</td>
+<td align="center">0.1609</td>
+<td align="center">-2.872</td>
+<td align="center">0.004073</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>factor(dose)1</strong></td>
+<td align="center">-0.5798</td>
+<td align="center">0.1669</td>
+<td align="center">-3.474</td>
+<td align="center">0.0005129</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>factor(dose)5</strong></td>
+<td align="center">-1.347</td>
+<td align="center">0.2201</td>
+<td align="center">-6.119</td>
+<td align="center">0.0000000009406</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="logistic-regression-approach-optional" class="section level4 hasAnchor" number="14.3.2.2">
+<h4><span class="header-section-number">14.3.2.2</span> Logistic Regression Approach (optional)<a href="analysis-of-counts-and-rates.html#logistic-regression-approach-optional" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Since the logistic regression requires the response to be binary, we need to perform some data management to create a suitable data set for the logistic regression model.</p>
+<p><strong>Data Preparation</strong></p>
+<p>The data reported in the experiment are the percentage of survival of cells with the given total number of cells that died and survived respectively at different levels of concentration. We assume 100 cells were used at each concentration. So we retrieved the data table from the chart in the original paper and summarized it in Section 2. Next, we create a <strong>long table</strong> and fit the Poisson model to the data. The idea is each column will record the information of each cell. The layout of the long table to be used in the Poisson and quasi-Poisson regression model is depicted in the following:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">cell ID</th>
+<th align="center">dose</th>
+<th align="center">survival</th>
+<th align="center">total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+<tr class="even">
+<td align="center">100</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">101</td>
+<td align="center">0.05</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+<tr class="odd">
+<td align="center">185</td>
+<td align="center">0.05</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">186</td>
+<td align="center">0.05</td>
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">187</td>
+<td align="center">0.05</td>
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+<tr class="odd">
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+<tr class="even">
+<td align="center">501</td>
+<td align="center">5</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">502</td>
+<td align="center">5</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+<tr class="odd">
+<td align="center">526</td>
+<td align="center">5</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">527</td>
+<td align="center">5</td>
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">526</td>
+<td align="center">5</td>
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+<tr class="odd">
+<td align="center">599</td>
+<td align="center">5</td>
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">600</td>
+<td align="center">5</td>
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>We define the long table in the following code.</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="analysis-of-counts-and-rates.html#cb194-1" tabindex="-1"></a>cell.id <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">600</span>                     <span class="co"># cell ID, not a meaningful variable!</span></span>
+<span id="cb194-2"><a href="analysis-of-counts-and-rates.html#cb194-2" tabindex="-1"></a>total <span class="ot">=</span> <span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">600</span>)                  <span class="co"># the &quot;total&quot; of each cell is simply equal to 1.</span></span>
+<span id="cb194-3"><a href="analysis-of-counts-and-rates.html#cb194-3" tabindex="-1"></a>dose<span class="fl">.0</span> <span class="ot">=</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">100</span>)                <span class="co"># all 100 cells survived with concentration level 0</span></span>
+<span id="cb194-4"><a href="analysis-of-counts-and-rates.html#cb194-4" tabindex="-1"></a>dose<span class="fl">.005</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">85</span>), <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">15</span>))  <span class="co"># 85 cells survived and 15 died at concentration level 0.05</span></span>
+<span id="cb194-5"><a href="analysis-of-counts-and-rates.html#cb194-5" tabindex="-1"></a>dose.<span class="fl">0.1</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">86</span>), <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">14</span>))  <span class="co"># 86 cells survived and 14 died at concentration level 0.1</span></span>
+<span id="cb194-6"><a href="analysis-of-counts-and-rates.html#cb194-6" tabindex="-1"></a>dose.<span class="fl">0.5</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">63</span>), <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">37</span>))  <span class="co"># 63 cells survived and 37 died at concentration level 0.5</span></span>
+<span id="cb194-7"><a href="analysis-of-counts-and-rates.html#cb194-7" tabindex="-1"></a>dose<span class="fl">.1</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">56</span>), <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">44</span>))   <span class="co"># 56 cells survived and 44 died at concentration level 1</span></span>
+<span id="cb194-8"><a href="analysis-of-counts-and-rates.html#cb194-8" tabindex="-1"></a>dose<span class="fl">.5</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">26</span>), <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">74</span>))    <span class="co"># 26 cells survived and 74 died at concentration level 5</span></span>
+<span id="cb194-9"><a href="analysis-of-counts-and-rates.html#cb194-9" tabindex="-1"></a>survival <span class="ot">=</span> <span class="fu">c</span>(dose<span class="fl">.0</span>, dose<span class="fl">.005</span>, dose.<span class="fl">0.1</span>, dose.<span class="fl">0.5</span>, dose<span class="fl">.1</span>, dose<span class="fl">.5</span>)  </span>
+<span id="cb194-10"><a href="analysis-of-counts-and-rates.html#cb194-10" tabindex="-1"></a><span class="co"># next line of code defines an indicator telling the concentration level of each cell</span></span>
+<span id="cb194-11"><a href="analysis-of-counts-and-rates.html#cb194-11" tabindex="-1"></a>dose <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">100</span>), <span class="fu">rep</span>(<span class="fl">0.05</span>, <span class="dv">100</span>), <span class="fu">rep</span>(<span class="fl">0.1</span>, <span class="dv">100</span>), <span class="fu">rep</span>(<span class="fl">0.5</span>, <span class="dv">100</span>), <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">100</span>), <span class="fu">rep</span>(<span class="dv">5</span>, <span class="dv">100</span>))</span>
+<span id="cb194-12"><a href="analysis-of-counts-and-rates.html#cb194-12" tabindex="-1"></a><span class="do">## The long table is defined in the following one line of code</span></span>
+<span id="cb194-13"><a href="analysis-of-counts-and-rates.html#cb194-13" tabindex="-1"></a>toxic.data <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>( <span class="at">cell.id =</span> cell.id, <span class="at">survival =</span> survival, <span class="at">dose=</span>dose, <span class="at">total =</span> total))</span></code></pre></div>
+<p><strong>Model Building</strong></p>
+<p>This is a typical Poisson rate regression problem. As usual, we will fit both Poisson rate and quasi-Poisson rate models to the data set and then look at the dispersion parameter to decide which model should be used.</p>
+<p>Based on the extracted data, the sample size is 600. The following quasi-Poisson regression model indicates that there is no significant dispersion issue for the Poisson regression model.</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="analysis-of-counts-and-rates.html#cb195-1" tabindex="-1"></a>logit.model <span class="ot">=</span> <span class="fu">glm</span>(survival <span class="sc">~</span> dose, <span class="at">family =</span> binomial, <span class="at">data =</span> toxic.data)</span>
+<span id="cb195-2"><a href="analysis-of-counts-and-rates.html#cb195-2" tabindex="-1"></a>logit.summary <span class="ot">=</span> <span class="fu">summary</span>(logit.model)<span class="sc">$</span>coef</span>
+<span id="cb195-3"><a href="analysis-of-counts-and-rates.html#cb195-3" tabindex="-1"></a><span class="fu">pander</span>(logit.summary, <span class="at">caption =</span> <span class="st">&quot;Summary statistics on the regression coefficients&quot;</span>)</span></code></pre></div>
+<table>
+<caption>Summary statistics on the regression coefficients</caption>
+<colgroup>
+<col width="21%" />
+<col width="13%" />
+<col width="15%" />
+<col width="12%" />
+<col width="37%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">z value</th>
+<th align="center">Pr(&gt;|z|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">1.519</td>
+<td align="center">0.1199</td>
+<td align="center">12.67</td>
+<td align="center">9.23e-37</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>dose</strong></td>
+<td align="center">-0.5635</td>
+<td align="center">0.05662</td>
+<td align="center">-9.952</td>
+<td align="center">0.00000000000000000000002462</td>
+</tr>
+</tbody>
+</table>
+<p>The regression coefficient associated with <strong>dose</strong> is negative meaning that as the dose increases the log-odds of survival decrease. To be more specific, we exponentiate the coefficient of <em>dose</em> and obtain $exp(-0.5635) = 0.5692 = 1 -43.08 $. This means that, as the dose increase by one unit, the <strong>odds of survival</strong> of the skin cells <strong>decreases</strong> about 43.08%.</p>
+<p><strong>Conclusion</strong></p>
+<p>In summary, the logistic regression yields the same result as that from the Poisson regression. The concentration of lead chromate is negatively associated with the survival of the skin cells of the sperm whale.</p>
+</div>
+<div id="pearson-chi2-test-of-independence-approach" class="section level4 hasAnchor" number="14.3.2.3">
+<h4><span class="header-section-number">14.3.2.3</span> Pearson <span class="math inline">\(\chi^2\)</span> Test of Independence Approach<a href="analysis-of-counts-and-rates.html#pearson-chi2-test-of-independence-approach" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We can also answer the original question by testing the hypothesis that the concentration does not affect survival (independence test). This method only provides whether there is an association between concentration and survival but not the direction and magnitude of the association. To prepare for the Pearson <span class="math inline">\(\chi^2\)</span> test, we need to construct a <span class="math inline">\(2\times k\)</span> table in the following.</p>
+<table>
+<colgroup>
+<col width="16%" />
+<col width="13%" />
+<col width="18%" />
+<col width="13%" />
+<col width="13%" />
+<col width="11%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">surv.status</th>
+<th align="center">level-0.0</th>
+<th align="center">level-0.05</th>
+<th align="center">level-0.1</th>
+<th align="center">level-0.5</th>
+<th align="center">level-1</th>
+<th align="center">level-5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">survived</td>
+<td align="center">100</td>
+<td align="center">85</td>
+<td align="center">86</td>
+<td align="center">63</td>
+<td align="center">56</td>
+<td align="center">26</td>
+</tr>
+<tr class="even">
+<td align="center">died</td>
+<td align="center">0</td>
+<td align="center">15</td>
+<td align="center">14</td>
+<td align="center">37</td>
+<td align="center">44</td>
+<td align="center">74</td>
+</tr>
+</tbody>
+</table>
+<p>We next construct the observed table in R and then perform the <span class="math inline">\(\chi^2\)</span> test.</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="analysis-of-counts-and-rates.html#cb196-1" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;https://raw.githubusercontent.com/pengdsci/STA501/main/ref/w12-table2x2Calculator.txt&quot;</span>)</span>
+<span id="cb196-2"><a href="analysis-of-counts-and-rates.html#cb196-2" tabindex="-1"></a>survived<span class="ot">=</span><span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">85</span>,  <span class="dv">86</span>,  <span class="dv">63</span>,  <span class="dv">56</span>,  <span class="dv">26</span>)</span>
+<span id="cb196-3"><a href="analysis-of-counts-and-rates.html#cb196-3" tabindex="-1"></a>died <span class="ot">=</span> <span class="dv">100</span> <span class="sc">-</span> survived</span>
+<span id="cb196-4"><a href="analysis-of-counts-and-rates.html#cb196-4" tabindex="-1"></a>obs.table <span class="ot">=</span> <span class="fu">rbind</span>(<span class="at">survived =</span> survived, <span class="at">died =</span> died)</span>
+<span id="cb196-5"><a href="analysis-of-counts-and-rates.html#cb196-5" tabindex="-1"></a><span class="fu">colnames</span>(obs.table) <span class="ot">=</span> <span class="fu">as.character</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">5</span>))</span>
+<span id="cb196-6"><a href="analysis-of-counts-and-rates.html#cb196-6" tabindex="-1"></a>chi.test <span class="ot">=</span> <span class="fu">Pearson.chisq</span>(obs.table)<span class="sc">$</span>inference</span>
+<span id="cb196-7"><a href="analysis-of-counts-and-rates.html#cb196-7" tabindex="-1"></a><span class="fu">pander</span>(chi.test, <span class="at">caption=</span><span class="st">&quot;Pearson chi-square test of independence of concentration and survival&quot;</span>)</span></code></pre></div>
+<table style="width:78%;">
+<caption>Pearson chi-square test of independence of concentration and survival</caption>
+<colgroup>
+<col width="15%" />
+<col width="13%" />
+<col width="8%" />
+<col width="40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">ts.stats</th>
+<th align="center">p.value</th>
+<th align="center">d.f</th>
+<th align="center">method</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">167.4018</td>
+<td align="center">0</td>
+<td align="center">5</td>
+<td align="center">Pearson’s Chi-squared test</td>
+</tr>
+</tbody>
+</table>
+<p>The Pearson <span class="math inline">\(\chi^2\)</span> test indicates that the concentration level of lead chromate is <strong>NOT</strong> independent of the survival of the skin cell of the sperm whale. Although the test itself does not give the direction of the association, we can find the information plot plotting the concentrations and survival rates.</p>
+</div>
+</div>
+</div>
+<div id="concluding-remarks-1" class="section level2 hasAnchor" number="14.4">
+<h2><span class="header-section-number">14.4</span> Concluding Remarks<a href="analysis-of-counts-and-rates.html#concluding-remarks-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Comparing multiple unrelated proportions (rates) is one of the important methods in analyzing laboratory data. We have summarized several different methods above to address different types of comparison questions that may arise in the actual research hypotheses. It is not as straightforward as the comparison for multiple population means since it requires different and more advanced statistical tools to address the specific comparison questions.</p>
+<p>There are several other recently developed procedures in the literature. Some of these new methods have been implemented in software packages.</p>
+<ul>
+<li><p>we can also use the command <strong>prop.test()</strong> to test the equality of multiple proportions.</p></li>
+<li><p>The Marascuilo procedure enables us to simultaneously test the differences of all pairs of proportions when there are several populations under investigation</p></li>
+<li><p>One most recently (2017) developed one-way ANOVA-like method uses the idea of the likelihood ratio test.</p></li>
+</ul>
+</div>
+<div id="practice-problems-5" class="section level2 hasAnchor" number="14.5">
+<h2><span class="header-section-number">14.5</span> Practice Problems<a href="analysis-of-counts-and-rates.html#practice-problems-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We have assessed the association between the harbor seal count observed in Maine’s coastal regions and time (different survey years between 1981 and 2001) using both Poisson and quasi-Poisson regression. In this assignment, you assess the association between the counts of harbor seal pubs and the time. The data table is given below (the frequency counts are in the red box of the following table)</p>
+<p><img src="img13/w13-Assigment-HarborSeal.jpg" width="80%" style="display: block; margin: auto;" /></p>
+<p>To save your time, define a vector for each survey year in the following code chunk.</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="analysis-of-counts-and-rates.html#cb197-1" tabindex="-1"></a>y<span class="fl">.1981</span><span class="ot">=</span><span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">13</span>, <span class="dv">13</span>, <span class="dv">17</span>, <span class="dv">49</span>, <span class="dv">45</span>, <span class="dv">13</span>, <span class="dv">12</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">4</span>)</span>
+<span id="cb197-2"><a href="analysis-of-counts-and-rates.html#cb197-2" tabindex="-1"></a>y<span class="fl">.1986</span><span class="ot">=</span><span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">18</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">45</span>, <span class="dv">39</span>, <span class="dv">8</span>, <span class="dv">22</span>, <span class="dv">15</span>, <span class="dv">11</span>, <span class="dv">7</span>, <span class="dv">7</span>)</span>
+<span id="cb197-3"><a href="analysis-of-counts-and-rates.html#cb197-3" tabindex="-1"></a>y<span class="fl">.1993</span><span class="ot">=</span><span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">32</span>, <span class="dv">17</span>, <span class="dv">32</span>, <span class="dv">112</span>, <span class="dv">97</span>, <span class="dv">23</span>, <span class="dv">28</span>, <span class="dv">25</span>, <span class="dv">23</span>, <span class="dv">23</span>, <span class="dv">12</span>)</span>
+<span id="cb197-4"><a href="analysis-of-counts-and-rates.html#cb197-4" tabindex="-1"></a>y<span class="fl">.1997</span><span class="ot">=</span><span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">26</span>, <span class="dv">21</span>, <span class="dv">27</span>, <span class="dv">92</span>, <span class="dv">91</span>, <span class="dv">19</span>, <span class="dv">26</span>, <span class="dv">26</span>, <span class="dv">26</span>, <span class="dv">26</span>, <span class="dv">9</span>)</span>
+<span id="cb197-5"><a href="analysis-of-counts-and-rates.html#cb197-5" tabindex="-1"></a>y<span class="fl">.2001</span><span class="ot">=</span><span class="fu">c</span>(<span class="dv">17</span>, <span class="dv">37</span>, <span class="dv">22</span>, <span class="dv">40</span>, <span class="dv">113</span>, <span class="dv">101</span>, <span class="dv">27</span>, <span class="dv">34</span>, <span class="dv">33</span>, <span class="dv">34</span>, <span class="dv">36</span>, <span class="dv">19</span>)</span></code></pre></div>
+<p>Please refer to the case study in the class note to analyze the data and draw conclusions to address the research question. To be more specific, you are expected to answer the following question.</p>
+<ol style="list-style-type: decimal">
+<li><p>Fit both regular and quasi-Poisson regression models.</p></li>
+<li><p>Pick a model as the final model and justify your choice.</p></li>
+<li><p>Comment on the dispersion and interpret the output of the final model.</p></li>
+<li><p>Write a separate paragraph to summarize the results and draw a conclusion.</p></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="contingency-table-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="power-calculation-and-sample-size-determination.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/pengdsci/STA501EB/edit/master/14-RatesAnalysis.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["STA501EB.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

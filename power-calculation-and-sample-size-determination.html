@@ -764,10 +764,10 @@ d_{z} = \frac{ | \mu_{z} |}{\sigma_{z}} = \frac{| \mu_{x} - \mu_{y} | }{ \sqrt{\
 <p>We can plot how the power will change as the sample size changes for the paired t-test analysis. As the sample size increases, power increases. This should make sense. Like our previous examples, as we increase our sample size, we reduce the uncertainty around the estimates. By reducing this uncertainty, we gain greater precision in our estimates, which results in greater confidence in our ability to avoid making a type II error.</p>
 <div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="power-calculation-and-sample-size-determination.html#cb220-1" tabindex="-1"></a><span class="do">### We can plot the power relative to different levels of the sample size for paired analysis. </span></span>
 <span id="cb220-2"><a href="power-calculation-and-sample-size-determination.html#cb220-2" tabindex="-1"></a>n_z <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">80</span>, <span class="dv">5</span>)</span>
-<span id="cb220-3"><a href="power-calculation-and-sample-size-determination.html#cb220-3" tabindex="-1"></a>n_z.change <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(<span class="at">d =</span> d_z, <span class="at">n =</span> n_z, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;paired&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning in qt(sig.level/tside, nu, lower = FALSE): 产生了NaNs</code></pre>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="power-calculation-and-sample-size-determination.html#cb222-1" tabindex="-1"></a>n_z.change.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(n_z, <span class="at">power =</span> n_z.change<span class="sc">$</span>power <span class="sc">*</span> <span class="dv">100</span>)</span>
-<span id="cb222-2"><a href="power-calculation-and-sample-size-determination.html#cb222-2" tabindex="-1"></a>n_z.change.df</span></code></pre></div>
+<span id="cb220-3"><a href="power-calculation-and-sample-size-determination.html#cb220-3" tabindex="-1"></a>n_z.change <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(<span class="at">d =</span> d_z, <span class="at">n =</span> n_z, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">&quot;paired&quot;</span>)</span>
+<span id="cb220-4"><a href="power-calculation-and-sample-size-determination.html#cb220-4" tabindex="-1"></a></span>
+<span id="cb220-5"><a href="power-calculation-and-sample-size-determination.html#cb220-5" tabindex="-1"></a>n_z.change.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(n_z, <span class="at">power =</span> n_z.change<span class="sc">$</span>power <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb220-6"><a href="power-calculation-and-sample-size-determination.html#cb220-6" tabindex="-1"></a>n_z.change.df</span></code></pre></div>
 <pre><code>##    n_z    power
 ## 1    1      NaN
 ## 2    6 14.03624
@@ -785,11 +785,11 @@ d_{z} = \frac{ | \mu_{z} |}{\sigma_{z}} = \frac{| \mu_{x} - \mu_{y} | }{ \sqrt{\
 ## 14  66 93.44465
 ## 15  71 94.97744
 ## 16  76 96.17076</code></pre>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="power-calculation-and-sample-size-determination.html#cb224-1" tabindex="-1"></a><span class="fu">plot</span>(n_z.change.df<span class="sc">$</span>n, </span>
-<span id="cb224-2"><a href="power-calculation-and-sample-size-determination.html#cb224-2" tabindex="-1"></a>     n_z.change.df<span class="sc">$</span>power, </span>
-<span id="cb224-3"><a href="power-calculation-and-sample-size-determination.html#cb224-3" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;b&quot;</span>, </span>
-<span id="cb224-4"><a href="power-calculation-and-sample-size-determination.html#cb224-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Sample size, n&quot;</span>, </span>
-<span id="cb224-5"><a href="power-calculation-and-sample-size-determination.html#cb224-5" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Power (%)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="power-calculation-and-sample-size-determination.html#cb222-1" tabindex="-1"></a><span class="fu">plot</span>(n_z.change.df<span class="sc">$</span>n, </span>
+<span id="cb222-2"><a href="power-calculation-and-sample-size-determination.html#cb222-2" tabindex="-1"></a>     n_z.change.df<span class="sc">$</span>power, </span>
+<span id="cb222-3"><a href="power-calculation-and-sample-size-determination.html#cb222-3" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;b&quot;</span>, </span>
+<span id="cb222-4"><a href="power-calculation-and-sample-size-determination.html#cb222-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Sample size, n&quot;</span>, </span>
+<span id="cb222-5"><a href="power-calculation-and-sample-size-determination.html#cb222-5" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Power (%)&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-243"></span>
 <img src="STA501EB_files/figure-html/unnamed-chunk-243-1.png" alt="We increase the sample size from 1 to 80 at 5-unit intervals." width="672" />
 <p class="caption">
@@ -798,14 +798,14 @@ Figure 15.2: We increase the sample size from 1 to 80 at 5-unit intervals.
 </div>
 <p>As the sample size increases, we generate more power to detect a difference of 5 lbs with a significance level of 0.05 and a fixed sample size of 44 patients with two measurements (before and after) they implement their diet.</p>
 <p>Let’s see how power changes when we change the effect size. Let’s change the average weight after the patients implement their diet. Instead of an average of 125 lbs, let’s see how the power will change when we reduce that to 100 lbs.</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="power-calculation-and-sample-size-determination.html#cb225-1" tabindex="-1"></a><span class="do">### Vary the mu_y from 50 lbs to 130 lbs in intervals of 5 lbs.</span></span>
-<span id="cb225-2"><a href="power-calculation-and-sample-size-determination.html#cb225-2" tabindex="-1"></a>mu_y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">50</span>, <span class="dv">130</span>, <span class="dv">5</span>)</span>
-<span id="cb225-3"><a href="power-calculation-and-sample-size-determination.html#cb225-3" tabindex="-1"></a></span>
-<span id="cb225-4"><a href="power-calculation-and-sample-size-determination.html#cb225-4" tabindex="-1"></a>d_z <span class="ot">&lt;-</span> <span class="fu">abs</span>(mu_x <span class="sc">-</span> mu_y) <span class="sc">/</span> sd_z</span>
-<span id="cb225-5"><a href="power-calculation-and-sample-size-determination.html#cb225-5" tabindex="-1"></a></span>
-<span id="cb225-6"><a href="power-calculation-and-sample-size-determination.html#cb225-6" tabindex="-1"></a>n_z.change <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(<span class="at">d =</span> d_z, <span class="at">n =</span> <span class="dv">44</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>)</span>
-<span id="cb225-7"><a href="power-calculation-and-sample-size-determination.html#cb225-7" tabindex="-1"></a>n_z.change.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(d_z, <span class="at">power =</span> n_z.change<span class="sc">$</span>power <span class="sc">*</span> <span class="dv">100</span>)</span>
-<span id="cb225-8"><a href="power-calculation-and-sample-size-determination.html#cb225-8" tabindex="-1"></a>n_z.change.df</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="power-calculation-and-sample-size-determination.html#cb223-1" tabindex="-1"></a><span class="do">### Vary the mu_y from 50 lbs to 130 lbs in intervals of 5 lbs.</span></span>
+<span id="cb223-2"><a href="power-calculation-and-sample-size-determination.html#cb223-2" tabindex="-1"></a>mu_y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">50</span>, <span class="dv">130</span>, <span class="dv">5</span>)</span>
+<span id="cb223-3"><a href="power-calculation-and-sample-size-determination.html#cb223-3" tabindex="-1"></a></span>
+<span id="cb223-4"><a href="power-calculation-and-sample-size-determination.html#cb223-4" tabindex="-1"></a>d_z <span class="ot">&lt;-</span> <span class="fu">abs</span>(mu_x <span class="sc">-</span> mu_y) <span class="sc">/</span> sd_z</span>
+<span id="cb223-5"><a href="power-calculation-and-sample-size-determination.html#cb223-5" tabindex="-1"></a></span>
+<span id="cb223-6"><a href="power-calculation-and-sample-size-determination.html#cb223-6" tabindex="-1"></a>n_z.change <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(<span class="at">d =</span> d_z, <span class="at">n =</span> <span class="dv">44</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>)</span>
+<span id="cb223-7"><a href="power-calculation-and-sample-size-determination.html#cb223-7" tabindex="-1"></a>n_z.change.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(d_z, <span class="at">power =</span> n_z.change<span class="sc">$</span>power <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb223-8"><a href="power-calculation-and-sample-size-determination.html#cb223-8" tabindex="-1"></a>n_z.change.df</span></code></pre></div>
 <pre><code>##         d_z     power
 ## 1  6.936880 100.00000
 ## 2  6.503325 100.00000
@@ -824,12 +824,12 @@ Figure 15.2: We increase the sample size from 1 to 80 at 5-unit intervals.
 ## 15 0.867110  98.03639
 ## 16 0.433555  52.03146
 ## 17 0.000000   5.00000</code></pre>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="power-calculation-and-sample-size-determination.html#cb227-1" tabindex="-1"></a><span class="fu">plot</span>(n_z.change.df<span class="sc">$</span>d_z, </span>
-<span id="cb227-2"><a href="power-calculation-and-sample-size-determination.html#cb227-2" tabindex="-1"></a>     n_z.change.df<span class="sc">$</span>power, </span>
-<span id="cb227-3"><a href="power-calculation-and-sample-size-determination.html#cb227-3" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;b&quot;</span>, </span>
-<span id="cb227-4"><a href="power-calculation-and-sample-size-determination.html#cb227-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Cohen&#39;s d_z&quot;</span>, </span>
-<span id="cb227-5"><a href="power-calculation-and-sample-size-determination.html#cb227-5" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Power (%)&quot;</span>,</span>
-<span id="cb227-6"><a href="power-calculation-and-sample-size-determination.html#cb227-6" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="power-calculation-and-sample-size-determination.html#cb225-1" tabindex="-1"></a><span class="fu">plot</span>(n_z.change.df<span class="sc">$</span>d_z, </span>
+<span id="cb225-2"><a href="power-calculation-and-sample-size-determination.html#cb225-2" tabindex="-1"></a>     n_z.change.df<span class="sc">$</span>power, </span>
+<span id="cb225-3"><a href="power-calculation-and-sample-size-determination.html#cb225-3" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;b&quot;</span>, </span>
+<span id="cb225-4"><a href="power-calculation-and-sample-size-determination.html#cb225-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Cohen&#39;s d_z&quot;</span>, </span>
+<span id="cb225-5"><a href="power-calculation-and-sample-size-determination.html#cb225-5" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Power (%)&quot;</span>,</span>
+<span id="cb225-6"><a href="power-calculation-and-sample-size-determination.html#cb225-6" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-244"></span>
 <img src="STA501EB_files/figure-html/unnamed-chunk-244-1.png" alt="We vary the average weight $\mu_{y}$ between 50 lbs and 130 lbs in intervals of 5 lbs." width="672" />
 <p class="caption">
@@ -838,33 +838,33 @@ Figure 15.3: We vary the average weight <span class="math inline">\(\mu_{y}\)</s
 </div>
 <p>When we increase the effect size (Cohen’s <span class="math inline">\(d_{z}\)</span>), our power goes up; recall that the sample size is fixed at 44 and the significance level is 0.05. But when the effect size gets smaller (or when the average weight loss shrinks), we lose the power to detect a difference because our sample size is too small. We’ll need to increase our sample size to have a reasonable power to detect small differences.</p>
 <p>We can also see how power changes when we vary <span class="math inline">\(\rho\)</span>. If we set <span class="math inline">\(\rho\)</span> = 0, then the Cohen’s <span class="math inline">\(d_{z}\)</span> = 0.307. If we set <span class="math inline">\(\rho\)</span> = 1, then the Cohen’s <span class="math inline">\(d_{z}\)</span> = 5.</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="power-calculation-and-sample-size-determination.html#cb228-1" tabindex="-1"></a>mu_x <span class="ot">&lt;-</span> <span class="dv">130</span>     <span class="do">### Average weight before the diet (baseline)</span></span>
-<span id="cb228-2"><a href="power-calculation-and-sample-size-determination.html#cb228-2" tabindex="-1"></a>mu_y <span class="ot">&lt;-</span> <span class="dv">125</span>     <span class="do">### Average weight after the diet</span></span>
-<span id="cb228-3"><a href="power-calculation-and-sample-size-determination.html#cb228-3" tabindex="-1"></a></span>
-<span id="cb228-4"><a href="power-calculation-and-sample-size-determination.html#cb228-4" tabindex="-1"></a>sd_x <span class="ot">&lt;-</span> <span class="dv">11</span>      <span class="do">### Standard deviation before the diet</span></span>
-<span id="cb228-5"><a href="power-calculation-and-sample-size-determination.html#cb228-5" tabindex="-1"></a>sd_y <span class="ot">&lt;-</span> <span class="dv">12</span>      <span class="do">### Standard deviation after the diet</span></span>
-<span id="cb228-6"><a href="power-calculation-and-sample-size-determination.html#cb228-6" tabindex="-1"></a></span>
-<span id="cb228-7"><a href="power-calculation-and-sample-size-determination.html#cb228-7" tabindex="-1"></a>sd_z_1 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(sd_x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> sd_y<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span><span class="dv">1</span><span class="sc">*</span>sd_x<span class="sc">*</span>sd_y)</span>
-<span id="cb228-8"><a href="power-calculation-and-sample-size-determination.html#cb228-8" tabindex="-1"></a>sd_z_0 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(sd_x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> sd_y<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span><span class="dv">0</span><span class="sc">*</span>sd_x<span class="sc">*</span>sd_y)</span>
-<span id="cb228-9"><a href="power-calculation-and-sample-size-determination.html#cb228-9" tabindex="-1"></a></span>
-<span id="cb228-10"><a href="power-calculation-and-sample-size-determination.html#cb228-10" tabindex="-1"></a>d_z_1 <span class="ot">&lt;-</span> <span class="fu">abs</span>(mu_x <span class="sc">-</span> mu_y) <span class="sc">/</span> sd_z_1</span>
-<span id="cb228-11"><a href="power-calculation-and-sample-size-determination.html#cb228-11" tabindex="-1"></a>d_z_0 <span class="ot">&lt;-</span> <span class="fu">abs</span>(mu_x <span class="sc">-</span> mu_y) <span class="sc">/</span> sd_z_0</span>
-<span id="cb228-12"><a href="power-calculation-and-sample-size-determination.html#cb228-12" tabindex="-1"></a></span>
-<span id="cb228-13"><a href="power-calculation-and-sample-size-determination.html#cb228-13" tabindex="-1"></a>d_z_1</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="power-calculation-and-sample-size-determination.html#cb226-1" tabindex="-1"></a>mu_x <span class="ot">&lt;-</span> <span class="dv">130</span>     <span class="do">### Average weight before the diet (baseline)</span></span>
+<span id="cb226-2"><a href="power-calculation-and-sample-size-determination.html#cb226-2" tabindex="-1"></a>mu_y <span class="ot">&lt;-</span> <span class="dv">125</span>     <span class="do">### Average weight after the diet</span></span>
+<span id="cb226-3"><a href="power-calculation-and-sample-size-determination.html#cb226-3" tabindex="-1"></a></span>
+<span id="cb226-4"><a href="power-calculation-and-sample-size-determination.html#cb226-4" tabindex="-1"></a>sd_x <span class="ot">&lt;-</span> <span class="dv">11</span>      <span class="do">### Standard deviation before the diet</span></span>
+<span id="cb226-5"><a href="power-calculation-and-sample-size-determination.html#cb226-5" tabindex="-1"></a>sd_y <span class="ot">&lt;-</span> <span class="dv">12</span>      <span class="do">### Standard deviation after the diet</span></span>
+<span id="cb226-6"><a href="power-calculation-and-sample-size-determination.html#cb226-6" tabindex="-1"></a></span>
+<span id="cb226-7"><a href="power-calculation-and-sample-size-determination.html#cb226-7" tabindex="-1"></a>sd_z_1 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(sd_x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> sd_y<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span><span class="dv">1</span><span class="sc">*</span>sd_x<span class="sc">*</span>sd_y)</span>
+<span id="cb226-8"><a href="power-calculation-and-sample-size-determination.html#cb226-8" tabindex="-1"></a>sd_z_0 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(sd_x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> sd_y<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span><span class="dv">0</span><span class="sc">*</span>sd_x<span class="sc">*</span>sd_y)</span>
+<span id="cb226-9"><a href="power-calculation-and-sample-size-determination.html#cb226-9" tabindex="-1"></a></span>
+<span id="cb226-10"><a href="power-calculation-and-sample-size-determination.html#cb226-10" tabindex="-1"></a>d_z_1 <span class="ot">&lt;-</span> <span class="fu">abs</span>(mu_x <span class="sc">-</span> mu_y) <span class="sc">/</span> sd_z_1</span>
+<span id="cb226-11"><a href="power-calculation-and-sample-size-determination.html#cb226-11" tabindex="-1"></a>d_z_0 <span class="ot">&lt;-</span> <span class="fu">abs</span>(mu_x <span class="sc">-</span> mu_y) <span class="sc">/</span> sd_z_0</span>
+<span id="cb226-12"><a href="power-calculation-and-sample-size-determination.html#cb226-12" tabindex="-1"></a></span>
+<span id="cb226-13"><a href="power-calculation-and-sample-size-determination.html#cb226-13" tabindex="-1"></a>d_z_1</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="power-calculation-and-sample-size-determination.html#cb230-1" tabindex="-1"></a>d_z_0</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="power-calculation-and-sample-size-determination.html#cb228-1" tabindex="-1"></a>d_z_0</span></code></pre></div>
 <pre><code>## [1] 0.3071476</code></pre>
 <p>So, higher <span class="math inline">\(\rho\)</span> results in large <span class="math inline">\(d_{z}\)</span> and smaller <span class="math inline">\(\rho\)</span> results in small <span class="math inline">\(d_{z}\)</span> values.</p>
 <p>Let’s see how power changes when we change the <span class="math inline">\(\rho\)</span> range from 0 to 1 in intervals of 0.1 units.</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="power-calculation-and-sample-size-determination.html#cb232-1" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">0.1</span>)</span>
-<span id="cb232-2"><a href="power-calculation-and-sample-size-determination.html#cb232-2" tabindex="-1"></a></span>
-<span id="cb232-3"><a href="power-calculation-and-sample-size-determination.html#cb232-3" tabindex="-1"></a>sd_z <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(sd_x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> sd_y<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span>rho<span class="sc">*</span>sd_x<span class="sc">*</span>sd_y)</span>
-<span id="cb232-4"><a href="power-calculation-and-sample-size-determination.html#cb232-4" tabindex="-1"></a></span>
-<span id="cb232-5"><a href="power-calculation-and-sample-size-determination.html#cb232-5" tabindex="-1"></a>d_z <span class="ot">&lt;-</span> <span class="fu">abs</span>(mu_x <span class="sc">-</span> mu_y) <span class="sc">/</span> sd_z</span>
-<span id="cb232-6"><a href="power-calculation-and-sample-size-determination.html#cb232-6" tabindex="-1"></a></span>
-<span id="cb232-7"><a href="power-calculation-and-sample-size-determination.html#cb232-7" tabindex="-1"></a>rho.change <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(<span class="at">d =</span> d_z, <span class="at">n =</span> <span class="dv">44</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>)</span>
-<span id="cb232-8"><a href="power-calculation-and-sample-size-determination.html#cb232-8" tabindex="-1"></a>rho.change.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(d_z, <span class="at">power =</span> rho.change<span class="sc">$</span>power <span class="sc">*</span> <span class="dv">100</span>)</span>
-<span id="cb232-9"><a href="power-calculation-and-sample-size-determination.html#cb232-9" tabindex="-1"></a>rho.change.df</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="power-calculation-and-sample-size-determination.html#cb230-1" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="fl">0.1</span>)</span>
+<span id="cb230-2"><a href="power-calculation-and-sample-size-determination.html#cb230-2" tabindex="-1"></a></span>
+<span id="cb230-3"><a href="power-calculation-and-sample-size-determination.html#cb230-3" tabindex="-1"></a>sd_z <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(sd_x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> sd_y<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span>rho<span class="sc">*</span>sd_x<span class="sc">*</span>sd_y)</span>
+<span id="cb230-4"><a href="power-calculation-and-sample-size-determination.html#cb230-4" tabindex="-1"></a></span>
+<span id="cb230-5"><a href="power-calculation-and-sample-size-determination.html#cb230-5" tabindex="-1"></a>d_z <span class="ot">&lt;-</span> <span class="fu">abs</span>(mu_x <span class="sc">-</span> mu_y) <span class="sc">/</span> sd_z</span>
+<span id="cb230-6"><a href="power-calculation-and-sample-size-determination.html#cb230-6" tabindex="-1"></a></span>
+<span id="cb230-7"><a href="power-calculation-and-sample-size-determination.html#cb230-7" tabindex="-1"></a>rho.change <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(<span class="at">d =</span> d_z, <span class="at">n =</span> <span class="dv">44</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>)</span>
+<span id="cb230-8"><a href="power-calculation-and-sample-size-determination.html#cb230-8" tabindex="-1"></a>rho.change.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(d_z, <span class="at">power =</span> rho.change<span class="sc">$</span>power <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb230-9"><a href="power-calculation-and-sample-size-determination.html#cb230-9" tabindex="-1"></a>rho.change.df</span></code></pre></div>
 <pre><code>##          d_z     power
 ## 1  0.3071476  29.65480
 ## 2  0.3236941  32.35129
@@ -877,12 +877,12 @@ Figure 15.3: We vary the average weight <span class="math inline">\(\mu_{y}\)</s
 ## 9  0.6816774  88.52181
 ## 10 0.9552009  99.32401
 ## 11 5.0000000 100.00000</code></pre>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="power-calculation-and-sample-size-determination.html#cb234-1" tabindex="-1"></a><span class="fu">plot</span>(rho.change.df<span class="sc">$</span>d_z, </span>
-<span id="cb234-2"><a href="power-calculation-and-sample-size-determination.html#cb234-2" tabindex="-1"></a>     rho.change.df<span class="sc">$</span>power, </span>
-<span id="cb234-3"><a href="power-calculation-and-sample-size-determination.html#cb234-3" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;b&quot;</span>, </span>
-<span id="cb234-4"><a href="power-calculation-and-sample-size-determination.html#cb234-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Cohen&#39;s d_z&quot;</span>, </span>
-<span id="cb234-5"><a href="power-calculation-and-sample-size-determination.html#cb234-5" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Power (%)&quot;</span>,</span>
-<span id="cb234-6"><a href="power-calculation-and-sample-size-determination.html#cb234-6" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="power-calculation-and-sample-size-determination.html#cb232-1" tabindex="-1"></a><span class="fu">plot</span>(rho.change.df<span class="sc">$</span>d_z, </span>
+<span id="cb232-2"><a href="power-calculation-and-sample-size-determination.html#cb232-2" tabindex="-1"></a>     rho.change.df<span class="sc">$</span>power, </span>
+<span id="cb232-3"><a href="power-calculation-and-sample-size-determination.html#cb232-3" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;b&quot;</span>, </span>
+<span id="cb232-4"><a href="power-calculation-and-sample-size-determination.html#cb232-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Cohen&#39;s d_z&quot;</span>, </span>
+<span id="cb232-5"><a href="power-calculation-and-sample-size-determination.html#cb232-5" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Power (%)&quot;</span>,</span>
+<span id="cb232-6"><a href="power-calculation-and-sample-size-determination.html#cb232-6" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.5</span>))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-247"></span>
 <img src="STA501EB_files/figure-html/unnamed-chunk-247-1.png" alt="We vary $\rho$ from 0 to 1 at intervals of 0.1 unit." width="672" />
 <p class="caption">
@@ -900,23 +900,23 @@ Figure 15.4: We vary <span class="math inline">\(\rho\)</span> from 0 to 1 at in
 <p>It is common to perform power analysis on a study where the sample sizes between groups are different.</p>
 <p>Suppose you have a retrospective study where the patients were prescribed Treatment A and Treatment B. There were 130 patients in Treatment A (<span class="math inline">\(n_{A}\)</span> = 130) and 120 patients in Treatment B (<span class="math inline">\(n_{B}\)</span> = 120). The average change in HbA1c was 1.5% with a standard deviation of 1.25% in Treatment A, and the average change in HbA1c was 1.4% with a standard deviation of 1.01% in Treatment B.</p>
 <p>First, we’ll calculate the pooled standard deviation (<span class="math inline">\(\sigma_{pooled}\)</span>):</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="power-calculation-and-sample-size-determination.html#cb235-1" tabindex="-1"></a>sd1 <span class="ot">&lt;-</span> <span class="fl">1.25</span></span>
-<span id="cb235-2"><a href="power-calculation-and-sample-size-determination.html#cb235-2" tabindex="-1"></a>sd2 <span class="ot">&lt;-</span> <span class="fl">1.01</span></span>
-<span id="cb235-3"><a href="power-calculation-and-sample-size-determination.html#cb235-3" tabindex="-1"></a>sd_pooled <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((sd1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span>sd2<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb235-4"><a href="power-calculation-and-sample-size-determination.html#cb235-4" tabindex="-1"></a>sd_pooled</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="power-calculation-and-sample-size-determination.html#cb233-1" tabindex="-1"></a>sd1 <span class="ot">&lt;-</span> <span class="fl">1.25</span></span>
+<span id="cb233-2"><a href="power-calculation-and-sample-size-determination.html#cb233-2" tabindex="-1"></a>sd2 <span class="ot">&lt;-</span> <span class="fl">1.01</span></span>
+<span id="cb233-3"><a href="power-calculation-and-sample-size-determination.html#cb233-3" tabindex="-1"></a>sd_pooled <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((sd1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span>sd2<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb233-4"><a href="power-calculation-and-sample-size-determination.html#cb233-4" tabindex="-1"></a>sd_pooled</span></code></pre></div>
 <pre><code>## [1] 1.136354</code></pre>
 <p>Once we have the <span class="math inline">\(\sigma_{pooled}\)</span>, we can estimate the Cohen’s <span class="math inline">\(d\)</span>:</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="power-calculation-and-sample-size-determination.html#cb237-1" tabindex="-1"></a>mu1 <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
-<span id="cb237-2"><a href="power-calculation-and-sample-size-determination.html#cb237-2" tabindex="-1"></a>mu2 <span class="ot">&lt;-</span> <span class="fl">1.4</span></span>
-<span id="cb237-3"><a href="power-calculation-and-sample-size-determination.html#cb237-3" tabindex="-1"></a>d <span class="ot">&lt;-</span> (mu1 <span class="sc">-</span> mu2) <span class="sc">/</span> sd_pooled</span>
-<span id="cb237-4"><a href="power-calculation-and-sample-size-determination.html#cb237-4" tabindex="-1"></a>d</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="power-calculation-and-sample-size-determination.html#cb235-1" tabindex="-1"></a>mu1 <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb235-2"><a href="power-calculation-and-sample-size-determination.html#cb235-2" tabindex="-1"></a>mu2 <span class="ot">&lt;-</span> <span class="fl">1.4</span></span>
+<span id="cb235-3"><a href="power-calculation-and-sample-size-determination.html#cb235-3" tabindex="-1"></a>d <span class="ot">&lt;-</span> (mu1 <span class="sc">-</span> mu2) <span class="sc">/</span> sd_pooled</span>
+<span id="cb235-4"><a href="power-calculation-and-sample-size-determination.html#cb235-4" tabindex="-1"></a>d</span></code></pre></div>
 <pre><code>## [1] 0.08800076</code></pre>
 <p>Now, we can estimate the power with the different sample sizes across the groups (<span class="math inline">\(n_{A}\)</span> = 130, <span class="math inline">\(n_{B}\)</span> = 120).</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="power-calculation-and-sample-size-determination.html#cb239-1" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="dv">130</span></span>
-<span id="cb239-2"><a href="power-calculation-and-sample-size-determination.html#cb239-2" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> <span class="dv">120</span></span>
-<span id="cb239-3"><a href="power-calculation-and-sample-size-determination.html#cb239-3" tabindex="-1"></a></span>
-<span id="cb239-4"><a href="power-calculation-and-sample-size-determination.html#cb239-4" tabindex="-1"></a>power.diff_n <span class="ot">&lt;-</span> <span class="fu">pwr.t2n.test</span>(<span class="at">d =</span> d, <span class="at">n1 =</span> n1, <span class="at">n2 =</span> n2, <span class="at">sig.level =</span> <span class="fl">0.05</span>)</span>
-<span id="cb239-5"><a href="power-calculation-and-sample-size-determination.html#cb239-5" tabindex="-1"></a>power.diff_n</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="power-calculation-and-sample-size-determination.html#cb237-1" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="dv">130</span></span>
+<span id="cb237-2"><a href="power-calculation-and-sample-size-determination.html#cb237-2" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> <span class="dv">120</span></span>
+<span id="cb237-3"><a href="power-calculation-and-sample-size-determination.html#cb237-3" tabindex="-1"></a></span>
+<span id="cb237-4"><a href="power-calculation-and-sample-size-determination.html#cb237-4" tabindex="-1"></a>power.diff_n <span class="ot">&lt;-</span> <span class="fu">pwr.t2n.test</span>(<span class="at">d =</span> d, <span class="at">n1 =</span> n1, <span class="at">n2 =</span> n2, <span class="at">sig.level =</span> <span class="fl">0.05</span>)</span>
+<span id="cb237-5"><a href="power-calculation-and-sample-size-determination.html#cb237-5" tabindex="-1"></a>power.diff_n</span></code></pre></div>
 <pre><code>## 
 ##      t test power calculation 
 ## 
@@ -984,7 +984,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["STA501EB.pdf"],
+"download": ["STA501EB.pdf", "STA501EB.epub"],
 "search": {
 "engine": "fuse",
 "options": null

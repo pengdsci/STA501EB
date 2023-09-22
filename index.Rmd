@@ -1,0 +1,54 @@
+--- 
+title: "STA501 E-Pack: Applied Statistical Methods"
+author: "Cheng Peng"
+date: "West Chester University"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "The output format for this example is bookdown::gitbook."
+---
+
+```{r include = FALSE, eval=FALSE}
+install.packages("bookdown")
+# or the development version
+# devtools::install_github("rstudio/bookdown")
+```
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+
+
+
+# Introduction
+
+This _E-coursepack_ is a self-contained homegrown eBook that contains all topics covered in current STA 501 at WCU. 
+
+The audience of this class is graduate students from life science. The objective is to equip students with applied statistical methods that are used to analyze data generated from their fields.
+
+The coverage of this course is from descriptive statistics to ANOVA, contingency tables, and generalized linear models. 
+
+* Setting up computing tools - getting started with R, RStudio, and R Markdown 
+* Sampling and Experimental Design  
+* Data Visualization and Descriptive Statistics  
+* Standard scores, the Normal, t, Chi-Squared, and F Distributions  
+* Sampling distributions  
+* Confidence Intervals  
+* Tests of a single mean/proportion and two means/proportions  
+* ANOVA  
+* Correlation and Simple Linear Regression  
+* Multiple Linear Regression  
+* Binary Categorical Regression  
+* Frequency Count Regression  
+* Procedures Related to Nominal Data  
+* Power and Sample Size Determination 
+
+Most case studies are based on (field and laboratory) data taken from the fields of biology, ecology, clinical, health science, etc. A formal statistical programming language R is used for data analysis. Students are not assumed to have prior experience in R coding. In the meanwhile, RMarkdown is an R package that can be used to combine text, R code, and the output from the execution of that code. Therefore, we can use RMarkdown to do an analysis and report the analysis at the same time in the same document.
